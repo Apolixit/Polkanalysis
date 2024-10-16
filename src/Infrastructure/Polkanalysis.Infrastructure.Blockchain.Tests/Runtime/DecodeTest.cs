@@ -37,7 +37,7 @@ namespace Polkanalysis.SubstrateDecode.Test.Node
         public async Task EmptyType_ShouldHaveEmptyNode()
         {
             IType emptyType = new U32();
-            var node = await _decode.DecodeAsync(emptyType, CancellationToken.None);
+            var node = await _decode.DecodeAsync(emptyType, new Substrate.NetApi.Model.Meta.MetaData(), CancellationToken.None);
 
             Assert.That(node, Is.Not.Null);
             Assert.That(node.IsEmpty, Is.False);

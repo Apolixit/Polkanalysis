@@ -32,4 +32,8 @@
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Polkadot\Repository\Pallet\Events\" />
+  </ItemGroup>
+
 </Project>

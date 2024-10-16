@@ -28,6 +28,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Domain.Helper.Enumerables;
+using Substrate.NetApi.Model.Meta;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -52,6 +54,12 @@ namespace Polkanalysis.Domain.Service
             _accountRepository = accountRepository;
             _logger = logger;
             _coreService = coreService;
+        }
+
+        private string? _blockHash = null;
+        public void At(string blockHash)
+        {
+            _blockHash = blockHash;
         }
 
         public async Task<SubstrateAccount> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
@@ -195,16 +203,16 @@ namespace Polkanalysis.Domain.Service
             // finalized
             var lastFinalizedBlockHash = await _substrateService.Rpc.Chain.GetFinalizedHeadAsync(cancellationToken);
             var finalizedBlockData = await _substrateService.Rpc.Chain.GetBlockAsync(lastFinalizedBlockHash, cancellationToken);
-            var currentBlockStatus = blockData.Block.Header.Number.Value <= finalizedBlockData.Block.Header.Number.Value ? GlobalStatusDto.BlockStatusDto.Finalized : GlobalStatusDto.BlockStatusDto.Broadcasted;
+            var currentBlockStatus = blockData.GetBlock().Header.Number.Value <= finalizedBlockData.GetBlock().Header.Number.Value ? GlobalStatusDto.BlockStatusDto.Finalized : GlobalStatusDto.BlockStatusDto.Broadcasted;
 
             return new BlockLightDto()
             {
                 Hash = blockHash,
-                Number = (uint)blockData.Block.Header.Number.Value,
+                Number = (uint)blockData.GetBlock().Header.Number.Value,
                 Status = currentBlockStatus,
-                NbExtrinsics = (uint)blockData.Block.Extrinsics.Length,
+                NbExtrinsics = (uint)blockData.GetBlock().GetExtrinsics().Length,
                 NbEvents = eventsCount.Value,
-                NbLogs = (uint)blockData.Block.Header.Digest.Logs.Count,
+                NbLogs = (uint)blockData.GetBlock().Header.Digest.Logs.Count,
                 When = ModelBuilder.DisplayElapsedTime(blockDate),
                 BlockDate = blockDate,
                 ValidatorIdentity = authorIdentity,
@@ -224,26 +232,25 @@ namespace Polkanalysis.Domain.Service
         protected async Task<BlockDto> GetBlockDetailsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
             var blockHash = await block.ToBlockHashAsync(_substrateService);
-            var blockDetailsTask = _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
 
+            var blockDetailsTask = _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
             var currentDateTask = _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
             var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
             var blockExecutionPhaseTask = _substrateService.At(blockHash).Storage.System.ExecutionPhaseAsync(cancellationToken);
             var specVersionTask = _substrateService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, cancellationToken);
             var eventsTask = _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
-            
-            var (currentDate, eventsCount, blockExecutionPhase, specVersion, blockDetails, blockEvents) = await WaiterHelper.WaitAndReturnAsync(currentDateTask, eventsCountTask, blockExecutionPhaseTask, specVersionTask, blockDetailsTask, eventsTask);
+            var metadataWithVersionTask = _substrateService.At(blockHash).GetMetadataWithVersionAsync(CancellationToken.None);
+            var (currentDate, eventsCount, blockExecutionPhase, specVersion, blockDetails, blockEvents, metadataWithVersion) = await WaiterHelper.WaitAndReturnAsync(currentDateTask, eventsCountTask, blockExecutionPhaseTask, specVersionTask, blockDetailsTask, eventsTask, metadataWithVersionTask);
 
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
-            var extrinsicsList = blockDetails.Block.Extrinsics.ToList();
-            //var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
-            //var filteredExtrinsic = blockDetails.Block.Extrinsics;
-            foreach (var extrinsic in extrinsicsList)
-            {
-                var extrinsicDecode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
-            }
+            var extrinsicsList = blockDetails.GetBlock().GetExtrinsics().ToList();
+            
+            //foreach (var extrinsic in extrinsicsList)
+            //{
+            //    var extrinsicDecode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, metadata, cancellationToken);
+            //}
 
             var status = blockExecutionPhase is null ? GlobalStatusDto.BlockStatusDto.Finalized : blockExecutionPhase.Value switch
             {
@@ -277,27 +284,29 @@ namespace Polkanalysis.Domain.Service
 
             var blockAuthor = await GetBlockAuthorAsync(block, cancellationToken);
             var authorIdentity = await _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken);
+            var header = blockDetails.GetBlock().Header;
 
             var blockDto = new BlockDto()
             {
                 Date = ModelBuilder.BuildDateDto(currentDate),
-                ExtrinsicsRoot = blockDetails.Block.Header.ExtrinsicsRoot.Value,
-                ParentHash = blockDetails.Block.Header.ParentHash.Value,
-                StateRoot = blockDetails.Block.Header.StateRoot.Value,
-                Number = blockDetails.Block.Header.Number.Value,
+                ExtrinsicsRoot = header.ExtrinsicsRoot.Value,
+                ParentHash = header.ParentHash.Value,
+                StateRoot = header.StateRoot.Value,
+                Number = header.Number.Value,
                 Hash = blockHash.Value,
                 Status = status,
-                NbExtrinsics = (uint)blockDetails.Block.Extrinsics.Length,
+                NbExtrinsics = (uint)blockDetails.GetBlock().GetExtrinsics().Length,
                 NbEvents = eventsCount is not null ? eventsCount.Value : default,
-                NbLogs = (uint)blockDetails.Block.Header.Digest.Logs.Count,
+                NbLogs = (uint)header.Digest.Logs.Count,
                 SpecVersion = specVersion is not null ? specVersion.SpecVersion : default,
                 Validator = authorIdentity,
+                MetadataMajorVersion = metadataWithVersion.majorVersion
             };
 
             return blockDto;
         }
 
-        public async Task<LifetimeDto?> GetExtrinsicsLifetimeAsync(uint blockNumber, Extrinsic extrinsic, CancellationToken cancellationToken)
+        public async Task<LifetimeDto?> GetExtrinsicsLifetimeAsync(uint blockNumber, IExtrinsic extrinsic, CancellationToken cancellationToken)
         {
             if(extrinsic.Era is null) return null;
 
@@ -531,16 +540,18 @@ namespace Polkanalysis.Domain.Service
                 block.ToBlockHashAsync(_substrateService), 
                 block.ToBlockNumberAsync(_substrateService));
 
-            var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
+            var (blockDetails, metadata, events) = await WaiterHelper.WaitAndReturnAsync(
+                _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken),
+                _substrateService.At(blockHash).GetMetadataAsync(cancellationToken),
+                _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken));
 
             if (blockDetails is null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
-            var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
-
             var extrinsicsDto = new List<ExtrinsicDto>();
+            var extrinsics = blockDetails.GetBlock().GetExtrinsics().ToList();
 
-            foreach (var extrinsic in blockDetails.Block.Extrinsics)
+            foreach (var extrinsic in extrinsics)
             {
 #if DEBUG
                 var encodedExtrinsic = extrinsic.Encode();
@@ -552,13 +563,13 @@ namespace Polkanalysis.Domain.Service
                 
 
                 //var (callModule, callEvent) = _substrateDecode.GetCallFromExtrinsic(extrinsic, blockHash);
-                var extrinsicIndex = (uint)blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic);
+                var extrinsicIndex = (uint)extrinsics.ToList().IndexOf(extrinsic);
                 AccountDto? caller = null;
                 if(extrinsic.Account is not null)
                     caller = await _accountRepository.GetAccountDetailAsync(extrinsic.Account.Value, cancellationToken);
 
                 var (extrinsicNode, fees, status, lifetime) = await WaiterHelper.WaitAndReturnAsync(
-                    _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken),
+                    _substrateDecode.DecodeExtrinsicAsync(extrinsic, metadata, cancellationToken),
                     GetExtrinsicsFeesAsync(events, (int)extrinsicIndex, cancellationToken),
                     GetExtrinsicsStatusAsync(events, (int)extrinsicIndex, cancellationToken),
                     GetExtrinsicsLifetimeAsync(blockNumber, extrinsic, cancellationToken));
@@ -610,12 +621,12 @@ namespace Polkanalysis.Domain.Service
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block number = {extrinsicDto.BlockNumber} is null");
 
-            return await GetEventsLinkedToExtrinsicsAsync(extrinsicDto, blockDetails.Block.Extrinsics, cancellationToken);
+            return await GetEventsLinkedToExtrinsicsAsync(extrinsicDto, blockDetails.GetBlock().GetExtrinsics(), cancellationToken);
         }
 
         public async Task<IEnumerable<EventDto>?> GetEventsLinkedToExtrinsicsAsync(
             ExtrinsicDto extrinsicDto,
-            IEnumerable<Extrinsic> extrinsics,
+            IEnumerable<IExtrinsic> extrinsics,
             CancellationToken cancellationToken)
         {
             var blockLight = await GetBlockLightAsync(extrinsicDto.BlockNumber, cancellationToken);
@@ -701,12 +712,12 @@ namespace Polkanalysis.Domain.Service
                     GetExtrinsicIndexFromEvent(selectedEvent));
         }
 
-        public async Task<IEnumerable<EventRecord>> FindEventAsync(BaseVec<EventRecord> events,RuntimeEvent palletName, Enum eventName, CancellationToken token)
+        public async Task<IEnumerable<EventRecord>> FindEventAsync(BaseVec<EventRecord> events, MetaData metadata, RuntimeEvent palletName, Enum eventName, CancellationToken token)
         {
             var eventsFiltered = new List<EventRecord>();
             foreach (var ev in events.Value)
             {
-                var eventNode = await _substrateDecode.DecodeEventAsync(ev, token);
+                var eventNode = await _substrateDecode.DecodeEventAsync(ev, metadata, token);
                 if (eventNode.Module.ToString() == palletName.ToString() &&
                 eventNode.Method.ToString() == eventName.ToString())
                 {
@@ -717,11 +728,12 @@ namespace Polkanalysis.Domain.Service
             return eventsFiltered;
         }
 
-        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token)
+
+        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, MetaData metadata, Action<EventRecord> callback, CancellationToken token)
         {
             await _substrateService.Events.SubscribeEventsAsync((events) =>
             {
-                FindEventAsync(events, palletName, eventName, token).Result
+                FindEventAsync(events, metadata, palletName, eventName, token).Result
                 .ToList()
                 .ForEach(ev => callback(ev));
             }, token);
@@ -748,7 +760,7 @@ namespace Polkanalysis.Domain.Service
             throw new NotImplementedException();
         }
 
-        public async Task<(BlockNumber blockNumber, Hash blockHash, BlockData blockDetails)> ExtractInformationsFromHeaderAsync(Header header, CancellationToken token)
+        public async Task<(BlockNumber blockNumber, Hash blockHash, IBlockData blockDetails)> ExtractInformationsFromHeaderAsync(Header header, CancellationToken token)
         {
             if (header == null) throw new ArgumentNullException("header");
 
@@ -822,5 +834,7 @@ namespace Polkanalysis.Domain.Service
 
             return logsDto;
         }
+
+        
     }
 }

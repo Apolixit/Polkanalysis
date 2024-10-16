@@ -26,6 +26,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -94,21 +95,21 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             return firstEvent;
         }
 
-        private Extrinsic standardExtrinsicMock()
+        private IExtrinsic standardExtrinsicMock()
         {
             EventRecord killedAccountEvent = buildKilledAccountEvent();
-            var mockExtrinsic = new Extrinsic("0x41028400AE5B1DD41CCA2BB6875D240A28724C6977CF3E80B9AB24EE2A7B0A856BC8D86801E8D5AA83C3D6040D2935470D46601C4E219E91BB155B44C831D1607625EBEA0341067CAC1B8BA8625A0ECB10BB0EAB4FE152F67F4059E8732A51D993C90B0D84F502A400050300EA9F7DD7160C14CF17861D8024DCD20D1D914D5DAC47915CD06EF7B2671F51500700E5025793", ChargeTransactionPayment.Default());
+            var mockExtrinsic = new TempOldExtrinsic("0x41028400AE5B1DD41CCA2BB6875D240A28724C6977CF3E80B9AB24EE2A7B0A856BC8D86801E8D5AA83C3D6040D2935470D46601C4E219E91BB155B44C831D1607625EBEA0341067CAC1B8BA8625A0ECB10BB0EAB4FE152F67F4059E8732A51D993C90B0D84F502A400050300EA9F7DD7160C14CF17861D8024DCD20D1D914D5DAC47915CD06EF7B2671F51500700E5025793", ChargeTransactionPayment.Default());
             var hash = new Hash("0x00");
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), CancellationToken.None).Returns(hash);
             _substrateService.Rpc.Chain.GetBlockAsync(hash, CancellationToken.None).Returns(
-                new Substrate.NetApi.Model.Rpc.BlockData(
-                    new Substrate.NetApi.Model.Rpc.Block()
+                new TempOldBlockData(
+                    new TempOldBlock()
                     {
                         Header = new Substrate.NetApi.Model.Rpc.Header()
                         {
                             Number = new U64(1_000_000)
                         },
-                        Extrinsics = new List<Extrinsic>([mockExtrinsic]).ToArray()
+                        Extrinsics = new List<TempOldExtrinsic>([mockExtrinsic]).ToArray()
                     }, null)
                 );
             _substrateService.At(Arg.Any<uint>()).Storage.System.EventsAsync(CancellationToken.None).Returns(

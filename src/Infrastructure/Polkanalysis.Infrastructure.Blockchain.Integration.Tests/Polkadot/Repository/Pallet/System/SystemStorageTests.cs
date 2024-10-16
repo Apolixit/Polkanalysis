@@ -32,6 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
+        [TestCase(14033244, "13gLE9RuaZ3vmZwVaZfsvPMNnTHPVhXKoMWjsNaP6F6ccA7s")]
         [TestCase(1, "12H7nsDUrJUSCQQJrTKAFfyCWSactiSdjoVUixqcd9CZHTGt")]
         [TestCase(29232, "12zSBXtK9evQRCG9Gsdr72RbqNzbNn2Suox2cTfugCLmWjqG")]
         [TestCase(188837, "12zSBXtK9evQRCG9Gsdr72RbqNzbNn2Suox2cTfugCLmWjqG")]

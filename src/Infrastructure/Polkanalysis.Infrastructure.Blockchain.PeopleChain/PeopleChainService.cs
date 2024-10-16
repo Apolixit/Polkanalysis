@@ -76,7 +76,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             get
             {
                 if (_rpc == null)
-                    _rpc = new Rpc(PeopleChainClient);
+                    _rpc = new Rpc(PeopleChainClient, new TmpChain(PeopleChainClient, GetMetadataFromHex));
 
                 return _rpc;
             }

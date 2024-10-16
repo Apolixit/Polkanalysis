@@ -11,6 +11,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Substrate.NetApi.Modules.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -44,6 +46,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
                 if (_polkadotClient == null)
                 {
                     _polkadotClient = new SubstrateClientExt(_substrateconfiguration.WsEndpointUri, ChargeTransactionPayment.Default());
+                    _polkadotClient.AddJsonConverter(new ExtrinsicOldJsonConverter(ChargeTransactionPayment.Default()));
+                    _polkadotClient.AddJsonConverter(new ExtrinsicNewJsonConverter(ChargeTransactionPayment.Default()));
                 }
                 return _polkadotClient;
             }
@@ -74,7 +78,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             get
             {
                 if (_rpc == null)
-                    _rpc = new Rpc(PolkadotClient);
+                {
+                    _rpc = new Rpc(PolkadotClient, new TmpChain(PolkadotClient, GetMetadataFromHex));
+                }
 
                 return _rpc;
             }

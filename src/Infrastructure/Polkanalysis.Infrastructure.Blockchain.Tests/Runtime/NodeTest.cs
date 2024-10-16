@@ -97,7 +97,7 @@ namespace Polkanalysis.Domain.Tests.Node
             //enumTimestamp.Create(hex);
             var ev = new EventRecord();
             ev.Create(hex);
-            var nodeResult = await decode.DecodeAsync(ev, CancellationToken.None);
+            var nodeResult = await decode.DecodeAsync(ev, new Substrate.NetApi.Model.Meta.MetaData(), CancellationToken.None);
 
             var json = nodeResult.ToJson();
             Assert.That(json, Is.Not.Null);
@@ -139,7 +139,7 @@ namespace Polkanalysis.Domain.Tests.Node
 
             var accountInfo = new AccountInfo();
             accountInfo.Create(hex);
-            var nodeResult = await decode.DecodeAsync(accountInfo, CancellationToken.None);
+            var nodeResult = await decode.DecodeAsync(accountInfo, new Substrate.NetApi.Model.Meta.MetaData(), CancellationToken.None);
 
             var json = nodeResult.ToJson();
             Assert.That(json, Is.Not.Null);

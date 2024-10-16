@@ -9,6 +9,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
 {
@@ -44,7 +45,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
         [TestCase("0x280403000BF06782F88501", "0x42fe00beaedc4693373263d6a2a5c70cb0bc9b3e7786686d39b862cc67b77c43")]
         public async Task TimestampsExtrinsic_WithTimeSet_ShouldBeParsedAsync(string extrinsicHash, string hash)
         {
-            var extrinsic = new Substrate.NetApi.Model.Extrinsics.Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
+            var extrinsic = new TempOldExtrinsic(extrinsicHash, ChargeTransactionPayment.Default());
             var res = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, new Hash(hash), CancellationToken.None);
             ////Assert.That(res.Name, Is.EqualTo("Timestamp"));
         }

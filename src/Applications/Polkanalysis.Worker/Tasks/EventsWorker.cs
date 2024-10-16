@@ -82,18 +82,18 @@ namespace Polkanalysis.Worker.Tasks
         {
             if (!_blockPerimeter.IsSet) throw new InvalidOperationException("Block perimeter is not properly set");
 
-            var lastBlockdata = await _polkadotRepository.Rpc.Chain.GetBlockAsync(stoppingToken);
-
-            if (lastBlockdata.Block.Header.Number.Value < _blockPerimeter.From)
+            var header = await _polkadotRepository.Rpc.Chain.GetHeaderAsync(stoppingToken);
+            
+            if (header.Number.Value < _blockPerimeter.From)
             {
-                _logger.LogWarning("[{workerName}] Current block number (={blockNumber}) is lower than FromBlock param (={from}), just go to subscribe new block", nameof(EventsWorker), lastBlockdata.Block.Header.Number.Value, _blockPerimeter.From);
+                _logger.LogWarning("[{workerName}] Current block number (={blockNumber}) is lower than FromBlock param (={from}), just go to subscribe new block", nameof(EventsWorker), header.Number.Value, _blockPerimeter.From);
                 return;
             }
 
-            if (_blockPerimeter.To > lastBlockdata.Block.Header.Number.Value)
+            if (_blockPerimeter.To > header.Number.Value)
             {
-                _logger.LogWarning("[{workerName}] _blockPerimeter.ToBlock block number (={to}) is greater than current max block (={lastBlock})", nameof(EventsWorker), _blockPerimeter.To, lastBlockdata.Block.Header.Number.Value);
-                _blockPerimeter.To = (uint)lastBlockdata.Block.Header.Number.Value;
+                _logger.LogWarning("[{workerName}] _blockPerimeter.ToBlock block number (={to}) is greater than current max block (={lastBlock})", nameof(EventsWorker), _blockPerimeter.To, header.Number.Value);
+                _blockPerimeter.To = (uint)header.Number.Value;
             }
 
             for (uint i = _blockPerimeter.From; i < _blockPerimeter.To; i++)

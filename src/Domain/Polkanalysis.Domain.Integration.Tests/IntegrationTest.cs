@@ -27,6 +27,7 @@ namespace Polkanalysis.Domain.Integration.Tests
         }
 
         internal abstract ISubstrateEndpoint GetEndpoint();
+        public virtual Task ConnectDependenciesAsync() => Task.CompletedTask;
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test
@@ -40,6 +41,7 @@ namespace Polkanalysis.Domain.Integration.Tests
                 try
                 {
                     await _substrateService.ConnectAsync();
+                    await ConnectDependenciesAsync();
                 }
                 catch (Exception)
                 {

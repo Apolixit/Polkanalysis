@@ -99,7 +99,7 @@ namespace Polkanalysis.Domain.Adapter.Block
             if (blockData == null)
                 throw new BlockException($"{nameof(blockNumber)} from given blockId (={blockData}) is null");
 
-            blockNumber.Create((uint)blockData.Block.Header.Number.Value);
+            blockNumber.Create((uint)blockData.GetBlock().Header.Number.Value);
 
             return blockNumber;
         }

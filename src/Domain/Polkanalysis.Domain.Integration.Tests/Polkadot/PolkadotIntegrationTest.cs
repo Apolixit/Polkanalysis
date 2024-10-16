@@ -16,11 +16,12 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
     public abstract class PolkadotIntegrationTest : IntegrationTest
     {
         protected SubstrateDbContext _substrateDbContext;
+        private PeopleChainService _peopleChainService = default!;
 
         protected PolkadotIntegrationTest()
         {
             var peopleChainIntegrationTest = new PeopleChainIntegrationTest();
-            var peopleChainService = new PeopleChainService(
+            _peopleChainService = new PeopleChainService(
                 peopleChainIntegrationTest.GetEndpoint(), 
                 new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
                 Substitute.For<ILogger<PeopleChainService>>());
@@ -29,11 +30,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
                     _substrateEndpoint,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
-                    peopleChainService);
+                    _peopleChainService);
         }
 
-        //public string PolkadotEndpointUri => "wss://polkadot.api.onfinality.io/public-ws";
-        public string PolkadotEndpointUri => "wss://polkadot.api.onfinality.io/public-ws";
+        public string PolkadotEndpointUri => "wss://dot-rpc.stakeworld.io";
         internal override ISubstrateEndpoint GetEndpoint()
         {
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
@@ -42,6 +42,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
             substrateConfigurationMock.WsEndpointUri.Returns(new Uri(PolkadotEndpointUri));
 
             return substrateConfigurationMock;
+        }
+
+        public async override Task ConnectDependenciesAsync()
+        {
+            await _peopleChainService.ConnectAsync();
         }
 
         [SetUp]

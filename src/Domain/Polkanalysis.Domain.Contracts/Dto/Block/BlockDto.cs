@@ -38,7 +38,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         public UserIdentityDto? Validator { get; set; }
         public int NbBlockValidatedByThisNominatorLastMonth { get; set; } = 0;
         public uint SpecVersion { get; set; }
-        public uint MetadataVersion { get; set; }
+        public uint MetadataMajorVersion { get; set; }
 
         /// <summary>
         /// Number of extrinsic linked to this block
