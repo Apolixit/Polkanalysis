@@ -1,5 +1,6 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using NUnit.Framework;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
@@ -33,7 +34,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         [TestCase("0x280403000b207eba5c8501", "0xe95401c4b25965e5c528909513e71f7017d9dbfeb02e6b41d70997f2ab872829")]
         public async Task GetExtrinsic_ShouldWorkAsync(string extrinsicHash, string blockHash)
         {
-            var extrinsic = new Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
+            var extrinsic = new TempOldExtrinsic(extrinsicHash, ChargeTransactionPayment.Default());
             var res = await _substrateDecoding.DecodeExtrinsicAsync(extrinsic, new Substrate.NetApi.Model.Types.Base.Hash(blockHash), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }

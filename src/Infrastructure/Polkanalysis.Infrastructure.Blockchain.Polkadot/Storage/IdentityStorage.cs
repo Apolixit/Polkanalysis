@@ -36,10 +36,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
                 res = res2?.Value[0]?.As<Registration>();
             } else
             {
-                // Version >= 1002006, now PeopleChain is the reference to get identity storage
+                // Version >= 1002006 && block number from PeopleChain > 0, now PeopleChain is the reference to get identity storage
                 if (BlockHash is not null)
                 {
-                    BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, token)).Value;
+                    var peopleChainExistis = await IsPeopleChainAlreadyExistsAsync(_peopleChainService.AjunaClient, token);
+                    if(!peopleChainExistis.isExisting)
+                    {
+                        var res2 = Map<IType, BaseTuple<Registration, BaseOpt<BaseVec<U8>>>>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
+                        res = res2?.Value[0]?.As<Registration>();
+                        return res;
+                    }
+                    else
+                    {
+                        BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, peopleChainExistis.blockNumber, token)).Value;
+                    }
                 }
                 
                 return BlockHash is null ? 
@@ -60,7 +70,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             {
                 if (BlockHash is not null)
                 {
-                    BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, token)).Value;
+                    var peopleChainExistis = await IsPeopleChainAlreadyExistsAsync(_peopleChainService.AjunaClient, token);
+                    if (!peopleChainExistis.isExisting)
+                    {
+                        return Map<IType, BaseVec< BaseOpt < RegistrarInfo >>> (await _client.IdentityStorage.RegistrarsAsync(token));
+                    }
+                    else
+                    {
+                        BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, peopleChainExistis.blockNumber, token)).Value;
+                    }
                 }
 
                 return BlockHash is null ?
@@ -82,7 +100,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             {
                 if (BlockHash is not null)
                 {
-                    BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, token)).Value;
+                    var peopleChainExistis = await IsPeopleChainAlreadyExistsAsync(_peopleChainService.AjunaClient, token);
+                    if (!peopleChainExistis.isExisting)
+                    {
+                        var accountId32 = await MapAccoundId32Async(account, token);
+                        return Map<IType, BaseTuple<U128, BaseVec<SubstrateAccount>>>(await _client.IdentityStorage.SubsOfAsync(accountId32, token));
+                    }
+                    else
+                    {
+                        BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, peopleChainExistis.blockNumber, token)).Value;
+                    }
                 }
 
                 return BlockHash is null ?
@@ -103,7 +130,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             {
                 if (BlockHash is not null)
                 {
-                    BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, token)).Value;
+                    var peopleChainExistis = await IsPeopleChainAlreadyExistsAsync(_peopleChainService.AjunaClient, token);
+                    if (!peopleChainExistis.isExisting)
+                    {
+                        var accountId32 = await MapAccoundId32Async(account, token);
+                        return Map<IType, BaseTuple<SubstrateAccount, EnumData>>(await _client.IdentityStorage.SuperOfAsync(accountId32, token));
+                    }
+                    else
+                    {
+                        BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, peopleChainExistis.blockNumber, token)).Value;
+                    }
                 }
 
                 return BlockHash is null ?

@@ -55,17 +55,20 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.RuntimeEvent runtimeEvent,
             Infrastructure.Blockchain.Contracts.Pallet.Scheduler.Enums.Event eventEnum)
         {
-            var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(CancellationToken.None);
+            var from = _substrateService.At(blockHash);
+            var events = await from.Storage.System.EventsAsync(CancellationToken.None);
+            var metadata = await from.GetMetadataAsync(CancellationToken.None);
 
-            var filteredEvent = await _explorerRepository.FindEventAsync(events, runtimeEvent, eventEnum, CancellationToken.None);
+            var filteredEvent = await _explorerRepository.FindEventAsync(events, metadata, runtimeEvent, eventEnum, CancellationToken.None);
 
             Assert.That(filteredEvent, Is.Not.Null);
             Assert.That(filteredEvent.Count(), Is.EqualTo(1));
 
-            var nodeEvent = await _substrateDecoding.DecodeEventAsync(Utils.Bytes2HexString(filteredEvent.First().Encode()), CancellationToken.None);
+            var scheduledEvent = filteredEvent.First();
+            var nodeEvent = await _substrateDecoding.DecodeEventAsync(scheduledEvent, metadata, CancellationToken.None);
 
-            Assert.That(nodeEvent.Module, Is.EqualTo(runtimeEvent));
-            Assert.That(nodeEvent.Method, Is.EqualTo(eventEnum));
+            Assert.That(nodeEvent.Module.ToString(), Is.EqualTo("Scheduler"));
+            Assert.That(nodeEvent.Method.ToString(), Is.EqualTo(eventEnum.ToString()));
         }
     }
 }

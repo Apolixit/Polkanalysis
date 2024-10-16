@@ -1,12 +1,15 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
+using Substrate.NET.Metadata;
 using Substrate.NET.Metadata.Base;
 using Substrate.NET.Metadata.Service;
 using Substrate.NET.Metadata.V14;
 using Substrate.NET.Utils.Address;
 using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
@@ -31,11 +34,14 @@ namespace Polkanalysis.Infrastructure.Blockchain
 
         public ITimeQueryable At(BlockNumber blockNumber)
         {
-            var result = Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result;
+            var result =    Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? 
+                            Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? 
+                            Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? 
+                            Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result;
 
             if (result is null)
             {
-                var currentBlock = Rpc.Chain.GetBlockAsync().Result.Block.Header.Number.Value;
+                var currentBlock = Rpc.Chain.GetBlockAsync().Result.GetBlock().Header.Number.Value;
 
                 // Let check if current block is lower than this block
                 if (currentBlock < blockNumber.Value)
@@ -61,16 +67,54 @@ namespace Polkanalysis.Infrastructure.Blockchain
 
         public ITimeQueryable At(int blockNumber) => At((uint)blockNumber);
 
-        public ITimeQueryable At(Hash blockHash)
-        {
-            Storage.BlockHash = blockHash.Value;
-            return this;
-        }
+        public ITimeQueryable At(Hash blockHash) => At(blockHash.Value);
 
         public ITimeQueryable At(string blockHash)
         {
             Storage.BlockHash = blockHash;
+
+            OnBlockHashChanged();
             return this;
+        }
+
+        /// <summary>
+        /// Triggered when block hash is changed
+        /// </summary>
+        /// <returns></returns>
+        protected virtual void OnBlockHashChanged()
+        {
+            return;
+        }
+
+        public async Task<SignedExtensionMetadata[]?> SignedExtensionMetadataAsync()
+        {
+            var metadata = await GetMetadataAsync(CancellationToken.None);
+            return metadata.NodeMetadata.Extrinsic.SignedExtensions;
+        }
+
+        /// <summary>
+        /// Build an extrinsic, given the current metadata (potentially old metadata if BlockHash has been set)
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        public async Task<IExtrinsic> GetExtrinsicAsync(string hex)
+        {
+            // Thanks to Rosta : https://github.com/RostislavLitovkin/PlutoWallet/blob/devel/PlutoWallet.Model/AjunaExt/SubstrateClientExt.cs#L62
+            var sem = await SignedExtensionMetadataAsync();
+            bool checkMetadataHash = sem is not null && sem.Any(x => x.SignedIdentifier == "CheckMetadataHash");
+            ChargeType? defaultCharge;
+            if (sem.Any(x => x.SignedIdentifier == "ChargeTransactionPayment"))
+                defaultCharge = ChargeTransactionPayment.Default();
+            else if (sem.Any(x => x.SignedIdentifier == "ChargeAssetTxPayment"))
+                defaultCharge = ChargeAssetTxPayment.Default();
+            else
+                throw new InvalidOperationException("SignedIdentifier is not define");
+
+            if(checkMetadataHash)
+               return new TempNewExtrinsic(hex, defaultCharge);
+            else
+                return new TempOldExtrinsic(hex, defaultCharge);
         }
 
         public Hash GenesisHash => AjunaClient.GenesisHash;
@@ -87,8 +131,6 @@ namespace Polkanalysis.Infrastructure.Blockchain
                 return AjunaClient.RuntimeVersion;
             }
         }
-
-        
 
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status
@@ -134,7 +176,7 @@ namespace Polkanalysis.Infrastructure.Blockchain
         /// <returns></returns>
         public bool IsValidAccountAddress(string address) => AddressExtension.IsValidAccountAddress(address);
 
-        public async Task<Substrate.NetApi.Model.Meta.MetaData> GetMetadataAsync(CancellationToken cancellationToken)
+        public async Task<(uint majorVersion, MetaData metadata)> GetMetadataWithVersionAsync(CancellationToken cancellationToken)
         {
             var metadataHex = Storage.BlockHash is not null ?
                 await Rpc.State.GetMetaDataAsync(new Hash(Storage.BlockHash), cancellationToken) :
@@ -143,9 +185,21 @@ namespace Polkanalysis.Infrastructure.Blockchain
             if (metadataHex is null)
                 throw new InvalidOperationException($"Unable to fetch metadata from blockHash = {Storage.BlockHash}");
 
-            MetaData metadata = GetMetadataFromHex(metadataHex);
+            var res = GetMetadataFromHex(metadataHex);
+            CheckRuntimeMetadata checkRuntimeMetadata = new CheckRuntimeMetadata(metadataHex);
 
-            return metadata;
+            return (checkRuntimeMetadata.MetaDataInfo.Version.Value, res);
+        }
+        public async Task<MetaData> GetMetadataAsync(CancellationToken cancellationToken)
+        {
+            var metadataHex = Storage.BlockHash is not null ?
+                await Rpc.State.GetMetaDataAsync(new Hash(Storage.BlockHash), cancellationToken) :
+                await Rpc.State.GetMetaDataAsync(cancellationToken);
+
+            if (metadataHex is null)
+                throw new InvalidOperationException($"Unable to fetch metadata from blockHash = {Storage.BlockHash}");
+
+            return GetMetadataFromHex(metadataHex);
         }
 
         public MetaData GetMetadataFromHex(string metadataHex)

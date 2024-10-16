@@ -43,6 +43,12 @@ namespace Polkanalysis.Domain.Service
             _substrateNodeRepository.Storage.System
         };
 
+        private string? _blockHash = null;
+        public void At(string blockHash)
+        {
+            _blockHash = blockHash;
+        }
+
         private void EnsureAddressIsValid(string address)
         {
             if (address == null || string.IsNullOrEmpty(address))
@@ -90,10 +96,10 @@ namespace Polkanalysis.Domain.Service
                 _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, cancellationToken)
             );
 
-            var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
-            var stakingAmount = accountInfo.Data.MiscFrozen?.Value.ToDouble(chainInfo.TokenDecimals);
-            var lockedAmount = accountInfo.Data.Frozen?.Value.ToDouble(chainInfo.TokenDecimals);
-            var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
+            var freeAmount = accountInfo?.Data?.Free?.ToDouble(chainInfo.TokenDecimals) ?? 0;
+            var stakingAmount = accountInfo?.Data?.MiscFrozen?.Value.ToDouble(chainInfo.TokenDecimals) ?? 0;
+            var lockedAmount = accountInfo?.Data?.Frozen?.Value.ToDouble(chainInfo.TokenDecimals) ?? 0;
+            var othersAmount = accountInfo?.Data?.Reserved?.Value.ToDouble(chainInfo.TokenDecimals) ?? 0;
 
             var lastUsdValue = await _db.TokenPrices
                 .Where(x => x.BlockchainName.ToLower() == _substrateNodeRepository.BlockchainName.ToLower())
@@ -127,7 +133,7 @@ namespace Polkanalysis.Domain.Service
 
             var balances = new BalancesDto()
             {
-                Transferable = new CurrencyDto(freeAmount - lockedAmount.GetValueOrDefault(0), lastUsdValue?.Price),
+                Transferable = new CurrencyDto(freeAmount - lockedAmount, lastUsdValue?.Price),
                 NonTransferable = nonTransferable,
                 Crowdloan = new CurrencyDto(0, lastUsdValue?.Price),
                 Pool = pool,
@@ -145,19 +151,18 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<AccountDto> GetAccountDetailAsync(SubstrateAccount account, CancellationToken token)
         {
+            ITimeQueryable storageFrom = _blockHash is null ? _substrateNodeRepository : _substrateNodeRepository.At(_blockHash);
+
             var (locks, reserves, identity, identity2, identity3, isAccountPoolMember, accountInfo, chainInfo) = await Helper.WaiterHelper.WaitAndReturnAsync(
-                _substrateNodeRepository.Storage.Balances.LocksAsync(account, token),
-                _substrateNodeRepository.Storage.Balances.ReservesAsync(account, token),
-                _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, token),
-                _substrateNodeRepository.Storage.Identity.SubsOfAsync(account, token),
-                _substrateNodeRepository.Storage.Identity.SuperOfAsync(account, token),
-                _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, token),
-                _substrateNodeRepository.Storage.System.AccountAsync(account, token),
+                storageFrom.Storage.Balances.LocksAsync(account, token),
+                storageFrom.Storage.Balances.ReservesAsync(account, token),
+                storageFrom.Storage.Identity.IdentityOfAsync(account, token),
+                storageFrom.Storage.Identity.SubsOfAsync(account, token),
+                storageFrom.Storage.Identity.SuperOfAsync(account, token),
+                storageFrom.Storage.NominationPools.PoolMembersAsync(account, token),
+                storageFrom.Storage.System.AccountAsync(account, token),
                 _substrateNodeRepository.Rpc.System.PropertiesAsync(token)
             );
-
-            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.ToStringAddress((short)chainInfo.Ss58Format)
-                , token);
 
             var userInformation = new UserInformationsDto();
             if (identity != null && identity.Info != null)
@@ -178,15 +183,19 @@ namespace Polkanalysis.Domain.Service
                 userInformation.IdentityLevel = (Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumJudgement?)identity.Judgements?.Value[0]?.Value[1];
             }
 
-            var accountType = await GetAccountTypeAsync(account, token);
+            var (accountType, accountIdentity, accountBalance, accountNextindex) = await Helper.WaiterHelper.WaitAndReturnAsync(GetAccountTypeAsync(account, token),
+                GetAccountIdentityAsync(account, token),
+                GetBalancesAsync(account, token),
+                _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.ToStringAddress((short)chainInfo.Ss58Format)
+                , token));
 
             var accountDto = new AccountDto()
             {
                 InformationsDto = userInformation,
-                Address = await GetAccountIdentityAsync(account, token),
+                Address = accountIdentity,
                 AccountIndex = accountNextindex,
-                Nonce = accountInfo.Nonce.Value,
-                Balances = await GetBalancesAsync(account, token),
+                Nonce = accountInfo?.Nonce?.Value ?? 0,
+                Balances = accountBalance,
                 AvatarUrl = string.Empty,
                 AccountTypes = accountType.ToList()
             };

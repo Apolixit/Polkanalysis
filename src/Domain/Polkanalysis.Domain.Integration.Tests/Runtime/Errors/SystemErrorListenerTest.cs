@@ -37,10 +37,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
             var input = new Substrate.NetApi.Model.Types.Base.BaseTuple<EnumDispatchError, DispatchInfo>();
             input.Create("0x030707000000075C075F360155EE0000");
 
-            var node = await _substrateDecode.DecodeAsync(
-                input, 
-                CancellationToken.None, 
-                new Substrate.NetApi.Model.Types.Base.Hash("0xd14d9606068b70847edbe551b38e5e9bbd793d49a93f3c5224b194cc66bb2edf"));
+            var metadata = await _substrateService.At("0xd14d9606068b70847edbe551b38e5e9bbd793d49a93f3c5224b194cc66bb2edf").GetMetadataAsync(CancellationToken.None);
+            var node = await _substrateDecode.DecodeAsync(input, metadata, CancellationToken.None);
 
             Assert.That(node, Is.Not.Null);
         }

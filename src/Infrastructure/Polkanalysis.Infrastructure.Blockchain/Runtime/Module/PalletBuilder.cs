@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
 {
@@ -78,6 +79,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
             string dynamicCall = string.Empty;
             string dynamicEnum = string.Empty;
             string namespaceBase = string.Empty;
+            var runtimeVersion = !string.IsNullOrEmpty(_substrateService.Storage.BlockHash) ?
+                _substrateService.Rpc.State.GetRuntimeVersionAsync(Utils.HexToByteArray(_substrateService.Storage.BlockHash), CancellationToken.None).Result :
+                _substrateService.RuntimeVersion;
 
             switch (typeBuilder)
             {
@@ -103,10 +107,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
 
             // Load the NetApiExt assembly and dynamically create the Call instance
             Assembly assembly = Assembly.Load(_substrateService.NetApiExtAssembly);
-            Type? palletType = assembly.GetType($"{_substrateService.NetApiExtModelNamespace}.v{_substrateService.RuntimeVersion.SpecVersion}.{dynamicCall}");
+            Type? palletType = assembly.GetType($"{_substrateService.NetApiExtModelNamespace}.v{runtimeVersion.SpecVersion}.{dynamicCall}");
             if (palletType == null) throw new FormatException($"Dynamic call to EnumCall for pallet {palletName} has failed");
 
-            Type? enumType = assembly.GetType($"{_substrateService.NetApiExtModelNamespace}.v{_substrateService.RuntimeVersion.SpecVersion}.{dynamicEnum}");
+            Type? enumType = assembly.GetType($"{_substrateService.NetApiExtModelNamespace}.v{runtimeVersion.SpecVersion}.{dynamicEnum}");
             if (enumType == null) throw new FormatException($"Dynamic call to enum for pallet {palletName} has failed");
 
             IType? callInstance = (IType?)Activator.CreateInstance(palletType);

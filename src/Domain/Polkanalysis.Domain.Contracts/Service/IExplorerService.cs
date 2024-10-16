@@ -8,6 +8,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Dto.Logs;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Substrate.NetApi.Model.Meta;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 
 namespace Polkanalysis.Domain.Contracts.Service
 {
@@ -143,7 +145,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="extrinsics">The list of extrinsics</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<IEnumerable<EventDto>?> GetEventsLinkedToExtrinsicsAsync(ExtrinsicDto extrinsicDto, IEnumerable<Extrinsic> extrinsics, CancellationToken cancellationToken);
+        Task<IEnumerable<EventDto>?> GetEventsLinkedToExtrinsicsAsync(ExtrinsicDto extrinsicDto, IEnumerable<IExtrinsic> extrinsics, CancellationToken cancellationToken);
 
         /// <summary>
         /// Return events related to this extrinsic
@@ -167,7 +169,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="palletName">The name of the pallet</param>
         /// <param name="eventName">The name of the event</param>
         /// <returns></returns>
-        Task<IEnumerable<EventRecord>> FindEventAsync(BaseVec<EventRecord> events, RuntimeEvent palletName, Enum eventName, CancellationToken token);
+        Task<IEnumerable<EventRecord>> FindEventAsync(BaseVec<EventRecord> events, MetaData metadata, RuntimeEvent palletName, Enum eventName, CancellationToken token);
 
         /// <summary>
         /// Subscribe to a specific event
@@ -177,7 +179,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="callback">The callback action</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token);
+        Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, MetaData metadata, Action<EventRecord> callback, CancellationToken token);
         #endregion
 
         #region Extrinsic
@@ -239,7 +241,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="header">The header</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task<(BlockNumber blockNumber, Hash blockHash, BlockData blockDetails)> ExtractInformationsFromHeaderAsync(Header header, CancellationToken token);
+        Task<(BlockNumber blockNumber, Hash blockHash, IBlockData blockDetails)> ExtractInformationsFromHeaderAsync(Header header, CancellationToken token);
 
         /// <summary>
         /// Get the status of the extrinsics
@@ -257,7 +259,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<double?> GetExtrinsicsFeesAsync(EventRecord[] events, int extrinsicIndex, CancellationToken cancellationToken);
-        Task<LifetimeDto?> GetExtrinsicsLifetimeAsync(uint blockNumber, Extrinsic extrinsic, CancellationToken cancellationToken);
+        Task<LifetimeDto?> GetExtrinsicsLifetimeAsync(uint blockNumber, IExtrinsic extrinsic, CancellationToken cancellationToken);
         #endregion
     }
 }

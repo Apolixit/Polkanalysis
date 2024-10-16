@@ -67,7 +67,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken)
             );
 
-            var filteredExtrinsic = blockData.Block.Extrinsics.ToList();
+            var filteredExtrinsic = blockData.GetBlock().GetExtrinsics().ToList();
 
             foreach (var extrinsic in filteredExtrinsic)
             {

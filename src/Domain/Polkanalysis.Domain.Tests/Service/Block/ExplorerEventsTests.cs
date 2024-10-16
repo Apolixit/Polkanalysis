@@ -4,6 +4,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Mapping;
@@ -44,8 +45,8 @@ namespace Polkanalysis.Domain.Tests.Service.Block
             _substrateService.At(Arg.Any<Hash>()).Storage.System.EventsAsync(CancellationToken.None).Returns(eventMock);
 
             _substrateService.Rpc.Chain.GetBlockAsync(Arg.Any<Hash>(), CancellationToken.None).Returns(
-                new Substrate.NetApi.Model.Rpc.BlockData(
-                    new Substrate.NetApi.Model.Rpc.Block() { 
+                new TempOldBlockData(
+                    new TempOldBlock() { 
                         Header = new Substrate.NetApi.Model.Rpc.Header() { 
                             Number = new U64(1_000_000) 
                         } 

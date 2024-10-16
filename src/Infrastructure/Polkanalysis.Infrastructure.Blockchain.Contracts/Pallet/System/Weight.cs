@@ -35,7 +35,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
         {
             var result = new List<byte>();
             result.AddRange(RefTime.Encode());
-            result.AddRange(ProofSize.Encode());
+
+            if(ProofSize is not null)
+                result.AddRange(ProofSize.Encode());
             return result.ToArray();
         }
 

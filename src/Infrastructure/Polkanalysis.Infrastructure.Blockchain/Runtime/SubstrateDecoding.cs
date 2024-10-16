@@ -12,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Microsoft.VisualStudio.Threading;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Runtime
 {
@@ -45,14 +46,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             return metadata;
         }
 
-        public async Task<INode> DecodeAsync(IType elem, CancellationToken cancellationToken, Hash? blockHash = null)
+        public async Task<INode> DecodeAsync(IType elem, MetaData metadata, CancellationToken cancellationToken)
         {
             GenericNode node = new GenericNode();
-            await VisitNodeAsync(
-                node, 
-                elem, 
-                await metadataFromBlocHashAsync(blockHash, cancellationToken), 
-                cancellationToken);
+            await VisitNodeAsync(node, elem, metadata, cancellationToken);
 
             return node;
         }
@@ -96,18 +93,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
         {
             if (string.IsNullOrWhiteSpace(hex)) throw new ArgumentNullException($"{nameof(hex)}");
 
-            var extrinsic = new Extrinsic(hex, ChargeTransactionPayment.Default());
+            var extrinsic = await _substrateRepository.GetExtrinsicAsync(hex);
 
             _logger.LogInformation($"Extrinsic {hex} has been converted to a valid extrinsic");
             return await DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken).ConfigureAwait(false);
         }
 
-        public async Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken)
+        public async Task<INode> DecodeExtrinsicAsync(IExtrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken)
         {
             return await DecodeExtrinsicAsync(extrinsic, await metadataFromBlocHashAsync(blockHash, cancellationToken), cancellationToken);
         }
 
-        public async Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, MetaData metadata, CancellationToken cancellationToken)
+        public async Task<INode> DecodeExtrinsicAsync(IExtrinsic extrinsic, MetaData metadata, CancellationToken cancellationToken)
         {
             var pallet = metadata.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
 
@@ -125,7 +122,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             palletNode.AddHumanData(pallet.Name);
 
             if (extrinsicCall is not null)
-                palletNode.AddChild(await DecodeAsync(extrinsicCall, cancellationToken));
+                palletNode.AddChild(await DecodeAsync(extrinsicCall, metadata, cancellationToken));
 
             return palletNode;
         }
