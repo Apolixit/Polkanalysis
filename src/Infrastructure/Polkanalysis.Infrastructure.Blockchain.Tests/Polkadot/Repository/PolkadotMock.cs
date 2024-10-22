@@ -78,7 +78,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 
             // Mock a part of Substrate Client call
             polkadotRepository.PolkadotClient = Substitute.ForPartsOf<SubstrateClientExt>(
-                new Uri("wss://polkadot.api.onfinality.io/public-ws"),
+                new Uri("wss://dot-rpc.stakeworld.io"),
                 ChargeTransactionPayment.Default());
 
             // Allow unit test to mock GetStorageAsyncCall

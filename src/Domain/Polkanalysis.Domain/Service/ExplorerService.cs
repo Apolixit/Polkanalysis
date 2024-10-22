@@ -232,7 +232,7 @@ namespace Polkanalysis.Domain.Service
         protected async Task<BlockDto> GetBlockDetailsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
             var blockHash = await block.ToBlockHashAsync(_substrateService);
-
+            
             var blockDetailsTask = _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
             var currentDateTask = _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
             var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
@@ -444,6 +444,13 @@ namespace Polkanalysis.Domain.Service
             return (await GetLastBlocksAsync(1, cancellationToken)).SingleOrDefault();
         }
 
+        /// <summary>
+        /// Return the last N finalized blocks
+        /// </summary>
+        /// <param name="nbBlock"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public async Task<IEnumerable<BlockLightDto>> GetLastBlocksAsync(int nbBlock, CancellationToken cancellationToken)
         {
             Guard.Against.NegativeOrZero(nbBlock, nameof(nbBlock));
@@ -456,6 +463,7 @@ namespace Polkanalysis.Domain.Service
             int lastBlockNumber = (int)lastHeader.Number.Value;
 
             var blocksTaskDto = new List<Task<BlockLightDto>>();
+
             for (var i = lastBlockNumber - nbBlock; i < lastBlockNumber; i++)
             {
                 _logger.LogTrace($"Request data from block num {i}");
@@ -566,7 +574,7 @@ namespace Polkanalysis.Domain.Service
                 var extrinsicIndex = (uint)extrinsics.ToList().IndexOf(extrinsic);
                 AccountDto? caller = null;
                 if(extrinsic.Account is not null)
-                    caller = await _accountRepository.GetAccountDetailAsync(extrinsic.Account.Value, cancellationToken);
+                    caller = await _accountRepository.At(blockHash.Value).GetAccountDetailAsync(extrinsic.Account.Value, cancellationToken);
 
                 var (extrinsicNode, fees, status, lifetime) = await WaiterHelper.WaitAndReturnAsync(
                     _substrateDecode.DecodeExtrinsicAsync(extrinsic, metadata, cancellationToken),

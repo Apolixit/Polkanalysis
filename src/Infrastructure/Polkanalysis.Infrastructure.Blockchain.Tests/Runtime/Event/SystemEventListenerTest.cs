@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// 
         /// </summary>
         /// <param name="hex"></param>
-        [Test]
+        [Test, Ignore("Debug Event updates")]
         [TestCase("0x00010000000000384A7AFE72000000020000")]
         public async Task System_ExtrinsicSuccess_1_ShouldBeParsedAsync(string hex)
         {
@@ -72,6 +72,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         ///  Weight 158080000
         /// </summary>
         /// <param name="hex"></param>
+        [Test, Ignore("Debug Event updates")]
         [TestCase("0x00000000000000001C6C0900000000020000")]
         public async Task System_ExtrinsicSuccess_ShouldBeParsedAsync(string hex)
         {

@@ -24,26 +24,12 @@ namespace Polkanalysis.Architecture.Tests
         }
 
         [Test]
-        public void EveryBlockchainEvents_ShouldBeMappedFromExtProject_WithAllEnumValueThatEverExisted()
+        public void EveryBlockchainEventsImplemented_ShouldHaveAllEnumValueThatEverExisted()
         {
             // Let's get all events from blockchain ext
             var result = ScanAssemblyMapping.ScanEnumMappings("Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Infrastructure.Blockchain.Contracts");
 
             Assert.That(result, Is.Not.Empty);
-
-            // Check if all events have been mapped
-            // Take maximum 20 errors
-            var unmapped = result.Where(x => !x.IsClassMapped).Take(20).ToList();
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(unmapped.Count > 0, Is.True, "All enums are not mapped correctly");
-
-                unmapped.ForEach(x =>
-                {
-                    Assert.Fail($"{x.SourceClass} is not mapped to Domain");
-                });
-            });
 
             // Check if domain enum have the aggregation of all ext enum version
             var mapped = result.Where(x => x.IsClassMapped).ToList();
@@ -64,9 +50,27 @@ namespace Polkanalysis.Architecture.Tests
             Assert.Fail();
         }
 
-        public void EveryBlockchainEventsImplemented_ShouldHaveAllEnumValueThatEverExisted()
+        [Test, Ignore("Romain 2023-10-22 : It should not be the case, I keep it as ignore in case i change my mind")]
+        public void EveryBlockchainEvents_ShouldBeMappedFromExtProject()
         {
-            Assert.Fail();
+            // Let's get all events from blockchain ext
+            var result = ScanAssemblyMapping.ScanEnumMappings("Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Infrastructure.Blockchain.Contracts");
+
+            Assert.That(result, Is.Not.Empty);
+
+            // Check if all events have been mapped
+            // Take maximum 20 errors
+            var unmapped = result.Where(x => !x.IsClassMapped).Take(20).ToList();
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(unmapped.Count > 0, Is.True, "All enums are not mapped correctly");
+
+                unmapped.ForEach(x =>
+                {
+                    Assert.Fail($"{x.SourceClass} is not mapped to Domain");
+                });
+            });
         }
 
         [Test]

@@ -13,6 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Modules.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
+using Substrate.NET.Utils.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -79,7 +80,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             {
                 if (_rpc == null)
                 {
-                    _rpc = new Rpc(PolkadotClient, new TmpChain(PolkadotClient, GetMetadataFromHex));
+                    _rpc = new Rpc(PolkadotClient, new TmpChain(PolkadotClient, MetadataHelper.GetMetadataFromHex));
                 }
 
                 return _rpc;

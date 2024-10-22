@@ -39,8 +39,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
                 // Version >= 1002006 && block number from PeopleChain > 0, now PeopleChain is the reference to get identity storage
                 if (BlockHash is not null)
                 {
-                    var peopleChainExistis = await IsPeopleChainAlreadyExistsAsync(_peopleChainService.AjunaClient, token);
-                    if(!peopleChainExistis.isExisting)
+                    var peopleChainExists = await IsPeopleChainAlreadyExistsAsync(_peopleChainService.AjunaClient, token);
+                    if(!peopleChainExists.isExisting)
                     {
                         var res2 = Map<IType, BaseTuple<Registration, BaseOpt<BaseVec<U8>>>>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
                         res = res2?.Value[0]?.As<Registration>();
@@ -48,7 +48,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
                     }
                     else
                     {
-                        BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, peopleChainExistis.blockNumber, token)).Value;
+                        BlockHash = (await GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, peopleChainExists.blockNumber, token)).Value;
                     }
                 }
                 

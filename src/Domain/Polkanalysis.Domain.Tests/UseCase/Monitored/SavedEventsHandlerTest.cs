@@ -73,10 +73,11 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             codeUpdatedEvent.Create(Event.CodeUpdated, new BaseVoid());
             runtimeEvent.Create(RuntimeEvent.System, codeUpdatedEvent);
 
-            firstEvent.Create(phase, new Infrastructure.Blockchain.Contracts.Core.Maybe<EnumRuntimeEvent>(runtimeEvent), topics);
+            firstEvent.Create(phase, new Infrastructure.Blockchain.Contracts.Core.Maybe<EnumRuntimeEvent>(core: runtimeEvent), topics);
+
             // Not mapped
             firstEvent.Event.Value = null;
-            firstEvent.Event.Core = runtimeEvent;
+            //firstEvent.Event.Core = runtimeEvent;
 
             return firstEvent;
         }

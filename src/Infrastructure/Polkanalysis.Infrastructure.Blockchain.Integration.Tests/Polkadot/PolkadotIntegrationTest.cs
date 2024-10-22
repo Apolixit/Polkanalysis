@@ -42,7 +42,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
 
             substrateConfigurationMock.BlockchainName.Returns("Polkadot");
-            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://polkadot.api.onfinality.io/public-ws"));
+            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://dot-rpc.stakeworld.io"));
 
             return substrateConfigurationMock;
         }

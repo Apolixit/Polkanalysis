@@ -38,12 +38,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain.P
             Assert.That(res, Is.Not.Null);
         }
 
-        [Test, Ignore("No data")]
-        [TestCase(21556495, "168MQ9ZFvQb9Hoe68Vg2Ji5xYuqSmf4agaD5epVnGWaKM2oK")]
+        [Test]
+        [TestCase(583390, "13zeUFXbkfQg22e13Ux1mLWXRxRhnpPUf4229zpnCbffWPnF")]
         public async Task SuperOf_ShouldWorkAsync(int blockNum, string address)
         {
             var res = await _substrateRepository.At(blockNum).Storage.Identity.SuperOfAsync(new SubstrateAccount(address), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
+            Assert.That(res.Value[0].As<SubstrateAccount>().ToPolkadotAddress(), Is.EqualTo("14Gn7SEmCgMX7Ukuppnw5TRjA7pao2HFpuJo39frB42tYLEh"));
         }
 
         [Test]

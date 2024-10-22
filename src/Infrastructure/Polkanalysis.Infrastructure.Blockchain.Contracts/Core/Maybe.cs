@@ -81,14 +81,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
             var result = new List<byte>();
 
             result.AddRange(HasBeenMapped.Encode());
-            result.AddRange(CoreAssemblyName.Encode());
-            result.AddRange(CoreTypeName.Encode());
-            //result.AddRange(Core.Encode());
+            
+            if(Core is not null)
+            {
+                result.AddRange(CoreAssemblyName.Encode());
+                result.AddRange(CoreTypeName.Encode());
+                result.AddRange(Core.Encode());
+            } else
+            {
+                CoreAssemblyName = new Str("Unknown");
+                result.AddRange(CoreAssemblyName.Encode());
+            }
 
             if (HasBeenMapped)
-            {
                 result.AddRange(Value!.Encode());
-            }
 
             return result.ToArray();
         }
@@ -103,16 +109,25 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
             CoreAssemblyName = new Str();
             CoreAssemblyName.Decode(byteArray, ref p);
 
-            CoreTypeName = new Str();
-            CoreTypeName.Decode(byteArray, ref p);
+            if(CoreAssemblyName.Value != "Unknown")
+            {
+                CoreTypeName = new Str();
+                CoreTypeName.Decode(byteArray, ref p);
 
-            //Assembly assembly = Assembly.Load(CoreAssemblyName.Value);
-            //Type? enumType = assembly.GetType(CoreTypeName.Value);
+                try
+                {
+                    Assembly assembly = Assembly.Load(CoreAssemblyName.Value);
+                    Type? enumType = assembly.GetType(CoreTypeName.Value);
 
-            //Core = (IType?)Activator.CreateInstance(enumType);
-            //Core.Decode(byteArray, ref p);
+                    Core = (IType?)Activator.CreateInstance(enumType);
+                    Core.Decode(byteArray, ref p);
+                } catch(Exception)
+                {
 
-            if(HasBeenMapped)
+                }
+            }
+
+            if (HasBeenMapped)
             {
                 Value = new T();
                 Value.Decode(byteArray, ref p);

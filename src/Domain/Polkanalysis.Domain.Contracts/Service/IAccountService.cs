@@ -69,5 +69,12 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<BalancesDto> GetBalancesAsync(SubstrateAccount account, CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Query the service at a given block hash
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <returns></returns>
+        IAccountService At(string blockHash);
     }
 }

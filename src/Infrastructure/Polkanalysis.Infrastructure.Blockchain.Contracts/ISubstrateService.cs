@@ -56,6 +56,5 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         /// <param name="address"></param>
         /// <returns></returns>
         bool IsValidAccountAddress(string address);
-        MetaData GetMetadataFromHex(string metadataHex);
     }
 }

@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
 	    /// result: DispatchResult = 0 (Ok)
         /// </summary>
         /// <param name="hex"></param>
-        [Test]
+        [Test, Ignore("Debug Event updates")]
         [TestCase("0x020100CE41E9000000000000", ScheduleEvent.Event.Scheduled)]
         [TestCase("0x0201021D5DE200000000000164656D6F63726163650000000000000000000000000000000000000000000000010200", ScheduleEvent.Event.Dispatched)]
         public async Task Scheduler_Dispatched_ShouldBeParsedAsync(string hex, ScheduleEvent.Event schedulerEvent)

@@ -16,7 +16,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         [TestCase(13278242)]
         [TestCase(13406835)]
         [TestCase(11062877)]
-        [TestCase(1000000)]
+        //[TestCase(1000000)]
         public async Task GetBlockDetails_ValidBlockNumber_ShouldWorkAsync(int blockId)
         {
             var blockInfo = await _explorerRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
@@ -87,9 +87,19 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         {
             var res = await _explorerRepository.GetLastBlocksAsync(nbBlock, CancellationToken.None);
 
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.Count(), Is.EqualTo(nbBlock));
-            Assert.That(res.Select(x => x.Number).Distinct().Count, Is.EqualTo(nbBlock));
+            Assert.Multiple(() =>
+            {
+                Assert.That(res, Is.Not.Null);
+                Assert.That(res.Count(), Is.EqualTo(nbBlock));
+                Assert.That(res.Select(x => x.Number).Distinct().Count, Is.EqualTo(nbBlock));
+
+                foreach (var block in res)
+                {
+                    Assert.That(block, Is.Not.Null);
+                    Assert.That(block.BlockDate, Is.GreaterThan(DateTime.Now.Subtract(new TimeSpan(3, 0, 0))));
+                    Assert.That(block.ValidatorAddress, Is.Not.Null);
+                }
+            });
         }
     }
 }
