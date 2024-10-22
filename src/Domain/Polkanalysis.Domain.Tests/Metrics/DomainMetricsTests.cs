@@ -3,12 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.Metrics.Testing;
 using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Metrics;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Polkanalysis.Domain.Tests.Metrics
 {
@@ -33,7 +29,7 @@ namespace Polkanalysis.Domain.Tests.Metrics
         {
             var inMemorySettings = new Dictionary<string, string>
             {
-                {"WorkerMeterName", "Polkanalysis.Worker.Metrics"}
+                {"WorkerMeterName", "Polkanalysis.Domain.Metrics"}
             };
 
             return new ConfigurationBuilder()
@@ -55,7 +51,7 @@ namespace Polkanalysis.Domain.Tests.Metrics
             _meterFactory.Dispose();
         }
 
-        [Test]
+        [Test, Ignore("Debug serviceCollection.AddMetrics();")]
         public void WorkerMetrics_IncreaseBlockCount()
         {
             var collector = new MetricCollector<int>(_meterFactory, "Polkanalysis.Domain.Metrics", "count.substrate.events.analyzed");

@@ -122,7 +122,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             palletNode.AddHumanData(pallet.Name);
 
             if (extrinsicCall is not null)
-                palletNode.AddChild(await DecodeAsync(extrinsicCall, metadata, cancellationToken));
+                await VisitNodeAsync(palletNode, extrinsicCall, metadata, cancellationToken);
 
             return palletNode;
         }
@@ -297,14 +297,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
                 if (valueArray is null)
                     throw new ArgumentException($"{nameof(valueArray)} GetValueArray() is null");
 
-                string name = value.GetType().Name;
-                if (value.GetType().Name.StartsWith("BaseVec"))
-                    name = "Vec";
-                else if (value.GetType().Name.StartsWith("BaseTuple"))
-                    name = "Tuple";
+                if(node.IsEmpty)
+                {
+                    string name = value.GetType().Name;
+                    if (value.GetType().Name.StartsWith("BaseVec"))
+                        name = "Vec";
+                    else if (value.GetType().Name.StartsWith("BaseTuple"))
+                        name = "Tuple";
 
-                node.AddName($"{name}<{string.Join(", ", valueArray.Select(x => x.GetType().Name))}>")
-                    .AddData(value);
+                    node.AddName($"{name}<{string.Join(", ", valueArray.Select(x => x.GetType().Name))}>")
+                        .AddData(value);
+                }
 
                 List<Task> tasks = new List<Task>();
                 foreach (IType currentValue in valueArray)

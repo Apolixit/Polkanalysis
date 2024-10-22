@@ -17,6 +17,7 @@ using Substrate.NET.Utils.Address;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Events;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
+using Substrate.NET.Utils.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
 {
@@ -76,7 +77,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             get
             {
                 if (_rpc == null)
-                    _rpc = new Rpc(PeopleChainClient, new TmpChain(PeopleChainClient, GetMetadataFromHex));
+                    _rpc = new Rpc(PeopleChainClient, new TmpChain(PeopleChainClient, MetadataHelper.GetMetadataFromHex));
 
                 return _rpc;
             }

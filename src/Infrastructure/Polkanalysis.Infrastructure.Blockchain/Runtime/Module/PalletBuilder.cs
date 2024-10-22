@@ -47,7 +47,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
             return result.ToArray();
         }
 
-        public virtual PalletModule GetPalletModuleByName(MetaData metadata, string palletName, CancellationToken cancellationToken)
+        public virtual PalletModule GetPalletModuleByName(MetaData metadata, string palletName)
         {
             var pallet = metadata.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
             if (pallet == null)
@@ -67,7 +67,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
         /// <returns></returns>
         private IType? BuildGeneric(MetaData metadata, string palletName, Method method, TypeBuilder typeBuilder)
         {
-            var palletModule = GetPalletModuleByName(metadata, palletName, CancellationToken.None);
+            var palletModule = GetPalletModuleByName(metadata, palletName);
 
             if (palletModule == null)
                 throw new ArgumentException($"{nameof(palletModule)} has not been found in current Metadata");

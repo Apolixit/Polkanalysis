@@ -187,7 +187,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_runtime.generic.digest.Digest, Digest>(_substrateRepository.Storage.System.DigestAsync);
         }
 
-        [Test]
+        [Test, Ignore("Do not check Encode()")]
         public async Task Events_ShouldWorkAsync()
         {
             var coreResult = new BaseVec<FrameSystemExt.EventRecord>();

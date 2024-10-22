@@ -18,6 +18,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Repository.Models;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
 using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
+using Substrate.NET.Utils.Core;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -168,7 +169,7 @@ namespace Polkanalysis.Domain.Runtime
             string metadataHex = specVersionDb.Metadata;
 
             // Get the metadata from the node with his block number
-            var metadata = _substrateService.GetMetadataFromHex(metadataHex);
+            var metadata = MetadataHelper.GetMetadataFromHex(metadataHex);
             var nextSpecVersion = _db.SpecVersionModels.SingleOrDefault(x => x.BlockStart == specVersionDb.BlockEnd + 1);
 
             var dateStartSpecVersion = specVersionDb.BlockStartDateTime;
@@ -258,6 +259,7 @@ namespace Polkanalysis.Domain.Runtime
         /// <returns></returns>
         public async Task<PalletModule> GetPalletModuleByNameAsync(string palletName, CancellationToken cancellationToken)
         {
+            Guard.Against.NullOrEmpty(palletName, nameof(palletName));
             return GetPalletModuleByNameInternal(MetaData, palletName);
         }
 

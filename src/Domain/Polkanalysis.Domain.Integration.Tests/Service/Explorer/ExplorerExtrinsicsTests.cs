@@ -1,6 +1,7 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using NUnit.Framework;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
+using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
@@ -12,7 +13,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         [TestCase(20172644)]
         [TestCase(13564726)]
         [TestCase(11062877)]
-        public async Task GetExtrinsicsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(
+        public async Task GetExtrinsics_WithValidBlockNumber_ShouldWorkAsync(
             int blockId)
         {
             var extrinsicInfoWithNumber = await _explorerRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
@@ -22,7 +23,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             // One of these extrinsics should have Timestamp.Set defined
             Assert.That(
                 extrinsicInfoWithNumber.Any(x =>
-                x.CallEventName == "Timestamp"),
+                x.PalletName == "Timestamp" && x.CallEventName == "set"),
                 Is.True);
         }
 
@@ -85,7 +86,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             var extrinsicInformations = await _explorerRepository.GetExtrinsicsAsync(22666089, CancellationToken.None);
 
             Assert.That(extrinsicInformations, Is.Not.Null);
-            Assert.That(extrinsicInformations.Count(), Is.EqualTo(4));
+            Assert.That(extrinsicInformations.Count(), Is.EqualTo(3));
 
             var extrinsicsList = extrinsicInformations.ToList();
             Assert.That(extrinsicsList.All(x => x.BlockNumber == 22666089));
@@ -103,6 +104,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             var third = extrinsicsList[2];
             Assert.That(third.PalletName, Is.EqualTo("Staking"));
             Assert.That(third.CallEventName, Is.EqualTo("unbond"));
+            Assert.That(third.Status.Status, Is.EqualTo(ExtrinsicStatusDto.ExtrinsicStatus.Failed));
 
         }
     }

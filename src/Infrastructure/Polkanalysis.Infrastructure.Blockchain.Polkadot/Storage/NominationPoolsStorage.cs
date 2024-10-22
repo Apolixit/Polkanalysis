@@ -101,6 +101,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 
         public async Task<PoolMember> PoolMembersAsync(SubstrateAccount account, CancellationToken token)
         {
+            var version = await GetVersionAsync(token);
+            if (!_client.NominationPoolsStorage.PoolMembersAvailableVersions(version)) return null;
+
             var accountId32 = await MapAccoundId32Async(account, token);
             return Map<PoolMemberBase, PoolMember>(
                 await _client.NominationPoolsStorage.PoolMembersAsync(accountId32, token));

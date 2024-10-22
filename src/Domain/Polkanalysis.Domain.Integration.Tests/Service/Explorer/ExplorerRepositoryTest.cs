@@ -22,6 +22,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         protected ISubstrateDecoding _substrateDecoding;
         protected IAccountService _accountRepository;
         protected IPalletBuilder _palletBuilder;
+        protected ICoreService _coreService;
 
         // https://polkadot.subscan.io/block/10219793
         //  Block with extrinsic failed
@@ -32,9 +33,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
                 _substrateService,
                 Substitute.For<ILogger<PalletBuilder>>());
 
+            _coreService = new CoreService(_substrateService, Substitute.For<ILogger<CoreService>>());
+
             _currentMetaData = new MetadataService(_substrateService,
                                                       _substrateDbContext,
-                                                      Substitute.For<ICoreService>(),
+                                                      _coreService,
                                                       Substitute.For<ILogger<MetadataService>>());
 
             _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
@@ -52,7 +55,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
                 _substrateDecoding,
                 _accountRepository,
                 Substitute.For<ILogger<ExplorerService>>(),
-                Substitute.For<ICoreService>());
+                _coreService);
         }
     }
 }

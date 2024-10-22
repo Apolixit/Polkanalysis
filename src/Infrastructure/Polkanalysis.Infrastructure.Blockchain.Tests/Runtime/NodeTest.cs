@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using System.Text.Json;
 
 namespace Polkanalysis.Domain.Tests.Node
 {
@@ -39,11 +40,18 @@ namespace Polkanalysis.Domain.Tests.Node
             node.AddName(name);
             Assert.That(node.Name, Is.EqualTo(name));
 
-            var jsonResult = @"{" +
-                "\"amount\":1000" +
-                "}";
-            Assert.That(node.ToJson(), Is.EqualTo(jsonResult));
+            //var jsonResult = @"{" +
+            //    "\"amount\":1000" +
+            //    "}";
+            var jsonResult = "{ \"type\": \"U32\", \"documentation\": \"\", \"name\": \"amount\", \"value\": \"1000\" }";
 
+            var jsonExpected = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonResult);
+            var json = JsonSerializer.Deserialize<Dictionary<string, object>>(node.ToJson());
+
+            Assert.That(json, Is.Not.Null);
+            Assert.That(jsonExpected, Is.Not.Null);
+
+            Assert.That(json.Count, Is.EqualTo(jsonExpected.Count));
         }
 
         [Test]

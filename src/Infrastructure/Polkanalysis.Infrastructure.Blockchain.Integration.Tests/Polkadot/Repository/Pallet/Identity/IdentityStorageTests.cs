@@ -14,9 +14,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(22666089, "14Xh9F14w9GPwprsytsXd9nCpf9VvjAUTg5Mj7zN2SU8RBDj")] // Call PeopleChain
         [TestCase(21556495, "14Xh9F14w9GPwprsytsXd9nCpf9VvjAUTg5Mj7zN2SU8RBDj")]
         [TestCase(17794701, "1v8nuDB4ChEumFThaj7sSySR88nBDmViBJfvhWA2zqmtvY3")]
-        public async Task IdentityOf_ShouldWorkAsync(int blockNum, string address)
+        public async Task IdentityOfAt_ShouldWorkAsync(int blockNum, string address)
         {
             var res = await _substrateRepository.At(blockNum).Storage.Identity.IdentityOfAsync(new SubstrateAccount(address), CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        [TestCase("14Xh9F14w9GPwprsytsXd9nCpf9VvjAUTg5Mj7zN2SU8RBDj")]
+        public async Task IdentityOf_ShouldWorkAsync(string address)
+        {
+            var res = await _substrateRepository.Storage.Identity.IdentityOfAsync(new SubstrateAccount(address), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 

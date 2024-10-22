@@ -81,7 +81,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Scan.Mapping
 
             foreach (var foundedEnum in compatibleType)
             {
-                enumSource.Add(foundedEnum.Instanciate<IType>());
+                try
+                {
+                    enumSource.Add(foundedEnum.Instanciate<IType>());
+                } catch(Exception ex)
+                {
+                    
+                }
+                
             }
 
             return enumSource;

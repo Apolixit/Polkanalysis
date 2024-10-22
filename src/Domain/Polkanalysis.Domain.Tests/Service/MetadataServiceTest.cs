@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Tests.Abstract;
 using Polkanalysis.Domain.Service;
 using System.Threading;
 using Substrate.NetApi.Model.Types.Base;
+using Substrate.NET.Utils.Core;
 
 namespace Polkanalysis.Domain.Tests.Service
 {
@@ -37,7 +38,10 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public void GetPalletModule_WithNullName_ShouldFailed()
         {
-            Assert.ThrowsAsync<ArgumentNullException>(() => _metadataService.GetPalletModuleByNameAsync(string.Empty, CancellationToken.None));
+            // Mock metadata
+            _metadataService.SetMetadata(MetadataHelper.GetMetadataFromHex(MockMetadata1));
+
+            Assert.ThrowsAsync<ArgumentException>(() => _metadataService.GetPalletModuleByNameAsync(string.Empty, CancellationToken.None));
         }
 
         [Test]
@@ -48,7 +52,9 @@ namespace Polkanalysis.Domain.Tests.Service
                 SpecVersion = 10,
                 BlockchainName = "Polkadot",
                 BlockStart = 1000,
+                BlockStartDateTime = new DateTime(2024,1,1),
                 BlockEnd = 2000,
+                BlockEndDateTime = new DateTime(2024, 01, 20),
                 MetadataVersion = 14,
                 Metadata = MockMetadata1
             });
@@ -57,7 +63,9 @@ namespace Polkanalysis.Domain.Tests.Service
                 SpecVersion = 20,
                 BlockchainName = "Polkadot",
                 BlockStart = 2001,
+                BlockStartDateTime = new DateTime(2024, 01, 21),
                 BlockEnd = 3000,
+                BlockEndDateTime = null,
                 MetadataVersion = 14,
                 Metadata = MockMetadata2
             });
