@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Core\Enum\FrameSupport\" />
+    <Folder Include="Pallet\Xcm\v4\" />
   </ItemGroup>
 
   <ItemGroup>
