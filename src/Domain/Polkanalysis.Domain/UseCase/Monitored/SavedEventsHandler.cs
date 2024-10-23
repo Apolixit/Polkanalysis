@@ -35,10 +35,6 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                     var blockNum = await substrateRepository.Rpc.Chain.GetHeaderAsync(token);
                     return x <= blockNum.Number.Value;
                 });
-
-            //RuleFor(x => x.EventNode).NotEmpty();
-            //RuleFor(x => x.CurrentDate).LessThanOrEqualTo(DateTime.Now);
-            //RuleFor(x => x.Ev).NotNull();
         }
     }
 
@@ -63,8 +59,19 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedEventsCommand request, CancellationToken cancellationToken)
         {
+            var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockNumber), cancellationToken);
+            var currentDate = await _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
+
             // Get events associated at each block
-            var events = await _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken);
+            BaseVec<EventRecord>? events = null;
+            try
+            {
+                events = await _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken);
+            } catch(Exception)
+            {
+                await LogInvalidEventExtAsync(request, currentDate, blockHash, cancellationToken);
+                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Unable to decode event from block num {request.BlockNumber}", ErrorResult.ErrorCriticity.High);
+            }
 
             if (events == null)
             {
@@ -73,7 +80,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 return UseCaseError(ErrorResult.ErrorType.NoNeedToProcess, $"No events associated to block num {request.BlockNumber}", ErrorResult.ErrorCriticity.Low);
             }
 
-            var currentDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
+            
 
             _logger.LogInformation("[{handler}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(SavedEventsHandler), request.BlockNumber, events.Value.Length);
 
@@ -117,6 +124,35 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         }
 
         /// <summary>
+        /// Log events that fail to be get from the blockchain. It means that NET.API.Ext is invalid
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="currentDate"></param>
+        /// <param name="i"></param>
+        /// <param name="ev"></param>
+        private async Task LogInvalidEventExtAsync(SavedEventsCommand request, DateTime currentDate, Hash blockHash, CancellationToken cancellationToken)
+        {
+            var specVersion = await _substrateService.Rpc.State.GetRuntimeVersionAsync(blockHash, cancellationToken);
+            _logger.LogError("[{handler}] Events from block {blockNumber} (spec version {specVersion} has not been fetched because of an error inside {netApiExt}",
+                               nameof(SavedEventsHandler),
+                               request.BlockNumber,
+                               _substrateService.NetApiExtAssembly,
+                               specVersion.SpecVersion);
+
+            _dbContext.SubstrateErrors.Add(new Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel()
+            {
+                BlockchainName = _substrateService.BlockchainName,
+                BlockNumber = request.BlockNumber.Value,
+                Date = currentDate,
+                TypeError = Infrastructure.Database.Contracts.Model.Errors.TypeErrorModel.EventsExt,
+                ElementId = null,
+                Message = $"Events from block {request.BlockNumber} (spec version {specVersion.SpecVersion}) has not been fetched because of an error inside {_substrateService.NetApiExtAssembly}"
+            });
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
         /// Log unmapped events and push them to the database to keep track and allow to re-run them in the futur
         /// </summary>
         /// <param name="request"></param>
@@ -137,7 +173,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 BlockchainName = _substrateService.BlockchainName,
                 BlockNumber = request.BlockNumber.Value,
                 Date = currentDate,
-                TypeError = Infrastructure.Database.Contracts.Model.Errors.TypeErrorModel.Events,
+                TypeError = Infrastructure.Database.Contracts.Model.Errors.TypeErrorModel.EventsDomain,
                 ElementId = (uint)i,
                 Message = $"Event index {i} from block {request.BlockNumber} has not been mapped, please check the mapper (core type / value : {ev.Event.CoreType.Name} / {Utils.Bytes2HexString(ev.Event.Core!.Encode())})"
             });
