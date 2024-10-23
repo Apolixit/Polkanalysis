@@ -1,11 +1,5 @@
-﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums
 {
@@ -18,6 +12,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums
         V1 = 1,
 
         V2 = 2,
+
+        V3 = 3,
+
+        V4 = 4
     }
 
     /// <summary>
@@ -25,8 +23,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums
     /// </summary>
     public sealed class EnumVersionedResponse : BaseEnumExt<VersionedResponse,
         v0.Enums.EnumResponse,
-        EnumResponse,
-        v2.Enums.EnumResponse>
+        v1.Enums.EnumResponse,
+        v2.Enums.EnumResponse,
+        v3.EnumResponse>
     {
     }
 }
