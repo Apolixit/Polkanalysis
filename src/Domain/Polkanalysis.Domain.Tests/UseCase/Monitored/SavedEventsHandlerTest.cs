@@ -18,6 +18,10 @@ using static Polkanalysis.Domain.Contracts.Primary.Result.ErrorResult;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Errors;
 using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Algolia.Search.Models.Common;
+using System.Threading;
+using NSubstitute.ExceptionExtensions;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -42,8 +46,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, _substrateService, Substitute.For<ILogger<SystemKilledAccountRepository>>()));
 
             _eventsFactory = new EventsFactory(_serviceProvider, Substitute.For<ILogger<IEventsFactory>>());
-
             _substrateService.BlockchainName.Returns("Polkadot");
+            _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), CancellationToken.None).Returns(MockHash);
+            _coreService.GetDateTimeFromTimestampAsync(MockHash, CancellationToken.None).Returns(new DateTime(2024, 1, 1));
 
             _useCase = new SavedEventsHandler(_substrateService,
                                               _eventsFactory,
@@ -204,7 +209,30 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             Assert.That(firstError, Is.Not.Null);
 
             Assert.That(firstError.BlockNumber, Is.EqualTo(1));
-            Assert.That(firstError.TypeError, Is.EqualTo(TypeErrorModel.Events));
+            Assert.That(firstError.TypeError, Is.EqualTo(TypeErrorModel.EventsDomain));
+        }
+
+        /// <summary>
+        /// Events cannot be decoded by NetApi.Ext project (can happen for old metadatas), should log and fail
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task SavedEventHandler_WithErrorInApiExt_ShouldLogAndFailAsync()
+        {
+            // No events
+            _substrateService.At(Arg.Any<BlockNumber>()).Storage.System.EventsAsync(CancellationToken.None).ThrowsAsync(new Exception("Error"));
+            _substrateService.Rpc.State.GetRuntimeVersionAsync(MockHash, CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion() { SpecVersion = 10 });
+            _substrateService.NetApiExtAssembly.Returns("Polkanalysis.Polkadot.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+
+            var result = await _useCase!.Handle(new SavedEventsCommand(new BlockNumber(1)), CancellationToken.None);
+
+            Assert.That(result.IsSuccess, Is.False);
+
+            var firstError = _substrateDbContext.SubstrateErrors.FirstOrDefault();
+            Assert.That(firstError, Is.Not.Null);
+
+            Assert.That(firstError.BlockNumber, Is.EqualTo(1));
+            Assert.That(firstError.TypeError, Is.EqualTo(TypeErrorModel.EventsExt));
         }
 
         [Test]

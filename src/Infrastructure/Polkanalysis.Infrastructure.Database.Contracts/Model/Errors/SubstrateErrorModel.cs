@@ -32,7 +32,8 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Errors
     public enum TypeErrorModel
     {
         Blocks,
-        Events,
+        EventsDomain,
+        EventsExt,
         Extrinsics
     }
 }
