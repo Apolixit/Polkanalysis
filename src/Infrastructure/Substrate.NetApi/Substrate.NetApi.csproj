@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<PackageId>Substrate.NET.API</PackageId>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
+		<Version>0.9.24-rc6</Version>
+		<Company>Substrate Gaming</Company>
+		<Authors>Substrate Gaming</Authors>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Substrate Core .NET API</Description>
+		<PackageProjectUrl>https://github.com/SubstrateGaming</PackageProjectUrl>
+		<PackageLicenseFile></PackageLicenseFile>
+		<RepositoryUrl>https://github.com/SubstrateGaming/Substrate.NET.API</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Blake2Core" Version="1.0.0" />
+		<PackageReference Include="Chaos.NaCl.Standard" Version="1.0.0" />
+		<PackageReference Include="Extensions.Data.xxHash.core20" Version="1.0.2.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Serilog" Version="3.0.1" />
+		<PackageReference Include="SerilogTraceListener" Version="3.2.0" />
+		<PackageReference Include="StreamJsonRpc" Version="2.16.36" />
+		<PackageReference Include="Substrate.NET.Schnorrkel" Version="1.2.2" />
+	</ItemGroup>
+
+</Project>
