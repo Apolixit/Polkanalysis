@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Substrate.NetApi\Substrate.NetApi.csproj" />
   </ItemGroup>
 
 </Project>
