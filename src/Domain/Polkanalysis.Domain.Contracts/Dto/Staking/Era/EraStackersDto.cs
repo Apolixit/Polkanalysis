@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Era
     internal class EraStackersDto
     {
         public required int EraId { get; set; }
-        public required UserAddressDto ValidatorAddress { get; set; }
+        public required UserIdentityDto ValidatorAddress { get; set; }
 
         public double TotalStake { get; set; }
         public double OwnStake { get; set; }
@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Era
 
     public class EraStakersNominatorsDto
     {
-        public required UserAddressDto NominatorAddress { get; set; }
+        public required UserIdentityDto NominatorAddress { get; set; }
         public double ValueStake { get; set; }
     }
 }

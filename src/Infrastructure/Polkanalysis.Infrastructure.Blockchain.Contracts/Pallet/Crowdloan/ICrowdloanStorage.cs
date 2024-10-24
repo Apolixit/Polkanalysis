@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
 {
@@ -26,7 +26,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<QueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token);
+        public Task<IQueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token);
 
         /// <summary>
         ///  The funds that have had additional contributions during the last block. This is used

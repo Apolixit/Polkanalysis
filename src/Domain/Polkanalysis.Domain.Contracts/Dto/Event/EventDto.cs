@@ -1,6 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Dto.Block;
-using Polkanalysis.Domain.Contracts.Dto.Common;
-using Polkanalysis.Domain.Contracts.Runtime;
+﻿using Polkanalysis.Domain.Contracts.Dto.Common;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Event
 {

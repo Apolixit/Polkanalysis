@@ -5,7 +5,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums
 {

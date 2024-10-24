@@ -15,16 +15,16 @@ namespace Polkanalysis.Domain.UseCase.Runtime
 {
     public class RuntimeVersionHandler : Handler<RuntimeModulesHandler, IEnumerable<SpecVersionDto>, RuntimeVersionQuery>
     {
-        private readonly IModuleInformationService _moduleService;
+        private readonly IMetadataService _metadataService;
 
-        public RuntimeVersionHandler(ILogger<RuntimeModulesHandler> logger, IModuleInformationService moduleService, IDistributedCache cache) : base(logger, cache)
+        public RuntimeVersionHandler(ILogger<RuntimeModulesHandler> logger, IMetadataService metadataService, IDistributedCache cache) : base(logger, cache)
         {
-            _moduleService = moduleService;
+            _metadataService = metadataService;
         }
 
         public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> HandleInnerAsync(RuntimeVersionQuery request, CancellationToken cancellationToken)
         {
-            var result = await _moduleService.GetRuntimeVersionsAsync(cancellationToken);
+            var result = await _metadataService.GetRuntimeVersionsAsync(cancellationToken);
 
             return Helpers.Ok(result);
         }

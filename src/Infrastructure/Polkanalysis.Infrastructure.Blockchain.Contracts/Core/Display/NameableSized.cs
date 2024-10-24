@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Display
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display
 {
     public class NameableSize0 : Nameable
     {
@@ -61,6 +61,11 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
         public NameableSize4(BaseType elem)
         {
             Create(elem.Bytes);
+        }
+
+        public NameableSize4(byte[] bytes)
+        {
+            Create(bytes);
         }
     }
     public class NameableSize5 : Nameable

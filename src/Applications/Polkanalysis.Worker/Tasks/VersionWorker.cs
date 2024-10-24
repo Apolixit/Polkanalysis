@@ -109,7 +109,7 @@ namespace Polkanalysis.Worker.Tasks
 
                 var blockData = await _polkadotService.Rpc.Chain.GetBlockAsync(cancellationToken);
 
-                await UpgradeVersionAsync(lastRuntimeUpgradeInfo.SpecVersion.Value, (uint)blockData.Block.Header.Number.Value, cancellationToken);
+                await UpgradeVersionAsync(lastRuntimeUpgradeInfo.SpecVersion.Value, (uint)blockData.GetBlock().Header.Number.Value, cancellationToken);
             }, cancellationToken);
         }
     }

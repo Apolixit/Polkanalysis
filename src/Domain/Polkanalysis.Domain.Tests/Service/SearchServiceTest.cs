@@ -1,7 +1,7 @@
 ﻿using Algolia.Search.Clients;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Tests.Abstract;
@@ -31,7 +31,7 @@ namespace Polkanalysis.Domain.Tests.Service
             mockDb();
             _searchService = new SearchService(_substrateService,
                                                _substrateDbContext,
-                                               Substitute.For<IExplorerService>(),
+                                               Substitute.For<ICoreService>(),
                                                //Substitute.For<ISearchClient>(),
                                                Substitute.For<ILogger<SearchService>>());
 
@@ -57,6 +57,7 @@ namespace Polkanalysis.Domain.Tests.Service
                 new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
                 {
                     BlockNumber = 10,
+                    BlockDate = DateTime.Now,
                     BlockHash = "0x4dd66ad0f33bfc8160508219bcb208aac75d3b13ae8fbea11c0d61aa9b0cfaf3",
                     ValidatorAddress = Alice.ToString(),
                     BlockchainName = "Polkadot",
@@ -67,6 +68,7 @@ namespace Polkanalysis.Domain.Tests.Service
                 new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
                 {
                     BlockNumber = 20,
+                    BlockDate = DateTime.Now,
                     BlockHash = "0x4dd66ad0f33bfc8160508219bcb208aac75d3b13ae8fbea11c0d61aa9b0cfaf4",
                     ValidatorAddress = Bob.ToString(),
                     BlockchainName = "Polkadot",

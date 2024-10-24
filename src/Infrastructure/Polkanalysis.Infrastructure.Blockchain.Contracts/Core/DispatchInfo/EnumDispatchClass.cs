@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo
 {
     [DomainMapping("frame_support/weights")]
     public enum DispatchClass
@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
         Mandatory = 2,
     }
 
-    public sealed class EnumDispatchClass : BaseEnum<DispatchClass> 
+    public sealed class EnumDispatchClass : BaseEnum<DispatchClass>
     {
     }
 }

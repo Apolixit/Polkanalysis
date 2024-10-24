@@ -65,18 +65,15 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
     {
         private readonly SubstrateDbContext _dbContext;
         private readonly ISubstrateService _substrateService;
-        private readonly IMetadataService _metadataService;
 
         public PalletVersionCommandHandler(
             SubstrateDbContext dbContext,
-            IMetadataService metadataService,
             ISubstrateService substrateService,
             ILogger<PalletVersionCommandHandler> logger,
             IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;
-            _metadataService = metadataService;
         }
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(PalletVersionCommand request, CancellationToken cancellationToken)
@@ -91,8 +88,8 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
             Guard.Against.NullOrEmpty(metadataTarget, nameof(metadataTarget));
 
             // Just ensure previous block was on same Metadata, otherwise we don't do any comparison
-            var sourceVersion = _metadataService.GetMetadataVersion(metadataSource);
-            var targetVersion = _metadataService.GetMetadataVersion(metadataTarget);
+            var sourceVersion = MetadataUtils.GetMetadataVersion(metadataSource);
+            var targetVersion = MetadataUtils.GetMetadataVersion(metadataTarget);
             if (sourceVersion != targetVersion)
             {
                 var response = $"New metadata major version (from {sourceVersion} to {targetVersion}, we don't do any comparison between major version";
@@ -102,12 +99,12 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
 
             IMetadataDiffBase<IMetadataDifferentialModules> res = sourceVersion switch
             {
-                MetadataVersion.V9 => _metadataService.MetadataCompareV9(new MetadataV9(metadataSource), new MetadataV9(metadataTarget)),
-                MetadataVersion.V10 => _metadataService.MetadataCompareV10(new MetadataV10(metadataSource), new MetadataV10(metadataTarget)),
-                MetadataVersion.V11 => _metadataService.MetadataCompareV11(new MetadataV11(metadataSource), new MetadataV11(metadataTarget)),
-                MetadataVersion.V12 => _metadataService.MetadataCompareV12(new MetadataV12(metadataSource), new MetadataV12(metadataTarget)),
-                MetadataVersion.V13 => _metadataService.MetadataCompareV13(new MetadataV13(metadataSource), new MetadataV13(metadataTarget)),
-                MetadataVersion.V14 => _metadataService.MetadataCompareV14(new MetadataV14(metadataSource), new MetadataV14(metadataTarget)),
+                MetadataVersion.V9 => MetadataUtils.MetadataCompareV9(new MetadataV9(metadataSource), new MetadataV9(metadataTarget)),
+                MetadataVersion.V10 => MetadataUtils.MetadataCompareV10(new MetadataV10(metadataSource), new MetadataV10(metadataTarget)),
+                MetadataVersion.V11 => MetadataUtils.MetadataCompareV11(new MetadataV11(metadataSource), new MetadataV11(metadataTarget)),
+                MetadataVersion.V12 => MetadataUtils.MetadataCompareV12(new MetadataV12(metadataSource), new MetadataV12(metadataTarget)),
+                MetadataVersion.V13 => MetadataUtils.MetadataCompareV13(new MetadataV13(metadataSource), new MetadataV13(metadataTarget)),
+                MetadataVersion.V14 => MetadataUtils.MetadataCompareV14(new MetadataV14(metadataSource), new MetadataV14(metadataTarget)),
                 _ => throw new InvalidOperationException($"MetadataV{sourceVersion} comparison is not yet supported ! Stay tuned.")
             };
 

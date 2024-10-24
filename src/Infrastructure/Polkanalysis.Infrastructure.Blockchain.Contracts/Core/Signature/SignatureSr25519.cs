@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Signature
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Signature
 {
     public class SignatureSr25519 : Signature
     {
-        
+
         public override KeyType Key => KeyType.Sr25519;
 
         //public SignatureSr25519() : this(new U8[] { }) { }

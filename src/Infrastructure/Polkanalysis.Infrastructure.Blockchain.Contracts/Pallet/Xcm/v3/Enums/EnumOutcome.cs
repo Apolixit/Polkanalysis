@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 

@@ -1,4 +1,6 @@
-﻿using Substrate.NetApi.Model.Types.Base;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
@@ -10,14 +12,38 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
 {
     public class IdAmount : BaseType
     {
+        public IdAmount() { }
+
+        public IdAmount(BaseTuple id, U128 amount)
+        {
+            Create(id, amount);
+        }
+
+        public void Create(BaseTuple id, U128 amount)
+        {
+            Id = id;
+            Amount = amount;
+
+            Bytes = Encode();
+
+            TypeSize = Id.TypeSize + Amount.TypeSize;
+        }
+
         public BaseTuple Id { get; set; }
+        public EnumRuntimeFreezeReason IdFreezeReason { get; set; }
         public U128 Amount { get; set; }
+
 
         public override byte[] Encode()
         {
             var result = new List<byte>();
-            result.AddRange(Id.Encode());
-            result.AddRange(Amount.Encode());
+            
+            if(Id is not null)
+                result.AddRange(Id.Encode());
+
+            if(IdFreezeReason is not null)
+                result.AddRange(IdFreezeReason.Encode());
+            
             return result.ToArray();
         }
 

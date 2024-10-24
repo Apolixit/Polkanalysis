@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using NSubstitute;
@@ -12,10 +11,12 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain;
 using Substrate.NET.Utils;
+using Newtonsoft.Json.Linq;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.System
 {
-    public class SystemEventsTest : PolkadotRepositoryMock
+    public class SystemEventsTest : PolkadotMock
     {
         private IBlockchainMapping _blockchainMapping;
 
@@ -119,6 +120,36 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         }
 
         [Test]
+        public void Event_BalanceWithdraw_ShouldBeEncodedAndDecodedCorrectly()
+        {
+            var account = new AccountIdExt();
+            account.Create(Utils.GetPublicKeyFrom(MockAddress));
+
+            var bt = new BaseTuple<AccountIdExt, U128>(account, new U128(10));
+
+            var coreEvent = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_balances.pallet.EnumEvent();
+            coreEvent.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_balances.pallet.Event.Withdraw, bt);
+
+            var enumRuntimeEvent = new Contracts.Core.Maybe<EnumRuntimeEvent>(coreEvent);
+
+            var enumPhase = new EnumPhase();
+            enumPhase.Create(Phase.ApplyExtrinsic, new U32(4));
+
+            var topic = new BaseVec<Hash>(new Hash[0]);
+            var ev = new EventRecord(enumPhase, enumRuntimeEvent, topic);
+
+            var eventDecoded = new EventRecord();
+            eventDecoded.Create(ev.Encode());
+
+            Assert.That(ev.Phase.Value, Is.EqualTo(eventDecoded.Phase.Value));
+            Assert.That(ev.Phase.Value2.As<U32>().Value, Is.EqualTo(eventDecoded.Phase.Value2.As<U32>().Value));
+
+            Assert.That(ev.Event.Core.GetValue(), Is.EqualTo(eventDecoded.Event.Core.GetValue()));
+            Assert.That(ev.Event.Core.GetValue2().As<BaseTuple<AccountIdExt, U128>>().Value[1].As<U128>().Value, 
+                Is.EqualTo(eventDecoded.Event.Core.GetValue2().As<BaseTuple<AccountIdExt, U128>>().Value[1].As<U128>().Value));
+        }
+
+        [Test]
         public void BagListEnum_ShouldBeMapped()
         {
             var account = new AccountIdExt();
@@ -133,6 +164,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             Assert.That(mapped, Is.Not.Null);
             Assert.That(mapped.Value2, Is.InstanceOf<BaseTuple<SubstrateAccount, U64, U64>>());
+        }
+
+        [Test]
+        public void ExtrinsicFailed_ShouldBeMapped()
+        {
+            var coreEvent = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v1002006.polkadot_runtime.EnumRuntimeEvent();
+            coreEvent.Create("0x00010708E283573F25380000");
+
+            var res = _blockchainMapping.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v1002006.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(coreEvent);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Value, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(res.Value2.GetValue(), Is.EqualTo(Event.ExtrinsicFailed));
         }
     }
 }

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
 {
@@ -10,8 +11,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
     /// </summary>
     public abstract class IntegrationTest
     {
-        protected ISubstrateService _substrateRepository;
-        protected ISubstrateEndpoint _substrateEndpoint;
+        protected ISubstrateService _substrateRepository = default!;
+        protected ISubstrateEndpoint _substrateEndpoint = default!;
 
         protected const string NoTestCase = "NO TEST CASE";
         /// <summary>
@@ -27,7 +28,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
         }
 
-        protected abstract ISubstrateEndpoint GetEndpoint();
+        internal abstract ISubstrateEndpoint GetEndpoint();
+
+        public abstract Task ConnectDependenciesAsync();
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test
@@ -41,6 +44,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
                 try
                 {
                     await _substrateRepository.ConnectAsync();
+                    await ConnectDependenciesAsync();
                 }
                 catch (Exception ex)
                 {

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Substrate.NET.API" Version="0.9.20" />
+    <PackageReference Include="Substrate.NET.API" Version="0.9.24-rc6" />
+    <PackageReference Include="Substrate.NET.Metadata" Version="0.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Substrate.NetApi\Substrate.NetApi.csproj" />
   </ItemGroup>
 
 </Project>

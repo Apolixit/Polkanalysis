@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Substrate.NetApi.Model.Types;
@@ -11,10 +10,11 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
-{   
+{
     public class SearchCriteriaCrowdloanContributed : SearchCriteria
     {
         public string? AccountAddess { get; set; }

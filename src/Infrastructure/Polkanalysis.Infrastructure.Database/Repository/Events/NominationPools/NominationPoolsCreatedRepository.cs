@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Substrate.NetApi.Model.Types;
@@ -10,7 +9,9 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.NominationPools;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Common.Search;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.NominationPools
 {

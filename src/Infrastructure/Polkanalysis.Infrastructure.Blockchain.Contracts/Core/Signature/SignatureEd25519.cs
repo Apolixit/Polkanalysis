@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Signature
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Signature
 {
     public class SignatureEd25519 : Signature
     {

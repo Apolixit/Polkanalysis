@@ -7,12 +7,12 @@ using Polkanalysis.Domain.Contracts.Dto.Financial;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Primary.FInancial;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.UseCase.Account;
 using Polkanalysis.Domain.UseCase.Statistics.Finance;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Substrate.NetApi;
@@ -56,7 +56,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
             _explorerService = new ExplorerService(_substrateService,
                                                    Substitute.For<ISubstrateDecoding>(),
                                                    Substitute.For<IAccountService>(),
-                                                   Substitute.For<ILogger<ExplorerService>>());
+                                                   Substitute.For<ILogger<ExplorerService>>(),
+                                                   Substitute.For<ICoreService>());
 
             _useCase = new GlobalFinanceHandler(_financialService, _logger, _explorerService, Substitute.For<IDistributedCache>());
         }

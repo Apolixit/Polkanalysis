@@ -15,7 +15,7 @@ namespace Substrate.NET.Utils
 
         public static IType GetValue2(this IType sender)
         {
-            if (sender is BaseEnumType)
+            if (sender is IType)
             {
                 var value2 = (IType?)sender.GetType().GetProperty("Value2")?.GetValue(sender);
                 return value2 ?? new BaseVoid();

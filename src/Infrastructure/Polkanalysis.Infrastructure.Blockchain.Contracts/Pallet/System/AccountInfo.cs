@@ -12,19 +12,40 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
     public class AccountInfo : BaseType
     {
         public U32 Nonce { get; set; }
-        public U32 Consumers { get; set; }
-        public U32 Providers { get; set; }
-        public U32 Sufficients { get; set; }
+        public U32? RefCount { get; set; }
+        public U32? Consumers { get; set; }
+        public U32? Providers { get; set; }
+        public U32? Sufficients { get; set; }
         public AccountData Data { get; set; }
 
         public AccountInfo() { }
+
+        public AccountInfo(U32 nonce, U32 refCount, AccountData data)
+        {
+            Create(nonce, refCount, data);
+        }
+
+        public AccountInfo(U32 nonce, U32 consumers, U32 providers, AccountData data)
+        {
+            Create(nonce, consumers, providers, null, data);
+        }
 
         public AccountInfo(U32 nonce, U32 consumers, U32 providers, U32 sufficients, AccountData data)
         {
             Create(nonce, consumers, providers, sufficients, data);
         }
 
-        public void Create(U32 nonce, U32 consumers, U32 providers, U32 sufficients, AccountData data)
+        public void Create(U32 nonce, U32 refCount, AccountData data)
+        {
+            Nonce = nonce;
+            RefCount = refCount;
+            Data = data;
+
+            Bytes = Encode();
+            TypeSize = Nonce.TypeSize + RefCount.TypeSize + Data.TypeSize;
+        }
+
+        public void Create(U32 nonce, U32 consumers, U32 providers, U32? sufficients, AccountData data)
         {
             Nonce = nonce;
             Consumers = consumers;
@@ -33,16 +54,26 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
             Data = data;
 
             Bytes = Encode();
-            TypeSize = Nonce.TypeSize + Consumers.TypeSize + Providers.TypeSize + Sufficients.TypeSize + Data.TypeSize;
+            TypeSize = Nonce.TypeSize + 
+                Consumers.TypeSize + 
+                Providers.TypeSize + 
+                (Sufficients != null ? Sufficients.TypeSize : 0) + 
+                Data.TypeSize;
         }
 
         public override byte[] Encode()
         {
             var result = new List<byte>();
             result.AddRange(Nonce.Encode());
-            result.AddRange(Consumers.Encode());
-            result.AddRange(Providers.Encode());
-            result.AddRange(Sufficients.Encode());
+            if(Consumers is not null)
+                result.AddRange(Consumers.Encode());
+
+            if (Providers is not null)
+                result.AddRange(Providers.Encode());
+
+            if (Sufficients is not null)
+                result.AddRange(Sufficients.Encode());
+
             result.AddRange(Data.Encode());
             return result.ToArray();
         }

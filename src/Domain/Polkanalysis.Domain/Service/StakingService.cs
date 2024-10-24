@@ -2,7 +2,6 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Era;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;
@@ -25,6 +24,8 @@ using Polkanalysis.Domain.Helper.Enumerables;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Exception;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -100,12 +101,25 @@ namespace Polkanalysis.Domain.Service
             IEnumerable<SubstrateAccount> validators,
             CancellationToken cancellationToken)
         {
-            var validatorsExtended = await validators
+            IEnumerable<(SubstrateAccount, Exposure)>? validatorsExtended = null;
+
+            try
+            {
+                validatorsExtended = await validators
                 .ExtendWith(validator => _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(new U32(eraId), validator), cancellationToken))
                 .WaitAllAndGetResultAsync();
-
-            if (validatorsExtended == null)
+            }
+            //catch (StakingEraStakerException ex)
+            //{
+            //    var validatorIndex = validators.Select(x => x.ToStringAddress()).ToList().IndexOf(ex.ValidatorAddress);
+            //    _logger.LogError(ex, "Error while fetching ErasStakers(EraId = {eraId}, ValidatorAddress = {validatorAddress}) - Validator num {validatorIndex}", ex.EraId, ex.ValidatorAddress, validatorIndex);
+            //    throw new InvalidOperationException("Validators extended with exposure return null");
+            //}
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while fetching ErasStakers(EraId = {eraId}, Validator)", eraId);
                 throw new InvalidOperationException("Validators extended with exposure return null");
+            }
 
             return await BuildFromSubsrateAccountAsync(eraId, validatorsExtended, cancellationToken);
         }
@@ -129,7 +143,7 @@ namespace Polkanalysis.Domain.Service
             var eraStakers = _stakingDatabaseRepository.GetAllEraStackers((int)eraId);
 
             var validatorsExtended = validators
-                .ExtendWith(x => _accountRepository.GetAccountAddressAsync(x.Item1, cancellationToken))
+                .ExtendWith(x => _accountRepository.GetAccountIdentityAsync(x.Item1, cancellationToken))
                 .ExtendWith(x => _substrateService.Storage.Staking.ValidatorsAsync(x.Item1, cancellationToken));
 
             foreach (var v in validatorsExtended.GetExendedList())
@@ -215,9 +229,9 @@ namespace Polkanalysis.Domain.Service
             var isValidatorActive = activeValidatorsTask != null && activeValidators.Value.Any(x => x.Equals(validator));
             var validatorDto = new ValidatorDto()
             {
-                ControllerAddress = await _accountRepository.GetAccountAddressAsync(boundedAccount, cancellationToken),
-                StashAddress = await _accountRepository.GetAccountAddressAsync(boundedAccount, cancellationToken),
-                RewardAddress = await _accountRepository.GetAccountAddressAsync(validator, cancellationToken),
+                ControllerAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
+                StashAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
+                RewardAddress = await _accountRepository.GetAccountIdentityAsync(validator, cancellationToken),
                 SelfBonded = nominators.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 TotalBonded = nominators.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 Commission = (double)validatorSettings.Commission.Value.Value,
@@ -325,10 +339,10 @@ namespace Polkanalysis.Domain.Service
             List<(
                 Task<Nominations> nominationsTask,
                 Task<SubstrateAccount> nominatorControllerAccountTask,
-                Task<UserAddressDto> nominatorStashAccountTask,
-                Task<UserAddressDto> nominatorRewardAccountTask,
+                Task<UserIdentityDto> nominatorStashAccountTask,
+                Task<UserIdentityDto> nominatorRewardAccountTask,
                 double bounded,
-                Task<UserAddressDto>? userAddressTask)> nominatorsAccountTask = new List<(Task<Nominations>, Task<SubstrateAccount>, Task<UserAddressDto>, Task<UserAddressDto>, double, Task<UserAddressDto>?)>();
+                Task<UserIdentityDto>? userAddressTask)> nominatorsAccountTask = new List<(Task<Nominations>, Task<SubstrateAccount>, Task<UserIdentityDto>, Task<UserIdentityDto>, double, Task<UserIdentityDto>?)>();
 
             // I need to get nominator account result to fetch identity
             var nominatorsAndBoundedAccount = nominators.Others!.Value.Select(x =>
@@ -344,10 +358,10 @@ namespace Polkanalysis.Domain.Service
                     (
                     _substrateService.Storage.Staking.NominatorsAsync(n.IndividualExposure.Who, cancellationToken),
                     n.BoundedAccount,
-                    _accountRepository.GetAccountAddressAsync(n.IndividualExposure.Who, cancellationToken),
+                    _accountRepository.GetAccountIdentityAsync(n.IndividualExposure.Who, cancellationToken),
                     PayeeAccountAsync(n.IndividualExposure.Who, cancellationToken),
                     n.IndividualExposure.Value.Value.Value.ToDouble(chainInfo.TokenDecimals),
-                    _accountRepository.GetAccountAddressAsync(n.BoundedAccount.Result, cancellationToken)
+                    _accountRepository.GetAccountIdentityAsync(n.BoundedAccount.Result, cancellationToken)
                     )
                 );
             }
@@ -374,7 +388,7 @@ namespace Polkanalysis.Domain.Service
             return nominatorsDto;
         }
 
-        public async Task<UserAddressDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken)
+        public async Task<UserIdentityDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken)
         {
             var rewardAccount = await _substrateService.Storage.Staking.PayeeAsync(stashAccount, cancellationToken);
 
@@ -391,7 +405,7 @@ namespace Polkanalysis.Domain.Service
             };
 
             if (account == null) return null;
-            return await _accountRepository.GetAccountAddressAsync(account, cancellationToken);
+            return await _accountRepository.GetAccountIdentityAsync(account, cancellationToken);
         }
 
         public async Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
@@ -404,12 +418,12 @@ namespace Polkanalysis.Domain.Service
             if (nominatorsResult.Count == 0) return nominatorsDto;
 
             var nominatorsExtended = await nominatorsResult
-                .ExtendWith(x => _accountRepository.GetAccountAddressAsync(x.Item1, cancellationToken))
+                .ExtendWith(x => _accountRepository.GetAccountIdentityAsync(x.Item1, cancellationToken))
                 .WaitAllAndGetResultAsync();
 
             var stashAccount = await Task.WhenAll(nominatorsResult.Select(x =>
             {
-                return _accountRepository.GetAccountAddressAsync(x.Item1, cancellationToken);
+                return _accountRepository.GetAccountIdentityAsync(x.Item1, cancellationToken);
             }));
 
             foreach(var ((nominatorAccount, nomination), stashAccountIdentity) in nominatorsExtended)
@@ -457,8 +471,8 @@ namespace Polkanalysis.Domain.Service
 
             var nominatorDto = new NominatorDto()
             {
-                StashAccount = await _accountRepository.GetAccountAddressAsync(nominatorAccount, cancellationToken),
-                ControllerAccount = await _accountRepository.GetAccountAddressAsync(controllerAccount, cancellationToken),
+                StashAccount = await _accountRepository.GetAccountIdentityAsync(nominatorAccount, cancellationToken),
+                ControllerAccount = await _accountRepository.GetAccountIdentityAsync(controllerAccount, cancellationToken),
                 RewardAccount = rewardAccount,
                 Bonded = 0, // TODO mapping
                 Status = nominatorSettings.Suppressed.Value ? AliveStatusDto.Inactive : AliveStatusDto.Active,
@@ -517,11 +531,11 @@ namespace Polkanalysis.Domain.Service
             };
 
             var rewardAccount = await PayeeAccountAsync(bondedPool.Roles.Depositor, cancellationToken);
-            var creatorAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Depositor, cancellationToken);
-            var nominatorAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Nominator.Value, cancellationToken);
-            var stashAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Root.Value, cancellationToken);
-            var togglerAccount = bondedPool.Roles.StateToggler is not null ? await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.StateToggler.Value, cancellationToken) : null;
-            var rootAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Root.Value, cancellationToken);
+            var creatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken);
+            var nominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken);
+            var stashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
+            var togglerAccount = bondedPool.Roles.StateToggler is not null ? await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken) : null;
+            var rootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
 
             var poolDto = new PoolDto()
             {
@@ -593,7 +607,7 @@ namespace Polkanalysis.Domain.Service
                     _logger.LogWarning($"Pool {poolId} does not have creation event register in the database");
                 else
                 {
-                    poolLight.Depositor = await _accountRepository.GetAccountAddressAsync(poolCreation.Depositor, cancellationToken);
+                    poolLight.Depositor = await _accountRepository.GetAccountIdentityAsync(poolCreation.Depositor, cancellationToken);
                     poolLight.CreationDate = poolCreation.BlockDate;
                 }
 

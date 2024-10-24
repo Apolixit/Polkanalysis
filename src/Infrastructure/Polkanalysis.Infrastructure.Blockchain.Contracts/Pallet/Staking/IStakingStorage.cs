@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
 {
@@ -131,7 +131,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// <returns></returns>
         public Task<Nominations> NominatorsAsync(SubstrateAccount account, CancellationToken token);
 
-        public Task<QueryStorage<SubstrateAccount, Nominations>> NominatorsQueryAsync(CancellationToken token);
+        public Task<IQueryStorage<SubstrateAccount, Nominations>> NominatorsQueryAsync(CancellationToken token);
 
         /// <summary>
         /// Counter for the related counted storage map
@@ -204,7 +204,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token);
+        public Task<IQueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token);
 
         /// <summary>
         ///  Clipped Exposure of validator at era.

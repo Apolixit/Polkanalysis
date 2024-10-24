@@ -1,6 +1,6 @@
 using Polkanalysis.Components.Services.Http;
 using Polkanalysis.Configuration.Extensions;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.WebApp.Services;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +14,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 using ApexCharts;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
-using static Azure.Core.HttpHeader;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,12 +37,15 @@ builder.Services.AddDbContext<SubstrateDbContext>(options =>
 builder.Services.AddScoped<IApiService, ApiService>();
 builder.Services.AddScoped<ITooltipService, TooltipService>();
 
-builder.Services.AddPolkadotBlockchain("polkadot");
+builder.Services.AddSubstrateBlockchain("polkadot");
 builder.Services.AddEndpoint(builder.Configuration);
 builder.Services.AddSubstrateService();
 builder.Services.AddSubstrateLogic();
+builder.Services.AddSubstrateNodeBuilder();
 builder.Services.AddMediatRAndPipelineBehaviors();
 builder.Services.AddDatabase();
+
+builder.Services.AddDataGridEntityFrameworkAdapter();
 
 builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.App");
 

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
@@ -99,7 +99,7 @@ namespace Polkanalysis.Worker.Tasks
                 }
                 else
                 {
-                    _logger.LogError("[{workerName}] [EraStakersCommand] Era {eraId} fail to insert", nameof(StakingWorker), i);
+                    _logger.LogWarning("[{workerName}] [EraStakersCommand] Era {eraId} fail to insert", nameof(StakingWorker), i);
                 }
             }
         }

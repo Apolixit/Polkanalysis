@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Public
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public
 {
     public class PublicEd25519 : Public
     {

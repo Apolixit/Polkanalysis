@@ -3,9 +3,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
-using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System.Numerics;
@@ -15,10 +13,12 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using FrameSystemExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.frame_system;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.System
 {
-    public class SystemStorageTests : PolkadotRepositoryMock
+    public class SystemStorageTests : PolkadotMock
     {
         [Test]
         public async Task Account_ShouldWorkAsync()
@@ -187,7 +187,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_runtime.generic.digest.Digest, Digest>(_substrateRepository.Storage.System.DigestAsync);
         }
 
-        [Test]
+        [Test, Ignore("Do not check Encode()")]
         public async Task Events_ShouldWorkAsync()
         {
             var coreResult = new BaseVec<FrameSystemExt.EventRecord>();

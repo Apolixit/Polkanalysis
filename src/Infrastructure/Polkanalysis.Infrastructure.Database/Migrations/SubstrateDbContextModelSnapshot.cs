@@ -31,6 +31,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("BlockNumber"));
 
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("BlockHash")
                         .IsRequired()
                         .HasColumnType("text");
@@ -45,6 +48,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<long>("ExtrinsicsCount")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Justification")
+                        .HasColumnType("text");
+
                     b.Property<long>("LogsCount")
                         .HasColumnType("bigint");
 
@@ -55,6 +61,43 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.HasKey("BlockNumber");
 
                     b.ToTable("BlockInformation");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("BlockNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BlockchainName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("ElementId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Parameters")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TypeError")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubstrateErrors");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions.AuctionsAuctionClosedModel", b =>
@@ -79,6 +122,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AuctionIndex");
 
@@ -114,6 +160,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AuctionIndex", "LeasePeriod", "Ending");
 
                     b.ToTable("EventAuctionsAuctionStarted");
@@ -148,6 +197,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "RootAccount", "Amount1", "Amount2");
 
                     b.ToTable("EventBalancesBalanceSet");
@@ -178,6 +230,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress", "Amount");
 
@@ -210,6 +265,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress", "Amount");
 
                     b.ToTable("EventBalancesEndowed");
@@ -241,6 +299,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress", "ReservedAmount");
 
                     b.ToTable("EventBalancesReserved");
@@ -271,6 +332,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddess", "Amount");
 
@@ -306,6 +370,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "From", "To", "Amount");
 
                     b.ToTable("EventBalancesTransfer");
@@ -336,6 +403,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddess", "UnreservedAmount");
 
@@ -371,6 +441,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddess", "CrowdloanId", "Amount");
 
                     b.ToTable("EventCrowdloanContributed");
@@ -399,6 +472,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "CrowdloanId");
 
                     b.ToTable("EventCrowdloanCreated");
@@ -415,6 +491,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<string>("ModuleEvent")
                         .HasColumnType("text");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.Property<int>("LastOccurenceScannedBlockId")
                         .HasColumnType("integer");
 
@@ -423,7 +502,41 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.HasKey("BlockchainName", "ModuleName", "ModuleEvent");
 
-                    b.ToTable("EventManagerModel");
+                    b.ToTable("EventManager");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.EventsInformationModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("JsonParameters")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId");
+
+                    b.ToTable("EventsInformation");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity.IdentityIdentityClearedModel", b =>
@@ -451,6 +564,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress", "Amount");
 
@@ -483,6 +599,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress", "Amount");
 
                     b.ToTable("EventIdentityIdentityKilled");
@@ -510,6 +629,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress");
 
@@ -548,6 +670,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Member", "Pool_id", "Bonded", "Joined");
 
                     b.ToTable("EventNominationPoolsBonded");
@@ -579,6 +704,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Depositor", "Pool_id");
 
                     b.ToTable("EventNominationPoolsCreated");
@@ -606,6 +734,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Pool_id");
 
@@ -638,6 +769,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Pool_id", "Member");
 
                     b.ToTable("EventNominationPoolsMemberRemoved");
@@ -669,6 +803,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Pool_id", "Amount");
 
                     b.ToTable("EventNominationPoolsMinBalanceDeficitAdjusted");
@@ -699,6 +836,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Pool_id", "Amount");
 
@@ -734,6 +874,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Member", "Pool_id", "Payout");
 
                     b.ToTable("EventNominationPoolsPaidOut");
@@ -764,6 +907,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Pool_id", "Commission");
 
@@ -805,6 +951,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Member", "Pool_id", "Balance", "Points", "Era");
 
                     b.ToTable("EventNominationPoolsUnbonded");
@@ -842,6 +991,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Member", "Pool_id", "Balance", "Points");
 
                     b.ToTable("EventNominationPoolsWithdrawn");
@@ -876,6 +1028,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Era_index", "Validator_payout", "Remainder");
 
                     b.ToTable("EventStakingEraPaid");
@@ -903,6 +1058,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress");
 
@@ -932,9 +1090,81 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("BlockDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "AccountAddress");
 
                     b.ToTable("EventSystemNewAccount");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("AccountAddress")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("BlockNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BlockchainName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double?>("Charge")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Event")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("ExtrinsicIndex")
+                        .HasColumnType("bigint");
+
+                    b.Property<double?>("Fees")
+                        .HasColumnType("double precision");
+
+                    b.Property<bool>("IsSigned")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("JsonParameters")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long?>("LifetimeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Method")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Signature")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("StatusMessage")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TransactionVersion")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LifetimeId");
+
+                    b.ToTable("ExtrinsicsInformation");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Price.TokenPriceModel", b =>
@@ -945,12 +1175,41 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
                     b.HasKey("BlockchainName", "Date");
 
                     b.ToTable("TokenPrices");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraLifetimeModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("BlockchainName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long?>("EndBlock")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsImmortal")
+                        .HasColumnType("boolean");
+
+                    b.Property<long?>("StartBlock")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EraLifetime");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraStakersModel", b =>
@@ -969,6 +1228,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.Property<string>("ValidatorAddress")
                         .HasColumnType("text");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.Property<BigInteger>("OwnStake")
                         .HasColumnType("numeric");
@@ -1014,6 +1276,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<long>("BlockStart")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.Property<long>("SpecVersion")
                         .HasColumnType("bigint");
 
@@ -1033,8 +1298,17 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<long?>("BlockEnd")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("BlockEndDateTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<long>("BlockStart")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime>("BlockStartDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Metadata")
                         .IsRequired()
@@ -1046,6 +1320,15 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.HasKey("BlockchainName", "SpecVersion");
 
                     b.ToTable("SpecVersionModels");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel", b =>
+                {
+                    b.HasOne("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraLifetimeModel", "Lifetime")
+                        .WithMany()
+                        .HasForeignKey("LifetimeId");
+
+                    b.Navigation("Lifetime");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraStakersNominatorsModel", b =>

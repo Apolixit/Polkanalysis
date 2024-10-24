@@ -1,7 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 using NominationPoolsExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_nomination_pools;
@@ -12,10 +10,12 @@ using StrobeNet.Extensions;
 using Newtonsoft.Json.Linq;
 using System;
 using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.NominationPools
 {
-    public class NominationPoolsStorageTests : PolkadotRepositoryMock
+    public class NominationPoolsStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U128TestCase))]

@@ -1,8 +1,8 @@
 ﻿using Substrate.NetApi.Attributes;
 using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi.Model.Types.Metadata.V14;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Substrate.NetApi.Model.Types.Metadata.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums
 {

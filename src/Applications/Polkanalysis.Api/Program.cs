@@ -1,19 +1,18 @@
 
 using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime;
 using Serilog;
 using Polkanalysis.Configuration.Extensions;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Api.Services;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Text.Json.Serialization;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Serilog.Extensions.Logging;
 using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Api
 {
@@ -54,12 +53,13 @@ namespace Polkanalysis.Api
                 });
 
                 // For the API, we register Polkadot as singleton
-                builder.Services.AddPolkadotBlockchain("polkadot", registerAsSingleton: true);
+                builder.Services.AddSubstrateBlockchain("polkadot", registerAsSingleton: true);
                 builder.Services.AddHttpClient();
                 builder.Services.AddEndpoint(builder.Configuration, registerAsSingleton: true);
                 builder.Services.AddSubstrateService();
                 builder.Services.AddDatabase();
                 builder.Services.AddSubstrateLogic();
+                builder.Services.AddSubstrateNodeBuilder();
                 builder.Services.AddMediatRAndPipelineBehaviors();
 
                 builder.Services.AddCors(options =>

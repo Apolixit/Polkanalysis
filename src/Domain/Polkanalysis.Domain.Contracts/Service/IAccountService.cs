@@ -1,7 +1,7 @@
 ﻿using Polkanalysis.Domain.Contracts.Common;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Balances;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Contracts.Service
 {
@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="account"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<UserAddressDto> GetAccountAddressAsync(SubstrateAccount account, CancellationToken cancellationToken);
+        public Task<UserIdentityDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get the account address and the public key
@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="accountAddress"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<UserAddressDto> GetAccountAddressAsync(string accountAddress, CancellationToken cancellationToken);
+        public Task<UserIdentityDto> GetAccountIdentityAsync(string accountAddress, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get the account type, what is it, a Nominator, a validator, a pool member, a system account etc.
@@ -69,5 +69,12 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<BalancesDto> GetBalancesAsync(SubstrateAccount account, CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Query the service at a given block hash
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <returns></returns>
+        IAccountService At(string blockHash);
     }
 }

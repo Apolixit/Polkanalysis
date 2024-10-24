@@ -5,7 +5,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
 {
     public class AccountFinancialTransactionsDto
     {
-        public AccountFinancialTransactionsDto(UserAddressDto address, DateTime? from, DateTime? to, CurrencyDto totalAmountReceived, CurrencyDto totalAmountSent, PagedResponseDto<TransactionDto> transactions)
+        public AccountFinancialTransactionsDto(UserIdentityDto address, DateTime? from, DateTime? to, CurrencyDto totalAmountReceived, CurrencyDto totalAmountSent, PagedResponseDto<TransactionDto> transactions)
         {
             Address = address;
             From = from;
@@ -15,7 +15,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
             Transactions = transactions;
         }
 
-        public UserAddressDto Address { get; set; }
+        public UserIdentityDto Address { get; set; }
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
         public CurrencyDto TotalAmountReceived { get; set; }

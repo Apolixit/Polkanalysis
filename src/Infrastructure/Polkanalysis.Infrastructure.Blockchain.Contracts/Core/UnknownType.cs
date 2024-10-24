@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 {
     /// <summary>
     /// Represent an unmapped element from Substrate
@@ -37,7 +37,7 @@ namespace Polkanalysis.Domain.Contracts.Core
             for (var i = 0; i < array.Length; i++) { var t = new U8(); t.Decode(byteArray, ref p); array[i] = t; };
             var bytesLength = p - start;
             Bytes = new byte[bytesLength];
-            System.Array.Copy(byteArray, start, Bytes, 0, bytesLength);
+            Array.Copy(byteArray, start, Bytes, 0, bytesLength);
             Value = array;
         }
     }

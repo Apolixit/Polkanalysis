@@ -1,13 +1,13 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.Display;
-using Polkanalysis.Domain.Contracts.Core.Random;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.Session
 {

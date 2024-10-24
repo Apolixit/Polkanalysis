@@ -1,8 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
 {
@@ -58,14 +58,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
         /// >> Freezes
         ///  Freeze locks on account balances.
         /// </summary>
-        public Task<IdAmount> FreezesAsync(SubstrateAccount key, CancellationToken token);
+        public Task<BaseVec<IdAmount>> FreezesAsync(SubstrateAccount key, CancellationToken token);
 
 
         /// <summary>
         /// >> Holds
         ///  Holds on account balances.
         /// </summary>
-        public Task<IdAmount> HoldsAsync(SubstrateAccount key, CancellationToken token);
+        public Task<BaseVec<IdAmount>> HoldsAsync(SubstrateAccount key, CancellationToken token);
 
         /// <summary>
         ///  Any liquidity locks on some account balances.
@@ -83,8 +83,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token);
-
-
 
         /// <summary>
         /// >> StorageVersion

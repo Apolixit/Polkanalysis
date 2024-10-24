@@ -1,14 +1,14 @@
 ﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship.Enums;
 using Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_authorship;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Authorship
 {
-    public class AuthorshipStorageTests : PolkadotRepositoryMock
+    public class AuthorshipStorageTests : PolkadotMock
     {
         [Test]
         public async Task Uncles_ShouldWorkAsync()

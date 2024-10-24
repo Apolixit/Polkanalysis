@@ -1,10 +1,15 @@
-﻿using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Runtime;
+﻿using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
+using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 {
@@ -14,35 +19,28 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 
         public SystemErrorListenerTest()
         {
-            var currentMetadata = new CurrentMetaData(_substrateService, Substitute.For<ILogger<CurrentMetaData>>());
+            var currentMetadata = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<ICoreService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
 
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),
                 _substrateService,
-                new PalletBuilder(_substrateService, currentMetadata, Substitute.For<ILogger<PalletBuilder>>()),
-                currentMetadata,
+                new PalletBuilder(_substrateService, Substitute.For<ILogger<PalletBuilder>>()),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
-        [Test, Ignore("Todo : find a new test case ?")]
-        [TestCase("0x00020000000001030504000000D861040D00000000000000")]
-        public void System_ExtrinsicFailed_Index_ShouldBeParsed(string hex)
-        {
-            var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
-
-            Assert.That(result.EventName, Is.EqualTo("ExtrinsicFailed"));
-        }
-
         [Test]
-        [TestCase("0x000100000000002861D5DD77000000020000")]
-        public void RuntimeEvent_ShouldBeParsed(string hex)
+        public async Task DecodeExtrinsicFail_ShouldSucceedAsync()
         {
-            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            var input = new Substrate.NetApi.Model.Types.Base.BaseTuple<EnumDispatchError, DispatchInfo>();
+            input.Create("0x030707000000075C075F360155EE0000");
 
-            var result = EventResult.Create(nodeResult.Children[1].Children[0]);
+            var metadata = await _substrateService.At("0xd14d9606068b70847edbe551b38e5e9bbd793d49a93f3c5224b194cc66bb2edf").GetMetadataAsync(CancellationToken.None);
+            var node = await _substrateDecode.DecodeAsync(input, metadata, CancellationToken.None);
 
-            Assert.That(result.EventName, Is.EqualTo("ExtrinsicSuccess"));
+            Assert.That(node, Is.Not.Null);
         }
     }
 }

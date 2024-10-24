@@ -1,7 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
     /// Test if the block hash is correctly passed to each storage
     /// So we return null for storage call without blockhash and a simple value with
     /// </summary>
-    public class BlockHashStorageTests : PolkadotRepositoryMock
+    public class BlockHashStorageTests : PolkadotMock
     {
         private const string BlockHash = "IAmABlockHash";
 

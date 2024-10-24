@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
@@ -25,37 +26,43 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
     public class SavedBlocksHandlerTest : UseCaseTest<SavedBlocksHandler, bool, SavedBlocksCommand>
     {
         private IExplorerService _explorerService;
+        private ICoreService _coreService;
 
         [SetUp]
         public void Setup()
         {
             _logger = Substitute.For<ILogger<SavedBlocksHandler>>();
+            _coreService = Substitute.For<ICoreService>();
             _explorerService = Substitute.For<IExplorerService>();
             _explorerService.GetBlockLightAsync(Arg.Any<uint>(), Arg.Any<CancellationToken>()).Returns(
                 new Contracts.Dto.Block.BlockLightDto()
-            {
-                Hash = new Hash("0x1234567890"),
-                Number = 1,
-                Status = Contracts.Dto.GlobalStatusDto.BlockStatusDto.Finalized,
-                When = DateTime.Now.ToString(),
-                NbEvents = 1,
-                NbExtrinsics = 1,
-                NbLogs = 1,
-                Validator = new UserAddressDto()
                 {
-                    Name = "Alice",
-                    Address = Alice.ToString(),
-                    PublicKey = Utils.Bytes2HexString(Alice.Bytes)
-                }
-            });
+                    Hash = new Hash("0x1234567890"),
+                    Number = 1,
+                    Status = Contracts.Dto.GlobalStatusDto.BlockStatusDto.Finalized,
+                    BlockDate = DateTime.Now,
+                    When = DateTime.Now.ToString(),
+                    NbEvents = 1,
+                    NbExtrinsics = 1,
+                    NbLogs = 1,
+                    ValidatorIdentity = new UserIdentityDto()
+                    {
+                        Name = "Alice",
+                        Address = Alice.ToString(),
+                        PublicKey = Utils.Bytes2HexString(Alice.Bytes)
+                    },
+                    ValidatorAddress = Alice.ToString()
+                });
 
             _substrateService.BlockchainName.Returns("Polkadot");
 
             _useCase = new SavedBlocksHandler(_substrateService,
                                               _substrateDbContext,
                                               _explorerService,
+                                              _coreService,
                                               _logger,
-                                              Substitute.For<IDistributedCache>());
+                                              Substitute.For<IDistributedCache>(),
+                                              Substitute.For<IDomainMetrics>());
         }
 
         [Test]

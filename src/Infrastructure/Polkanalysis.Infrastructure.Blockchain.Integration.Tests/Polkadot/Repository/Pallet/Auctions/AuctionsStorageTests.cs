@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Core;
 using System.Numerics;
 using Substrate.NetApi.Model.Types.Primitive;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.Auctions
 {

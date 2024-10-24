@@ -30,8 +30,6 @@ namespace Polkanalysis.Configuration.Extensions
                 throw new ConfigurationErrorsException($"{nameof(substrateEndpointSection)} is not set");
 
             WsEndpointUri = new Uri(substrateEndpointSection.Value);
-
-
         }
     }
 }

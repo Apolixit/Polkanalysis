@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Common;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Balances;
 using Polkanalysis.Domain.Contracts.Dto.Financial;
@@ -54,7 +54,7 @@ namespace Polkanalysis.Domain.UseCase.Account
                 .OrderByDescending(x => x.BlockNumber)
                 .ToPagedResponse(request.Pagination.PageNumber, request.Pagination.PageSize);
 
-            var accountAddress = await _accountService.GetAccountAddressAsync(request.AccountAddress, cancellationToken);
+            var accountAddress = await _accountService.GetAccountIdentityAsync(request.AccountAddress, cancellationToken);
             var totalAmountReceived = pagesTransactions.Data.Where(x  => x.GetTypeTransaction(request.AccountAddress) == TransactionDto.TypeTransactionDto.Received).Sum(x => x.Amount.Native);
             var totalAmountSent = pagesTransactions.Data.Where(x => x.GetTypeTransaction(request.AccountAddress) == TransactionDto.TypeTransactionDto.Send).Sum(x => x.Amount.Native);
 

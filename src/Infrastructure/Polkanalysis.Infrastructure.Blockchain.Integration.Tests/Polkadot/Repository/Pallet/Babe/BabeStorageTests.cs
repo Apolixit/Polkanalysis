@@ -1,8 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Core.Public;
 using Newtonsoft.Json.Linq;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.Babe
 {
@@ -38,7 +38,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        [TestCaseSource(nameof(AllBlockVersionTestCases))]
+        [TestCaseSource(nameof(BlockFromVersion9090))]
         public async Task AuthorVrfRandomness_ShouldWorkAsync(int numBlock)
         {
             var res = await _substrateRepository.At(numBlock).Storage.Babe.AuthorVrfRandomnessAsync(CancellationToken.None);

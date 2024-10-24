@@ -15,6 +15,7 @@ using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Substrate.NET.Metadata.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
@@ -72,16 +73,19 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
     public class SpecVersionCommandHandler : Handler<SpecVersionCommandHandler, bool, SpecVersionCommand>
     {
         private readonly SubstrateDbContext _dbContext;
+        private readonly ICoreService _coreService;
         private readonly ISubstrateService _substrateService;
 
         public SpecVersionCommandHandler(
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
             ILogger<SpecVersionCommandHandler> logger,
-            IDistributedCache cache) : base(logger, cache)
+            IDistributedCache cache,
+            ICoreService coreService) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;
+            _coreService = coreService;
         }
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SpecVersionCommand request, CancellationToken cancellationToken)
@@ -106,12 +110,22 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
                 BlockchainName = _substrateService.BlockchainName,
                 SpecVersion = request.SpecVersion,
                 BlockStart = request.BlockStart,
+                BlockStartDateTime = await _coreService.GetDateTimeFromTimestampAsync(request.BlockStart, cancellationToken),
                 BlockEnd = null,
+                BlockEndDateTime = null,
                 MetadataVersion = metadataInfo.MetaDataInfo.Version.Value,
                 Metadata = metadataTarget,
             };
-
             await _dbContext.AddAsync(model, cancellationToken);
+
+            // Update the last version if exist
+            if(_dbContext.SpecVersionModels.Any(x => (x.BlockchainName == _substrateService.BlockchainName) && (x.BlockEnd == null)))
+            {
+                var lastVersion = _dbContext.SpecVersionModels.Where(x => (x.BlockchainName == _substrateService.BlockchainName) && (x.BlockEnd == null)).Single();
+                lastVersion.BlockEnd = request.BlockStart - 1;
+                lastVersion.BlockEndDateTime = await _coreService.GetDateTimeFromTimestampAsync(request.BlockStart - 1, cancellationToken);
+            }
+
             var nbRows = _dbContext.SaveChanges();
             if (nbRows != 1)
                 throw new InvalidOperationException("Inserted rows are inconsistent");

@@ -28,8 +28,6 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
         {
             services.AddTransient<IMonitoringEndpoint, MonitoringEndpoint>();
 
-            logger.LogInformation("Starting register OpenTelemetry");
-
             // Get the OTEL endpoint from the configuration
             string? otlpEndpoint = null;
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
@@ -118,7 +116,7 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
 
 
             //services.ConfigureOpenTelemetryMeterProvider((sp, builder) => builder.AddRuntimeInstrumentation());
-
+            logger.LogInformation("OpenTelemetry successfully registered and started. Push to endpoint {endpointUri}", otlpEndpoint);
             return services;
         }
     }

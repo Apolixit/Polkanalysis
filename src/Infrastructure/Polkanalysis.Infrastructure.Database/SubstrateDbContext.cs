@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Blocks;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Errors;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
@@ -8,6 +9,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.NominationPools;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Staking;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Price;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Staking;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
@@ -19,6 +21,10 @@ namespace Polkanalysis.Infrastructure.Database
     {
         public SubstrateDbContext(DbContextOptions options) : base(options) { }
 
+        public DbSet<ExtrinsicsInformationModel> ExtrinsicsInformation { get; set; }
+        public DbSet<EraLifetimeModel> EraLifetime { get; set; }
+        public DbSet<SubstrateErrorModel> SubstrateErrors { get; set; }
+
         #region Blocks
         public DbSet<BlockInformationModel> BlockInformation { get; set; }
         #endregion
@@ -28,7 +34,12 @@ namespace Polkanalysis.Infrastructure.Database
         #endregion
 
         #region Events
-        public DbSet<EventManagerModel> EventManagerModel { get; set; }
+        public DbSet<EventManagerModel> EventManager { get; set; }
+
+        /// <summary>
+        /// All events of each blocks
+        /// </summary>
+        public DbSet<EventsInformationModel> EventsInformation { get; set; }
 
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
@@ -90,11 +101,23 @@ namespace Polkanalysis.Infrastructure.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ExtrinsicsInformationModel>()
+                .HasKey(c => c.Id);
+
+            modelBuilder.Entity<EraLifetimeModel>()
+                .HasKey(c => c.Id);
+            
+            modelBuilder.Entity<SubstrateErrorModel>()
+                .HasKey(c => c.Id);
+
             modelBuilder.Entity<BlockInformationModel>()
                 .HasKey(c => c.BlockNumber);
 
             modelBuilder.Entity<EventManagerModel>()
                 .HasKey(c => new { c.BlockchainName, c.ModuleName, c.ModuleEvent });
+
+            modelBuilder.Entity<EventsInformationModel>()
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId });
 
             #region Balances
 

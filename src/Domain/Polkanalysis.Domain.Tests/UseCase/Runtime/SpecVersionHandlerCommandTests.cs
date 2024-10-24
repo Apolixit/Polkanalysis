@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
+using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.UseCase.Runtime.SpecVersion;
 using Polkanalysis.Infrastructure.Database;
 using Substrate.NET.Metadata.Service;
@@ -13,13 +14,10 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
     public class SpecVersionHandlerCommandTests
         : UseCaseTest<SpecVersionCommandHandler, bool, SpecVersionCommand>
     {
-        private IMetadataService _metadataService;
-
         [SetUp]
         public void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionCommandHandler>>();
-            _metadataService = new MetadataService();
 
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")
@@ -33,7 +31,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _useCase = new SpecVersionCommandHandler(
                 _substrateDbContext, 
                 _substrateService,
-                _logger, Substitute.For<IDistributedCache>());
+                _logger, 
+                Substitute.For<IDistributedCache>(),
+                Substitute.For<ICoreService>());
             //base.Setup();
         }
 

@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Service;
@@ -16,6 +17,7 @@ using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Threading;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 
 namespace Polkanalysis.Domain.Tests.Service
 {
@@ -40,7 +42,7 @@ namespace Polkanalysis.Domain.Tests.Service
             // Always a valid Substrate address
             _substrateService.IsValidAccountAddress("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS").Returns(true);
 
-            _accountService = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>());
+            _accountService = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
         }
 
         [Test, Ignore("Need to mock Query")]
@@ -60,17 +62,17 @@ namespace Polkanalysis.Domain.Tests.Service
             _substrateService.Storage.Balances.LocksAsync(account, CancellationToken.None).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock>(
             [
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock(
-                new Contracts.Core.Display.NameableSize8("democrac"),
+                new NameableSize8("democrac"),
                 new U128(100),
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Reasons.Fee)
                 ),
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock(
-                new Contracts.Core.Display.NameableSize8("pyconvot"),
+                new NameableSize8("pyconvot"),
                 new U128(150),
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Reasons.All)
                 ),
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock(
-                new Contracts.Core.Display.NameableSize8("xxxxxxxx"),
+                new NameableSize8("xxxxxxxx"),
                 new U128(200),
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Reasons.All)
                 )
@@ -81,7 +83,7 @@ namespace Polkanalysis.Domain.Tests.Service
             _substrateService.Storage.Balances.ReservesAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.ReserveData>(
                     [
                         new Infrastructure.Blockchain.Contracts.Pallet.Balances.ReserveData(
-                            new Contracts.Core.Display.FlexibleNameable().FromText("HelloIAmTheReserve"),
+                            new FlexibleNameable().FromText("HelloIAmTheReserve"),
                             new U128(100))
                     ]
                 ));
@@ -257,7 +259,7 @@ namespace Polkanalysis.Domain.Tests.Service
                     judgements
                 ));
 
-            var aliceDto = await _accountService.GetAccountAddressAsync(address, CancellationToken.None);
+            var aliceDto = await _accountService.GetAccountIdentityAsync(address, CancellationToken.None);
 
             Assert.That(aliceDto.Address, Is.EqualTo(address));
             Assert.That(aliceDto.PublicKey, Is.EqualTo(Utils.Bytes2HexString(Utils.GetPublicKeyFrom(address))));
@@ -269,8 +271,8 @@ namespace Polkanalysis.Domain.Tests.Service
         {
             Assert.Multiple(() =>
             {
-                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountAddressAsync((string)null!, CancellationToken.None));
-                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountAddressAsync(string.Empty, CancellationToken.None));
+                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountIdentityAsync((string)null!, CancellationToken.None));
+                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountIdentityAsync(string.Empty, CancellationToken.None));
                 //Assert.ThrowsAsync<AddressException>(async () => await _accountService.GetAccountIdentityAsync("InvalidAddressHash", CancellationToken.None));
             });
         }

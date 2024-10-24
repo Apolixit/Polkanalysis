@@ -10,6 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.Result
     {
         public required ErrorType Status { get; set; }
         public required string Description { get; set; }
+        public ErrorCriticity Criticity { get; set; } = ErrorCriticity.Medium;
 
         public enum ErrorType
         {
@@ -17,7 +18,14 @@ namespace Polkanalysis.Domain.Contracts.Primary.Result
             InvalidParam,
             EmptyModel,
             BusinessError,
-            NoNeed
+            NoNeedToProcess
+        }
+
+        public enum ErrorCriticity
+        {
+            Low,
+            Medium,
+            High
         }
     }
 }

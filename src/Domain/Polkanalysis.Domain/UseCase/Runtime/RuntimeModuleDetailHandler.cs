@@ -10,12 +10,12 @@ namespace Polkanalysis.Domain.UseCase.Runtime
 {
     public class RuntimeModuleDetailHandler : Handler<RuntimeModuleDetailHandler, ModuleDetailDto, RuntimeModuleDetailQuery>
     {
-        private readonly IModuleInformationService _moduleService;
+        private readonly IMetadataService _metadataService;
         public RuntimeModuleDetailHandler(
-            ILogger<RuntimeModuleDetailHandler> logger, 
-            IModuleInformationService moduleRepository, IDistributedCache cache) : base(logger, cache)
+            ILogger<RuntimeModuleDetailHandler> logger,
+            IMetadataService metadataService, IDistributedCache cache) : base(logger, cache)
         {
-            _moduleService = moduleRepository;
+            _metadataService = metadataService;
         }
 
         public override async Task<Result<ModuleDetailDto, ErrorResult>> HandleInnerAsync(RuntimeModuleDetailQuery command, CancellationToken cancellationToken)
@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, "No module name specified");
             }
 
-            var moduleDetail = _moduleService.GetModuleDetail(command.ModuleName);
+            var moduleDetail = await _metadataService.GetModuleDetailAsync(command.ModuleName, cancellationToken);
 
             if(moduleDetail == null)
             {

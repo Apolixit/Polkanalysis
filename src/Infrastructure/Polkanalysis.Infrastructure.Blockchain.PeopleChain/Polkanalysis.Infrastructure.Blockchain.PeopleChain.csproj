@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Polkanalysis.PeopleChain.NetApiExt">
+      <HintPath>..\Assemblies\Polkanalysis.PeopleChain.NetApiExt.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

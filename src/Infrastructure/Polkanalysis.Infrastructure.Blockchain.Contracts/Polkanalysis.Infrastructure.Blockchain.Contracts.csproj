@@ -13,17 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.GuardClauses" Version="4.5.0" />
+    <PackageReference Include="Ardalis.GuardClauses" Version="4.6.0" />
     <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Core\Enum\FrameSupport\" />
+    <Folder Include="Pallet\Xcm\v4\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
@@ -10,11 +9,16 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics.Metrics;
-using Polkanalysis.Worker.Metrics;
+using Polkanalysis.Domain.Metrics;
 using Substrate.NetApi;
 using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
+using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
+using System;
+using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Metrics;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -22,11 +26,9 @@ namespace Polkanalysis.Worker.Tasks
     {
         private readonly ISubstrateService _polkadotRepository;
         private readonly IExplorerService _explorerRepository;
-        private readonly ISubstrateDecoding _substrateDecode;
         private readonly PerimeterService _perimeterService;
-        private readonly IEventsFactory _eventsFactory;
         private readonly IMediator _mediator;
-        private readonly WorkerMetrics _workerMetrics;
+        private readonly IDomainMetrics _domainMetrics;
         private readonly ILogger<EventsWorker> _logger;
 
         private BlockPerimeter _blockPerimeter;
@@ -34,20 +36,17 @@ namespace Polkanalysis.Worker.Tasks
         public EventsWorker(
             ISubstrateService polkadotRepository,
             IExplorerService explorerRepository,
-            IEventsFactory eventsFactory,
             ISubstrateDecoding substrateDecode,
             PerimeterService perimeterService,
             ILogger<EventsWorker> logger,
-            WorkerMetrics workerMetrics,
+            IDomainMetrics domainMetrics,
             IMediator mediator)
         {
             _polkadotRepository = polkadotRepository;
             _explorerRepository = explorerRepository;
-            _eventsFactory = eventsFactory;
-            _substrateDecode = substrateDecode;
             _perimeterService = perimeterService;
             _logger = logger;
-            _workerMetrics = workerMetrics;
+            _domainMetrics = domainMetrics;
             _mediator = mediator;
         }
 
@@ -64,9 +63,9 @@ namespace Polkanalysis.Worker.Tasks
             {
                 await RequestBlocksAsync(stoppingToken);
             }
+
             // Subscribe to new blocks
             await ListenNewBlockAndInsertInDatabaseAsync(stoppingToken);
-            //await ExampleBlockAndInsertInDatabaseAsync(stoppingToken);
         }
 
         protected uint GetLastBlockId()
@@ -79,18 +78,18 @@ namespace Polkanalysis.Worker.Tasks
         {
             if (!_blockPerimeter.IsSet) throw new InvalidOperationException("Block perimeter is not properly set");
 
-            var lastBlockdata = await _polkadotRepository.Rpc.Chain.GetBlockAsync(stoppingToken);
-
-            if (lastBlockdata.Block.Header.Number.Value < _blockPerimeter.From)
+            var header = await _polkadotRepository.Rpc.Chain.GetHeaderAsync(stoppingToken);
+            
+            if (header.Number.Value < _blockPerimeter.From)
             {
-                _logger.LogWarning("[{workerName}] Current block number (={blockNumber}) is lower than FromBlock param (={from}), just go to subscribe new block", nameof(EventsWorker), lastBlockdata.Block.Header.Number.Value, _blockPerimeter.From);
+                _logger.LogWarning("[{workerName}] Current block number (={blockNumber}) is lower than FromBlock param (={from}), just go to subscribe new block", nameof(EventsWorker), header.Number.Value, _blockPerimeter.From);
                 return;
             }
 
-            if (_blockPerimeter.To > lastBlockdata.Block.Header.Number.Value)
+            if (_blockPerimeter.To > header.Number.Value)
             {
-                _logger.LogWarning("[{workerName}] _blockPerimeter.ToBlock block number (={to}) is greater than current max block (={lastBlock})", nameof(EventsWorker), _blockPerimeter.To, lastBlockdata.Block.Header.Number.Value);
-                _blockPerimeter.To = (uint)lastBlockdata.Block.Header.Number.Value;
+                _logger.LogWarning("[{workerName}] _blockPerimeter.ToBlock block number (={to}) is greater than current max block (={lastBlock})", nameof(EventsWorker), _blockPerimeter.To, header.Number.Value);
+                _blockPerimeter.To = (uint)header.Number.Value;
             }
 
             for (uint i = _blockPerimeter.From; i < _blockPerimeter.To; i++)
@@ -108,67 +107,6 @@ namespace Polkanalysis.Worker.Tasks
             }
         }
 
-        protected async Task ExampleBlockAndInsertInDatabaseAsync(CancellationToken stoppingToken)
-        {
-            /*
-             * Balances balance set : 445655
-             * Balances dust lost : 15328960
-             * Balances endowed : 15328997
-             * Balances reserved : 15328854
-             * Balances slashed : 14148296
-             * Balances transfer : 15329002
-             * Balances unreserved : 15328862
-             * 
-             * Identity identity cleared : 15316948
-             * Identity identity killed :
-             * Identity identity set : 15317368
-             * 
-             * System killed account : 15328960
-             * System new account : 15328966
-             */
-            var blockNumbers = new List<uint>()
-            {
-                15328960, 15328997, 15328854, 14148296, 15329002, 15328862, 15316948, 15317368, 15328960, 15328966
-            };
-
-            foreach (var blockNum in blockNumbers)
-            {
-                var hash = await _polkadotRepository.Rpc.Chain.GetBlockHashAsync(new BlockNumber(blockNum), stoppingToken);
-                var blockData = await _polkadotRepository.Rpc.Chain.GetBlockAsync(hash, stoppingToken);
-                var (blockNumber, blockHash, _) = await _explorerRepository.ExtractInformationsFromHeaderAsync(blockData.Block.Header, stoppingToken);
-                var currentDate = await _explorerRepository.GetDateTimeFromTimestampAsync(blockHash, stoppingToken);
-
-                // Get events associated at each block
-                var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
-
-                if (events == null)
-                {
-                    _logger.LogWarning("[{workerName}]  No events associated to block num {blockId}", nameof(EventsWorker), blockNumber);
-                }
-                else
-                {
-                    _logger.LogInformation("[{workerName}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(EventsWorker), blockNumber, events.Value.Length);
-
-                    for (int i = 0; i < events.Value.Length; i++)
-                    {
-                        var ev = events.Value[i];
-                        var eventNode = _substrateDecode.DecodeEvent(ev);
-
-                        // Is this event has to be insert in database ?
-                        if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
-                        {
-                            _logger.LogDebug("[{workerName}][{module}][{method}] has no database event linked", nameof(EventsWorker), eventNode.Module, eventNode.Method);
-                            continue;
-                        }
-                        _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database !", nameof(EventsWorker), eventNode.Module, eventNode.Method);
-
-                        await InsertDatabaseAsync(blockNumber, currentDate, (uint)i, ev, eventNode);
-                    }
-                }
-            }
-        }
-
-
         protected async Task ListenNewBlockAndInsertInDatabaseAsync(CancellationToken stoppingToken)
         {
 #pragma warning disable VSTHRD101 // Avoid unsupported async delegates
@@ -182,53 +120,15 @@ namespace Polkanalysis.Worker.Tasks
 
         private async Task AnalyseBlockAsync(BlockNumber blockNumber, Hash blockHash, CancellationToken stoppingToken)
         {
-            var currentDate = await _explorerRepository.GetDateTimeFromTimestampAsync(blockHash, stoppingToken);
-
             try
             {
-                await MonitorBlockAsync(blockNumber.Value, stoppingToken);
-                await SaveBlockInformationAsync(blockNumber);
+                var monitorTask = MonitorBlockAsync(blockNumber.Value, stoppingToken);
+                var saveBlockTask = SaveBlockInformationAsync(blockNumber, stoppingToken);
+                var saveExtrinsicsTask = SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
+                var saveEventsTask = SaveEventsInformationAsync(blockNumber, stoppingToken);
 
-                // Get events associated at each block
-                var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
-
-                if (events == null)
-                {
-                    _logger.LogWarning("[{workerName}] No events associated to block num {blockId}", nameof(EventsWorker), blockNumber);
-                }
-                else
-                {
-                    _logger.LogInformation("[{workerName}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(EventsWorker), blockNumber, events.Value.Length);
-
-                    var ratio = PushEventAnalyzedByBlockRatio(events);
-
-                    for (int i = 0; i < events.Value.Length; i++)
-                    {
-                        var ev = events.Value[i];
-
-                        //if (!ev.Event.HasBeenMapped) continue;
-
-                        try
-                        {
-                            var eventNode = _substrateDecode.DecodeEvent(ev);
-
-                            // Is this event has to be insert in database ?
-                            if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
-                            {
-                                _logger.LogDebug("[{workerName}][{module}][{method}] has no database event linked", nameof(EventsWorker), eventNode.Module, eventNode.Method);
-                                continue;
-                            }
-                            _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database. Ratio = {ratio}", nameof(EventsWorker), eventNode.Module, eventNode.Method, ratio);
-
-                            await InsertDatabaseAsync(blockNumber, currentDate, (uint)i, ev, eventNode);
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.LogError(ex, "[{workerName}] Unable to successfully decode event index {eventIndex} from block {blockNum}. Event value = ({eventHex}). Ratio = {ratio}", nameof(EventsWorker), i, blockNumber, Utils.Bytes2HexString(ev.Bytes), ratio);
-                        }
-
-                    }
-                }
+                await Task.WhenAll(monitorTask, saveBlockTask, saveExtrinsicsTask, saveEventsTask);
+                //await Task.WhenAll(saveEventsTask);
             }
             catch (Exception ex)
             {
@@ -237,27 +137,25 @@ namespace Polkanalysis.Worker.Tasks
 
         }
 
-        private async Task SaveBlockInformationAsync(BlockNumber blockNumber)
+        private async Task SaveBlockInformationAsync(BlockNumber blockNumber, CancellationToken token)
         {
             // Save block information into database
-            await _mediator.Send(new SavedBlocksCommand(blockNumber));
+            await _mediator.Send(new SavedBlocksCommand(blockNumber), token);
         }
 
-        private async Task InsertDatabaseAsync(
-            BlockNumber blockNumber,
-            DateTime currentDate,
-            uint eventIndex,
-            EventRecord ev,
-            IEventNode eventNode)
+        private async Task SaveExtrinsicInformationAsync(BlockNumber blockNumber, CancellationToken token)
         {
-            var res = await _mediator.Send(new SavedEventsCommand(blockNumber, currentDate, eventIndex, ev, eventNode));
-            
-            if (res.IsSuccess)
+            // Save extrinsic information into database
+            await _mediator.Send(new SavedExtrinsicsCommand(blockNumber), token);
+        }
+
+        private async Task SaveEventsInformationAsync(BlockNumber blockNumber, CancellationToken token)
+        {
+            // Save event information into database
+            var eventRes = await _mediator.Send(new SavedEventsCommand(blockNumber), token);
+            if (eventRes.IsError)
             {
-                _workerMetrics.IncreaseAnalyzedEventsCount();
-            } else
-            {
-                _logger.LogError("[{workerName}] {errorReason}", nameof(EventsWorker), res.Error.Description);
+                _logger.LogError("[{workerName}] {errorReason}", nameof(EventsWorker), eventRes.Error.Description);
             }
         }
 
@@ -270,24 +168,11 @@ namespace Polkanalysis.Worker.Tasks
         /// <param name="events"></param>
         private async Task MonitorBlockAsync(uint blockNumber, CancellationToken token)
         {
-            _workerMetrics.IncreaseBlockCount();
             if (blockNumber % 100 == 0)
             {
                 var lastBlock = await _polkadotRepository.Rpc.Chain.GetHeaderAsync(token);
-                _workerMetrics.RatioBlockAnalyzed(((double)blockNumber / (double)lastBlock.Number.Value) * 100);
+                _domainMetrics.RecordRatioBlockAnalyzed(((double)blockNumber / (double)lastBlock.Number.Value) * 100, _polkadotRepository.BlockchainName);
             }
-        }
-
-        /// <summary>
-        /// Get the ratio of events that has been analyzed compare to the total number of events
-        /// </summary>
-        /// <param name="events"></param>
-        private double PushEventAnalyzedByBlockRatio(BaseVec<EventRecord> events)
-        {
-            var ratio = (double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count();
-            _workerMetrics.RecordEventAnalyzed(ratio);
-
-            return ratio;
         }
         #endregion
     }

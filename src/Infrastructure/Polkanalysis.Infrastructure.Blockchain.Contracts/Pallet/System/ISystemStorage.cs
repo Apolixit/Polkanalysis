@@ -1,9 +1,9 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
 {
@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
         /// Full information from each account
         /// </summary>
         /// <returns></returns>
-        public Task<QueryStorage<SubstrateAccount, AccountInfo>> AccountsQueryAsync(CancellationToken token);
+        public Task<IQueryStorage<SubstrateAccount, AccountInfo>> AccountsQueryAsync(CancellationToken token);
 
         /// <summary>
         /// Total extrinsics count for the current block.

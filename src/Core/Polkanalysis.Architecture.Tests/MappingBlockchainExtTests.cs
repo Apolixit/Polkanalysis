@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Scan.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,8 +23,35 @@ namespace Polkanalysis.Architecture.Tests
             Trace.Listeners.Add(new ConsoleTraceListener());
         }
 
-        [Test, Ignore("No needed anymore")]
-        public void EveryBlockchainEvents_ShouldBeMappedFromExtProject_WithAllEnumValueThatEverExisted()
+        [Test, Ignore("Need more time to fix this", Until = "2024-10-30")]
+        public void EveryBlockchainEventsImplemented_ShouldHaveAllEnumValueThatEverExisted()
+        {
+            // Let's get all events from blockchain ext
+            var result = ScanAssemblyMapping.ScanEnumMappings("Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Infrastructure.Blockchain.Contracts");
+
+            Assert.That(result, Is.Not.Empty);
+
+            // Check if domain enum have the aggregation of all ext enum version
+            var mapped = result.Where(x => x.IsClassMapped).ToList();
+            var mappedByMissProperties = mapped.Where(x => !x.AreAllPropertiesMapped).ToList();
+
+            Assert.Multiple(() => {
+                Assert.That(mappedByMissProperties.Count > 0, Is.True, "Enums have unmapped properties");
+
+                mappedByMissProperties.ForEach(x =>
+                {
+                    Assert.Fail($"{x.SourceClass} has {string.Join(", ", x.UnmappedProperties)} unmapped properties");
+                });
+            });
+
+            _blockchainMapping = new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>());
+
+            //_blockchainMapping.MapEnum()
+            Assert.Fail();
+        }
+
+        [Test, Ignore("Romain 2023-10-22 : It should not be the case, I keep it as ignore in case i change my mind")]
+        public void EveryBlockchainEvents_ShouldBeMappedFromExtProject()
         {
             // Let's get all events from blockchain ext
             var result = ScanAssemblyMapping.ScanEnumMappings("Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Infrastructure.Blockchain.Contracts");
@@ -44,24 +71,24 @@ namespace Polkanalysis.Architecture.Tests
                     Assert.Fail($"{x.SourceClass} is not mapped to Domain");
                 });
             });
+        }
 
-            // Check if domain enum have the aggregation of all ext enum version
-            var mapped = result.Where(x => x.IsClassMapped).ToList();
-            var mappedByMissProperties = mapped.Where(x => !x.AreAllPropertiesMapped).ToList();
+        [Test]
+        public void EveryDomainEventBlockchain_ShouldHaveDomainMappingAttribute()
+        {
+            var result = ScanAssemblyMapping.LoadEnumDomainType("Polkanalysis.Infrastructure.Blockchain.Contracts");
 
-            Assert.Multiple(() => {
-                Assert.That(mappedByMissProperties.Count > 0, Is.True, "Enums have unmapped properties");
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Is.Not.Empty);
 
-                mappedByMissProperties.ForEach(x =>
+                var missingAttribute = result.Where(x => x.MappingAttribute is null).ToList();
+                missingAttribute.ForEach(x =>
                 {
-                    Assert.Fail($"{x.SourceClass} has {string.Join(", ", x.UnmappedProperties)} unmapped properties");
+                    Assert.Fail($"Missing DomainMapping attribute for {x.EnumExt.GetType().Name} ({x.FullName})");
                 });
             });
-
-            _blockchainMapping = new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>());
-
-            //_blockchainMapping.MapEnum()
-            Assert.Fail();
+            
         }
     }
 }

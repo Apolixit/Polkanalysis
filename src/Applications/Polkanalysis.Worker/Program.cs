@@ -11,44 +11,36 @@ using MediatR.Courier;
 using MediatR;
 using Polkanalysis.Domain.UseCase;
 using Polkanalysis.Domain.Service;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Tasks;
 using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Infrastructure.Blockchain.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
-using Polkanalysis.Worker.Metrics;
-using Serilog.Extensions.Logging;
+using FluentValidation;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Domain.Contracts.Metrics;
+using Polkanalysis.Domain.Metrics;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
-
-
-//IConfiguration config = new ConfigurationBuilder()
-//            .AddJsonFile("appsettings.json")
-//            .AddEnvironmentVariables()
-//            .Build();
-
-//var logger = new LoggerConfiguration().ReadFrom.Configuration(config)
-//    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
-//    .CreateLogger();
-
-//logger.Information("Starting Polkanalysis Worker hosted service...");
 
 var host = Host.CreateDefaultBuilder(args)
 .UseSerilog((hostingContext, service, loggerConfiguration) =>
     loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration).MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning))
 .ConfigureServices((hostContext, services) =>
 {
+    var blockchainName = args[0] is null || args[0] == "--applicationName" ? "polkadot" : args[0];
+
     (logger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
 
-    logger.LogInformation("Starting Polkanalysis Worker hosted service...");
+    logger.LogInformation("Starting Polkanalysis Worker hosted service for {blockchainName}...", blockchainName);
 
     services
     .AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
-    .AddHostedService<StakingWorker>()
-    .AddHostedService<VersionWorker>()
+    //.AddHostedService<StakingWorker>()
+    //.AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {
@@ -57,13 +49,14 @@ var host = Host.CreateDefaultBuilder(args)
         );
     }, ServiceLifetime.Transient)
     .AddTransient<PerimeterService>()
-    .AddSingleton<WorkerMetrics>();
+    .AddSingleton<IDomainMetrics, DomainMetrics>();
 
     services.AddEndpoint(hostContext.Configuration, true);
     services.AddSubstrateService();
-    services.AddPolkadotBlockchain("polkadot", true);
+    services.AddSubstrateBlockchain(blockchainName.ToLower(), true);
     services.AddDatabase();
     services.AddSubstrateLogic();
+    services.AddSubstrateNodeBuilder();
 
     services.AddOpentelemetry(logger!,
         "Polkanalysis.Worker",
@@ -77,7 +70,7 @@ var host = Host.CreateDefaultBuilder(args)
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
     });
     services.AddCourier(typeof(SubscribeNewBlocksHandler).Assembly, typeof(Program).Assembly);
-
+    services.AddValidatorsFromAssembly(typeof(BlockLightHandler).Assembly, ServiceLifetime.Transient);
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 })

@@ -26,7 +26,8 @@ namespace Polkanalysis.Domain.Integration.Tests
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
         }
 
-        protected abstract ISubstrateEndpoint GetEndpoint();
+        internal abstract ISubstrateEndpoint GetEndpoint();
+        public virtual Task ConnectDependenciesAsync() => Task.CompletedTask;
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test
@@ -40,6 +41,7 @@ namespace Polkanalysis.Domain.Integration.Tests
                 try
                 {
                     await _substrateService.ConnectAsync();
+                    await ConnectDependenciesAsync();
                 }
                 catch (Exception)
                 {

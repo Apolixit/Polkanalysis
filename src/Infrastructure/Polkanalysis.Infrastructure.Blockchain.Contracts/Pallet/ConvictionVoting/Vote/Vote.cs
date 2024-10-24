@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ConvictionVoting.Vote
 {
-    internal class Vote
-    {
-    }
+    //internal class Vote
+    //{
+    //}
 }

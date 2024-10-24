@@ -28,10 +28,4 @@
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Polkanalysis.Polkadot.NetApiExt">
-      <HintPath>..\Assemblies\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

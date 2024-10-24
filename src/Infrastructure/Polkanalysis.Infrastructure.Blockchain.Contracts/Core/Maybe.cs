@@ -1,5 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
+using System.Reflection;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 {
@@ -15,16 +17,28 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         public Maybe(T value)
         {
             Value = value;
+            HasBeenMapped = new Bool(true);
         }
 
         public Maybe(T value, IType core) : this(core)
         {
             Value = value;
+            HasBeenMapped = new Bool(true);
         }
 
         public Maybe(IType core)
         {
             Core = core;
+            setCoreData();
+
+            HasBeenMapped = new Bool(false);
+        }
+
+        private void setCoreData()
+        {
+            CoreType = Core.GetType();
+            CoreAssemblyName = new Str(CoreType.Assembly.FullName);
+            CoreTypeName = new Str(CoreType.FullName);
         }
 
         /// <summary>
@@ -35,15 +49,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         /// <summary>
         /// The core value (from ApiExt)
         /// </summary>
-        public IType? Core { get; set; }
-        public bool HasBeenMapped
-            => Value is not null;
+        public IType Core { get; set; }
+
+        public Bool HasBeenMapped { get; set; }
 
         public override int TypeSize
         {
             get
             {
-                return HasBeenMapped ? Value!.TypeSize : Core.TypeSize;
+                return HasBeenMapped.Value ? Value!.TypeSize : Core.TypeSize;
             }
             set
             {
@@ -57,21 +71,30 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
                 }
             }
         }
-        public Type CoreType => Core.GetType();
+        public Type CoreType { get; private set; }
+        public Str CoreAssemblyName { get; private set; }
+        public Str CoreTypeName { get; private set; }
         public Type DestinationType => typeof(T);
 
         public override byte[] Encode()
         {
             var result = new List<byte>();
 
-            if (HasBeenMapped)
+            result.AddRange(HasBeenMapped.Encode());
+            
+            if(Core is not null)
             {
-                result.AddRange(Value!.Encode());
-            }
-            else
-            {
+                result.AddRange(CoreAssemblyName.Encode());
+                result.AddRange(CoreTypeName.Encode());
                 result.AddRange(Core.Encode());
+            } else
+            {
+                CoreAssemblyName = new Str("Unknown");
+                result.AddRange(CoreAssemblyName.Encode());
             }
+
+            if (HasBeenMapped)
+                result.AddRange(Value!.Encode());
 
             return result.ToArray();
         }
@@ -80,19 +103,35 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         {
             var start = p;
 
-            Value = new T();
-            Value.Decode(byteArray, ref p);
+            HasBeenMapped = new Bool();
+            HasBeenMapped.Decode(byteArray, ref p);
 
-            //if (HasBeenMapped)
-            //{
-            //    Mapped = new T();
-            //    Mapped.Decode(byteArray, ref p);
-            //}
-            //else
-            //{
-            //    throw new InvalidOperationException();
-            //}
+            CoreAssemblyName = new Str();
+            CoreAssemblyName.Decode(byteArray, ref p);
 
+            if(CoreAssemblyName.Value != "Unknown")
+            {
+                CoreTypeName = new Str();
+                CoreTypeName.Decode(byteArray, ref p);
+
+                try
+                {
+                    Assembly assembly = Assembly.Load(CoreAssemblyName.Value);
+                    Type? enumType = assembly.GetType(CoreTypeName.Value);
+
+                    Core = (IType?)Activator.CreateInstance(enumType);
+                    Core.Decode(byteArray, ref p);
+                } catch(Exception)
+                {
+
+                }
+            }
+
+            if (HasBeenMapped)
+            {
+                Value = new T();
+                Value.Decode(byteArray, ref p);
+            }
             TypeSize = p - start;
         }
     }

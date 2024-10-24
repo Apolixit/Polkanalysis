@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using System;
@@ -12,21 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using NUnit.Framework;
-using static Polkanalysis.Domain.Contracts.Runtime.Module.TypeProperty;
+using static Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module.TypeProperty;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     internal class FindPropertyTest : PolkadotIntegrationTest
     {
         private readonly IPalletBuilder _palletBuilder;
-        private readonly ICurrentMetaData _currentMetaData;
-        private readonly ILogger<CurrentMetaData> _logger;
+        private readonly IMetadataService _currentMetaData;
+        private readonly ILogger<MetadataService> _logger;
 
         public FindPropertyTest()
         {
-            _logger = Substitute.For<ILogger<CurrentMetaData>>();
-            _currentMetaData = new CurrentMetaData(_substrateService, _logger);
-            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());
+            _logger = Substitute.For<ILogger<MetadataService>>();
+            _currentMetaData = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<ICoreService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
+            _palletBuilder = new PalletBuilder(_substrateService, Substitute.For<ILogger<PalletBuilder>>());
         }
 
         [Test]
@@ -42,6 +45,17 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             Assert.That(property[1].Name, Is.EqualTo("pool_id"));
             Assert.That(property[1].Param, Is.EqualTo("U32"));
             Assert.That(property[1].TypeParam, Is.EqualTo(ParamType.Primitive));
+        }
+
+        [Test]
+        [TestCase(Infrastructure.Blockchain.Contracts.Pallet.System.Enums.Event.ExtrinsicFailed)]
+        [TestCase(Infrastructure.Blockchain.Contracts.Core.Error.DispatchError.Module)]
+        public void FindProperty_WhenValidEvent_ShouldReturnProperties(object e)
+        {
+            var property = _palletBuilder.FindProperty((Enum)e);
+
+            Assert.That(property, Is.Not.Null);
+            Assert.That(property[0].Param, Is.Not.Null);
         }
 
         [Test]
@@ -72,7 +86,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         [Test]
         public void FindProperty_WhenValidEvent_PoolCommissionChangeRateUpdated_ShouldReturnProperties()
         {
-            var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.PoolCommissionChangeRateUpdated);
+            var property = _palletBuilder.FindProperty(Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.PoolCommissionChangeRateUpdated);
             //BaseTuple<U32, CommissionChangeRate>
             Assert.That(property, Is.Not.Null);
             Assert.That(property[0].Name, Is.EqualTo("pool_id"));
@@ -84,7 +98,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         [Test]
         public void FindProperty_WhenCombineProperties_ShouldReturnProperties()
         {
-            var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.Event.ValidatorPrefsSet);
+            var property = _palletBuilder.FindProperty(Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.Event.ValidatorPrefsSet);
             Assert.That(property, Is.Not.Null);
             Assert.That(property[0].Name, Is.EqualTo("stash"));
             Assert.That(property[1].Name, Is.EqualTo("prefs"));

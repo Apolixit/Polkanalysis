@@ -1,12 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums
 {
@@ -33,6 +28,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums
         Withdraw = 8,
 
         Slashed = 9,
+        Minted = 10,
+        Burned = 11,
+        Suspended = 12,
+        Restored = 13,
+        Upgraded = 14,
+        Issued = 15,
+        Rescinded = 16,
+        Locked = 17,
+        Unlocked = 18,
+        Frozen = 19,
+        Thawed = 20
     }
 
     public sealed class EnumEvent : BaseEnumExt<Event,
@@ -45,7 +51,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums
         BaseTuple<SubstrateAccount, SubstrateAccount, U128, EnumBalanceStatus>,
         BaseTuple<SubstrateAccount, U128>,
         BaseTuple<SubstrateAccount, U128>,
-        BaseTuple<SubstrateAccount, U128>>
+        BaseTuple<SubstrateAccount, U128>,
+        BaseTuple<SubstrateAccount, U128>,
+        BaseTuple<SubstrateAccount, U128>,
+        BaseTuple<SubstrateAccount, U128>,
+        BaseTuple<SubstrateAccount, U128>,
+        SubstrateAccount,
+        U128,
+        U128,
+        BaseTuple<SubstrateAccount, U128>,
+        BaseTuple<SubstrateAccount, U128>,
+        BaseTuple<SubstrateAccount, U128>,
+        BaseTuple<SubstrateAccount, U128>
+        >
     {
     }
 }

@@ -5,15 +5,22 @@ using Substrate.NetApi.Model.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NetApi.Model.Meta;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts
 {
     public interface ISubstrateService : ITimeQueryable
     {
+        /// <summary>
+        /// Other chains that this blockchain depends on
+        /// For example, Polkadot depends on parachain like PeopleChain
+        /// </summary>
+        public IEnumerable<string> Dependencies { get; }
+        public string NetApiExtAssembly { get; }
+        public string NetApiExtModelNamespace { get; }
         public SubstrateClient AjunaClient { get; }
         public string BlockchainName { get; }
         public Hash GenesisHash { get; }
-        public IMetadata RuntimeMetadata { get; }
         public RuntimeVersion RuntimeVersion { get; }
 
         public ITimeQueryable At(U32 blockNumber);

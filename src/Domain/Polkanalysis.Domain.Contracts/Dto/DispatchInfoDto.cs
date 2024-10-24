@@ -1,5 +1,4 @@
-﻿
-using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
 
 namespace Polkanalysis.Domain.Contracts
 {
