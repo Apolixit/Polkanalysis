@@ -35,7 +35,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
                 When = ModelBuilder.DisplayElapsedTime(x.BlockDate),
                 BlockDate = x.BlockDate,
                 ValidatorAddress = x.ValidatorAddress,
-                ValidatorIdentity = _accountService.GetAccountIdentityAsync(x.ValidatorAddress, cancellationToken)
+                ValidatorIdentity = null //_accountService.GetAccountIdentityAsync(x.ValidatorAddress, cancellationToken)
             }).AsQueryable();
 
             return Helpers.Ok(res);

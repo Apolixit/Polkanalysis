@@ -191,11 +191,14 @@ namespace Polkanalysis.Domain.Service
 
             var (blockDate, eventsCount, blockAuthor) = await WaiterHelper.WaitAndReturnAsync(blockDateTask, eventsCountTask, blockAuthorTask);
 
-            var authorIdentity = await _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken);
+            
 
             // I get the last finalized head (i.e. validate by granpa finality) and assume that every block ahead are not
             // finalized
-            var lastFinalizedBlockHash = await _substrateService.Rpc.Chain.GetFinalizedHeadAsync(cancellationToken);
+            var (lastFinalizedBlockHash, authorIdentity) = await WaiterHelper.WaitAndReturnAsync(
+                _substrateService.Rpc.Chain.GetFinalizedHeadAsync(cancellationToken),
+                _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken));
+
             var finalizedBlockData = await _substrateService.Rpc.Chain.GetBlockAsync(lastFinalizedBlockHash, cancellationToken);
             var currentBlockStatus = blockData.GetBlock().Header.Number.Value <= finalizedBlockData.GetBlock().Header.Number.Value ? GlobalStatusDto.BlockStatusDto.Finalized : GlobalStatusDto.BlockStatusDto.Broadcasted;
 

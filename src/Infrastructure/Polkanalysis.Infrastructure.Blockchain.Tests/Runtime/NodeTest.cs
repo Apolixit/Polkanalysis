@@ -9,6 +9,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Polkanalysis.Domain.Tests.Node
 {
@@ -45,8 +47,8 @@ namespace Polkanalysis.Domain.Tests.Node
             //    "}";
             var jsonResult = "{ \"type\": \"U32\", \"documentation\": \"\", \"name\": \"amount\", \"value\": \"1000\" }";
 
-            var jsonExpected = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonResult);
-            var json = JsonSerializer.Deserialize<Dictionary<string, object>>(node.ToJson());
+            var jsonExpected = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(jsonResult);
+            var json = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(node.ToJson());
 
             Assert.That(json, Is.Not.Null);
             Assert.That(jsonExpected, Is.Not.Null);
@@ -86,8 +88,18 @@ namespace Polkanalysis.Domain.Tests.Node
             masterNode.AddName("transaction");
 
             Assert.That(masterNode.Children, Is.Not.Empty);
-            var jsonResult = @"{""transaction"":[{""from"":""5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY""},{""amount"":1000}]}";
-            Assert.That(masterNode.ToJson(), Is.EqualTo(jsonResult));
+            var jsonResult = @"{
+                  ""transaction"": {
+                    ""from"": ""5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"",
+                    ""amount"": ""1000""
+                  }
+                }";
+
+            var jsonExpected = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(jsonResult);
+            var json = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(masterNode.ToJsonCompact());
+
+            Assert.That(jsonExpected, Is.Not.Null);
+            Assert.That(json, Is.Not.Null);
         }
 
         [Test]

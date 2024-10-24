@@ -106,8 +106,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             };
 
             return JsonSerializer.Serialize(ToDictionnary(), options);
-            //var res = JsonSerializer.Serialize(ToDictionnary());
-            //return res;
         }
 
         public Dictionary<string, object> ToDictionnary()
@@ -145,6 +143,50 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
                     ? Children.Select(x => x.ToKeyValuePair())
                     : HumanData
             );
+        }
+
+        public string ToJsonCompact()
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            var res = ToDictionnaryFlatten();
+            return JsonSerializer.Serialize(res, options);
+        }
+
+        public Dictionary<string, object> ToDictionnaryFlatten()
+        {
+            if (this.HumanData is null) throw new InvalidOperationException("HumanData is null");
+
+            var output = new Dictionary<string, object>();
+
+            if (Children.Count > 0)
+            {
+                var childDictionary = new Dictionary<string, object>();
+                foreach (var child in Children)
+                {
+                    childDictionary.Add(child.Name, child.HumanData!.ToString());
+                }
+                output.Add(Name, childDictionary);
+            }
+            else
+            {
+                output.Add(Name, HumanData!.ToString());
+            }
+
+            return output;
+
+            //if (Children.Count > 0)
+            //{
+            //    output.Add(Name, Children.Select(x => x.ToDictionnaryFlatten()));
+            //} else
+            //{
+            //    output.Add(Name, HumanData!.ToString());
+            //}
+
+            //return output;
         }
 
         public INode Create()

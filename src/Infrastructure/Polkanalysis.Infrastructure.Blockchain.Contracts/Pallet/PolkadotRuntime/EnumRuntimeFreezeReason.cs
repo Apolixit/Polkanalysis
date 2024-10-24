@@ -1,4 +1,5 @@
 ﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime
 {
+    [DomainMapping("polkadot_runtime")]
     public enum RuntimeFreezeReason
     {
         NominationPools = 39

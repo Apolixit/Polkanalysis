@@ -126,10 +126,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime
         IEnumerable<INode> Find(Type obj);
 
         /// <summary>
-        /// Convert current node to Json string
+        /// Convert current node to json string
         /// </summary>
         /// <returns></returns>
         string ToJson();
+
+        /// <summary>
+        /// Convert current node to a compact json string
+        /// </summary>
+        /// <returns></returns>
+        string ToJsonCompact();
 
         /// <summary>
         /// Convert current node to list of dictionnary
@@ -137,5 +143,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime
         /// <returns></returns>
         Dictionary<string, object> ToDictionnary();
         KeyValuePair<string, object> ToKeyValuePair();
+        Dictionary<string, object> ToDictionnaryFlatten();
     }
 }
