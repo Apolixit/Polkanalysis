@@ -24,6 +24,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Scan.Mapping
         public bool IsClassMapped => DestinationClass is not null;
         public bool AreAllPropertiesMapped => !UnmappedProperties.Any();
 
+        /// <summary>
+        /// Get the DomainMappingAttribute of the source class
+        /// </summary>
+        public DomainMappingAttribute? DomainMappingAttribute { get; set; }
+
         public void MapProperties(string[] source, string[] destination)
         {
             UnmappedProperties.AddRange(source.Except(destination));
@@ -35,8 +40,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Scan.Mapping
         public Enum Enum { get; set; }
         public IType EnumExt { get; set; }
         public string FullName { get; set; }
-        public DomainMappingAttribute MappingAttribute { get; set; }
+        public DomainMappingAttribute? MappingAttribute { get; set; }
 
-        public string ExtNameBuilder => $"{MappingAttribute.OriginClasses.First().Replace("/", ".")}.{EnumExt.GetType().Name}";
+        public string ExtNameBuilder => MappingAttribute is null ? string.Empty : $"{MappingAttribute.OriginClasses.First().Replace("/", ".")}.{EnumExt.GetType().Name}";
     }
 }

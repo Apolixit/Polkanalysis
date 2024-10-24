@@ -25,6 +25,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Exception;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -100,12 +101,25 @@ namespace Polkanalysis.Domain.Service
             IEnumerable<SubstrateAccount> validators,
             CancellationToken cancellationToken)
         {
-            var validatorsExtended = await validators
+            IEnumerable<(SubstrateAccount, Exposure)>? validatorsExtended = null;
+
+            try
+            {
+                validatorsExtended = await validators
                 .ExtendWith(validator => _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(new U32(eraId), validator), cancellationToken))
                 .WaitAllAndGetResultAsync();
-
-            if (validatorsExtended == null)
+            }
+            //catch (StakingEraStakerException ex)
+            //{
+            //    var validatorIndex = validators.Select(x => x.ToStringAddress()).ToList().IndexOf(ex.ValidatorAddress);
+            //    _logger.LogError(ex, "Error while fetching ErasStakers(EraId = {eraId}, ValidatorAddress = {validatorAddress}) - Validator num {validatorIndex}", ex.EraId, ex.ValidatorAddress, validatorIndex);
+            //    throw new InvalidOperationException("Validators extended with exposure return null");
+            //}
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while fetching ErasStakers(EraId = {eraId}, Validator)", eraId);
                 throw new InvalidOperationException("Validators extended with exposure return null");
+            }
 
             return await BuildFromSubsrateAccountAsync(eraId, validatorsExtended, cancellationToken);
         }

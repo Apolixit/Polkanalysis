@@ -13,6 +13,7 @@ using Substrate.NetApi.Model.Types;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Exception;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
@@ -100,13 +101,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             {
                 // https://github.com/polkadot-js/apps/issues/10004
                 var eraStakerOverview = await ErasStakersOverviewAsync(key, token);
+                var eraId = key.Value[0].As<U32>();
+                var validatorAccount = key.Value[1].As<SubstrateAccount>();
+
+                if (eraStakerOverview is null)
+                {
+                    _logger.LogError("[{palletStorage}][{palletMethod} -> extended {palletMethodExtended}] Unable to get data from tuple (Era {eraId} / Validator {validatorAccount})", nameof(StakingStorage), nameof(ErasStakersAsync), nameof(ErasStakersOverviewAsync), eraId.Value, validatorAccount.ToStringAddress());
+                    return null;
+                }
+                //throw new StakingEraStakerException(
+                //    eraId.Value, 
+                //    validatorAccount.ToStringAddress(), 
+                //    $"[{nameof(StakingStorage)}][{nameof(ErasStakersAsync)} -> extended {nameof(ErasStakersOverviewAsync)}] Unable to get data from tuple (Era {eraId.Value} / Validator {validatorAccount.ToStringAddress()})");
 
                 for (uint i = 0; i < eraStakerOverview.PageCount!.Value; i++)
                 {
-                    var page = await ErasStakersPagedAsync(new BaseTuple<U32, SubstrateAccount, U32>(
-                        key.Value[0].As<U32>(),
-                        key.Value[1].As<SubstrateAccount>(),
-                        new U32(i)), token);
+                    var page = await ErasStakersPagedAsync(new BaseTuple<U32, SubstrateAccount, U32>(eraId,validatorAccount,new U32(i)), token);
 
                     if (eraStakerOverview.Others is null)
                         eraStakerOverview.Others = page.Others;

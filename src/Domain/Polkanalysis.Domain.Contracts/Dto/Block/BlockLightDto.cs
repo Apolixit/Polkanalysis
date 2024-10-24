@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         public uint NbEvents { get; set; } = 0;
         public uint NbLogs { get; set; } = 0;
         public string? ValidatorAddress { get; set; }
-        public Task<UserIdentityDto>? ValidatorIdentity { get; set; }
+        public UserIdentityDto? ValidatorIdentity { get; set; }
         public string? Justification { get; set; }
     }
 }
