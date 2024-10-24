@@ -163,11 +163,11 @@ namespace Polkanalysis.Domain.Service
         /// https://github.com/polkadot-js/api/blob/master/packages/types/src/generic/ConsensusEngineId.ts#L11
         /// </summary>
         /// <returns></returns>
-        public bool IsBabeConcensus(Nameable nameable) => nameable.Display() == "BABE";
-        public bool IsAuraConcensus(Nameable nameable) => nameable.Display() == "aura";
-        public bool IsPowConcensus(Nameable nameable) => nameable.Display() == "pow_";
-        public bool IsNimbusConcensus(Nameable nameable) => nameable.Display() == "nmbs";
-        public bool IsGranPaConcensus(Nameable nameable) => nameable.Display() == "FRNK";
+        public static bool IsBabeConcensus(Nameable nameable) => nameable.Display() == "BABE";
+        public static bool IsAuraConcensus(Nameable nameable) => nameable.Display() == "aura";
+        public static bool IsPowConcensus(Nameable nameable) => nameable.Display() == "pow_";
+        public static bool IsNimbusConcensus(Nameable nameable) => nameable.Display() == "nmbs";
+        public static bool IsGranPaConcensus(Nameable nameable) => nameable.Display() == "FRNK";
 
         public async Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
             => await GetBlockLightAsync(new BlockParameterLike(blockId), cancellationToken);

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -16,8 +17,10 @@ using Substrate.NetApi;
 using Substrate.NetApi.Model.Rpc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Monitored
@@ -44,10 +47,11 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         private readonly ICoreService _coreService;
         private readonly SubstrateDbContext _db;
         private readonly ISubstrateDecoding _substrateDecode;
+        private readonly IDomainMetrics _domainMetrics;
         private readonly ILogger<SavedExtrinsicsHandler> _logger;
 
         public SavedExtrinsicsHandler(ISubstrateService substrateService, IExplorerService explorerService, SubstrateDbContext db, ILogger<SavedExtrinsicsHandler> logger,
-                                  IDistributedCache cache, ISubstrateDecoding substrateDecode, ICoreService coreService) : base(logger, cache)
+                                  IDistributedCache cache, ISubstrateDecoding substrateDecode, ICoreService coreService, IDomainMetrics domainMetrics) : base(logger, cache)
         {
             _substrateService = substrateService;
             _explorerService = explorerService;
@@ -55,10 +59,12 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             _logger = logger;
             _substrateDecode = substrateDecode;
             _coreService = coreService;
+            _domainMetrics = domainMetrics;
         }
 
         public override async Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedExtrinsicsCommand request, CancellationToken cancellationToken)
         {
+            var stopwatch = Stopwatch.StartNew();
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumber), cancellationToken);
 
             var (blockData, blockEvents, blockDate) = await WaiterHelper.WaitAndReturnAsync(
@@ -84,6 +90,12 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
                     EraLifetimeModel? lifetimeEntry = HandleLifetimeEntry(lifetime);
 
+                    var json = extrinsicDecode.ToJson();
+                    var jsonParameters = JsonSerializer.Serialize(JsonSerializer.Deserialize<object>(json), new JsonSerializerOptions
+                    {
+                        WriteIndented = false
+                    });
+
                     _db.ExtrinsicsInformation.Add(new Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel()
                     {
                         BlockchainName = _substrateService.BlockchainName,
@@ -100,7 +112,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                         Status = status.Status.ToString(),
                         StatusMessage = status.Message,
                         Fees = fees,
-                        BlockDate = blockDate
+                        BlockDate = blockDate,
+                        JsonParameters = jsonParameters
                     });
 
                     await _db.SaveChangesAsync(cancellationToken);
@@ -108,7 +121,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogWarning(ex, "[{handler}] Unable to decode extrinsic (index {extrinsicIndex}) from block {blockNumber}", nameof(SavedExtrinsicsHandler), extrinsicIndex, request.BlockNumber);
+                    _logger.LogError(ex, "[{handler}] Unable to decode extrinsic (index {extrinsicIndex}) from block {blockNumber}", nameof(SavedExtrinsicsHandler), extrinsicIndex, request.BlockNumber);
 
                     _db.SubstrateErrors.Add(new Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel()
                     {
@@ -126,6 +139,10 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 }
             }
 
+            stopwatch.Stop();
+            _logger.LogInformation("[{handler}] Sucessfully scan extrinsics from block number {blockNum} ({blockDate}) in {timeMs}ms", nameof(SavedExtrinsicsHandler), request.BlockNumber, blockDate, stopwatch.Elapsed.TotalMilliseconds);
+
+            _domainMetrics.RecordAverageTimeToAnalyzeExtrinsicsForEachBlock(stopwatch.Elapsed.TotalMilliseconds, _substrateService.BlockchainName);
             return Helpers.Ok(true);
         }
 

@@ -19,6 +19,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Substrate.NET.Utils;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
+using System.Diagnostics;
 using System.Threading;
 
 namespace Polkanalysis.Domain.UseCase.Monitored
@@ -57,8 +58,22 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             _coreService = coreService;
         }
 
+        /// <summary>
+        /// Save events from a block into the database
+        /// 
+        /// There are 4 cases :
+        ///     1. Events are not fetched correctly (NetApiExt failed, it can happen mostly with Metadata <v14). In this case, we log the error inside SubstrateErrorModel table, with a status TypeErrorModel.EventsExt and return a business error
+        ///     2. Events are fetched, but not mapped to Polkanalysis.Infrastructure events (this is ok, we cannot handle everything). In this case, we log the raw event inside SubstrateErrorModel table, with a status TypeErrorModel.Events and return a valid business value
+        ///     3. Events are fetched, mapped to Polkanalysis.Infrastructure events but there is not specific table for it. In this case, we log the mapped event (contrary to previous point with was raw event) inside SubstrateErrorModel table, with a status TypeErrorModel.Events and return a valid business value
+        ///     4. Events are fetched, mapped to Polkanalysis.Infrastructure and have specific tables (<see cref="Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances.BalancesTransferModel"/> or <see cref="Polkanalysis.Infrastructure.Database.Contracts.Model.Events.NominationPools.NominationPoolsCreatedModel"/>) and event is inserted inside it own table
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedEventsCommand request, CancellationToken cancellationToken)
         {
+            var stopwatch = Stopwatch.StartNew();
+
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockNumber), cancellationToken);
             var currentDate = await _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
 
@@ -67,7 +82,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             try
             {
                 events = await _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken);
-            } catch(Exception)
+            }
+            catch (Exception)
             {
                 await LogInvalidEventExtAsync(request, currentDate, blockHash, cancellationToken);
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Unable to decode event from block num {request.BlockNumber}", ErrorResult.ErrorCriticity.High);
@@ -80,25 +96,17 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 return UseCaseError(ErrorResult.ErrorType.NoNeedToProcess, $"No events associated to block num {request.BlockNumber}", ErrorResult.ErrorCriticity.Low);
             }
 
-            
-
-            _logger.LogInformation("[{handler}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(SavedEventsHandler), request.BlockNumber, events.Value.Length);
-
             var ratio = PushEventAnalyzedByBlockRatio(events);
 
             for (int i = 0; i < events.Value.Length; i++)
             {
                 var ev = events.Value[i];
+                var eventNode = await _substrateDecode.DecodeEventAsync(ev, cancellationToken);
 
-                if (!ev.Event.HasBeenMapped)
-                {
-                    await LogUnmappedEventAsync(request, currentDate, i, ev, cancellationToken);
-                    continue;
-                }
+                await SaveEventAsync(request, currentDate, i, ev, eventNode, cancellationToken);
 
                 try
                 {
-                    var eventNode = await _substrateDecode.DecodeEventAsync(ev, cancellationToken);
                     var eventFound = _eventsFactory.TryFind(eventNode.Module, eventNode.Method);
 
                     // Is this event has to be insert in database ?
@@ -108,11 +116,15 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                         continue;
                     }
 
-                    _logger.LogInformation("[{handler}][{module}][{method}] is linked to database. Ratio = {ratio}", nameof(SavedEventsHandler), eventNode.Module, eventNode.Method, ratio);
+                    _logger.LogDebug("[{handler}][{module}][{method}] is linked to database", nameof(SavedEventsHandler), eventNode.Module, eventNode.Method);
 
                     await InsertDatabaseAsync(request.BlockNumber, currentDate, (uint)i, ev, eventNode, eventFound, cancellationToken);
 
-                    _domainMetrics.IncreaseAnalyzedEventsCount();
+                    _domainMetrics.IncreaseAnalyzedEventsCount(_substrateService.BlockchainName);
+                }
+                catch(DbUpdateException ex)
+                {
+                    _logger.LogError(ex, "[{handler}][Block {blockNum}][Event {eventIndex}] EntityFramework exception. {message}", nameof(SavedEventsHandler), request.BlockNumber, i, ex.Message);
                 }
                 catch (Exception ex)
                 {
@@ -120,6 +132,11 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 }
             }
 
+            stopwatch.Stop();
+
+            _logger.LogInformation("[{handler}] Sucessfully scan block num {blockNumber}, associated events {eventsCount} in {timeMs}ms", nameof(SavedEventsHandler), request.BlockNumber, events.Value.Length, stopwatch.Elapsed.TotalMilliseconds);
+
+            _domainMetrics.RecordAverageTimeToAnalyzeEventsForEachBlock(stopwatch.Elapsed.TotalMilliseconds, _substrateService.BlockchainName);
             return Helpers.Ok(true);
         }
 
@@ -153,30 +170,33 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         }
 
         /// <summary>
-        /// Log unmapped events and push them to the database to keep track and allow to re-run them in the futur
+        /// Save events to the database
         /// </summary>
         /// <param name="request"></param>
         /// <param name="currentDate"></param>
         /// <param name="i"></param>
         /// <param name="ev"></param>
-        private async Task LogUnmappedEventAsync(SavedEventsCommand request, DateTime currentDate, int i, EventRecord ev, CancellationToken cancellationToken)
+        private async Task SaveEventAsync(SavedEventsCommand request, DateTime currentDate, int i, EventRecord ev, IEventNode eventNode, CancellationToken cancellationToken)
         {
-            _logger.LogWarning("[{handler}] Event index {eventIndex} from block {blockNumber} has not been mapped, please check the mapper (core type / value : {eventCoreType} / {eventHex})",
+            if (!ev.Event.HasBeenMapped)
+            {
+                _logger.LogWarning("[{handler}] Event index {eventIndex} from block {blockNumber} has not been mapped, please check the mapper (core type / value : {eventCoreType} / {eventHex})",
                                nameof(SavedEventsHandler),
                                i,
                                request.BlockNumber,
                                ev.Event.CoreType.Name,
                                Utils.Bytes2HexString(ev.Event.Core!.Encode()));
+            }
 
-            _dbContext.SubstrateErrors.Add(new Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel()
-            {
-                BlockchainName = _substrateService.BlockchainName,
-                BlockNumber = request.BlockNumber.Value,
-                Date = currentDate,
-                TypeError = Infrastructure.Database.Contracts.Model.Errors.TypeErrorModel.EventsDomain,
-                ElementId = (uint)i,
-                Message = $"Event index {i} from block {request.BlockNumber} has not been mapped, please check the mapper (core type / value : {ev.Event.CoreType.Name} / {Utils.Bytes2HexString(ev.Event.Core!.Encode())})"
-            });
+            _dbContext.EventsInformation.Add(new EventsInformationModel(
+                _substrateService.BlockchainName,
+                request.BlockNumber.Value,
+               currentDate,
+               (uint)i,
+               eventNode.Module.ToString(),
+               eventNode.Method.ToString(),
+          eventNode.ToJson()
+            ));
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
@@ -188,7 +208,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         /// <param name="lastScan"></param>
         /// <param name="moduleName"></param>
         /// <param name="moduleEvent"></param>
-        private void LogEventManager(int? lastOccurence, int lastScan, string moduleName, string moduleEvent)
+        private async Task LogEventManagerAsync(int? lastOccurence, int lastScan, string moduleName, string moduleEvent, CancellationToken cancellationToken)
         {
             var model = new EventManagerModel
             {
@@ -202,6 +222,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             var existingModel = _dbContext.EventManager
                 .FirstOrDefault(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent);
 
+            _logger.LogInformation("[{handler}][{method}] {typeOperation} {moduleName} {eventName}. Last scan {lastScan}, last occurrence = {lastOccurrence}", nameof(SavedEventsHandler), nameof(LogEventManagerAsync), existingModel is null ? "Insert" : "Update", moduleName, moduleEvent, lastOccurence?.ToString() ?? "never", lastScan);
+
             if (existingModel == null)
             {
                 _dbContext.EventManager.Add(model);
@@ -211,6 +233,9 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 existingModel.LastScanBlockId = model.LastScanBlockId;
                 existingModel.LastOccurenceScannedBlockId = model.LastOccurenceScannedBlockId;
             }
+
+            // I need to save now, because following function call LogEventManagerAsync again and I got EF Core "already tacking" error
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
         /// <summary>
@@ -220,7 +245,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         private double PushEventAnalyzedByBlockRatio(BaseVec<EventRecord> events)
         {
             var mappedRatio = (double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count();
-            _domainMetrics.RecordEventAnalyzed(mappedRatio);
+            _domainMetrics.RecordRatioEventAnalyzed(mappedRatio, _substrateService.BlockchainName);
 
             return mappedRatio;
         }
@@ -263,21 +288,19 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 subEvent.GetValue2(),
             cancellationToken);
 
-            LogEventManager((int)blockNumber.Value,
-                            (int)blockNumber.Value,
-                            moduleName,
-            eventName);
+            await LogEventManagerAsync((int)blockNumber.Value, (int)blockNumber.Value, moduleName, eventName, cancellationToken);
 
             if (blockNumber.Value % 1000 == 0)
             {
-                _logger.LogInformation("[{handler}] Block number {blockNum} % 1000. Insert events into EventManager table.", nameof(SavedEventsHandler), blockNumber.Value);
+                _logger.LogInformation("[{handler}] Block number {blockNum} % 1000. Insert events into '{tableName}' table.",
+                    nameof(SavedEventsHandler), blockNumber.Value, nameof(_dbContext.EventManager));
                 foreach (var mapped in _eventsFactory.Mapped)
                 {
-                    LogEventManager(null, (int)blockNumber.Value, mapped.GetModule().moduleName, mapped.GetModule().moduleEvent);
+                    await LogEventManagerAsync(null, (int)blockNumber.Value, mapped.GetModule().moduleName, mapped.GetModule().moduleEvent, cancellationToken);
                 }
             }
 
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            //await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -9,8 +9,6 @@ namespace Polkanalysis.Domain.Contracts.Service
 {
     public interface IMetadataService
     {
-        public uint NodeVersion { get; }
-
         public Task<MetadataDto?> GetMetadataAsync(uint specVersion, CancellationToken cancellationToken);
 
         /// <summary>

@@ -36,6 +36,11 @@ namespace Polkanalysis.Infrastructure.Database
         #region Events
         public DbSet<EventManagerModel> EventManager { get; set; }
 
+        /// <summary>
+        /// All events of each blocks
+        /// </summary>
+        public DbSet<EventsInformationModel> EventsInformation { get; set; }
+
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
         public DbSet<BalancesDustLostModel> EventBalancesDustLost { get; set; }
@@ -110,6 +115,9 @@ namespace Polkanalysis.Infrastructure.Database
 
             modelBuilder.Entity<EventManagerModel>()
                 .HasKey(c => new { c.BlockchainName, c.ModuleName, c.ModuleEvent });
+
+            modelBuilder.Entity<EventsInformationModel>()
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId });
 
             #region Balances
 

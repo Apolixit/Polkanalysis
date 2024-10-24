@@ -18,9 +18,10 @@ using Polkanalysis.Worker.Tasks;
 using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Infrastructure.Blockchain.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
-using Polkanalysis.Worker.Metrics;
 using FluentValidation;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Domain.Contracts.Metrics;
+using Polkanalysis.Domain.Metrics;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
 
@@ -29,7 +30,7 @@ var host = Host.CreateDefaultBuilder(args)
     loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration).MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning))
 .ConfigureServices((hostContext, services) =>
 {
-    var blockchainName = args[0];
+    var blockchainName = args[0] is null || args[0] == "--applicationName" ? "polkadot" : args[0];
 
     (logger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
 
@@ -48,7 +49,7 @@ var host = Host.CreateDefaultBuilder(args)
         );
     }, ServiceLifetime.Transient)
     .AddTransient<PerimeterService>()
-    .AddSingleton<WorkerMetrics>();
+    .AddSingleton<IDomainMetrics, DomainMetrics>();
 
     services.AddEndpoint(hostContext.Configuration, true);
     services.AddSubstrateService();

@@ -110,9 +110,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
 
         public Dictionary<string, object> ToDictionnary()
         {
-            if (this.HumanData is null) throw new InvalidOperationException("HumanData is null");
-
             var output = new Dictionary<string, object>();
+            if (this.HumanData is null) return output;
+
             if (this.DataType is not null)
             {
                 output.Add("type", this.DataType.Name);
@@ -120,13 +120,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
                 output.Add("name", this.Name);
                 output.Add("value", this.HumanData!.ToString());
             }
-            
-            if(Children.Count > 0)
+
+            if (Children.Count > 0)
             {
-                if(Children.Count == 1)
+                if (Children.Count == 1 && Children[0].HumanData is not null)
                 {
                     output["value"] = Children[0].HumanData!.ToString();
-                } else
+                }
+                else
                 {
                     output.Add("", Children.Select(x => x.ToDictionnary()));
                 }
