@@ -345,48 +345,48 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
                 foreach (var field in variantType.TypeFields)
                 {
                     var typeId = metadata.NodeMetadata.Types[field.TypeId];
-                    ExtractProperty(properties, field.Name, field.TypeName, typeId);
+                    ExtractProperty(properties, field.Name, field.TypeName, typeId, metadata);
                 }
 
                 return properties.ToArray();
             }
             return null;
+        }
 
-            void ExtractProperty(List<TypeProperty> properties, string name, string typeName, NodeType typeId)
+        private static void ExtractProperty(List<TypeProperty> properties, string name, string typeName, NodeType typeId, MetaData metadata)
+        {
+            if (typeId is NodeTypePrimitive primitive)
             {
-                if (typeId is NodeTypePrimitive primitive)
+                properties.Add(new TypeProperty(name, primitive.Primitive.ToString(), TypeProperty.ParamType.Primitive));
+            }
+            if (typeId is NodeTypeCompact compact)
+            {
+                ExtractProperty(properties, name, typeName, metadata.NodeMetadata.Types[compact.TypeId], metadata);
+            }
+            if (typeId is NodeTypeComposite composite)
+            {
+                if (composite.TypeFields != null)
                 {
-                    properties.Add(new TypeProperty(name, primitive.Primitive.ToString(), TypeProperty.ParamType.Primitive));
-                }
-                if (typeId is NodeTypeCompact compact)
-                {
-                    ExtractProperty(properties, name, typeName, metadata.NodeMetadata.Types[compact.TypeId]);
-                }
-                if (typeId is NodeTypeComposite composite)
-                {
-                    if (composite.TypeFields != null)
+                    var fieldType = TypeProperty.ParamType.Composite;
+                    if (typeName == "T::AccountId") fieldType = TypeProperty.ParamType.AccountId;
+
+                    var prop = new TypeProperty(name, typeName, fieldType);
+                    foreach (var compositeField in composite.TypeFields)
                     {
-                        var fieldType = TypeProperty.ParamType.Composite;
-                        if (typeName == "T::AccountId") fieldType = TypeProperty.ParamType.AccountId;
-
-                        var prop = new TypeProperty(name, typeName, fieldType);
-                        foreach (var compositeField in composite.TypeFields)
-                        {
-                            ExtractProperty(prop.SubProperties, compositeField.Name, compositeField.TypeName, metadata.NodeMetadata.Types[compositeField.TypeId]);
-                        }
-                        properties.Add(prop);
+                        ExtractProperty(prop.SubProperties, compositeField.Name, compositeField.TypeName, metadata.NodeMetadata.Types[compositeField.TypeId], metadata);
                     }
+                    properties.Add(prop);
                 }
-                if (typeId is NodeTypeVariant variant)
-                {
-                    bool isSimpleEnum = variant.Variants.All(x => x.TypeFields is null);
-                    properties.Add(new TypeProperty(name, typeName, isSimpleEnum ? TypeProperty.ParamType.EnumSimple : TypeProperty.ParamType.EnumComplex));
-                }
+            }
+            if (typeId is NodeTypeVariant variant)
+            {
+                bool isSimpleEnum = variant.Variants.All(x => x.TypeFields is null);
+                properties.Add(new TypeProperty(name, typeName, isSimpleEnum ? TypeProperty.ParamType.EnumSimple : TypeProperty.ParamType.EnumComplex));
+            }
 
-                if (typeId is NodeTypeArray array)
-                {
-                    ExtractProperty(properties, name, typeName, metadata.NodeMetadata.Types[array.TypeId]);
-                }
+            if (typeId is NodeTypeArray array)
+            {
+                ExtractProperty(properties, name, typeName, metadata.NodeMetadata.Types[array.TypeId], metadata);
             }
         }
 

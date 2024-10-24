@@ -26,7 +26,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
             _accountService = Substitute.For<IAccountService>();
             var logger = Substitute.For<ILogger<SearchBlockHandler>>();
 
-            _useCase = new SearchBlockHandler(_substrateDbContext, logger, Substitute.For<IDistributedCache>(), _explorerService, _accountService);
+            _useCase = new SearchBlockHandler(_substrateDbContext, logger, Substitute.For<IDistributedCache>(), _accountService);
         }
 
         [Test]

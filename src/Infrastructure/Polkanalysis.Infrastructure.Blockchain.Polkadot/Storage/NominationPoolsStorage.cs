@@ -143,9 +143,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             return await GetStorageAsync<U16>(palletVersionStorage, token);
         }
 
-        public async Task<EnumClaimPermission> ClaimPermissionsAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<EnumClaimPermission> ClaimPermissionsAsync(SubstrateAccount key, CancellationToken token)
         {
-            var accountId32 = await MapAccoundId32Async(account, token);
+            var accountId32 = await MapAccoundId32Async(key, token);
             return Map<IType, EnumClaimPermission>(
                 await _client.NominationPoolsStorage.ClaimPermissionsAsync(accountId32, token));
         }

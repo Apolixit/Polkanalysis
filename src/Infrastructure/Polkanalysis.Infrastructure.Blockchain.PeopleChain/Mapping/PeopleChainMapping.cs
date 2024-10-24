@@ -24,9 +24,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping
 {
     public class PeopleChainMapping : CommonMapping
     {
-
-        public IConfigurationProvider ConfigurationProvider => _mapper.ConfigurationProvider;
-
         public PeopleChainMapping(ILogger<PeopleChainMapping> logger) : base(logger)
         {
             var mapperConfig = new MapperConfiguration(cfg =>

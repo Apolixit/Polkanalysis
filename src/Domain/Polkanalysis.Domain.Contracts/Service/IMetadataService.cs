@@ -123,7 +123,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="to"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<int> GetNbCallAsync(string moduleId, DateTime from, DateTime to, CancellationToken cancellationToken);
+        public Task<int> GetNbCallAsync(string moduleName, DateTime from, DateTime to, CancellationToken cancellationToken);
 
         public Task<IEnumerable<SpecVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken);
     }

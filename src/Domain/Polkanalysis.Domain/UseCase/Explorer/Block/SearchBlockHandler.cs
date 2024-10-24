@@ -14,17 +14,15 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
     public class SearchBlockHandler : Handler<SearchBlockHandler, IQueryable<BlockLightDto>, SearchBlocksQuery>
     {
         private readonly SubstrateDbContext _db;
-        private readonly IExplorerService _explorerService;
         private readonly IAccountService _accountService;
 
-        public SearchBlockHandler(SubstrateDbContext db, ILogger<SearchBlockHandler> logger, IDistributedCache cache, IExplorerService explorerService, IAccountService accountService) : base(logger, cache)
+        public SearchBlockHandler(SubstrateDbContext db, ILogger<SearchBlockHandler> logger, IDistributedCache cache, IAccountService accountService) : base(logger, cache)
         {
             _db = db;
-            _explorerService = explorerService;
             _accountService = accountService;
         }
 
-        public override async Task<Result<IQueryable<BlockLightDto>, ErrorResult>> HandleInnerAsync(SearchBlocksQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IQueryable<BlockLightDto>, ErrorResult>> HandleInnerAsync(SearchBlocksQuery request, CancellationToken cancellationToken)
         {
             var res = _db.BlockInformation.Select(x => new BlockLightDto()
             {
@@ -37,7 +35,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
                 When = ModelBuilder.DisplayElapsedTime(x.BlockDate),
                 BlockDate = x.BlockDate,
                 ValidatorAddress = x.ValidatorAddress,
-                ValidatorIdentity = null //_accountService.GetAccountIdentityAsync(x.ValidatorAddress, cancellationToken)
+                ValidatorIdentity = _accountService.GetAccountIdentityAsync(x.ValidatorAddress, cancellationToken)
             }).AsQueryable();
 
             return Helpers.Ok(res);

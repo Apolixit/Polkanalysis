@@ -44,7 +44,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         private readonly ICoreService _coreService;
         private readonly SubstrateDbContext _db;
         private readonly ISubstrateDecoding _substrateDecode;
-        private readonly ILogger<SavedExtrinsicsHandler> logger;
+        private readonly ILogger<SavedExtrinsicsHandler> _logger;
 
         public SavedExtrinsicsHandler(ISubstrateService substrateService, IExplorerService explorerService, SubstrateDbContext db, ILogger<SavedExtrinsicsHandler> logger,
                                   IDistributedCache cache, ISubstrateDecoding substrateDecode, ICoreService coreService) : base(logger, cache)
@@ -52,7 +52,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             _substrateService = substrateService;
             _explorerService = explorerService;
             _db = db;
-            this.logger = logger;
+            _logger = logger;
             _substrateDecode = substrateDecode;
             _coreService = coreService;
         }

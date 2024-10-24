@@ -11,12 +11,10 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 {
     public class SearchExtrinsicsHandler : Handler<SearchExtrinsicsHandler, IQueryable<ExtrinsicLightDto>, SearchExtrinsicsQuery>
     {
-        private readonly ISubstrateService _polkadotRepository;
         private readonly SubstrateDbContext _dbContext;
 
-        public SearchExtrinsicsHandler(ILogger<SearchExtrinsicsHandler> logger, IDistributedCache cache, ISubstrateService polkadotRepository, SubstrateDbContext dbContext) : base(logger, cache)
+        public SearchExtrinsicsHandler(ILogger<SearchExtrinsicsHandler> logger, IDistributedCache cache, SubstrateDbContext dbContext) : base(logger, cache)
         {
-            _polkadotRepository = polkadotRepository;
             _dbContext = dbContext;
         }
 

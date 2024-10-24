@@ -147,7 +147,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             var result = await GetStorageAsync<R>(funcParams(input), token, callerName);
 
             var mappedType = new T();
-            if (result == null) return mappedType;
+            if (result is null) return mappedType;
 
             mappedType.Create(result.Encode());
             return mappedType;
@@ -175,7 +175,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
 
             var result = await GetStorageAsync<R>(funcParams(), token, callerName);
             var mappedType = new T();
-            if (result == null) return mappedType;
+            if (result is null) return mappedType;
 
             mappedType.Create(result.Encode());
             return mappedType;
@@ -199,7 +199,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             _logger.LogTrace($"Storage call from {callerName} with parameters = {parameters}");
             var res = await _client.GetStorageAsync<T>(parameters, BlockHash, token);
 
-            if (res == null)
+            if (res is null)
             {
                 _logger.LogTrace($"Storage call response is null");
             }

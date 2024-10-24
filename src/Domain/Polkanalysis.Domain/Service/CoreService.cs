@@ -31,6 +31,11 @@ namespace Polkanalysis.Domain.Service
 
             var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(currentTimestamp.Value);
 
+            if(dt > DateTime.UtcNow)
+            {
+                _logger.LogWarning("[{serviceName}] {methodName} - Timestamp from blockHash {blockHash} is in the future: {dt}", nameof(CoreService), nameof(GetDateTimeFromTimestampAsync), blockHash is not null ? blockHash.Value : "now", dt);
+            }
+
             return dt;
         }
 

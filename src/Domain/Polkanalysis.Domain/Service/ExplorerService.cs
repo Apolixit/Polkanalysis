@@ -56,12 +56,6 @@ namespace Polkanalysis.Domain.Service
             _coreService = coreService;
         }
 
-        private string? _blockHash = null;
-        public void At(string blockHash)
-        {
-            _blockHash = blockHash;
-        }
-
         public async Task<SubstrateAccount> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
             => await GetBlockAuthorAsync((BlockParameterLike)blockId, cancellationToken);
 
@@ -151,7 +145,7 @@ namespace Polkanalysis.Domain.Service
             {
                 // Call Aura PreDigest
                 // ConsensusEngineId.ts
-                return null;
+                throw new NotImplementedException("Need to implement Aura concensus !");
             }
             // For pow & Nimbus, the bytes are the actual author
             else if (IsPowConcensus(name) || IsNimbusConcensus(name))

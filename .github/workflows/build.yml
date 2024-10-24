@@ -80,6 +80,7 @@ jobs:
 
     - name: Publish Test Results
       uses: dorny/test-reporter@v1
+      if: always()
       with:
         name: Polkanalysis Tests
         path: "**/test-results.trx"
