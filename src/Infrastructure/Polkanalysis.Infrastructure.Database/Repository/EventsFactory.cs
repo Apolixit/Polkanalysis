@@ -34,7 +34,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         /// <exception cref="InvalidOperationException"></exception>
         private List<EventElementFactory> ScanBindsEventAttribute()
         {
-            _logger.LogInformation("Start scanning assembly {assemblyName}", BindingRepositoriesAssembly);
+            _logger.LogInformation("[{serviceName}] Start scanning assembly {assemblyName}", nameof(EventsFactory), BindingRepositoriesAssembly);
+
             var versionned = new List<EventElementFactory>();
 
             // Get all type from given assembly

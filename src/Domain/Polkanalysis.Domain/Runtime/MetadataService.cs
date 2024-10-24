@@ -55,8 +55,6 @@ namespace Polkanalysis.Domain.Runtime
             _metadata = metaData;
         }
 
-        public uint NodeVersion => _substrateService.RuntimeVersion.SpecVersion;
-
 
         #region Write Type
         public string WriteType(uint typeId)
@@ -86,7 +84,7 @@ namespace Polkanalysis.Domain.Runtime
             string display = string.Join(":", nodeType.Path);
             if (nodeType.TypeParams != null && nodeType.TypeParams.Length > 0)
             {
-                display = $"{display}<{string.Join(",", nodeType.TypeParams.Where(p => p.TypeId != null).Select(p => WriteType((uint)p.TypeId)))}>";
+                display = $"{display}<{string.Join(",", nodeType.TypeParams.Where(p => p.TypeId != null).Select(p => WriteType((uint)p.TypeId!)))}>";
             }
 
             return display;

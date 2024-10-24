@@ -14,7 +14,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions
 
         public override string ToString()
         {
-            return "{BlockchainName} | {BlockId} | {BlockDate} | {EventId} | {ModuleName} | {ModuleEvent} | {AuctionIndex}";
+            return $"{BlockchainName} | {BlockId} | {BlockDate} | {EventId} | {ModuleName} | {ModuleEvent} | {AuctionIndex}";
         }
     }
 }

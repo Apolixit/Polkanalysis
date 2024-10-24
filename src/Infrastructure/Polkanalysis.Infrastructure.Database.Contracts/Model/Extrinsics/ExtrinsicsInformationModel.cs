@@ -26,5 +26,6 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics
         public string Status { get; set; } = string.Empty;
         public string StatusMessage { get; set; } = string.Empty;
         public double? Fees { get; set; }
+        public string JsonParameters { get; set; } = string.Empty;
     }
 }

@@ -22,6 +22,8 @@ using Algolia.Search.Models.Common;
 using System.Threading;
 using NSubstitute.ExceptionExtensions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using System.Diagnostics;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -85,6 +87,14 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             //firstEvent.Event.Core = runtimeEvent;
 
             return firstEvent;
+        }
+
+        private static IEventNode buildCodeUpdatedNode()
+        {
+            var eventNode = Substitute.For<IEventNode>();
+            eventNode.Module.Returns(RuntimeEvent.System);
+            eventNode.Method.Returns(Event.CodeUpdated);
+            return eventNode;
         }
 
         private static IEventNode buildKilledAccountNode()
@@ -195,6 +205,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         public async Task SavedEventHandler_WithUnmappedEvents_ShouldLogAndSucceedAsync()
         {
             EventRecord codeUpdatedtEvent = buildCodeUpdatedEvent();
+            IEventNode codeUpdateNode = buildCodeUpdatedNode();
+
+            _substrateDecoding.DecodeEventAsync(codeUpdatedtEvent, CancellationToken.None).Returns(codeUpdateNode);
 
             // No events
             _substrateService.At(Arg.Any<BlockNumber>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
@@ -205,11 +218,10 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 
             Assert.That(result.IsSuccess, Is.True);
 
-            var firstError = _substrateDbContext.SubstrateErrors.FirstOrDefault();
-            Assert.That(firstError, Is.Not.Null);
+            var firstEvent = _substrateDbContext.EventsInformation.FirstOrDefault();
+            Assert.That(firstEvent, Is.Not.Null);
 
-            Assert.That(firstError.BlockNumber, Is.EqualTo(1));
-            Assert.That(firstError.TypeError, Is.EqualTo(TypeErrorModel.EventsDomain));
+            Assert.That(firstEvent.BlockId, Is.EqualTo(1));
         }
 
         /// <summary>

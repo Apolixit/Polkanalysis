@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
@@ -60,7 +61,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _explorerService,
                                               _coreService,
                                               _logger,
-                                              Substitute.For<IDistributedCache>());
+                                              Substitute.For<IDistributedCache>(),
+                                              Substitute.For<IDomainMetrics>());
         }
 
         [Test]

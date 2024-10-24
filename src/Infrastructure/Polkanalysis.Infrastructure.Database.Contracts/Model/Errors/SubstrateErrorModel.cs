@@ -9,9 +9,6 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Errors
 {
     public class SubstrateErrorModel : BlockchainModel
     {
-        [Key]
-        public uint Id { get; set; }
-
         public required uint BlockNumber { get; set; }
 
         /// <summary>
@@ -27,6 +24,11 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Errors
         /// Error message
         /// </summary>
         public required string Message { get; set; }
+
+        /// <summary>
+        /// Optional parameters
+        /// </summary>
+        public string Parameters { get; set; } = string.Empty;
     }
 
     public enum TypeErrorModel

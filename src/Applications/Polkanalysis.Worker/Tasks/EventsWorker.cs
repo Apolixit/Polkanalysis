@@ -9,7 +9,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics.Metrics;
-using Polkanalysis.Worker.Metrics;
+using Polkanalysis.Domain.Metrics;
 using Substrate.NetApi;
 using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
@@ -18,6 +18,7 @@ using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
 using System;
 using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Metrics;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -27,7 +28,7 @@ namespace Polkanalysis.Worker.Tasks
         private readonly IExplorerService _explorerRepository;
         private readonly PerimeterService _perimeterService;
         private readonly IMediator _mediator;
-        private readonly WorkerMetrics _workerMetrics;
+        private readonly IDomainMetrics _domainMetrics;
         private readonly ILogger<EventsWorker> _logger;
 
         private BlockPerimeter _blockPerimeter;
@@ -38,14 +39,14 @@ namespace Polkanalysis.Worker.Tasks
             ISubstrateDecoding substrateDecode,
             PerimeterService perimeterService,
             ILogger<EventsWorker> logger,
-            WorkerMetrics workerMetrics,
+            IDomainMetrics domainMetrics,
             IMediator mediator)
         {
             _polkadotRepository = polkadotRepository;
             _explorerRepository = explorerRepository;
             _perimeterService = perimeterService;
             _logger = logger;
-            _workerMetrics = workerMetrics;
+            _domainMetrics = domainMetrics;
             _mediator = mediator;
         }
 
@@ -121,14 +122,13 @@ namespace Polkanalysis.Worker.Tasks
         {
             try
             {
-                //await MonitorBlockAsync(blockNumber.Value, stoppingToken);
+                var monitorTask = MonitorBlockAsync(blockNumber.Value, stoppingToken);
+                var saveBlockTask = SaveBlockInformationAsync(blockNumber, stoppingToken);
+                var saveExtrinsicsTask = SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
+                var saveEventsTask = SaveEventsInformationAsync(blockNumber, stoppingToken);
 
-                //await SaveBlockInformationAsync(blockNumber, stoppingToken);
-
-                //await SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
-
-                await SaveEventsInformationAsync(blockNumber, stoppingToken);
-
+                await Task.WhenAll(monitorTask, saveBlockTask, saveExtrinsicsTask, saveEventsTask);
+                //await Task.WhenAll(saveEventsTask);
             }
             catch (Exception ex)
             {
@@ -168,11 +168,10 @@ namespace Polkanalysis.Worker.Tasks
         /// <param name="events"></param>
         private async Task MonitorBlockAsync(uint blockNumber, CancellationToken token)
         {
-            _workerMetrics.IncreaseBlockCount();
             if (blockNumber % 100 == 0)
             {
                 var lastBlock = await _polkadotRepository.Rpc.Chain.GetHeaderAsync(token);
-                _workerMetrics.RatioBlockAnalyzed(((double)blockNumber / (double)lastBlock.Number.Value) * 100);
+                _domainMetrics.RecordRatioBlockAnalyzed(((double)blockNumber / (double)lastBlock.Number.Value) * 100, _polkadotRepository.BlockchainName);
             }
         }
         #endregion

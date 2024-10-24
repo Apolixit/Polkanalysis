@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Exception;
+using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -12,6 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +40,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         private readonly ISubstrateService _substrateService;
         private readonly IExplorerService _explorerService;
         private readonly ICoreService _coreService;
+        private readonly IDomainMetrics _domainMetrics;
         private readonly SubstrateDbContext _db;
 
         public SavedBlocksHandler(ISubstrateService substrateService,
@@ -45,31 +48,37 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                                   IExplorerService explorerService,
                                   ICoreService coreService,
                                   ILogger<SavedBlocksHandler> logger,
-                                  IDistributedCache cache) : base(logger, cache)
+                                  IDistributedCache cache,
+                                  IDomainMetrics domainMetrics) : base(logger, cache)
         {
             _substrateService = substrateService;
             _db = db;
             _explorerService = explorerService;
             _coreService = coreService;
+            _domainMetrics = domainMetrics;
         }
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedBlocksCommand request, CancellationToken cancellationToken)
         {
+            var stopwatch = Stopwatch.StartNew();
             var blockInfo = await _explorerService.GetBlockLightAsync(request.BlockNumber, cancellationToken);
 
             if (blockInfo.ValidatorAddress is null)
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Block number {request.BlockNumber} has no validator");
+
             if (_db.BlockInformation.Any(x => x.BlockNumber == request.BlockNumber))
             {
                 _logger.LogDebug("[{handler}] Block number {blockNum} is not inserted into {tableName} because it already exists", nameof(SavedBlocksHandler), request.BlockNumber, nameof(_db.BlockInformation));
                 return Helpers.Ok(true);
             }
 
+            var blockDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
+
             _db.BlockInformation.Add(new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
             {
                 BlockchainName = _substrateService.BlockchainName,
                 BlockHash = blockInfo.Hash.Value,
-                BlockDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken),
+                BlockDate = blockDate,
                 BlockNumber = request.BlockNumber,
                 EventsCount = blockInfo.NbEvents,
                 ExtrinsicsCount = blockInfo.NbExtrinsics,
@@ -85,8 +94,10 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Db rows are inconsistent. Should be 1 row inserted, but is {nbRows}");
             }
 
-            _logger.LogInformation("[{handler}] Block number {blockNum} has been inserted into {tableName}", nameof(SavedBlocksHandler), request.BlockNumber, nameof(_db.BlockInformation));
+            stopwatch.Stop();
+            _logger.LogInformation("[{handler}] Sucessfully scan block number {blockNum} ({blockDate}) in {timeMs}ms", nameof(SavedBlocksHandler), request.BlockNumber, blockDate, stopwatch.Elapsed.TotalMilliseconds);
 
+            _domainMetrics.RecordAverageTimeToAnalyzeBlocksForEachBlock(stopwatch.Elapsed.TotalMilliseconds, _substrateService.BlockchainName);
             return Helpers.Ok(true);
         }
     }

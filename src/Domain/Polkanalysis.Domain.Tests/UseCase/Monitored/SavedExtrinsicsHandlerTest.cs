@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
+using Polkanalysis.Domain.Contracts.Metrics;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -70,7 +71,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _logger,
                                               Substitute.For<IDistributedCache>(),
                                               _substrateDecoding, 
-                                              Substitute.For<ICoreService>());
+                                              Substitute.For<ICoreService>(),
+                                              Substitute.For<IDomainMetrics>());
         }
 
         /// <summary>

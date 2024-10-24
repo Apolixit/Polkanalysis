@@ -5,7 +5,6 @@ using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Metrics;
 using System.Diagnostics.Metrics;
 
-
 namespace Polkanalysis.Domain.Tests.Metrics
 {
     public class DomainMetricsTests
@@ -56,7 +55,7 @@ namespace Polkanalysis.Domain.Tests.Metrics
         {
             var collector = new MetricCollector<int>(_meterFactory, "Polkanalysis.Domain.Metrics", "count.substrate.events.analyzed");
 
-            _domainMetrics.IncreaseAnalyzedEventsCount();
+            _domainMetrics.IncreaseAnalyzedEventsCount("Polkadot");
 
             var measure = collector.GetMeasurementSnapshot();
             Assert.That(measure[0].Value, Is.EqualTo(1));
