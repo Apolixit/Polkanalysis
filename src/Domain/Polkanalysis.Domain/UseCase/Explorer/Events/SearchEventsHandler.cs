@@ -38,14 +38,10 @@ namespace Polkanalysis.Domain.UseCase.Search
     }
     public class SearchEventsHandler : Handler<SearchEventsHandler, IQueryable<EventsResultDto>, SearchEventsQuery>
     {
-        private readonly ISubstrateService _polkadotRepository;
-        private readonly SubstrateDbContext _dbContext;
         private readonly IEventsFactory _eventFactory;
 
-        public SearchEventsHandler(ILogger<SearchEventsHandler> logger, IDistributedCache cache, ISubstrateService polkadotRepository, SubstrateDbContext dbContext, IEventsFactory eventFactory) : base(logger, cache)
+        public SearchEventsHandler(ILogger<SearchEventsHandler> logger, IDistributedCache cache, IEventsFactory eventFactory) : base(logger, cache)
         {
-            _polkadotRepository = polkadotRepository;
-            _dbContext = dbContext;
             _eventFactory = eventFactory;
         }
 
@@ -54,19 +50,7 @@ namespace Polkanalysis.Domain.UseCase.Search
             IQueryable<EventsResultDto> result = new List<EventsResultDto>().AsQueryable();
 
             // First we got all the mapped events
-            var mapped = _eventFactory.Mapped;
-
-            // Apply modules filters if needed
-            if (request.SelectedModules.Any())
-            {
-                mapped = mapped.Where(x => request.SelectedModules.Contains(x.GetModule().moduleName));
-            }
-
-            // Apply events filters if needed
-            if (request.SelectedEvents.Any())
-            {
-                mapped = mapped.Where(x => request.SelectedEvents.Contains(x.GetModule().moduleEvent));
-            }
+            IEnumerable<EventElementFactory> mapped = filterEventByRequest(request);
 
             // For each event we instanciate the associated SearchCriteria instance and search for the event in the associated table
             foreach (var eventElem in mapped)
@@ -124,6 +108,30 @@ namespace Polkanalysis.Domain.UseCase.Search
 
 
             return Helpers.Ok(result);
+        }
+
+        /// <summary>
+        /// Filter events depending on the request criterias
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private IEnumerable<EventElementFactory> filterEventByRequest(SearchEventsQuery request)
+        {
+            var mapped = _eventFactory.Mapped;
+
+            // Apply modules filters if needed
+            if (request.SelectedModules.Any())
+            {
+                mapped = mapped.Where(x => request.SelectedModules.Contains(x.GetModule().moduleName));
+            }
+
+            // Apply events filters if needed
+            if (request.SelectedEvents.Any())
+            {
+                mapped = mapped.Where(x => request.SelectedEvents.Contains(x.GetModule().moduleEvent));
+            }
+
+            return mapped;
         }
 
         /// <summary>

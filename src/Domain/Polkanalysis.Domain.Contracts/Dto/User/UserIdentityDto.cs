@@ -19,7 +19,11 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
             }
         }
         public string PublicKey { get; set; } = string.Empty;
-        public static UserIdentityDto Empty = new UserIdentityDto() { Name = " - ", Address = " - ", IdentityType = UserIdentityTypeDto.Anonymous };
+
+        /// <summary>
+        /// Default empty user identity
+        /// </summary>
+        public readonly UserIdentityDto Empty = new UserIdentityDto() { Name = " - ", Address = " - ", IdentityType = UserIdentityTypeDto.Anonymous };
         public override string ToString()
         {
             return Name;

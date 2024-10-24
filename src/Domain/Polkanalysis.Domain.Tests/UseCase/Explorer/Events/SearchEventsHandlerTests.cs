@@ -37,16 +37,14 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
             _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, _substrateService, Substitute.For<ILogger<SystemKilledAccountRepository>>()));
 
             _eventFactory = new EventsFactory(_serviceProvider, Substitute.For<ILogger<EventsFactory>>());
-
-            _substrateDbContext.EventSystemNewAccount.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "System", "NewAccount", Alice.ToString()));
-            _substrateDbContext.EventSystemNewAccount.Add(new("Polkadot", 20, new DateTime(2024, 01, 02), 1, "System", "NewAccount", Bob.ToString()));
-
-            _substrateDbContext.EventSystemKilledAccount.Add(new("Polkadot", 30, new DateTime(2024, 01, 03), 1, "System", "KilledAccount", Bob.ToString()));
+            PopulateDatabaseWithSomeEvents();
 
             _substrateDbContext.SaveChanges();
 
-            _useCase = new SearchEventsHandler(_logger, Substitute.For<IDistributedCache>(), _substrateService, _substrateDbContext, _eventFactory);
+            _useCase = new SearchEventsHandler(_logger, Substitute.For<IDistributedCache>(), _eventFactory);
         }
+
+        
 
         #region Validator
         [Test]

@@ -47,7 +47,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
         {
             var extrinsic = new TempOldExtrinsic(extrinsicHash, ChargeTransactionPayment.Default());
             var res = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, new Hash(hash), CancellationToken.None);
-            ////Assert.That(res.Name, Is.EqualTo("Timestamp"));
+            Assert.That(res.Name, Is.EqualTo("Timestamp"));
         }
 
         ///// <summary>

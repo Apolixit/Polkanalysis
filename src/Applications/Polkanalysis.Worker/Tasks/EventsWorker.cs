@@ -25,9 +25,7 @@ namespace Polkanalysis.Worker.Tasks
     {
         private readonly ISubstrateService _polkadotRepository;
         private readonly IExplorerService _explorerRepository;
-        private readonly ISubstrateDecoding _substrateDecode;
         private readonly PerimeterService _perimeterService;
-        private readonly IEventsFactory _eventsFactory;
         private readonly IMediator _mediator;
         private readonly WorkerMetrics _workerMetrics;
         private readonly ILogger<EventsWorker> _logger;
@@ -37,7 +35,6 @@ namespace Polkanalysis.Worker.Tasks
         public EventsWorker(
             ISubstrateService polkadotRepository,
             IExplorerService explorerRepository,
-            IEventsFactory eventsFactory,
             ISubstrateDecoding substrateDecode,
             PerimeterService perimeterService,
             ILogger<EventsWorker> logger,
@@ -46,8 +43,6 @@ namespace Polkanalysis.Worker.Tasks
         {
             _polkadotRepository = polkadotRepository;
             _explorerRepository = explorerRepository;
-            _eventsFactory = eventsFactory;
-            _substrateDecode = substrateDecode;
             _perimeterService = perimeterService;
             _logger = logger;
             _workerMetrics = workerMetrics;

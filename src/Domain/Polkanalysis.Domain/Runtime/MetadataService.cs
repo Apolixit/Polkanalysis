@@ -293,34 +293,32 @@ namespace Polkanalysis.Domain.Runtime
                 throw new ArgumentNullException($"{palletModule}");
 
             var moduleCallsDto = new List<ModuleCallsDto>();
-            if (palletModule.Calls != null)
+
+            if (palletModule.Calls == null)
+                return moduleCallsDto;
+
+            var nodeTypeCalls = GetPalletType(palletModule.Calls.TypeId);
+
+            if (nodeTypeCalls is not NodeTypeVariant moduleCalls)
+                throw new InvalidCastException($"Module calls from module {palletModule.Name} cannot be casted to NodeTypeVariant");
+
+            if (moduleCalls.Variants == null)
             {
-                var nodeTypeCalls = GetPalletType(palletModule.Calls.TypeId);
+                _logger.LogWarning("[{serviceName}] Module variant calls from module {palletModuleName} are null, should never happen", nameof(MetadataService), palletModule.Name);
+                return moduleCallsDto;
+            }
 
-                if (nodeTypeCalls is NodeTypeVariant moduleCalls)
+            foreach (var moduleCall in moduleCalls.Variants)
+            {
+                var callDto = new ModuleCallsDto()
                 {
-                    if (moduleCalls.Variants == null)
-                    {
-                        // TODO : warning log -> weird behavior
-                        return moduleCallsDto;
-                        //throw new InvalidOperationException($"Module variant calls from module {palletModule.Name} are null");
-                    }
-
-                    foreach (var moduleCall in moduleCalls.Variants)
-                    {
-                        var callDto = new ModuleCallsDto()
-                        {
-                            Name = moduleCall.Name,
-                            Documentation = ModelBuilder.BuildDocumentation(moduleCall.Docs),
-                            Lookup = moduleCall.Index,
-                            NbParameter = moduleCall.TypeFields != null ? moduleCall.TypeFields.Length : 0,
-                            Arguments = moduleCall.TypeFields != null ? moduleCall.TypeFields.Select(BuildTypeField).ToList() : null,
-                        };
-                        moduleCallsDto.Add(callDto);
-                    }
-                }
-                else
-                    throw new InvalidCastException($"Module calls from module {palletModule.Name} cannot be casted to NodeTypeVariant");
+                    Name = moduleCall.Name,
+                    Documentation = ModelBuilder.BuildDocumentation(moduleCall.Docs),
+                    Lookup = moduleCall.Index,
+                    NbParameter = moduleCall.TypeFields != null ? moduleCall.TypeFields.Length : 0,
+                    Arguments = moduleCall.TypeFields != null ? moduleCall.TypeFields.Select(BuildTypeField).ToList() : null,
+                };
+                moduleCallsDto.Add(callDto);
             }
 
             return moduleCallsDto;
