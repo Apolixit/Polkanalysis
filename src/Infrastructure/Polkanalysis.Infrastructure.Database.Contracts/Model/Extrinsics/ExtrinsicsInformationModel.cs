@@ -10,8 +10,6 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics
 {
     public class ExtrinsicsInformationModel : BlockchainModel
     {
-        [Key]
-        public uint Id { get; set; }
         public required uint BlockNumber { get; set; }
         public required uint ExtrinsicIndex { get; set; }
         public required DateTime BlockDate { get; set; }

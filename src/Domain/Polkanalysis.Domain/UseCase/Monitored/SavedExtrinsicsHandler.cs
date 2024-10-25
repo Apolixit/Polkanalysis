@@ -67,10 +67,11 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             var stopwatch = Stopwatch.StartNew();
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumber), cancellationToken);
 
-            var (blockData, blockEvents, blockDate) = await WaiterHelper.WaitAndReturnAsync(
+            var (blockData, blockEvents, blockDate, metadata) = await WaiterHelper.WaitAndReturnAsync(
                 _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken),
                 _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken),
-                _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken)
+                _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken),
+                _substrateService.At(blockHash).GetMetadataAsync(cancellationToken)
             );
 
             var filteredExtrinsic = blockData.GetBlock().GetExtrinsics().ToList();
@@ -82,7 +83,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 try
                 {
                     var (extrinsicDecode, status, fees, lifetime) = await WaiterHelper.WaitAndReturnAsync(
-                        _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken),
+                        _substrateDecode.DecodeExtrinsicAsync(extrinsic, metadata, cancellationToken),
                         _explorerService.GetExtrinsicsStatusAsync(blockEvents, (int)extrinsicIndex, cancellationToken),
                         _explorerService.GetExtrinsicsFeesAsync(blockEvents, (int)extrinsicIndex, cancellationToken),
                         _explorerService.GetExtrinsicsLifetimeAsync(request.BlockNumber, extrinsic, cancellationToken)
@@ -96,7 +97,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                         WriteIndented = false
                     });
 
-                    _db.ExtrinsicsInformation.Add(new Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel()
+                    var entity = new Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel()
                     {
                         BlockchainName = _substrateService.BlockchainName,
                         BlockNumber = request.BlockNumber,
@@ -114,7 +115,14 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                         Fees = fees,
                         BlockDate = blockDate,
                         JsonParameters = jsonParameters
-                    });
+                    };
+
+                    var alreadyExists = _db.ExtrinsicsInformation.FirstOrDefault(x => x.BlockchainName == _substrateService.BlockchainName && x.BlockNumber == request.BlockNumber && x.ExtrinsicIndex == extrinsicIndex);
+
+                    if (alreadyExists is null)
+                        _db.ExtrinsicsInformation.Add(entity);
+                    else
+                        alreadyExists = entity;
 
                     await _db.SaveChangesAsync(cancellationToken);
 
