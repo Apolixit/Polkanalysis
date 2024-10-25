@@ -61,20 +61,16 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedBlocksCommand request, CancellationToken cancellationToken)
         {
             var stopwatch = Stopwatch.StartNew();
+
             var blockInfo = await _explorerService.GetBlockLightAsync(request.BlockNumber, cancellationToken);
+            var blockDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
 
             if (blockInfo.ValidatorAddress is null)
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Block number {request.BlockNumber} has no validator");
 
-            if (_db.BlockInformation.Any(x => x.BlockNumber == request.BlockNumber))
-            {
-                _logger.LogDebug("[{handler}] Block number {blockNum} is not inserted into {tableName} because it already exists", nameof(SavedBlocksHandler), request.BlockNumber, nameof(_db.BlockInformation));
-                return Helpers.Ok(true);
-            }
+            var alreadyExists = _db.BlockInformation.FirstOrDefault(x => x.BlockchainName == _substrateService.BlockchainName && x.BlockNumber == request.BlockNumber);
 
-            var blockDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
-
-            _db.BlockInformation.Add(new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
+            var entity = new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
             {
                 BlockchainName = _substrateService.BlockchainName,
                 BlockHash = blockInfo.Hash.Value,
@@ -85,10 +81,14 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 LogsCount = blockInfo.NbLogs,
                 ValidatorAddress = blockInfo.ValidatorAddress,
                 Justification = blockInfo.Justification
-            });
+            };
+
+            if (alreadyExists is null)
+                _db.BlockInformation.Add(entity);
+            else
+                alreadyExists = entity;
 
             var nbRows = await _db.SaveChangesAsync();
-
             if (nbRows != 1)
             {
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Db rows are inconsistent. Should be 1 row inserted, but is {nbRows}");

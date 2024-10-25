@@ -128,7 +128,6 @@ namespace Polkanalysis.Worker.Tasks
                 var saveEventsTask = SaveEventsInformationAsync(blockNumber, stoppingToken);
 
                 await Task.WhenAll(monitorTask, saveBlockTask, saveExtrinsicsTask, saveEventsTask);
-                //await Task.WhenAll(saveEventsTask);
             }
             catch (Exception ex)
             {

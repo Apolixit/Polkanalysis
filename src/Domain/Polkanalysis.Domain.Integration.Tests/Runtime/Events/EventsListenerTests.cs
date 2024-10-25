@@ -42,6 +42,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Events
         }
 
         [Test]
+        [TestCase(14000002, 39, "0xdc626d8eb0cd0f16ec1ec6ee5a807113555558bf1996f52566c1d0558ae8b9c4")]
         [TestCase(14032893, 39, "0xdc626d8eb0cd0f16ec1ec6ee5a807113555558bf1996f52566c1d0558ae8b9c4")]
         [TestCase(14032650, 52, "0xf64314561e243e5678acf7e737863897fd7fcb508ed67ef7ae55cca040db70af")]
         [TestCase(14032915, 32, "0x22e313e97be0cf2a93d94b17257771d6558c864d61b8d0630a0b993ee39e56d1")]

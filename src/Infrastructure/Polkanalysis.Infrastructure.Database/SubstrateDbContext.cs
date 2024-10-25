@@ -102,7 +102,7 @@ namespace Polkanalysis.Infrastructure.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ExtrinsicsInformationModel>()
-                .HasKey(c => c.Id);
+                .HasKey(c => new { c.BlockchainName, c.BlockNumber, c.ExtrinsicIndex });
 
             modelBuilder.Entity<EraLifetimeModel>()
                 .HasKey(c => c.Id);
@@ -111,7 +111,7 @@ namespace Polkanalysis.Infrastructure.Database
                 .HasKey(c => c.Id);
 
             modelBuilder.Entity<BlockInformationModel>()
-                .HasKey(c => c.BlockNumber);
+                .HasKey(c => new { c.BlockchainName, c.BlockNumber });
 
             modelBuilder.Entity<EventManagerModel>()
                 .HasKey(c => new { c.BlockchainName, c.ModuleName, c.ModuleEvent });

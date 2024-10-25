@@ -185,13 +185,10 @@ namespace Polkanalysis.Domain.Service
             if (blockData == null)
                 throw new BlockException($"{blockData} for block hash = {blockHash.Value} is null");
 
-            var blockDateTask = _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
-            var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
-            var blockAuthorTask = GetBlockAuthorAsync(block, cancellationToken);
-
-            var (blockDate, eventsCount, blockAuthor) = await WaiterHelper.WaitAndReturnAsync(blockDateTask, eventsCountTask, blockAuthorTask);
-
-            
+            var (blockDate, eventsCount, blockAuthor) = await WaiterHelper.WaitAndReturnAsync(
+                _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken),
+                _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken),
+                GetBlockAuthorAsync(block, cancellationToken));
 
             // I get the last finalized head (i.e. validate by granpa finality) and assume that every block ahead are not
             // finalized

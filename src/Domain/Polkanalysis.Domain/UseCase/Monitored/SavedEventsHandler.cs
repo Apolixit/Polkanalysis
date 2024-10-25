@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Helper;
 using Polkanalysis.Domain.Metrics;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Service;
@@ -75,13 +76,15 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             var stopwatch = Stopwatch.StartNew();
 
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockNumber), cancellationToken);
-            var currentDate = await _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
+            var (currentDate, metadata) = await WaiterHelper.WaitAndReturnAsync(
+                _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken),
+                _substrateService.At(blockHash).GetMetadataAsync(cancellationToken));
 
             // Get events associated at each block
             BaseVec<EventRecord>? events = null;
             try
             {
-                events = await _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken);
+                events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
             }
             catch (Exception)
             {
@@ -98,31 +101,39 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
             var ratio = PushEventAnalyzedByBlockRatio(events);
 
+
             for (int i = 0; i < events.Value.Length; i++)
             {
                 var ev = events.Value[i];
-                var eventNode = await _substrateDecode.DecodeEventAsync(ev, cancellationToken);
-
-                await SaveEventAsync(request, currentDate, i, ev, eventNode, cancellationToken);
+                IEventNode? eventNode = null;
 
                 try
                 {
-                    var eventFound = _eventsFactory.TryFind(eventNode.Module, eventNode.Method);
+                    //Decode the event
+                    eventNode = await _substrateDecode.DecodeEventAsync(ev, metadata, cancellationToken);
+                } catch(Exception ex)
+                {
+                    _logger.LogError(ex, "Unable to decode event from block {blockNum} event num {eventNum}", request.BlockNumber, i);
+                    continue;
+                }
 
-                    // Is this event has to be insert in database ?
-                    if (eventFound is null)
-                    {
-                        _logger.LogDebug("[{handler}][{module}][{method}] has no database event linked", nameof(SavedEventsHandler), eventNode.Module, eventNode.Method);
-                        continue;
-                    }
+                try
+                {
+                    /*
+                     * Romain : I don't use Task.When all because I don't gain any milliseconds and also give me some concurrency call to database, so let's keep it like this
+                     */
+                    // Save all the events into the database
+                    await SaveEventAsync(request, currentDate, i, ev, eventNode, cancellationToken);
 
-                    _logger.LogDebug("[{handler}][{module}][{method}] is linked to database", nameof(SavedEventsHandler), eventNode.Module, eventNode.Method);
+                    // If the events have custom tables, save them
+                    await SaveCustomTrackedEventsAsync(request, currentDate, i, ev, eventNode, cancellationToken);
 
-                    await InsertDatabaseAsync(request.BlockNumber, currentDate, (uint)i, ev, eventNode, eventFound, cancellationToken);
+                    // Log into the database that we have analyzed this event
+                    await LogEventsAsync(request, eventNode, cancellationToken);
 
                     _domainMetrics.IncreaseAnalyzedEventsCount(_substrateService.BlockchainName);
                 }
-                catch(DbUpdateException ex)
+                catch (DbUpdateException ex)
                 {
                     _logger.LogError(ex, "[{handler}][Block {blockNum}][Event {eventIndex}] EntityFramework exception. {message}", nameof(SavedEventsHandler), request.BlockNumber, i, ex.Message);
                 }
@@ -134,10 +145,57 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
             stopwatch.Stop();
 
-            _logger.LogInformation("[{handler}] Sucessfully scan block num {blockNumber}, associated events {eventsCount} in {timeMs}ms", nameof(SavedEventsHandler), request.BlockNumber, events.Value.Length, stopwatch.Elapsed.TotalMilliseconds);
+            _logger.LogInformation("[{handler}] Sucessfully scan block num {blockNumber} ({blockDate}), associated events {eventsCount} in {timeMs}ms", nameof(SavedEventsHandler), request.BlockNumber, currentDate, events.Value.Length, stopwatch.Elapsed.TotalMilliseconds);
 
             _domainMetrics.RecordAverageTimeToAnalyzeEventsForEachBlock(stopwatch.Elapsed.TotalMilliseconds, _substrateService.BlockchainName);
             return Helpers.Ok(true);
+        }
+
+        /// <summary>
+        /// Save events tracket by <see cref="IEventsFactory"/> into the database
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="currentDate"></param>
+        /// <param name="i"></param>
+        /// <param name="ev"></param>
+        /// <param name="eventNode"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        private async Task SaveCustomTrackedEventsAsync(SavedEventsCommand request, DateTime currentDate, int i, EventRecord ev, IEventNode eventNode, CancellationToken cancellationToken)
+        {
+            var eventFound = _eventsFactory.TryFind(eventNode.Module, eventNode.Method);
+
+            // Is this event has to be insert in database ?
+            if (eventFound is null)
+            {
+                _logger.LogDebug("[{handler}][{module}][{method}] has no database event linked", nameof(SavedEventsHandler), eventNode.Module, eventNode.Method);
+                return;
+            }
+
+            _logger.LogDebug("[{handler}][{module}][{method}] is linked to database", nameof(SavedEventsHandler), eventNode.Module, eventNode.Method);
+            await InsertDatabaseAsync(request.BlockNumber, currentDate, (uint)i, ev, eventNode, eventFound, cancellationToken);
+        }
+
+        /// <summary>
+        /// Log event in the database to keep track of the last time it happen
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="eventNode"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        private async Task LogEventsAsync(SavedEventsCommand request, IEventNode eventNode, CancellationToken cancellationToken)
+        {
+            var moduleName = eventNode.Module.ToString();
+            var eventName = eventNode.Method.ToString();
+
+            await LogEventManagerAsync((int)request.BlockNumber.Value, (int)request.BlockNumber.Value, moduleName, eventName, cancellationToken);
+
+            //if (request.BlockNumber.Value % 1000 == 0)
+            //{
+            //    _logger.LogDebug("[{handler}] Block number {blockNum} % 1000. Insert events into '{tableName}' table.",
+            //        nameof(SavedEventsHandler), request.BlockNumber.Value, nameof(_dbContext.EventManager));
+            //        await LogEventManagerAsync(null, (int)request.BlockNumber.Value, moduleName, eventName, cancellationToken);
+            //}
         }
 
         /// <summary>
@@ -170,7 +228,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         }
 
         /// <summary>
-        /// Save events to the database
+        /// Save events into the database
         /// </summary>
         /// <param name="request"></param>
         /// <param name="currentDate"></param>
@@ -187,8 +245,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                                ev.Event.CoreType.Name,
                                Utils.Bytes2HexString(ev.Event.Core!.Encode()));
             }
-
-            _dbContext.EventsInformation.Add(new EventsInformationModel(
+            var entity = new EventsInformationModel(
                 _substrateService.BlockchainName,
                 request.BlockNumber.Value,
                currentDate,
@@ -196,7 +253,14 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                eventNode.Module.ToString(),
                eventNode.Method.ToString(),
           eventNode.ToJson()
-            ));
+            );
+
+            var aleadyExist = _dbContext.EventsInformation.FirstOrDefault(x => x.BlockchainName == entity.BlockchainName && x.EventId == entity.EventId && x.BlockId == entity.BlockId);
+
+            if (aleadyExist is null)
+                _dbContext.EventsInformation.Add(entity);
+            else
+                aleadyExist = entity;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
@@ -222,7 +286,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             var existingModel = _dbContext.EventManager
                 .FirstOrDefault(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent);
 
-            _logger.LogInformation("[{handler}][{method}] {typeOperation} {moduleName} {eventName}. Last scan {lastScan}, last occurrence = {lastOccurrence}", nameof(SavedEventsHandler), nameof(LogEventManagerAsync), existingModel is null ? "Insert" : "Update", moduleName, moduleEvent, lastOccurence?.ToString() ?? "never", lastScan);
+            _logger.LogDebug("[{handler}][{method}] {typeOperation} {moduleName} {eventName}. Last scan {lastScan}, last occurrence = {lastOccurrence}", nameof(SavedEventsHandler), nameof(LogEventManagerAsync), existingModel is null ? "Insert" : "Update", moduleName, moduleEvent, lastOccurence?.ToString() ?? "never", lastScan);
 
             if (existingModel == null)
             {
@@ -263,14 +327,15 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             var eventName = eventNode.Method.ToString();
             var blockchainName = _substrateService.BlockchainName;
 
-            var alreadyInserted = await _dbContext.EventManager
-                .FirstOrDefaultAsync(x =>
-                    x.BlockchainName == blockchainName &&
-                x.ModuleName == moduleName &&
-                x.ModuleEvent == eventName, cancellationToken);
+            //var alreadyInserted = await _dbContext.EventManager
+            //    .FirstOrDefaultAsync(x =>
+            //        x.BlockchainName == blockchainName &&
+            //    x.ModuleName == moduleName &&
+            //    x.ModuleEvent == eventName, cancellationToken);
 
-            if (alreadyInserted != null && alreadyInserted.LastOccurenceScannedBlockId >= blockNumber.Value)
-                return;
+            //// We are looping again, so no need to update this
+            //if (alreadyInserted != null && alreadyInserted.LastOccurenceScannedBlockId >= blockNumber.Value)
+            //    return;
 
             var databaseModel = new EventModel(
                 blockchainName,
@@ -288,17 +353,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 subEvent.GetValue2(),
             cancellationToken);
 
-            await LogEventManagerAsync((int)blockNumber.Value, (int)blockNumber.Value, moduleName, eventName, cancellationToken);
-
-            if (blockNumber.Value % 1000 == 0)
-            {
-                _logger.LogInformation("[{handler}] Block number {blockNum} % 1000. Insert events into '{tableName}' table.",
-                    nameof(SavedEventsHandler), blockNumber.Value, nameof(_dbContext.EventManager));
-                foreach (var mapped in _eventsFactory.Mapped)
-                {
-                    await LogEventManagerAsync(null, (int)blockNumber.Value, mapped.GetModule().moduleName, mapped.GetModule().moduleEvent, cancellationToken);
-                }
-            }
+            
 
             //await _dbContext.SaveChangesAsync(cancellationToken);
         }
