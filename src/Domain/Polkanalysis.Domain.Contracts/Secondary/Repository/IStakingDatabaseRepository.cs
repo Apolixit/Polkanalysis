@@ -33,6 +33,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 
         IEnumerable<(SubstrateAccount, Exposure)> GetValidatorsVotedByNominator(int eraId, SubstrateAccount nominatorAccount);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eraId">The Era number</param>
+        /// <param name="eraStakers">
+        ///     BaseTuple<U32, SubstrateAccount>, U32 is agaion EraId, SubstrateAccount is the validator address.
+        ///     Exposure is the validator exposure and nominators who voted for the validator
+        /// </param>
         void InsertEraStakers(U32 eraId, (BaseTuple<U32, SubstrateAccount>, Exposure) eraStakers);
     }
 }

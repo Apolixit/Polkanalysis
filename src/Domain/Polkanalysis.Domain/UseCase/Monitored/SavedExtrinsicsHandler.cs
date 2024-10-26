@@ -65,6 +65,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         public override async Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedExtrinsicsCommand request, CancellationToken cancellationToken)
         {
             var stopwatch = Stopwatch.StartNew();
+
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumber), cancellationToken);
 
             var (blockData, blockEvents, blockDate, metadata) = await WaiterHelper.WaitAndReturnAsync(
@@ -138,7 +139,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                         Date = blockDate,
                         ElementId = (uint)filteredExtrinsic.IndexOf(extrinsic),
                         TypeError = Infrastructure.Database.Contracts.Model.Errors.TypeErrorModel.Extrinsics,
-                        Message = $"Unable to decode extrinsic (index {extrinsicIndex}) from block {request.BlockNumber}"
+                        Message = $"Unable to decode extrinsic (index {extrinsicIndex}) from block {request.BlockNumber}. Exception : {ex.Message}"
                     });
 
                     await _db.SaveChangesAsync(cancellationToken);

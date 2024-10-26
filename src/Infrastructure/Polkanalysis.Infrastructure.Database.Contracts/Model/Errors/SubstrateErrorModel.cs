@@ -36,6 +36,8 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Errors
         Blocks,
         EventsDomain,
         EventsExt,
-        Extrinsics
+        Extrinsics,
+        EraStakers,
+        SpecVersion
     }
 }

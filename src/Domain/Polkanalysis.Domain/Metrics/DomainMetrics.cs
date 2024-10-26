@@ -3,6 +3,7 @@ using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.UseCase.Monitored;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Polkanalysis.Domain.Metrics
     /// <summary>
     /// Custom metrics exposed by the domain
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class DomainMetrics : IDomainMetrics
     {
         private Counter<int> CountEventsAnalyzed { get; set; }
@@ -22,6 +24,7 @@ namespace Polkanalysis.Domain.Metrics
         private Histogram<double> AverageTimeToAnalyzeExtrinsicsForEachBlock { get; set; }
         private Histogram<double> AverageTimeToAnalyzeBlocksForEachBlock { get; set; }
         private Histogram<double> AverageTimeToAnalyzeAFullBlockByWorker { get; set; }
+        private Histogram<double> AverageTimeToAnalyzeEraStakersByEra { get; set; }
 
         /// <summary>
         /// For unit i follow https://ucum.org/ucum for interoperability with Grafana, Prometheus and so on
@@ -71,6 +74,11 @@ namespace Polkanalysis.Domain.Metrics
                     "average_time_to_analyze_a_full_block_by_worker",
                     "ms",
                     $"Histogram of average time to analyze a full block by the background service");
+
+            AverageTimeToAnalyzeEraStakersByEra = meter.CreateHistogram<double>(
+                    "average_time_to_analyze_era_stakers_by_era",
+                    "ms",
+                    $"Histogram of average time to analyze the number of stakers for an era");
         }
 
         public void IncreaseAnalyzedEventsCount(string blockchainName) => CountEventsAnalyzed.Add(1, new KeyValuePair<string, object?>("blockchain", blockchainName));
@@ -79,7 +87,7 @@ namespace Polkanalysis.Domain.Metrics
         public void RecordAverageTimeToAnalyzeExtrinsicsForEachBlock(double value, string blockchainName) => AverageTimeToAnalyzeExtrinsicsForEachBlock.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
         public void RecordAverageTimeToAnalyzeBlocksForEachBlock(double value, string blockchainName) => AverageTimeToAnalyzeBlocksForEachBlock.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
         public void RecordAverageTimeToAnalyzeAFullBlockByWorker(double value, string blockchainName) => AverageTimeToAnalyzeAFullBlockByWorker.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
-
         public void RecordRatioBlockAnalyzed(double value, string blockchainName) => RatioOfBlockAnalyzedHistogram.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
+        public void RecordAverageTimeToAnalyzeStakersByEra(double value, string blockchainName) => AverageTimeToAnalyzeEraStakersByEra.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
     }
 }

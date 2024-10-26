@@ -61,43 +61,65 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedBlocksCommand request, CancellationToken cancellationToken)
         {
             var stopwatch = Stopwatch.StartNew();
-
-            var blockInfo = await _explorerService.GetBlockLightAsync(request.BlockNumber, cancellationToken);
             var blockDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
 
-            if (blockInfo.ValidatorAddress is null)
-                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Block number {request.BlockNumber} has no validator");
-
-            var alreadyExists = _db.BlockInformation.FirstOrDefault(x => x.BlockchainName == _substrateService.BlockchainName && x.BlockNumber == request.BlockNumber);
-
-            var entity = new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
+            try
             {
-                BlockchainName = _substrateService.BlockchainName,
-                BlockHash = blockInfo.Hash.Value,
-                BlockDate = blockDate,
-                BlockNumber = request.BlockNumber,
-                EventsCount = blockInfo.NbEvents,
-                ExtrinsicsCount = blockInfo.NbExtrinsics,
-                LogsCount = blockInfo.NbLogs,
-                ValidatorAddress = blockInfo.ValidatorAddress,
-                Justification = blockInfo.Justification
-            };
+                var blockInfo = await _explorerService.GetBlockLightAsync(request.BlockNumber, cancellationToken);
 
-            if (alreadyExists is null)
-                _db.BlockInformation.Add(entity);
-            else
-                alreadyExists = entity;
+                if (blockInfo.ValidatorAddress is null)
+                    return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Block number {request.BlockNumber} has no validator");
 
-            var nbRows = await _db.SaveChangesAsync();
-            if (nbRows != 1)
+                var alreadyExists = _db.BlockInformation.FirstOrDefault(x => x.BlockchainName == _substrateService.BlockchainName && x.BlockNumber == request.BlockNumber);
+
+                var entity = new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
+                {
+                    BlockchainName = _substrateService.BlockchainName,
+                    BlockHash = blockInfo.Hash.Value,
+                    BlockDate = blockDate,
+                    BlockNumber = request.BlockNumber,
+                    EventsCount = blockInfo.NbEvents,
+                    ExtrinsicsCount = blockInfo.NbExtrinsics,
+                    LogsCount = blockInfo.NbLogs,
+                    ValidatorAddress = blockInfo.ValidatorAddress,
+                    Justification = blockInfo.Justification
+                };
+
+                if (alreadyExists is null)
+                    _db.BlockInformation.Add(entity);
+                else
+                    alreadyExists = entity;
+
+                var nbRows = await _db.SaveChangesAsync();
+                if (nbRows != 1)
+                {
+                    return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Db rows are inconsistent. Should be 1 row inserted, but is {nbRows}");
+                }
+
+                stopwatch.Stop();
+                _logger.LogInformation("[{handler}] Sucessfully scan block number {blockNum} ({blockDate}) in {timeMs}ms", nameof(SavedBlocksHandler), request.BlockNumber, blockDate, stopwatch.Elapsed.TotalMilliseconds);
+
+                _domainMetrics.RecordAverageTimeToAnalyzeBlocksForEachBlock(stopwatch.Elapsed.TotalMilliseconds, _substrateService.BlockchainName);
+                
+            } catch(Exception ex)
             {
-                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Db rows are inconsistent. Should be 1 row inserted, but is {nbRows}");
+                _logger.LogError(ex, "[{handler}] Error while scanning block number {blockNum}", nameof(SavedBlocksHandler), request.BlockNumber);
+
+                _db.SubstrateErrors.Add(new Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel()
+                {
+                    BlockchainName = _substrateService.BlockchainName,
+                    BlockNumber = request.BlockNumber,
+                    Date = blockDate,
+                    ElementId = 0,
+                    TypeError = Infrastructure.Database.Contracts.Model.Errors.TypeErrorModel.Blocks,
+                    Message = $"Error while scanning block number {request.BlockNumber}. Exception : {ex.Message}"
+                });
+
+                await _db.SaveChangesAsync(cancellationToken);
+
+                return UseCaseError(ErrorResult.ErrorType.BusinessError, ex.Message);
             }
 
-            stopwatch.Stop();
-            _logger.LogInformation("[{handler}] Sucessfully scan block number {blockNum} ({blockDate}) in {timeMs}ms", nameof(SavedBlocksHandler), request.BlockNumber, blockDate, stopwatch.Elapsed.TotalMilliseconds);
-
-            _domainMetrics.RecordAverageTimeToAnalyzeBlocksForEachBlock(stopwatch.Elapsed.TotalMilliseconds, _substrateService.BlockchainName);
             return Helpers.Ok(true);
         }
     }

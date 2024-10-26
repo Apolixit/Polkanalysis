@@ -71,7 +71,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
         {
             int lastId = 0;
             if (_substrateDbContext.EraStakersModels.Any())
-                lastId = _substrateDbContext.EraStakersModels.Last().EraStakersId;
+                lastId = _substrateDbContext.EraStakersModels.Last().Id;
 
             var initialCount = _substrateDbContext.EraStakersModels.Count();
 
@@ -110,7 +110,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
             Assert.That(_substrateDbContext.EraStakersModels.Count(), Is.EqualTo(initialCount + 1));
 
             var lastEraStaker = _substrateDbContext.EraStakersModels.Last();
-            Assert.That(lastEraStaker.EraStakersId, Is.EqualTo(lastId + 1));
+            Assert.That(lastEraStaker.Id, Is.EqualTo(lastId + 1));
 
             Assert.That(lastEraStaker.BlockchainName, Is.EqualTo("Polkadot"));
             Assert.That(lastEraStaker.EraId, Is.EqualTo(eraId));

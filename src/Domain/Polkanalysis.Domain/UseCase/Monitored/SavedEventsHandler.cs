@@ -113,7 +113,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                     eventNode = await _substrateDecode.DecodeEventAsync(ev, metadata, cancellationToken);
                 } catch(Exception ex)
                 {
-                    _logger.LogError(ex, "Unable to decode event from block {blockNum} event num {eventNum}", request.BlockNumber, i);
+                    _logger.LogError(ex, "[{handler}] Unable to decode event from block {blockNum} event num {eventNum}", nameof(SavedEventsHandler), request.BlockNumber, i);
                     continue;
                 }
 
@@ -136,10 +136,14 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 catch (DbUpdateException ex)
                 {
                     _logger.LogError(ex, "[{handler}][Block {blockNum}][Event {eventIndex}] EntityFramework exception. {message}", nameof(SavedEventsHandler), request.BlockNumber, i, ex.Message);
+
+                    return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Database exception to events associated to block num {request.BlockNumber}", ErrorResult.ErrorCriticity.Medium);
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "[{handler}] Unable to successfully decode event index {eventIndex} from block {blockNum}. Event value = ({eventHex}). Ratio = {ratio}", nameof(SavedEventsHandler), i, request.BlockNumber, Utils.Bytes2HexString(ev.Bytes), ratio);
+
+                    return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Unable to successfully decode event to block num {request.BlockNumber}", ErrorResult.ErrorCriticity.Medium);
                 }
             }
 
@@ -238,7 +242,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         {
             if (!ev.Event.HasBeenMapped)
             {
-                _logger.LogWarning("[{handler}] Event index {eventIndex} from block {blockNumber} has not been mapped, please check the mapper (core type / value : {eventCoreType} / {eventHex})",
+                _logger.LogDebug("[{handler}] Event index {eventIndex} from block {blockNumber} has not been mapped, please check the mapper (core type / value : {eventCoreType} / {eventHex})",
                                nameof(SavedEventsHandler),
                                i,
                                request.BlockNumber,

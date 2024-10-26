@@ -39,6 +39,13 @@ namespace Polkanalysis.Domain.Contracts.Metrics
         void RecordAverageTimeToAnalyzeExtrinsicsForEachBlock(double value, string blockchainName);
 
         /// <summary>
+        /// Average time to analyse Era stakers
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="blockchainName"></param>
+        void RecordAverageTimeToAnalyzeStakersByEra(double value, string blockchainName);
+
+        /// <summary>
         /// Ratio of analyzed events per block
         /// </summary>
         /// <param name="value"></param>

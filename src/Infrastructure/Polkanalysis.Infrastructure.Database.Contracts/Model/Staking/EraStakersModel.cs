@@ -11,7 +11,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
 {
     public class EraStakersModel : BlockchainModel
     {
-        public int EraStakersId { get; set; }
+        //public int EraStakersId { get; set; }
 
         public int EraId { get; set; }
         public string ValidatorAddress { get; set; } = string.Empty;

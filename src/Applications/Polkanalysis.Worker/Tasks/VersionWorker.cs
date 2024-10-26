@@ -45,7 +45,7 @@ namespace Polkanalysis.Worker.Tasks
             var lastStoredVersion = storedVersions.Value.LastOrDefault();
             uint? lastStoredVersionNum = storedVersions.Value.LastOrDefault()?.SpecVersion;
             var lastBlockNum = await _polkadotService.Storage.System.NumberAsync(cancellationToken);
-            currentBlock = storedVersions.Value.LastOrDefault()?.BlockStart ?? 0;
+            currentBlock = storedVersions.Value.LastOrDefault()?.BlockStart ?? 1;
 
             if (lastStoredVersion != null)
             {
@@ -61,8 +61,8 @@ namespace Polkanalysis.Worker.Tasks
                 {
                     lastStoredVersionNum = runtimeVersion.SpecVersion;
 
-                    _logger.LogInformation("[{workerName}] New runtime upgrade num {specVersion} at block {blockNum}", nameof(VersionWorker), runtimeVersion.SpecVersion, i);
-                    await UpgradeVersionAsync(lastStoredVersionNum.Value, i, cancellationToken);
+                    _logger.LogInformation("[{workerName}] New runtime upgrade. Version {specVersion} at block {blockNum}", nameof(VersionWorker), runtimeVersion.SpecVersion, i);
+                    await UpgradeVersionAsync(lastStoredVersionNum.Value, i, blockHash, cancellationToken);
                 }
                 else
                 {
@@ -77,17 +77,13 @@ namespace Polkanalysis.Worker.Tasks
         }
 
         private async Task UpgradeVersionAsync(
-            uint lastStoredVersionNum, uint blockStartNumber, CancellationToken cancellationToken)
+            uint lastStoredVersionNum, uint blockStartNumber, Substrate.NetApi.Model.Types.Base.Hash blockHash, CancellationToken cancellationToken)
         {
-            var dbRes = await _mediator.Send(new SpecVersionCommand()
-            {
-                SpecVersion = lastStoredVersionNum,
-                BlockStart = blockStartNumber
-            }, cancellationToken);
+            var dbRes = await _mediator.Send(new SpecVersionCommand(lastStoredVersionNum, blockStartNumber, blockHash), cancellationToken);
 
             if (dbRes.IsSuccess)
             {
-                _logger.LogInformation("[{workerName}] New runtime successfully inserted in database", nameof(VersionWorker));
+                _logger.LogDebug("[{workerName}] New runtime successfully inserted in database", nameof(VersionWorker));
 
                 // Now let's insert pallet version
                 await _mediator.Send(new PalletVersionCommand()
@@ -108,8 +104,9 @@ namespace Polkanalysis.Worker.Tasks
                 _logger.LogInformation("[{workerName}] New Runtime upgrade ! Runtime spec name {specName} /  Runtime spec version {specVersion}", nameof(VersionWorker), lastRuntimeUpgradeInfo.SpecName, lastRuntimeUpgradeInfo.SpecVersion);
 
                 var blockData = await _polkadotService.Rpc.Chain.GetBlockAsync(cancellationToken);
+                var blockHash = await _polkadotService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber((uint)blockData.GetBlock().Header.Number.Value), cancellationToken);
 
-                await UpgradeVersionAsync(lastRuntimeUpgradeInfo.SpecVersion.Value, (uint)blockData.GetBlock().Header.Number.Value, cancellationToken);
+                await UpgradeVersionAsync(lastRuntimeUpgradeInfo.SpecVersion.Value, (uint)blockData.GetBlock().Header.Number.Value, blockHash, cancellationToken);
             }, cancellationToken);
         }
     }

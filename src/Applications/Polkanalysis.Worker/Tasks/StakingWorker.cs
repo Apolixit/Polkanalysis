@@ -73,11 +73,7 @@ namespace Polkanalysis.Worker.Tasks
             {
                 _logger.LogInformation("[{workerName}] New Era {eraId} just started at {datetimeNow}", nameof(StakingWorker), eraId.Value, DateTime.Now);
 
-                await _mediator.Send(new EraStakersCommand()
-                {
-                    EraId = eraId.Value
-                }, cancellationToken);
-
+                await RequestEraInternalAsync(eraId.Value, cancellationToken);
             }, cancellationToken);
         }
 
@@ -87,20 +83,30 @@ namespace Polkanalysis.Worker.Tasks
 
             for (uint i = _eraPerimeter.From; i <= _eraPerimeter.To; i++)
             {
+                await RequestEraInternalAsync(i, cancellationToken);
+            }
+        }
+
+        private async Task RequestEraInternalAsync(uint eraId, CancellationToken cancellationToken)
+        {
+            try
+            {
                 var res = await _mediator.Send(new EraStakersCommand()
                 {
-                    EraId = i,
-                    OverrideIfAlreadyExist = _eraPerimeter.OverrideIfAlreadyExists
+                    EraId = eraId,
                 }, cancellationToken);
 
-                if(res.IsSuccess)
+                if (res.IsSuccess)
                 {
-                    _logger.LogInformation("[{workerName}] [EraStakersCommand] Era {eraId} stakers successfully inserted in database", nameof(StakingWorker), i);
+                    _logger.LogInformation("[{workerName}] [EraStakersCommand] Era {eraId} stakers successfully inserted in database", nameof(StakingWorker), eraId);
                 }
                 else
                 {
-                    _logger.LogWarning("[{workerName}] [EraStakersCommand] Era {eraId} fail to insert", nameof(StakingWorker), i);
+                    _logger.LogWarning("[{workerName}] [EraStakersCommand failed] Era {eraId} {message}", nameof(StakingWorker), eraId, res.Error.Description);
                 }
+            }    catch(Exception ex)
+            {
+                _logger.LogWarning(ex, "[{workerName}] [EraStakersCommand failed] Era {eraId}", nameof(StakingWorker), eraId);
             }
         }
     }

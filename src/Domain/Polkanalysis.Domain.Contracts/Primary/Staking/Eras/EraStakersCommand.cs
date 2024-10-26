@@ -13,6 +13,5 @@ namespace Polkanalysis.Domain.Contracts.Primary.Staking.Eras
     public class EraStakersCommand : IRequest<Result<bool, ErrorResult>>
     {
         public uint EraId { get; set; }
-        public bool OverrideIfAlreadyExist { get; set; }
     }
 }

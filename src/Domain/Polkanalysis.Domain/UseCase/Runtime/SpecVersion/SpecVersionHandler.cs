@@ -16,6 +16,7 @@ using Substrate.NET.Metadata.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.UseCase.Runtime.PalletVersion;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
@@ -90,8 +91,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SpecVersionCommand request, CancellationToken cancellationToken)
         {
-            var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart), cancellationToken);
-            var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(startBlockHash.Bytes, cancellationToken);
+            var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(request.BlockHash.Bytes, cancellationToken);
 
             if (string.IsNullOrEmpty(metadataTarget))
                 throw new InvalidOperationException($"Metadata from block {request.BlockStart} is empty...");
@@ -103,14 +103,16 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
                 return true;
             }
 
-            var metadataInfo = new CheckRuntimeMetadata(metadataTarget);
+            var date = await _coreService.GetDateTimeFromTimestampAsync(request.BlockStart, cancellationToken);
 
+            var metadataInfo = new CheckRuntimeMetadata(metadataTarget);
+            
             var model = new SpecVersionModel()
             {
                 BlockchainName = _substrateService.BlockchainName,
                 SpecVersion = request.SpecVersion,
                 BlockStart = request.BlockStart,
-                BlockStartDateTime = await _coreService.GetDateTimeFromTimestampAsync(request.BlockStart, cancellationToken),
+                BlockStartDateTime = date,
                 BlockEnd = null,
                 BlockEndDateTime = null,
                 MetadataVersion = metadataInfo.MetaDataInfo.Version.Value,
@@ -119,7 +121,8 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
             await _dbContext.AddAsync(model, cancellationToken);
 
             // Update the last version if exist
-            if(_dbContext.SpecVersionModels.Any(x => (x.BlockchainName == _substrateService.BlockchainName) && (x.BlockEnd == null)))
+            bool hasPreviousVersion = _dbContext.SpecVersionModels.Any(x => (x.BlockchainName == _substrateService.BlockchainName) && (x.BlockEnd == null));
+            if (hasPreviousVersion)
             {
                 var lastVersion = _dbContext.SpecVersionModels.Where(x => (x.BlockchainName == _substrateService.BlockchainName) && (x.BlockEnd == null)).Single();
                 lastVersion.BlockEnd = request.BlockStart - 1;
@@ -127,8 +130,9 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
             }
 
             var nbRows = _dbContext.SaveChanges();
-            if (nbRows != 1)
-                throw new InvalidOperationException("Inserted rows are inconsistent");
+            var nbRowsExpected = 1 + (hasPreviousVersion ? 1 : 0);
+            if (nbRows != nbRowsExpected)
+                _logger.LogWarning("[{handler}] Inserted rows are inconsistent. Expected {expectedResult} but was {result}", nameof(SpecVersionHandler), nbRowsExpected, nbRows);
 
             return true;
         }
