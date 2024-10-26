@@ -7,6 +7,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
     {
         public BaseCom<U128> Total { get; set; }
         public BaseCom<U128> Own { get; set; }
+
+        /// <summary>
+        /// Nominators
+        /// </summary>
         public BaseVec<IndividualExposure>? Others { get; set; }
         public U32 NominatorCount { get; set; }
         public U32? PageCount { get; set; }

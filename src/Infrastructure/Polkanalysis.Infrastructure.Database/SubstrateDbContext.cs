@@ -241,8 +241,8 @@ namespace Polkanalysis.Infrastructure.Database
 
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });
 
-            modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.EraStakersId, c.BlockchainName, c.EraId, c.ValidatorAddress });
-            modelBuilder.Entity<EraStakersModel>().Property(c => c.EraStakersId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.BlockchainName, c.EraId, c.ValidatorAddress });
+            //modelBuilder.Entity<EraStakersModel>().Property(c => c.EraStakersId).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<EraStakersNominatorsModel>(table =>
             {
@@ -252,7 +252,7 @@ namespace Polkanalysis.Infrastructure.Database
                     .HasOne(c => c.EraStakers)
                     .WithMany(c => c.EraNominatorsVote)
                     .HasForeignKey("EraStakersId")
-                    .HasPrincipalKey(c => c.EraStakersId)
+                    .HasPrincipalKey(c => c.Id)
                     .OnDelete(DeleteBehavior.Cascade);
             });
             modelBuilder.Entity<EraStakersNominatorsModel>().HasKey("EraStakersId", "NominatorAddress");

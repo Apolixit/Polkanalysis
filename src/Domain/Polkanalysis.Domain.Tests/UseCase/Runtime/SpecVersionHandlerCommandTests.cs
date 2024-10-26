@@ -40,11 +40,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         [Test]
         public async Task SpecVersionHandlerCommand_InsertNewSpecVersion_ShouldSuceedAsync()
         {
-            var res = await _useCase!.HandleInnerAsync(new SpecVersionCommand()
-            {
-                SpecVersion = 1_000,
-                BlockStart = 10000
-            }, CancellationToken.None);
+            var res = await _useCase!.HandleInnerAsync(new SpecVersionCommand(1_000, 10_000, MockHash), CancellationToken.None);
 
             Assert.That(res.IsSuccess, Is.True);
 

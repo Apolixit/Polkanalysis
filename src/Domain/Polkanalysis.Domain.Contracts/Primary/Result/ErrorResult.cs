@@ -18,7 +18,8 @@ namespace Polkanalysis.Domain.Contracts.Primary.Result
             InvalidParam,
             EmptyModel,
             BusinessError,
-            NoNeedToProcess
+            NoNeedToProcess,
+            Validation,
         }
 
         public enum ErrorCriticity

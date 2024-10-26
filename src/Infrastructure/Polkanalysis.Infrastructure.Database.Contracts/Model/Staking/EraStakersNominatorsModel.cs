@@ -37,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
             return obj is EraStakersNominatorsModel model &&
                    NominatorAddress == model.NominatorAddress &&
                    ValueStake.Equals(model.ValueStake) &&
-                   EraStakers.EraStakersId == model.EraStakers.EraStakersId;
+                   EraStakers.Id == model.EraStakers.Id;
         }
 
         public override int GetHashCode()

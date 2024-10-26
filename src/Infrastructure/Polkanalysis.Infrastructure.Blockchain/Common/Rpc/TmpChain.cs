@@ -73,17 +73,28 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common.Rpc
             var fullParams = new object[] { string.IsNullOrEmpty(parameter) ? null : parameter };
             var metadataHex = await _client.InvokeAsync<string>("state_getMetadata", fullParams, token);
 
+            if (metadataHex is null)
+                throw new InvalidOperationException($"Impossible to get state_getMetadata from hash {parameter}");
+
             MetaData metadata = _getMetadataFromHex(metadataHex);
             SignedExtensionMetadata[]? signedExtensions = metadata.NodeMetadata.Extrinsic.SignedExtensions;
 
-            if (signedExtensions is not null && signedExtensions.Any(x => x.SignedIdentifier == "CheckMetadataHash"))
+            var hasCheckMetadataHash = signedExtensions is not null && signedExtensions.Any(x => x.SignedIdentifier == "CheckMetadataHash");
+            try
             {
-                return await _client.InvokeAsync<TempNewBlockData>("chain_getBlock", new object[] { parameter }, token);
-            }
-            else
+                if (hasCheckMetadataHash)
+                {
+                    return await _client.InvokeAsync<TempNewBlockData>("chain_getBlock", new object[] { parameter }, token);
+                }
+                else
+                {
+                    return await _client.InvokeAsync<TempOldBlockData>("chain_getBlock", new object[] { parameter }, token);
+                }
+            } catch(Exception ex)
             {
-                return await _client.InvokeAsync<TempOldBlockData>("chain_getBlock", new object[] { parameter }, token);
+                throw new InvalidOperationException($"Error while fetching 'chain_getBlock'. Hash = {parameter} | metadataHex = {metadataHex.Substring(0, 10)}... | hasCheckMetadataHash = {hasCheckMetadataHash}", ex);
             }
+            
         }
 
         /// <inheritdoc/>
