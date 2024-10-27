@@ -69,18 +69,15 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
     {
         private readonly SubstrateDbContext _dbContext;
         private readonly ISubstrateService _substrateService;
-        private readonly IDomainMetrics _domainMetrics;
 
         public PalletVersionCommandHandler(
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
             ILogger<PalletVersionCommandHandler> logger,
-            IDistributedCache cache,
-            IDomainMetrics domainMetrics) : base(logger, cache)
+            IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;
-            _domainMetrics = domainMetrics;
         }
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(PalletVersionCommand request, CancellationToken cancellationToken)
