@@ -97,7 +97,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
                         // We have to do another call to get the nominators...
                         _stakingDatabaseRepository.InsertEraStakers(eraId, (new BaseTuple<U32, SubstrateAccount>(tupleEraIdValidatorExposure.Item1.Value[0].As<U32>(), validatorAccount), exposure));
 
-                        _logger.LogDebug("The tuple (Era {eraId}, ValidatorAddress = {validatorAccount}) linked to {count} nominators successfully inserted in database", eraId.Value, validatorAccount.ToPolkadotAddress(), exposure.Others!.Value!.Length);
+                        _logger.LogInformation("The tuple (Era {eraId}, ValidatorAddress = {validatorAccount}) linked to {count} nominators successfully inserted in database", eraId.Value, validatorAccount.ToPolkadotAddress(), exposure.Others!.Value!.Length);
                     }
                 }
 

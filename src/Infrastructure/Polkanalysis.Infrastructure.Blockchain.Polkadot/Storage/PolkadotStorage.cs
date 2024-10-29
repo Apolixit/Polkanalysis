@@ -7,7 +7,6 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.IdentityMigration;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParachainInfo;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras;
@@ -232,8 +231,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
                 return _timestampStorage;
             }
         }
-
-        public IIdentityMigrationStorage IdentityMigration => throw new NotImplementedException();
 
         public IParachainInfoStorage ParachainInfo => throw new NotImplementedException();
     }

@@ -404,15 +404,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
         public string CategoryName { get; set; }
         public IList<IMappingElement> Mapping { get; set; }
 
-        public EventDetailsResult ToEventDetailsResult(dynamic input, IMappingElement mapping)
-        {
-            return new EventDetailsResult()
-            {
-                Title = CategoryName,
-                ComponentName = $"Component_{mapping.ObjectType.Name}",
-                Value = mapping.ToHuman(input)
-            };
-        }
+        //public EventDetailsResult ToEventDetailsResult(dynamic input, IMappingElement mapping)
+        //{
+        //    return new EventDetailsResult()
+        //    {
+        //        Title = CategoryName,
+        //        ComponentName = $"Component_{mapping.ObjectType.Name}",
+        //        Value = mapping.ToHuman(input)
+        //    };
+        //}
 
     }
 }

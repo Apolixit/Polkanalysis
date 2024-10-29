@@ -35,6 +35,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
     {
         private IExplorerService _explorerService;
         private ISubstrateDecoding _substrateDecoding;
+        private ICoreService _coreService;
 
         [SetUp]
         public void Setup()
@@ -42,6 +43,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _logger = Substitute.For<ILogger<SavedExtrinsicsHandler>>();
             _explorerService = Substitute.For<IExplorerService>();
             _substrateDecoding = Substitute.For<ISubstrateDecoding>();
+            _coreService = Substitute.For<ICoreService>();
 
             //_explorerService.GetBlockLightAsync(Arg.Any<uint>(), Arg.Any<CancellationToken>()).Returns(
             //    new Contracts.Dto.Block.BlockLightDto()
@@ -64,6 +66,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             //    });
 
             _substrateService.BlockchainName.Returns("Polkadot");
+            _substrateService.At(Arg.Any<Hash>()).GetMetadataAsync(CancellationToken.None).ReturnsNull();
 
             _useCase = new SavedExtrinsicsHandler(_substrateService,
                                               _explorerService,
@@ -71,7 +74,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _logger,
                                               Substitute.For<IDistributedCache>(),
                                               _substrateDecoding, 
-                                              Substitute.For<ICoreService>(),
+                                              _coreService,
                                               Substitute.For<IDomainMetrics>());
         }
 
@@ -118,6 +121,15 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                 new BaseVec<EventRecord>([killedAccountEvent])
             );
 
+            _substrateDecoding.DecodeExtrinsicAsync(mockExtrinsic, metadata: null!, CancellationToken.None).Returns(new GenericNode()
+            {
+                Name = "Timestamp",
+                Children = new List<INode>([ new GenericNode()
+                {
+                    Name = "set"
+                }])
+            });
+
             _explorerService.GetExtrinsicsStatusAsync(Arg.Any<EventRecord[]>(), Arg.Any<int>(), CancellationToken.None).Returns(Contracts.Dto.Extrinsic.ExtrinsicStatusDto.Success());
             _explorerService.GetExtrinsicsFeesAsync(Arg.Any<EventRecord[]>(), Arg.Any<int>(), CancellationToken.None).ReturnsNull();
             _explorerService.GetExtrinsicsLifetimeAsync(Arg.Any<uint>(), mockExtrinsic, CancellationToken.None).Returns(new Contracts.Dto.Extrinsic.LifetimeDto()
@@ -131,17 +143,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         }
 
         [Test]
-        public async Task SavedBlocksHandler_WithValidData_ShouldSucceedAsync()
+        public async Task SavedExtrinsicsHandler_WithValidData_ShouldSucceedAsync()
         {
             var mockExtrinsic = standardExtrinsicMock();
-            _substrateDecoding.DecodeExtrinsicAsync(mockExtrinsic, Arg.Any<Hash>(), CancellationToken.None).Returns(new GenericNode()
-            {
-                Name = "Timestamp",
-                Children = new List<INode>([ new GenericNode()
-                {
-                    Name = "set"
-                }])
-            });
 
             var command = new SavedExtrinsicsCommand(1);
 
@@ -155,10 +159,10 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         }
 
         [Test]
-        public async Task SavedBlocksHandler_WithDecodedError_ShouldLogAndFailAsync()
+        public async Task SavedExtrinsicsHandler_WithDecodedError_ShouldLogAndFailAsync()
         {
             var mockExtrinsic = standardExtrinsicMock();
-            _substrateDecoding.DecodeExtrinsicAsync(mockExtrinsic, Arg.Any<Hash>(), CancellationToken.None).ThrowsAsync<Exception>();
+            _substrateDecoding.DecodeExtrinsicAsync(mockExtrinsic, metadata: null!, CancellationToken.None).ThrowsAsync<Exception>();
 
             var command = new SavedExtrinsicsCommand(1);
 
@@ -171,6 +175,26 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             Assert.That(firstDb.TypeError, Is.EqualTo(TypeErrorModel.Extrinsics));
         }
 
-        
+        [Test]
+        public async Task SavedExtrinsicsHandler_WithAlreadyInsertedData_ShouldUpdateAsync()
+        {
+            var mockExtrinsic = standardExtrinsicMock();
+
+            _coreService.GetDateTimeFromTimestampAsync(1, CancellationToken.None).Returns(new DateTime(2024, 01, 01));
+            Assert.That(_substrateDbContext.ExtrinsicsInformation.SingleOrDefault(x => x.BlockNumber == 1), Is.Null);
+            
+            var command = new SavedExtrinsicsCommand(1);
+            var result = await _useCase!.Handle(command, CancellationToken.None);
+            Assert.That(result.IsSuccess, Is.True);
+            Assert.That(_substrateDbContext.ExtrinsicsInformation.SingleOrDefault(x => x.BlockNumber == 1), Is.Not.Null);
+            Assert.That(_substrateDbContext.ExtrinsicsInformation.First().BlockDate, Is.EqualTo(new DateTime(2024, 01, 01)));
+
+            // Let's record another date
+            _coreService.GetDateTimeFromTimestampAsync(1, CancellationToken.None).Returns(new DateTime(2024, 02, 02));
+            result = await _useCase!.Handle(command, CancellationToken.None);
+            Assert.That(result.IsSuccess, Is.True);
+            Assert.That(_substrateDbContext.ExtrinsicsInformation.SingleOrDefault(x => x.BlockNumber == 1), Is.Not.Null);
+            Assert.That(_substrateDbContext.ExtrinsicsInformation.First().BlockDate, Is.EqualTo(new DateTime(2024, 02, 02)));
+        }
     }
 }

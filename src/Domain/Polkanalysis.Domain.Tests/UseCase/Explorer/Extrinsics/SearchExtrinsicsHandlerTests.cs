@@ -52,6 +52,10 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
             var res = await _useCase!.Handle(new SearchExtrinsicsQuery(), CancellationToken.None);
 
             Assert.That(res.IsSuccess, Is.True);
+
+            var results = res.Value.ToList();
+            Assert.That(results, Has.Count.EqualTo(1));
+            Assert.That(results[0].BlockNumber, Is.EqualTo(1));
         }
     }
 }

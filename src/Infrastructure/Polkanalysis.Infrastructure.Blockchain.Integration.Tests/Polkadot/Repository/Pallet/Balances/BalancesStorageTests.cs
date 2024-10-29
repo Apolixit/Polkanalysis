@@ -23,9 +23,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res, Is.Not.Null);
         }
 
-        [Test, Ignore(NoTestCase)]
+        [Test, Ignore("Todo debug")]
         //[TestCase("13UVJyLnbVp77Z2t6qvevjrhAHvhXzEKzVRLFA8VLSMjLCw7")]
-        //[Test]
         [TestCase(22422694, "16DKyH4fggEXeGwCytqM19e9NFGkgR2neZPDJ5ta8BKpPbPK")]
         [TestCase(22622775, "13giQQe5CS4AAjkz1roun8NYUmZAQ2KYp32qTnJHLTcw4VxW")]
         [TestCase(1, "12H7nsDUrJUSCQQJrTKAFfyCWSactiSdjoVUixqcd9CZHTGt")]

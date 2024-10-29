@@ -10,6 +10,7 @@ namespace Polkanalysis.Domain.Tests.Abstract
         protected SubstrateDbContext _substrateDbContext;
 
         protected static Hash MockHash = new Hash("0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a90");
+        protected static Hash MockHash2 = new Hash("0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a91");
 
         protected void PopulateDatabaseWithSomeEvents()
         {

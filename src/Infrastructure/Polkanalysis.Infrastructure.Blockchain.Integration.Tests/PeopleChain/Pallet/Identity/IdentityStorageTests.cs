@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain.Pallet.Identity
 {
-    internal class IdentityStorageTest : PeopleChainIntegrationTests
+    internal class IdentityStorageTests : PeopleChainIntegrationTests
     {
         [Test]
         [TestCase(504300, "14Xh9F14w9GPwprsytsXd9nCpf9VvjAUTg5Mj7zN2SU8RBDj")]
@@ -52,6 +53,36 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain.P
         public async Task Registrars_ShouldWorkAsync(int blockNum)
         {
             var res = await _substrateRepository.At(blockNum).Storage.Identity.RegistrarsAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        [TestCase(639400, "152Rg99tAkt8BM3H9VcV88dxWys2WpZQ8r3LuVyAUozmzcv7")]
+        public async Task UsernameAuthorities_ShouldWorkAsync(int blockNum, string account)
+        {
+            var res = await _substrateRepository.At(blockNum).Storage.Identity.UsernameAuthoritiesAsync(new SubstrateAccount(account), CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Allocation.Value, Is.EqualTo(1_000_000));
+            Assert.That(res.SuffixStr, Is.EqualTo("dot"));
+            
+        }
+
+        [Test, Ignore("No test case")]
+        [TestCase(1)]
+        public async Task AccountOfUsername_ShouldWorkAsync(int blockNum)
+        {
+            var res = await _substrateRepository.At(blockNum).Storage.Identity.AccountOfUsernameAsync(new BaseVec<U8>() { }, CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test, Ignore("No test case")]
+        [TestCase(1)]
+        public async Task PendingUsernames_ShouldWorkAsync(int blockNum)
+        {
+            var res = await _substrateRepository.At(blockNum).Storage.Identity.PendingUsernamesAsync(new BaseVec<U8>() { }, CancellationToken.None);
+
             Assert.That(res, Is.Not.Null);
         }
     }

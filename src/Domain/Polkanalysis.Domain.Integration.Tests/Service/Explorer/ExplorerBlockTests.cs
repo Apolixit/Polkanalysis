@@ -32,6 +32,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             var extrinsicStatus = await _explorerRepository.GetExtrinsicsStatusAsync(events, extrinsicId, CancellationToken.None);
 
             Assert.That(extrinsicStatus.Status, Is.EqualTo(Contracts.Dto.Extrinsic.ExtrinsicStatusDto.ExtrinsicStatus.Failed));
+            Assert.That(extrinsicStatus.Message, Is.Not.Empty);
         }
 
         [Test]

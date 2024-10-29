@@ -1,9 +1,11 @@
 ﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Scan.Mapping
 {
+    [ExcludeFromCodeCoverage]
     internal class ScanMappingResult
     {
         public ScanMappingResult(Type sourceClass)

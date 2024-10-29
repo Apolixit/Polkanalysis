@@ -24,6 +24,8 @@ using NSubstitute.ExceptionExtensions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using System.Diagnostics;
+using Substrate.NetApi.Model.Meta;
+using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -51,6 +53,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _substrateService.BlockchainName.Returns("Polkadot");
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), CancellationToken.None).Returns(MockHash);
             _coreService.GetDateTimeFromTimestampAsync(MockHash, CancellationToken.None).Returns(new DateTime(2024, 1, 1));
+            _substrateService.At(Arg.Any<Hash>()).GetMetadataAsync(CancellationToken.None).ReturnsNull();
 
             _useCase = new SavedEventsHandler(_substrateService,
                                               _eventsFactory,
@@ -207,10 +210,10 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             EventRecord codeUpdatedtEvent = buildCodeUpdatedEvent();
             IEventNode codeUpdateNode = buildCodeUpdatedNode();
 
-            _substrateDecoding.DecodeEventAsync(codeUpdatedtEvent, CancellationToken.None).Returns(codeUpdateNode);
+            _substrateDecoding.DecodeEventAsync(codeUpdatedtEvent, null!, CancellationToken.None).Returns(codeUpdateNode);
 
             // No events
-            _substrateService.At(Arg.Any<BlockNumber>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
+            _substrateService.At(Arg.Any<Hash>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
                 new BaseVec<EventRecord>([codeUpdatedtEvent])    
             );
 
@@ -232,7 +235,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         public async Task SavedEventHandler_WithErrorInApiExt_ShouldLogAndFailAsync()
         {
             // No events
-            _substrateService.At(Arg.Any<BlockNumber>()).Storage.System.EventsAsync(CancellationToken.None).ThrowsAsync(new Exception("Error"));
+            _substrateService.At(MockHash).Storage.System.EventsAsync(CancellationToken.None).ThrowsAsync(new Exception("Error"));
             _substrateService.Rpc.State.GetRuntimeVersionAsync(MockHash, CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion() { SpecVersion = 10 });
             _substrateService.NetApiExtAssembly.Returns("Polkanalysis.Polkadot.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
 
@@ -256,11 +259,11 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             IEventNode newAccountNode = buildNewAccountNode();
 
 
-            _substrateService.At(Arg.Any<BlockNumber>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
+            _substrateService.At(Arg.Any<Hash>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
                 new BaseVec<EventRecord>([killedAccountEvent, newAccountEvent]));
 
-            _substrateDecoding.DecodeEventAsync(killedAccountEvent, CancellationToken.None).Returns(killedAccountNode);
-            _substrateDecoding.DecodeEventAsync(newAccountEvent, CancellationToken.None).Returns(newAccountNode);
+            _substrateDecoding.DecodeEventAsync(killedAccountEvent, null!, CancellationToken.None).Returns(killedAccountNode);
+            _substrateDecoding.DecodeEventAsync(newAccountEvent, null!, CancellationToken.None).Returns(newAccountNode);
 
             var command = new SavedEventsCommand(new BlockNumber(1));
 
@@ -272,11 +275,38 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             Assert.That(result.IsSuccess, Is.True);
 
             Assert.That(_substrateDbContext.EventSystemKilledAccount.Count(), Is.EqualTo(1));
-            Assert.That(_substrateDbContext.EventManager.Count(), Is.EqualTo(1));
+            Assert.That(_substrateDbContext.EventManager.Count(), Is.EqualTo(2));
 
             var dbEvent = _substrateDbContext.EventManager.Single(x => x.ModuleEvent == "KilledAccount");
             Assert.That(dbEvent.LastScanBlockId, Is.EqualTo(1));
             Assert.That(dbEvent.LastOccurenceScannedBlockId, Is.EqualTo(1));
+        }
+
+        [Test]
+        public async Task SavedEventHandler_WithAlreadyInsertedData_ShouldUpdateAsync()
+        {
+            EventRecord killedAccountEvent = buildKilledAccountEvent();
+            IEventNode killedAccountNode = buildKilledAccountNode();
+
+            _substrateService.At(Arg.Any<Hash>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
+                new BaseVec<EventRecord>([killedAccountEvent]));
+
+            _substrateDecoding.DecodeEventAsync(killedAccountEvent, null!, CancellationToken.None).Returns(killedAccountNode);
+
+            var command = new SavedEventsCommand(new BlockNumber(1));
+            var result = await _useCase!.Handle(command, CancellationToken.None);
+            
+            Assert.That(result.IsSuccess);
+            Assert.That(_substrateDbContext.EventsInformation.Count(), Is.EqualTo(1));
+            Assert.That(_substrateDbContext.EventsInformation.First().BlockDate, Is.EqualTo(new DateTime(2024, 1, 1)));
+
+            // Then call it again with some differences to trigger update
+            _coreService.GetDateTimeFromTimestampAsync(MockHash, CancellationToken.None).Returns(new DateTime(2024, 2, 2));
+
+            result = await _useCase!.Handle(command, CancellationToken.None);
+            Assert.That(result.IsSuccess);
+            Assert.That(_substrateDbContext.EventsInformation.Count(), Is.EqualTo(1));
+            Assert.That(_substrateDbContext.EventsInformation.First().BlockDate, Is.EqualTo(new DateTime(2024, 2, 2)));
         }
     }
 }

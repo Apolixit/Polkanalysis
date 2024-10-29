@@ -17,7 +17,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             string blockchainName,
             bool registerAsSingleton = false)
         {
-            Guard.Against.NullOrEmpty(blockchainName, nameof(blockchainName), message: "Blockchain has not be defined when starting application.");
+            Guard.Against.NullOrEmpty(blockchainName, message: "Blockchain has not be defined when starting application.");
 
             switch(blockchainName.ToLower())
             {
@@ -25,13 +25,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
                 case "polkadot":
                     RegisterSubstrateService(services, typeof(ISubstrateService), typeof(PolkadotService), registerAsSingleton);
                     RegisterSubstrateService(services, null, typeof(PeopleChainService), registerAsSingleton);
-                    //services.AddTransient<IBlockchainMapping, PolkadotMapping>();
                     services.AddTransient<PolkadotMapping>();
                     services.AddTransient<PeopleChainMapping>();
                     break;
                 case "peoplechain":
                     RegisterSubstrateService(services, typeof(ISubstrateService), typeof(PeopleChainService), registerAsSingleton);
-                    //services.AddTransient<IBlockchainMapping, PeopleChainMapping>();
                     services.AddTransient<PeopleChainMapping>();
                     break;
                 default:

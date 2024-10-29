@@ -49,5 +49,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BaseVec<BaseOpt<RegistrarInfo>>> RegistrarsAsync(CancellationToken token);
+        Task<BaseTuple<SubstrateAccount, U32>> PendingUsernamesAsync(BaseVec<U8> key, CancellationToken token);
+        Task<SubstrateAccount?> AccountOfUsernameAsync(BaseVec<U8> key, CancellationToken token);
+        Task<AuthorityProperties> UsernameAuthoritiesAsync(SubstrateAccount account, CancellationToken token);
     }
 }
