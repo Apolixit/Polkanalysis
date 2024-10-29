@@ -20,6 +20,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             _peopleChainService = peopleChainService;
         }
 
+        
+
         public async Task<Registration?> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
@@ -59,6 +61,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 
             return res;
         }
+
+        
 
         public async Task<BaseVec<BaseOpt<RegistrarInfo>>> RegistrarsAsync(CancellationToken token)
         {
@@ -146,6 +150,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
                     await _peopleChainService.Storage.Identity.SuperOfAsync(account, token) :
                     await _peopleChainService.At(BlockHash).Storage.Identity.SuperOfAsync(account, token);
             }
+        }
+
+        public Task<AuthorityProperties> UsernameAuthoritiesAsync(SubstrateAccount account, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<BaseTuple<SubstrateAccount, U32>> PendingUsernamesAsync(BaseVec<U8> key, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SubstrateAccount?> AccountOfUsernameAsync(BaseVec<U8> key, CancellationToken token)
+        {
+            throw new NotImplementedException();
         }
     }
 }

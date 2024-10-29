@@ -7,7 +7,6 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.IdentityMigration;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParachainInfo;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras;
@@ -41,7 +40,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
         private IBalancesStorage? _balancesStorage = null;
         private ISystemStorage? _systemStorage = null;
         private ITimestampStorage? _timestampStorage = null;
-        private IIdentityMigrationStorage? _identityMigrationStorage = null;
         private IParachainInfoStorage? _parachainInfoStorage = null;
 
         public IIdentityStorage Identity
@@ -123,18 +121,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 
                 _parachainInfoStorage.BlockHash = BlockHash;
                 return _parachainInfoStorage;
-            }
-        }
-
-        public IIdentityMigrationStorage IdentityMigration
-        {
-            get
-            {
-                if (_identityMigrationStorage == null)
-                    _identityMigrationStorage = new IdentityMigrationStorage(_peopleChainClient, _mapper, _logger);
-
-                _identityMigrationStorage.BlockHash = BlockHash;
-                return _identityMigrationStorage;
             }
         }
     }

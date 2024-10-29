@@ -1,10 +1,4 @@
-﻿using Substrate.NetApi.Model.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
@@ -19,7 +13,6 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.IdentityMigration;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParachainInfo;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
@@ -42,7 +35,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         public IStakingStorage Staking { get; }
         public ISystemStorage System { get; }
         public ITimestampStorage Timestamp { get; }
-        public IIdentityMigrationStorage IdentityMigration { get; }
         public IParachainInfoStorage ParachainInfo { get; }
     }
 }

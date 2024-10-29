@@ -4,17 +4,14 @@ using System.Runtime.CompilerServices;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+using System.Diagnostics.CodeAnalysis;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Architecture.Tests")]
 namespace Polkanalysis.Infrastructure.Blockchain.Scan.Mapping
 {
+    [ExcludeFromCodeCoverage]
     internal static class ScanAssemblyMapping
     {
-        //public static IEnumerable<ScanMappingResult> ScanMappings(string netApiExtAssembly, string domainAssembly)
-        //{
-
-        //}
-
         /// <summary>
         /// Do a diff between enum from NetApiExt and Domain
         /// </summary>
@@ -84,7 +81,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Scan.Mapping
                 try
                 {
                     enumSource.Add(foundedEnum.Instanciate<IType>());
-                } catch(Exception ex)
+                } catch(Exception)
                 {
                     
                 }

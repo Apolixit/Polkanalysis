@@ -87,11 +87,18 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
                 if (alreadyExists is null)
                     _db.BlockInformation.Add(entity);
-                else
-                    alreadyExists = entity;
+                else {
+                    alreadyExists.BlockHash = blockInfo.Hash.Value;
+                    alreadyExists.BlockDate = blockDate;
+                    alreadyExists.EventsCount = blockInfo.NbEvents;
+                    alreadyExists.ExtrinsicsCount = blockInfo.NbExtrinsics;
+                    alreadyExists.LogsCount = blockInfo.NbLogs;
+                    alreadyExists.ValidatorAddress = blockInfo.ValidatorAddress;
+                    alreadyExists.Justification = blockInfo.Justification;
+                }
 
                 var nbRows = await _db.SaveChangesAsync();
-                if (nbRows != 1)
+                if (alreadyExists is null && nbRows != 1)
                 {
                     return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Db rows are inconsistent. Should be 1 row inserted, but is {nbRows}");
                 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using Algolia.Search.Models.Common;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
@@ -19,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
@@ -97,15 +99,18 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         }
 
         [Test]
-        public async Task SavedBlocksHandler_WithDuplicateData_ShouldSucceedButNotInsertTwiceAsync()
+        public async Task SavedBlocksHandler_WithAlreadyInsertedData_ShouldUpdateAsync()
         {
             Assert.That(_substrateDbContext.BlockInformation.SingleOrDefault(x => x.BlockHash == "0x1234567890"), Is.Null);
             var command = new SavedBlocksCommand(1);
 
-            await _useCase!.Handle(command, CancellationToken.None);
+            var result = await _useCase!.Handle(command, CancellationToken.None);
+            Assert.That(result.IsSuccess, Is.True);
             Assert.That(_substrateDbContext.BlockInformation.SingleOrDefault(x => x.BlockHash == "0x1234567890"), Is.Not.Null);
 
-            var result = await _useCase!.Handle(command, CancellationToken.None);
+            // Let's record another date
+            _coreService.GetDateTimeFromTimestampAsync(1, CancellationToken.None).Returns(new DateTime(2024, 02, 02));
+            result = await _useCase!.Handle(command, CancellationToken.None);
             Assert.That(result.IsSuccess, Is.True);
             Assert.That(_substrateDbContext.BlockInformation.SingleOrDefault(x => x.BlockHash == "0x1234567890"), Is.Not.Null);
         }

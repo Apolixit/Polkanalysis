@@ -264,7 +264,13 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             if (aleadyExist is null)
                 _dbContext.EventsInformation.Add(entity);
             else
-                aleadyExist = entity;
+            {
+                aleadyExist.BlockDate = currentDate;
+                aleadyExist.EventId = (uint)i;
+                aleadyExist.ModuleName = eventNode.Module.ToString();
+                aleadyExist.ModuleEvent = eventNode.Method.ToString();
+                aleadyExist.JsonParameters = eventNode.ToJson();
+            }
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }

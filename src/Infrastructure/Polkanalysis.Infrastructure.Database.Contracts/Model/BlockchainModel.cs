@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Database.Contracts.Model
@@ -17,5 +18,10 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model
         /// Current blockchain name (Polkadot, Kusama, Bajun ...)
         /// </summary>
         public required string BlockchainName { get; set; }
+
+        protected JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+        {
+            WriteIndented = false
+        };
     }
 }

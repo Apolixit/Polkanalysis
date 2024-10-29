@@ -19,6 +19,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
         }
 
         public BaseVec<U8> Suffix { get; set; } = default!;
+        public string SuffixStr => Encoding.UTF8.GetString(Suffix.Value.Select(x => x.Value).ToArray());
         public U32 Allocation { get; set; } = default!;
 
         public void Create(BaseVec<U8> suffix, U32 allocation)

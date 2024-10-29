@@ -34,12 +34,12 @@ var host = Host.CreateDefaultBuilder(args)
 
     (logger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
 
-    logger.LogInformation("Starting Polkanalysis Worker hosted service for {blockchainName}...", blockchainName);
+    logger.LogInformation("Starting Polkanalysis Worker hosted service for {blockchainName} node {wssEndpoint}...", blockchainName, hostContext.Configuration["SubstrateEndpoint:Endpoint"]);
 
     services
     //.AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
-    //.AddHostedService<StakingWorker>()
+    .AddHostedService<StakingWorker>()
     .AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>

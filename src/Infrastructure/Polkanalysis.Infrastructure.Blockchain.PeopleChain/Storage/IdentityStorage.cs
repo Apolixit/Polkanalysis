@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {
@@ -49,17 +50,25 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 
         public async Task<AuthorityProperties> UsernameAuthoritiesAsync(SubstrateAccount account, CancellationToken token)
         {
+            var x = Utils.Bytes2HexString(RequestGenerator.GetStorageKeyBytesHash("Identity", "UsernameAuthorities"));
             var accountId32 = await MapAccoundId32Async(account, token);
             return Map<AuthorityPropertiesBase, AuthorityProperties>(await _client.IdentityStorage.UsernameAuthoritiesAsync(accountId32, token));
         }
 
         public async Task<SubstrateAccount?> AccountOfUsernameAsync(BaseVec<U8> key, CancellationToken token)
         {
+#if DEBUG
+            var storage = Utils.Bytes2HexString(RequestGenerator.GetStorageKeyBytesHash("Identity", "AccountOfUsername"));
+#endif
+
             return Map<AccountId32Base, SubstrateAccount>(await _client.IdentityStorage.AccountOfUsernameAsync(key, token));
         }
 
         public async Task<BaseTuple<SubstrateAccount, U32>> PendingUsernamesAsync(BaseVec<U8> key, CancellationToken token)
         {
+#if DEBUG
+            var storage = Utils.Bytes2HexString(RequestGenerator.GetStorageKeyBytesHash("Identity", "PendingUsernames"));
+#endif
             return Map<IType, BaseTuple<SubstrateAccount, U32>>(await _client.IdentityStorage.PendingUsernamesAsync(key, token));
         }
     }

@@ -123,7 +123,21 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                     if (alreadyExists is null)
                         _db.ExtrinsicsInformation.Add(entity);
                     else
-                        alreadyExists = entity;
+                    {
+                        alreadyExists.Lifetime = lifetimeEntry;
+                        alreadyExists.Method = extrinsicDecode.Name;
+                        alreadyExists.Event = extrinsicDecode.Children[0].Name;
+                        alreadyExists.TransactionVersion = extrinsic.TransactionVersion;
+                        alreadyExists.AccountAddress = extrinsic.Account is not null ? extrinsic.Account.ToString() : null;
+                        alreadyExists.IsSigned = extrinsic.Signed;
+                        alreadyExists.Signature = extrinsic.Signature is not null ? Utils.Bytes2HexString(extrinsic.Signature) : null;
+                        alreadyExists.Charge = null;
+                        alreadyExists.Status = status.Status.ToString();
+                        alreadyExists.StatusMessage = status.Message;
+                        alreadyExists.Fees = fees;
+                        alreadyExists.BlockDate = blockDate;
+                        alreadyExists.JsonParameters = jsonParameters;
+                    }
 
                     await _db.SaveChangesAsync(cancellationToken);
 

@@ -22,10 +22,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events
             if(!string.IsNullOrEmpty(json))
             {
                 var jsonObject = JsonSerializer.Deserialize<object>(json);
-                JsonParameters = JsonSerializer.Serialize(jsonObject, new JsonSerializerOptions
-                {
-                    WriteIndented = false
-                });
+                JsonParameters = JsonSerializer.Serialize(jsonObject, jsonSerializerOptions);
             }
         }
 

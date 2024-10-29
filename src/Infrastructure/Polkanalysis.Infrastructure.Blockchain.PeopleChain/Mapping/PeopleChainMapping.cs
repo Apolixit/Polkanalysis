@@ -31,6 +31,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping
                 cfg.AddProfile<BaseTypeProfile>();
                 cfg.AddProfile<EnumProfile>();
                 cfg.AddProfile<CommonProfile>();
+                cfg.AddProfile<BalancesStorageProfile>();
                 cfg.AddProfile<IdentityStorageProfile>();
                 cfg.AddProfile<ParachainInfoStorageProfile>();
                 cfg.AddProfile<SystemStorageProfile>();
@@ -99,6 +100,23 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping
                     destination = H256Base.Create(source.Bytes ?? source.Encode(), (uint)context.Items["version"]);
                     return destination;
                 }
+            }
+        }
+
+        public class BalancesStorageProfile : Profile
+        {
+            public BalancesStorageProfile()
+            {
+                // Balance lock
+                CreateMap<Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase, BalanceLock>().IncludeAllDerived();
+                //CreateMap<IdAmountBase, IdAmount>().IncludeAllDerived();
+                //CreateMap<IdAmountT1Base, IdAmount>().ConvertUsing(typeof(IdAmountConverter1));
+                //CreateMap<IdAmountT2Base, IdAmount>().ConvertUsing(typeof(IdAmountConverter2));
+
+
+                // Account data
+                CreateMap<Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.pallet_balances.types.AccountDataBase, AccountData>().DisableCtorValidation();
+                CreateMap<Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.pallet_balances.types.ExtraFlagsBase, ExtraFlags>().IncludeAllDerived();
             }
         }
 
