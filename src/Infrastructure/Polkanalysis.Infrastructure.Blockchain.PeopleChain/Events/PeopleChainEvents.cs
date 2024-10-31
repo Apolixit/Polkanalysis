@@ -6,12 +6,14 @@ using Polkanalysis.PeopleChain.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Events
 {
+    [ExcludeFromCodeCoverage]
     internal class PeopleChainEvents : IEvents
     {
         protected readonly SubstrateClientExt _client;

@@ -11,12 +11,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
 {
     public class AccountInfo : BaseType
     {
-        public U32 Nonce { get; set; }
+        public U32 Nonce { get; set; } = default!;
         public U32? RefCount { get; set; }
         public U32? Consumers { get; set; }
         public U32? Providers { get; set; }
         public U32? Sufficients { get; set; }
-        public AccountData Data { get; set; }
+        public AccountData Data { get; set; } = default!;
 
         public AccountInfo() { }
 

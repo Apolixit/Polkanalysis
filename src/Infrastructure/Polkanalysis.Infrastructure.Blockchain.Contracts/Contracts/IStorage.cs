@@ -5,7 +5,6 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.AwesomeAvatars;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
@@ -22,7 +21,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         public string? BlockHash { get; set; }
         public IAuctionsStorage Auctions { get; }
         public IAuthorshipStorage Authorship { get; }
-        public IAwesomeAvatarsStorage AwesomeAvatars { get; }
         public IBabeStorage Babe { get; }
         public IBalancesStorage Balances { get; }
         public ICrowdloanStorage Crowdloan { get; }

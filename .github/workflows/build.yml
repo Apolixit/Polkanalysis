@@ -82,7 +82,7 @@ jobs:
       uses: dorny/test-reporter@v1
       if: always()
       with:
-        name: Polkanalysis Tests
+        name: Test results
         path: "**/test-results.trx"
         reporter: dotnet-trx
         fail-on-error: true
