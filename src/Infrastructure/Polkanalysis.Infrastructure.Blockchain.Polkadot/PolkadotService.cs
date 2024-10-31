@@ -110,7 +110,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 
         public override ILogger Logger => _logger;
 
-        public override string NetApiExtAssembly => "Polkanalysis.Polkadot.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+        public const string PolkadotNetApiExtAssembly = "Polkanalysis.Polkadot.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+        public override string NetApiExtAssembly => PolkadotNetApiExtAssembly;
         public override string NetApiExtModelNamespace => "Polkanalysis.Polkadot.NetApiExt.Generated.Model";
     }
 }

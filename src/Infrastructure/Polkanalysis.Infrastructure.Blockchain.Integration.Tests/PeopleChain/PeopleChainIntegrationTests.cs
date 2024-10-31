@@ -18,11 +18,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain
                     );
         }
 
-        //public override async Task ConnectDependenciesAsync()
-        //{
-        //    await Task.CompletedTask;
-        //}
-
         [SetUp]
         protected void Setup()
         {
@@ -39,5 +34,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain
 
             return substrateConfigurationMock;
         }
+
+        public static IEnumerable<int> AllBlockVersionTestCases = new List<int>()
+        {
+            1, 100000, 490000, 637704
+        };
     }
 }

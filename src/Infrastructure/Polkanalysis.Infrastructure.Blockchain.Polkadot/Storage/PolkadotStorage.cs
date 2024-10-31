@@ -2,7 +2,6 @@
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.AwesomeAvatars;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
@@ -18,7 +17,6 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
@@ -40,7 +38,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 
         private IAuctionsStorage? _auctionsStorages = null;
         private IAuthorshipStorage? _authorshipStorages = null;
-        private IAwesomeAvatarsStorage? _awesomeAvatarsStorage = null;
         private IBabeStorage? _babeStorages = null;
         private IBalancesStorage? _balancesStorage = null;
         private ICrowdloanStorage? _crowdloanStorage = null;
@@ -77,14 +74,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 
                 _authorshipStorages.BlockHash = BlockHash;
                 return _authorshipStorages;
-            }
-        }
-
-        public IAwesomeAvatarsStorage AwesomeAvatars
-        {
-            get
-            {
-                return null;
             }
         }
 

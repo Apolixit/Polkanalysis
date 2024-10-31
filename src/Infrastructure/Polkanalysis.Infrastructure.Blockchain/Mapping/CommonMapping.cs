@@ -95,8 +95,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mapping
             {
                 public BaseCom<T> Convert(T source, BaseCom<T> destination, ResolutionContext context)
                 {
-                    destination = new BaseCom<T>();
-
                     CompactInteger compactNum = CompactIntegerMap(source);
 
                     destination = new BaseCom<T>(compactNum);

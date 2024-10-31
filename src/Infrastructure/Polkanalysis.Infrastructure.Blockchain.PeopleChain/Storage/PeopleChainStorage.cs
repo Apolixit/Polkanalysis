@@ -2,7 +2,6 @@
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.AwesomeAvatars;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
@@ -57,8 +56,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
         public IAuctionsStorage Auctions => throw new NotImplementedException();
 
         public IAuthorshipStorage Authorship => throw new NotImplementedException();
-
-        public IAwesomeAvatarsStorage AwesomeAvatars => throw new NotImplementedException();
 
         public IBabeStorage Babe => throw new NotImplementedException();
 

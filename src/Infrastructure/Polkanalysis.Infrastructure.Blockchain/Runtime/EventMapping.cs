@@ -11,20 +11,17 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Enum;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Mapping;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Runtime
 {
+    [ExcludeFromCodeCoverage]
     public class EventNodeMapping : INodeMapping
     {
         protected IList<EventMappingElem> Elements { get; set; }
 
         public EventNodeMapping(MetaData metaData) : this()
         {
-            //Elements.Add(new EventMappingElem()
-            //{
-            //    CategoryName = "ModuleError",
-            //    Mapping = new List<IMappingElement>() { new MappingElementModuleError(metaData) }
-            //});
         }
 
         public EventNodeMapping()

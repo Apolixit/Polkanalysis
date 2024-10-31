@@ -15,6 +15,11 @@ using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using System.Text;
+using System.Reflection;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {
@@ -287,6 +292,58 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             Assert.That(mapBt3, Is.Not.Null);
             Assert.That(mapBt4, Is.Not.Null);
             Assert.That(mapBt5, Is.Not.Null);
+        }
+
+        /// <summary>
+        /// Test <see cref="PolkadotMapping"/> <see cref="PolkadotMapping.NameableProfile"/>
+        /// CreateMap<ArrXU8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+        /// </summary>
+        [Test]
+        public void FlexibleNameMapping_ShouldWork()
+        {
+            var assemblyExt = Assembly.Load(PolkadotService.PolkadotNetApiExtAssembly);
+            for (int i = 1; i <= 32; i++)
+            {
+                var data = new string('a', i);
+                var rawType = assemblyExt.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr{i}U8");
+                Assert.That(rawType, Is.Not.Null);
+
+                var rawInstance = Activator.CreateInstance(rawType) as IType;
+                Assert.That(rawInstance, Is.Not.Null);
+
+                rawInstance.Create(Encoding.ASCII.GetBytes(data));
+
+                var fn = _polkadotMapping.Map<FlexibleNameable>(rawInstance);
+                Assert.That(fn.Display(), Is.EqualTo(data));
+            }
+        }
+
+        /// <summary>
+        /// Test <see cref="PolkadotMapping"/> <see cref="PolkadotMapping.NameableProfile"/>
+        /// CreateMap<ArrXU8, NameableSizeX>().ConvertUsing(x => new NameableSizeX(x));
+        /// </summary>
+        [Test]
+        public void NameableSizeMapping_ShouldWork()
+        {
+            var assemblyExt = Assembly.Load(PolkadotService.PolkadotNetApiExtAssembly);
+            var assemblyInfrastructure = Assembly.Load("Polkanalysis.Infrastructure.Blockchain.Contracts");
+            for (int i = 1; i <= 32; i++)
+            {
+                var data = new string('a', i);
+                var rawType = assemblyExt.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr{i}U8");
+                Assert.That(rawType, Is.Not.Null);
+
+                var destinationType = assemblyInfrastructure.GetType($"Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display.NameableSize{i}");
+                Assert.That(destinationType, Is.Not.Null);
+
+                var rawInstance = Activator.CreateInstance(rawType) as IType;
+                Assert.That(rawInstance, Is.Not.Null);
+
+                rawInstance.Create(Encoding.ASCII.GetBytes(data));
+
+                var fn = (Nameable)_polkadotMapping.Map(rawInstance, rawType, destinationType);
+                Assert.That(fn.Display(), Is.EqualTo(data));
+            }
         }
     }
 }

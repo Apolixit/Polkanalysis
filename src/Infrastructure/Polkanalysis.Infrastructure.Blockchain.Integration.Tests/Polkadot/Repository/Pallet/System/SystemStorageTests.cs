@@ -12,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using System.Text;
+using Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Common.Repository.Pallet.System;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.System
 {
@@ -103,20 +104,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        [TestCase(10)]
-        [TestCase(100)]
-        [TestCase(1000)]
         [TestCase(10000)]
         public async Task GetAllAccounts_ShouldWorkAsync(int nb)
         {
-            var query = await _substrateRepository.Storage.System.AccountsQueryAsync(CancellationToken.None);
-            var res = await query.Take(nb).ExecuteAsync(CancellationToken.None);
-
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.Count, Is.LessThanOrEqualTo(nb));
-
-            var addressAccount = res.Select(x => x.Item1.ToStringAddress());
-            Assert.That(addressAccount.Distinct().Count(), Is.EqualTo(res.Count));
+            await SystemStorageAbstractTests.GetAllAccounts_ShouldWorkAsync(_substrateRepository, nb);
         }
 
         [Test, Ignore("Todo debug")]
