@@ -9,9 +9,9 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
+    [ExcludeFromCodeCoverage]
     public static class PolkadotServiceCollectionsExtensions
     {
-        [ExcludeFromCodeCoverage]
         public static IServiceCollection AddSubstrateBlockchain(
             this IServiceCollection services,
             string blockchainName,
@@ -35,8 +35,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
                 default:
                     throw new NotSupportedException($"{blockchainName} is not supported by the application");
             }
-
-            
 
             return services;
         }

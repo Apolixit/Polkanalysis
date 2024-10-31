@@ -69,8 +69,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp
 
             if (modeByte > 1)
             {
-                p += 32;
-                //throw new ArgumentException($"{modeByte} is not a valid representation of CheckMetadata Mode.");
+                throw new ArgumentException($"{modeByte} is not a valid representation of CheckMetadata Mode.");
             }
 
             _mode = modeByte == 0 ? Mode.Disabled : Mode.Enabled;

@@ -24,7 +24,7 @@ namespace Polkanalysis.Infrastructure.Database
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
-            services.AddSingleton<IEventsFactory, EventsFactory>(); // No need to scan everytime
+            services.AddTransient<IEventsFactory, EventsFactory>(); // No need to scan everytime
 
             AddEventDatabaseRepositories(services, typeof(DatabaseServiceCollectionsExtensions).Assembly);
 

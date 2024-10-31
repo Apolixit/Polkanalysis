@@ -144,7 +144,7 @@ namespace Polkanalysis.Api
                 await app.ApplyMigrationAsync(microsftLogger);
 
                 var substrateService = app.Services.GetRequiredService<ISubstrateService>();
-                await substrateService.ConnectAsync();
+                await substrateService.ConnectAsync(CancellationToken.None);
                 if (substrateService.IsConnected())
                 {
                     microsftLogger.LogInformation($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");

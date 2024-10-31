@@ -101,7 +101,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime
         /// <param name="doc"></param>
         /// <returns></returns>
         INode AddDocumentation(string doc);
-        INode AddDocumentation(string[] doc);
 
         /// <summary>
         /// Add child to the node

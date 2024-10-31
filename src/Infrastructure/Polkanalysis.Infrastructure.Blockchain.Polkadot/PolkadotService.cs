@@ -14,24 +14,24 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Modules.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 using Substrate.NET.Utils.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
     public class PolkadotService : BlockchainAbstractService
     {
         private SubstrateClientExt? _polkadotClient;
-        private readonly ISubstrateEndpoint _substrateconfiguration;
         private readonly PeopleChainService _peopleChainService;
         private readonly PolkadotMapping _blockchainMapping;
         private readonly ILogger<PolkadotService> _logger;
+        
 
         public PolkadotService(
             ISubstrateEndpoint substrateconfiguration,
             PolkadotMapping blockchainMapping,
             ILogger<PolkadotService> logger,
-            PeopleChainService peopleChainService)
+            PeopleChainService peopleChainService) : base(substrateconfiguration, logger)
         {
-            _substrateconfiguration = substrateconfiguration;
             _blockchainMapping = blockchainMapping;
             _logger = logger;
             _peopleChainService = peopleChainService;
@@ -46,7 +46,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             {
                 if (_polkadotClient == null)
                 {
-                    _polkadotClient = new SubstrateClientExt(_substrateconfiguration.WsEndpointUri, ChargeTransactionPayment.Default());
+                    _polkadotClient = new SubstrateClientExt(_endpointUri, ChargeTransactionPayment.Default());
                     _polkadotClient.AddJsonConverter(new ExtrinsicOldJsonConverter(ChargeTransactionPayment.Default()));
                     _polkadotClient.AddJsonConverter(new ExtrinsicNewJsonConverter(ChargeTransactionPayment.Default()));
                 }
@@ -105,7 +105,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 
         public override IErrors Errors => throw new NotImplementedException();
 
-        public override IEnumerable<string> Dependencies => ["PeopleChain"];
+        public override IEnumerable<ISubstrateService> ChainDependencies => [ _peopleChainService ];
+        public override IEnumerable<string> DependenciesName => ChainDependencies.Select(x => x.BlockchainName);
 
         public override ILogger Logger => _logger;
 

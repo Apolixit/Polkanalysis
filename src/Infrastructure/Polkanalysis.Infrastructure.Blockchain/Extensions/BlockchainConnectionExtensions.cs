@@ -12,10 +12,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Extensions
 {
     public static class BlockchainConnectionExtensions
     {
-        public static async Task<IHost> ConnectNodeAsync(this IHost host, string appName, ILogger logger)
+        public static async Task<IHost> ConnectNodeAsync(this IHost host, string appName, ILogger logger, CancellationToken cancellationToken)
         {
             var substrateService = host.Services.GetRequiredService<ISubstrateService>();
-            await substrateService.ConnectAsync();
+            await substrateService.ConnectAsync(cancellationToken);
             if (substrateService.IsConnected())
             {
                 logger.LogInformation("[{appName}] is now connected to {blockchainName} and ready to serve.", appName, substrateService.BlockchainName);

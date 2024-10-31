@@ -17,6 +17,7 @@ using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Enum;
 
 namespace Polkanalysis.Domain.UseCase
 {
@@ -81,7 +82,7 @@ namespace Polkanalysis.Domain.UseCase
 
                 _logger.LogDebug($"Cache miss for key: {cacheKey}");
 
-                var result = await HandleInnerAsync(request, cancellationToken);
+                var result = await CallInnerHandleAsync(request, cancellationToken);
 
                 if (result.IsSuccess)
                 {
@@ -96,7 +97,26 @@ namespace Polkanalysis.Domain.UseCase
                 return result;
             }
 
-            return await HandleInnerAsync(request, cancellationToken);
+            return await CallInnerHandleAsync(request, cancellationToken);
+        }
+
+        /// <summary>
+        /// Call the child handler and wrap it with a try {} catch {} to handle exceptions
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<Result<TDto, ErrorResult>> CallInnerHandleAsync(TRequest request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await HandleInnerAsync(request, cancellationToken);
+            } catch(Exception ex)
+            {
+                _logger.LogError(ex, "[{handler}] Exception thrown by HandlerInnerAsync", "MasterHandler");
+                return UseCaseError(ErrorType.BusinessError, $"An error occured", ErrorCriticity.High);
+            }
+            
         }
 
         public abstract Task<Result<TDto, ErrorResult>> HandleInnerAsync(TRequest request, CancellationToken cancellationToken);

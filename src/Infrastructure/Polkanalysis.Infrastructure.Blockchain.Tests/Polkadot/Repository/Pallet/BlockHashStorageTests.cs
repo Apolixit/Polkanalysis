@@ -13,6 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet
 {
@@ -28,7 +29,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             //_substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), null, CancellationToken.None).ReturnsNull();
 
-            _substrateRepository.PolkadotClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), CancellationToken.None).Returns(storageResult);
+            ((PolkadotService)_substrateRepository).PolkadotClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), CancellationToken.None).Returns(storageResult);
 
 
             _substrateRepository.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()

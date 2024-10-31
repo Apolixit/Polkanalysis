@@ -46,12 +46,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
         public string PropertyName { get; set; } = string.Empty;
         #endregion
 
-        public INode AddPropertyName(string propertyName)
-        {
-            PropertyName = propertyName;
-            return this;
-        }
-
         public INode AddData(IType data)
         {
             Data = data;
@@ -90,22 +84,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             return this;
         }
 
-        public INode AddDocumentation(string[] doc)
-        {
-            if (doc == null)
-                throw new ArgumentNullException($"{nameof(doc)}");
-
-            return AddDocumentation(string.Join("\n", doc));
-        }
-
         public string ToJson()
+            => JsonSerializer.Serialize(ToDictionnary(), DefaultSerializer());
+
+        private static JsonSerializerOptions DefaultSerializer()
         {
-            var options = new JsonSerializerOptions
+            return new JsonSerializerOptions
             {
                 WriteIndented = true
             };
-
-            return JsonSerializer.Serialize(ToDictionnary(), options);
         }
 
         public Dictionary<string, object> ToDictionnary()
@@ -147,15 +134,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
         }
 
         public string ToJsonCompact()
-        {
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true
-            };
-
-            var res = ToDictionnaryFlatten();
-            return JsonSerializer.Serialize(res, options);
-        }
+            => JsonSerializer.Serialize(ToDictionnaryFlatten(), DefaultSerializer());
 
         public Dictionary<string, object> ToDictionnaryFlatten()
         {
@@ -178,16 +157,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             }
 
             return output;
-
-            //if (Children.Count > 0)
-            //{
-            //    output.Add(Name, Children.Select(x => x.ToDictionnaryFlatten()));
-            //} else
-            //{
-            //    output.Add(Name, HumanData!.ToString());
-            //}
-
-            //return output;
         }
 
         public INode Create()

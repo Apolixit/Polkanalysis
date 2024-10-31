@@ -39,7 +39,7 @@ namespace Polkanalysis.Worker.Tasks
         {
             if (!_polkadotRepository.IsConnected())
             {
-                await _polkadotRepository.ConnectAsync();
+                await _polkadotRepository.ConnectAsync(cancellationToken);
                 _logger.LogInformation($"Succesfully connected to {_polkadotRepository.BlockchainName}");
             }
         }
@@ -82,7 +82,7 @@ namespace Polkanalysis.Worker.Tasks
         /// <returns></returns>
         public async override Task StopAsync(CancellationToken cancellationToken)
         {
-            await _polkadotRepository.CloseAsync();
+            await _polkadotRepository.CloseAsync(cancellationToken);
             _logger.LogInformation($"Succesfully disconnected to {_polkadotRepository.BlockchainName}");
 
             await base.StopAsync(cancellationToken);

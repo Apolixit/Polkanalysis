@@ -53,7 +53,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                 {
                     foreach (var bindEvent in bindEventsAttribute)
                     {
-
                         var optionalRepo = _serviceProvider.GetService(databaseInsertType);
 
                         if(optionalRepo is null)
