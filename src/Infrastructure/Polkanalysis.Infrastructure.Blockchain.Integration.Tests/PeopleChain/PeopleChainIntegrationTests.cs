@@ -18,10 +18,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain
                     );
         }
 
-        public override async Task ConnectDependenciesAsync()
-        {
-            await Task.CompletedTask;
-        }
+        //public override async Task ConnectDependenciesAsync()
+        //{
+        //    await Task.CompletedTask;
+        //}
 
         [SetUp]
         protected void Setup()

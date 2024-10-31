@@ -42,31 +42,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
         {
             if (source is null)
             {
-                _logger.LogDebug($"Storage version call {callerName} response is null");
+                _logger.LogDebug("Storage version call {callerName} response is null", callerName);
                 return default;
             }
 
-            _logger.LogDebug($"Storage call {callerName} response is {source}");
+            _logger.LogDebug("Storage call {callerName} response is {source}", callerName, source);
 
             var mapped = _mapper.Map<TSource, TDestination>(source);
 
-            _logger.LogDebug($"Storage call {callerName} mapped response is {mapped}");
-            return mapped;
-        }
-
-        protected object? Map(object? source, Type sourceType, Type destinationType, [CallerMemberName] string callerName = "")
-        {
-            if (source is null)
-            {
-                _logger.LogDebug($"Storage call {callerName} response is null");
-                return default;
-            }
-
-            _logger.LogDebug($"Storage call {callerName} response is {source}");
-
-            var mapped = _mapper.Map(source, sourceType, destinationType);
-
-            _logger.LogDebug($"Storage call {callerName} mapped response is {mapped}");
+            _logger.LogDebug("Storage call {callerName} mapped response is {mapped}", callerName, mapped);
             return mapped;
         }
 
@@ -86,71 +70,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             var version = await GetVersionAsync(token);
             if (source is null)
             {
-                _logger.LogDebug($"Storage version (= {version}) call {callerName} response is null");
+                _logger.LogDebug("Storage version (= {version}) call {callerName} response is null", version, callerName);
                 return default;
             }
 
-            _logger.LogDebug($"Storage version (= {version}) call {callerName} response is {source}");
+            _logger.LogDebug("Storage version (= {version}) call {callerName} response is {source}", version, callerName, source);
 
             var mapped = _mapper.MapWithVersion<TSource, TDestination>(version, source);
 
-            _logger.LogDebug($"Storage version (= {version}) call {callerName} mapped response is {mapped}");
+            _logger.LogDebug("Storage version (= {version}) call {callerName} mapped response is {mapped}", version, callerName, mapped);
             return mapped;
-        }
-
-        /// <summary>
-        /// Call storage with input parameter and return same type as Ajuna SDK
-        /// Handle null value by returning empty class
-        /// </summary>
-        /// <typeparam name="I"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="input"></param>
-        /// <param name="funcParams"></param>
-        /// <param name="token"></param>
-        /// <param name="callerName"></param>
-        /// <returns></returns>
-        protected async Task<T> GetStorageWithParamsAsync<I, T>(
-            I input,
-            Func<I, string> funcParams,
-            CancellationToken token,
-            [CallerMemberName] string callerName = "")
-            where I : IType, new()
-            where T : IType, new()
-        {
-            return await GetStorageAsync<T>(funcParams(input), token, callerName) ?? new T();
-        }
-
-        /// <summary>
-        /// Call storage with input parameter and convert Ajuna SDK to Domain class
-        /// Handle null value by returning empty class instance
-        /// </summary>
-        /// <typeparam name="I"></typeparam>
-        /// <typeparam name="R"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="input"></param>
-        /// <param name="funcParams"></param>
-        /// <param name="token"></param>
-        /// <param name="callerName"></param>
-        /// <returns></returns>
-        protected async Task<T> GetStorageWithParamsAsync<I, R, T>(
-        I input,
-        Func<I, string> funcParams,
-        CancellationToken token,
-        [CallerMemberName] string callerName = "")
-        where I : IType, new()
-        where R : IType, new()
-        where T : IType, new()
-        {
-            Guard.Against.Null(input, nameof(input));
-            Guard.Against.Null(funcParams, nameof(funcParams));
-
-            var result = await GetStorageAsync<R>(funcParams(input), token, callerName);
-
-            var mappedType = new T();
-            if (result is null) return mappedType;
-
-            mappedType.Create(result.Encode());
-            return mappedType;
         }
 
         protected async Task<T> GetStorageAsync<T>(
@@ -162,24 +91,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             Guard.Against.Null(funcParams, nameof(funcParams));
 
             return await GetStorageAsync<T>(funcParams(), token, callerName) ?? new T();
-        }
-
-        protected async Task<T> GetStorageAsync<R, T>(
-        Func<string> funcParams,
-        CancellationToken token,
-        [CallerMemberName] string callerName = "")
-        where R : IType, new()
-        where T : IType, new()
-        {
-            Guard.Against.Null(funcParams, nameof(funcParams));
-
-            var result = await GetStorageAsync<R>(funcParams(), token, callerName);
-            var mappedType = new T();
-            if (result is null) return mappedType;
-
-            mappedType.Create(result.Encode());
-            return mappedType;
-            //return PolkadotMapping.Instance.Map<R, T>(result);
         }
 
         /// <summary>
@@ -196,7 +107,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             [CallerMemberName] string callerName = "")
             where T : IType, new()
         {
-            _logger.LogTrace($"Storage call from {callerName} with parameters = {parameters}");
+            _logger.LogTrace("Storage call from {callerName} with parameters = {parameters}", callerName, parameters);
             var res = await _client.GetStorageAsync<T>(parameters, BlockHash, token);
 
             if (res is null)
@@ -204,7 +115,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
                 _logger.LogTrace($"Storage call response is null");
             }
 
-            _logger.LogTrace($"Storage call response is {res}");
+            _logger.LogTrace("Storage call response is {res}", res);
             return res;
         }
 

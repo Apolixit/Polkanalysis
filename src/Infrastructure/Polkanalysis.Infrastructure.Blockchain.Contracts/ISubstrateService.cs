@@ -15,7 +15,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         /// Other chains that this blockchain depends on
         /// For example, Polkadot depends on parachain like PeopleChain
         /// </summary>
-        public IEnumerable<string> Dependencies { get; }
+        public IEnumerable<string> DependenciesName { get; }
         public string NetApiExtAssembly { get; }
         public string NetApiExtModelNamespace { get; }
         public SubstrateClient AjunaClient { get; }
@@ -35,10 +35,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         public ICalls Calls { get; }
         public IEvents Events { get; }
         public IErrors Errors { get; }
+        IEnumerable<ISubstrateService> ChainDependencies { get; }
+        Uri EndpointUri { get; }
 
         public bool IsConnected();
-        public Task ConnectAsync();
-        public Task CloseAsync();
+        public Task ConnectAsync(CancellationToken token);
+        public Task CloseAsync(CancellationToken token);
 
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status

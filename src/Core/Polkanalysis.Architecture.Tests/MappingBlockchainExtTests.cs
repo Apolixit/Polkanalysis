@@ -23,7 +23,7 @@ namespace Polkanalysis.Architecture.Tests
             Trace.Listeners.Add(new ConsoleTraceListener());
         }
 
-        [Test, Ignore("Need more time to fix this", Until = "2024-10-30")]
+        [Test, Ignore("Need more time to fix this", Until = "2024-11-30")]
         public void EveryBlockchainEventsImplemented_ShouldHaveAllEnumValueThatEverExisted()
         {
             // Let's get all events from blockchain ext

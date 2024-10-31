@@ -10,7 +10,7 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
-    public abstract class PolkadotIntegrationTest : IntegrationTest
+    public class PolkadotIntegrationTest : IntegrationTest
     {
         private PeopleChainService _peopleChainService = default!;
 
@@ -45,11 +45,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://dot-rpc.stakeworld.io"));
 
             return substrateConfigurationMock;
-        }
-
-        public override async Task ConnectDependenciesAsync()
-        {
-            await _peopleChainService.ConnectAsync();
         }
 
         protected async Task<string> GetBlockHashAsync(int blockNum)

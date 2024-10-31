@@ -35,12 +35,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             _logger = logger;
         }
 
+        /// <summary>
+        /// Get metadata from block hash
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         private async Task<MetaData> metadataFromBlocHashAsync(Hash? blockHash, CancellationToken cancellationToken)
         {
-            blockHash ??= await _substrateRepository.Rpc.Chain.GetBlockHashAsync();
+            blockHash ??= await _substrateRepository.Rpc.Chain.GetBlockHashAsync(cancellationToken);
             Guard.Against.Null(blockHash);
 
-            var metadata = await _substrateRepository.At(blockHash).GetMetadataAsync(CancellationToken.None);
+            var metadata = await _substrateRepository.At(blockHash).GetMetadataAsync(cancellationToken);
             Guard.Against.Null(metadata);
 
             return metadata;

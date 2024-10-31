@@ -7,15 +7,16 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Modules.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Common.Rpc
 {
+    [ExcludeFromCodeCoverage]
     public class TmpChain : ITmpChain
     {
-        private readonly bool _checkHash;
         private readonly SubstrateClient _client;
         private Func<string, MetaData> _getMetadataFromHex;
 

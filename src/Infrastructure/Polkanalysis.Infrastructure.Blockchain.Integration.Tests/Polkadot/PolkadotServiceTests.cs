@@ -57,5 +57,27 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
                 Assert.That(module.Name, Is.Not.Null);
             });
         }
+
+        [Test]
+        public async Task ConnectToNode_ThenCancel_ShouldWorkAsync()
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
+            var wasConnectedCalled = false;
+
+            await _substrateRepository.ConnectAsync(CancellationToken.None);
+            Assert.That(_substrateRepository.IsConnected);
+
+            var task = _substrateRepository.CheckBlockchainStateAsync(isConnected => wasConnectedCalled = isConnected, cancellationTokenSource.Token);
+
+            try
+            {
+                await task;
+            }
+            catch (OperationCanceledException)
+            {
+                Assert.That(cancellationTokenSource.IsCancellationRequested, Is.True);
+            }
+        }
     }
 }

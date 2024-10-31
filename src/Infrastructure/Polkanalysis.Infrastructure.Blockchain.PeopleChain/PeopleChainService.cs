@@ -24,16 +24,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
     public class PeopleChainService : BlockchainAbstractService
     {
         private SubstrateClientExt? _peopleChainClient;
-        private readonly ISubstrateEndpoint _substrateconfiguration;
+        
         private readonly PeopleChainMapping _blockchainMapping;
         private readonly ILogger<PeopleChainService> _logger;
 
         public PeopleChainService(
             ISubstrateEndpoint substrateconfiguration,
             PeopleChainMapping blockchainMapping,
-            ILogger<PeopleChainService> logger)
+            ILogger<PeopleChainService> logger) : base(substrateconfiguration, logger)
         {
-            _substrateconfiguration = substrateconfiguration;
             _blockchainMapping = blockchainMapping;
             _logger = logger;
         }
@@ -44,7 +43,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             {
                 if (_peopleChainClient == null)
                 {
-                    _peopleChainClient = new SubstrateClientExt(_substrateconfiguration.WsEndpointUri, ChargeTransactionPayment.Default());
+                    _peopleChainClient = new SubstrateClientExt(_endpointUri, ChargeTransactionPayment.Default());
                 }
                 return _peopleChainClient;
             }
@@ -99,12 +98,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             }
         }
 
-        public override  IErrors Errors => throw new NotImplementedException();
+        public override IErrors Errors => throw new NotImplementedException();
 
-        public override IEnumerable<string> Dependencies => [];
+        public override IEnumerable<string> DependenciesName => [];
 
         public override ILogger Logger => _logger;
         public override string NetApiExtAssembly => "Polkanalysis.PeopleChain.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         public override string NetApiExtModelNamespace => "Polkanalysis.PeopleChain.NetApiExt.Generated.Model";
+
+        public override IEnumerable<ISubstrateService> ChainDependencies => [];
     }
 }

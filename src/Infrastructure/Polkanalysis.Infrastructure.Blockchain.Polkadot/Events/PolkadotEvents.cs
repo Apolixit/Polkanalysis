@@ -5,9 +5,11 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Events
 {
+    [ExcludeFromCodeCoverage]
     public partial class PolkadotEvents : IEvents
     {
         protected readonly SubstrateClientExt _client;

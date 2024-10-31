@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
@@ -21,7 +22,8 @@ namespace Polkanalysis.Infrastructure.Blockchain
     public abstract class BlockchainAbstractService : ISubstrateService
     {
         public abstract ILogger Logger { get; }
-        public abstract IEnumerable<string> Dependencies { get; }
+        public abstract IEnumerable<string> DependenciesName { get; }
+        public abstract IEnumerable<ISubstrateService> ChainDependencies { get; }
         public abstract string NetApiExtAssembly { get; }
         public abstract string NetApiExtModelNamespace { get; }
         public abstract SubstrateClient AjunaClient { get; }
@@ -32,6 +34,20 @@ namespace Polkanalysis.Infrastructure.Blockchain
         public abstract ICalls Calls { get; }
         public abstract IEvents Events { get; }
         public abstract IErrors Errors { get; }
+
+        private readonly ILogger _logger;
+
+        protected readonly Uri _endpointUri;
+        public Uri EndpointUri => _endpointUri;
+        private readonly ISubstrateEndpoint _substrateconfiguration;
+
+        protected BlockchainAbstractService(ISubstrateEndpoint substrateconfiguration, ILogger logger)
+        {
+            _substrateconfiguration = substrateconfiguration;
+            _logger = logger;
+
+            _endpointUri = _substrateconfiguration.WsEndpointUri;
+        }
 
         public ITimeQueryable At(BlockNumber blockNumber)
         {
@@ -121,9 +137,55 @@ namespace Polkanalysis.Infrastructure.Blockchain
         public Hash GenesisHash => AjunaClient.GenesisHash;
         public bool IsConnected() => AjunaClient.IsConnected;
 
-        public Task ConnectAsync() => AjunaClient.ConnectAsync();
+        public async Task ConnectAsync(CancellationToken token)
+        {
+            if(AjunaClient.IsConnected && ChainDependencies.All(x => x.IsConnected()))
+            {
+                _logger.LogWarning("Trying to connect to {blockchainName} but already connected", BlockchainName);
+                return;
+            }
 
-        public Task CloseAsync() => AjunaClient.CloseAsync();
+            try
+            {
+                AjunaClient.ConnectionSet += (sender, e) 
+                    => _logger.LogInformation("Successfully connected to {blockchainName} (endpoint : {endpointUri})", BlockchainName, EndpointUri);
+
+                AjunaClient.ConnectionLost += (sender, e) 
+                    => _logger.LogWarning("Connection lost to {blockchainName} (endpoint : {endpointUri}), trying to reconnect...", BlockchainName, EndpointUri);
+
+                AjunaClient.OnReconnected += (sender, e) 
+                    => _logger.LogInformation("Reconnected to {blockchainName} (endpoint : {endpointUri}) after {nbRetry} retry", BlockchainName, EndpointUri, (int)e);
+
+                await AjunaClient.ConnectAsync(token);
+
+            } catch(Exception ex)
+            {
+                _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
+            }
+
+            List<Task> tasks = new List<Task>();
+            // Now let's connect the dependencies
+            foreach(var dependency in ChainDependencies)
+            {
+                tasks.Add(dependency.ConnectAsync(token));
+            }
+            
+            await Task.WhenAll(tasks.ToArray());
+        }
+
+        public async Task CloseAsync(CancellationToken token)
+        {
+            await AjunaClient.CloseAsync(token);
+
+            List<Task> tasks = new List<Task>();
+            // Disconnect the dependencies
+            foreach (var dependency in ChainDependencies)
+            {
+                tasks.Add(dependency.CloseAsync(token));
+            }
+
+            await Task.WhenAll(tasks.ToArray());
+        }
 
         public RuntimeVersion RuntimeVersion
         {
@@ -132,6 +194,8 @@ namespace Polkanalysis.Infrastructure.Blockchain
                 return AjunaClient.RuntimeVersion;
             }
         }
+
+        
 
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status
@@ -153,7 +217,7 @@ namespace Polkanalysis.Infrastructure.Blockchain
                     {
                         try
                         {
-                            await AjunaClient.ConnectAsync(cancellationToken);
+                            await ConnectAsync(cancellationToken);
                         }
                         catch (Exception ex)
                         {
@@ -166,7 +230,8 @@ namespace Polkanalysis.Infrastructure.Blockchain
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
             {
-
+                _logger.LogWarning("CheckBlockchainStateAsync has been cancelled");
+                throw;
             }
         }
 

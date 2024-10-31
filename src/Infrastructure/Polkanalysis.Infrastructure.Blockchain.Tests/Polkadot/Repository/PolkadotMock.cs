@@ -15,19 +15,23 @@ using Substrate.NetApi.Modules.Contracts;
 using System;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
+using Substrate.NetApi.Model.Types.Base;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 {
     public abstract class PolkadotMock
     {
         public const uint DefaultVersionForTest = 9370;
-        protected PolkadotService _substrateRepository;
+        protected ISubstrateService _substrateRepository;
         protected PolkadotMapping _polkadotMapping;
 
         public const string MockAddress = "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS";
         public const string MockAddress2 = "13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY";
         public const string PublicSr25519_Signature_1 = "0x66F60202B962C40E58FCF3481F5773DC178B9FE096F81511EAA4C7BAD20E6120";
         public const string PublicSr25519_Signature_2 = "0x9C40155989F6072E82CABA245D7DB7E40A60F866B403257976B89ABA6BE2B55B";
+        protected static Hash MockHash = new Hash("0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a90");
+        protected static Hash MockHash2 = new Hash("0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a91");
 
         public Func<string, U8[]> PublicSr25519_Signature_U8Array =>
             (signature) =>

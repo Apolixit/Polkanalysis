@@ -44,10 +44,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
             return substrateConfigurationMock;
         }
 
-        public async override Task ConnectDependenciesAsync()
-        {
-            await _peopleChainService.ConnectAsync();
-        }
+        //public async override Task ConnectDependenciesAsync()
+        //{
+        //    await _peopleChainService.ConnectAsync();
+        //}
 
         [SetUp]
         protected void SetupBase()

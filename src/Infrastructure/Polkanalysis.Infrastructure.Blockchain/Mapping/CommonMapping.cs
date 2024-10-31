@@ -477,7 +477,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mapping
                 CreateMap<IType, Contracts.Pallet.Xcm.v0.Enums.EnumXcm>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumXcm>());
                 CreateMap<IType, Contracts.Pallet.Xcm.v1.Enums.EnumAssetId>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumAssetId>());
                 CreateMap<IType, Contracts.Pallet.Xcm.v1.Enums.EnumAssetInstance>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumAssetInstance>());
-                //CreateMap<IType, Contracts.Pallet.Xcm.v1.Enums.EnumBodyId>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumBodyId>());
                 CreateMap<IType, Contracts.Pallet.Xcm.v1.Enums.EnumBodyPart>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumBodyPart>());
                 CreateMap<IType, Contracts.Pallet.Xcm.v1.Enums.EnumFungibility>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumFungibility>());
                 CreateMap<IType, Contracts.Pallet.Xcm.v1.Enums.EnumJunction>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumJunction>());

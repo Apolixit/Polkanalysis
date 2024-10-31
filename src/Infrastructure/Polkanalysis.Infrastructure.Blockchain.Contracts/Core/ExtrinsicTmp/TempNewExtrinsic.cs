@@ -84,51 +84,76 @@ public class TempNewExtrinsic : IExtrinsic
     internal TempNewExtrinsic(Memory<byte> memory, ChargeType chargeType)
     {
         int p = 0;
-        CompactInteger.Decode(memory.ToArray(), ref p);
-        int num = 1;
-        byte b = memory.Slice(p, num).ToArray()[0];
-        Signed = b >= 128;
-        TransactionVersion = (byte)(b - (Signed ? 128 : 0));
-        p += num;
+        int m;
+
+        // length
+        _ = CompactInteger.Decode(memory.ToArray(), ref p);
+
+        // signature version
+        m = 1;
+        var _signatureVersion = memory.Slice(p, m).ToArray()[0];
+        Signed = _signatureVersion >= 0x80;
+        TransactionVersion = (byte)(_signatureVersion - (Signed ? 0x80 : 0x00));
+        p += m;
+
+        // this part is for signed extrinsics
         if (Signed)
         {
-            num = 1;
-            _ = memory.Slice(p, num).ToArray()[0];
-            p += num;
-            num = 32;
-            byte[] publicKey = memory.Slice(p, num).ToArray();
-            p += num;
-            num = 1;
-            byte keyType = memory.Slice(p, num).ToArray()[0];
-            p += num;
-            Account account = new Account();
-            account.Create((KeyType)keyType, publicKey);
-            Account = account;
-            num = 64;
-            Signature = memory.Slice(p, num).ToArray();
-            p += num;
-            num = 1;
-            byte[] array = memory.Slice(p, num).ToArray();
-            if (array[0] != 0)
-            {
-                num = 2;
-                array = memory.Slice(p, num).ToArray();
-            }
+            // start bytes
+            m = 1;
+            _ = memory.Slice(p, m).ToArray()[0];
+            p += m;
 
-            Era = Era.Decode(array);
-            p += num;
+            // sender public key
+            m = 32;
+            var _senderPublicKey = memory.Slice(p, m).ToArray();
+            p += m;
+
+            // sender public key type
+            m = 1;
+            var _senderPublicKeyType = memory.Slice(p, m).ToArray()[0];
+            p += m;
+
+            var account = new Account();
+            account.Create((KeyType)_senderPublicKeyType, _senderPublicKey);
+            Account = account;
+
+            // signature
+            m = 64;
+            Signature = memory.Slice(p, m).ToArray();
+            p += m;
+
+            // era
+            m = 1;
+            var era = memory.Slice(p, m).ToArray();
+            if (era[0] != 0)
+            {
+                m = 2;
+                era = memory.Slice(p, m).ToArray();
+            }
+            Era = Era.Decode(era);
+            p += m;
+
+            // nonce
             Nonce = CompactInteger.Decode(memory.ToArray(), ref p);
+
+            // charge type
             Charge = chargeType;
             Charge.Decode(memory.ToArray(), ref p);
+
             CheckMetadataHash = new TempCheckMetadataHash();
             CheckMetadataHash.Decode(memory.ToArray(), ref p);
         }
 
-        num = 2;
-        byte[] array2 = memory.Slice(p, num).ToArray();
-        p += num;
-        byte[] parameters = memory.Slice(p).ToArray();
-        Method = new Method(array2[0], array2[1], parameters);
+        // method
+        m = 2;
+        var method = memory.Slice(p, m).ToArray();
+        p += m;
+
+        // parameters
+        var parameter = memory.Slice(p).ToArray();
+
+        Method = new Method(method[0], method[1], parameter);
     }
 
     //
@@ -156,7 +181,7 @@ public class TempNewExtrinsic : IExtrinsic
     public TempNewExtrinsic(bool signed, Account account, CompactInteger nonce, Method method, Era era, ChargeType charge)
     {
         Signed = signed;
-        TransactionVersion = 4;
+        TransactionVersion = Constants.ExtrinsicVersion;
         Account = account;
         Era = era;
         Nonce = nonce;
@@ -170,23 +195,28 @@ public class TempNewExtrinsic : IExtrinsic
     //     Encodes this instance.
     public byte[] Encode()
     {
-        List<byte> list = new List<byte>();
-        byte item = (byte)((Signed ? 128 : 0) + TransactionVersion);
-        list.Add(item);
+        var result = new List<byte>();
+
+        var signatureVersion = (byte)((Signed ? 0x80 : 0x00) + TransactionVersion);
+        result.Add(signatureVersion);
+
         if (Signed)
         {
-            list.AddRange(Account.Encode());
-            list.Add(Account.KeyTypeByte);
-            list.AddRange(Signature);
-            list.AddRange(Era.Encode());
-            list.AddRange(Nonce.Encode());
-            list.AddRange(Charge.Encode());
-            list.AddRange(CheckMetadataHash.EncodeExtra());
+            result.AddRange(Account.Encode());
+            result.Add(Account.KeyTypeByte);
+            result.AddRange(Signature);
+            result.AddRange(Era.Encode());
+            result.AddRange(Nonce.Encode());
+            result.AddRange(Charge.Encode());
+            result.AddRange(CheckMetadataHash.EncodeExtra());
         }
 
-        list.AddRange(Method.Encode());
-        list.InsertRange(0, new CompactInteger(list.Count).Encode());
-        return list.ToArray();
+        result.AddRange(Method.Encode());
+
+        var length = new CompactInteger(result.Count);
+        result.InsertRange(0, length.Encode());
+
+        return result.ToArray();
     }
 
     public override string ToString()

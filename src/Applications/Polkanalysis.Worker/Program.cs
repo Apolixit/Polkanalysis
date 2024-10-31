@@ -39,7 +39,7 @@ var host = Host.CreateDefaultBuilder(args)
     services
     //.AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
-    .AddHostedService<StakingWorker>()
+    //.AddHostedService<StakingWorker>()
     .AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
@@ -77,7 +77,7 @@ var host = Host.CreateDefaultBuilder(args)
 .Build();
 
 await host.ApplyMigrationAsync(logger!);
-await host.ConnectNodeAsync("Polkanalysis.Worker", logger!);
+await host.ConnectNodeAsync("Polkanalysis.Worker", logger!, CancellationToken.None);
 
 await host.RunAsync();
 
