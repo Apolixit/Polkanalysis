@@ -79,9 +79,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Events
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(
-                            $"Fail to parse all the events from block {blockData.Block.Header.Number.Value}",
-                            ex.InnerException);
+                        _logger.LogError(ex, "Fail to parse all the events from block {blockNumber}", blockData.Block.Header.Number.Value);
                     }
                 }, token);
         }

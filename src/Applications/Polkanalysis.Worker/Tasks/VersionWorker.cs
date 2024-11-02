@@ -54,25 +54,35 @@ namespace Polkanalysis.Worker.Tasks
 
             for (uint i = currentBlock; i <= lastBlockNum.Value; i++)
             {
-                var blockHash = await _polkadotService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(i), cancellationToken);
-                var runtimeVersion = await _polkadotService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, CancellationToken.None);
-
-                if (lastStoredVersionNum == null || lastStoredVersionNum != runtimeVersion.SpecVersion)
+                try
                 {
-                    lastStoredVersionNum = runtimeVersion.SpecVersion;
+                    var blockHash = await _polkadotService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(i), cancellationToken);
+                    var runtimeVersion = await _polkadotService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, CancellationToken.None);
 
-                    _logger.LogInformation("[{workerName}] New runtime upgrade. Version {specVersion} at block {blockNum}", nameof(VersionWorker), runtimeVersion.SpecVersion, i);
-                    await UpgradeVersionAsync(lastStoredVersionNum.Value, i, blockHash, cancellationToken);
-                }
-                else
-                {
-                    if (i % 5000 == 0)
+                    if (lastStoredVersionNum == null || lastStoredVersionNum != runtimeVersion.SpecVersion)
                     {
-                        _logger.LogInformation("[{workerName}] Fetching block {blockNum}", nameof(VersionWorker), i);
-                    }
-                }
+                        lastStoredVersionNum = runtimeVersion.SpecVersion;
 
-                currentBlock = i;
+                        _logger.LogInformation("[{workerName}] New runtime upgrade. Version {specVersion} at block {blockNum}", nameof(VersionWorker), runtimeVersion.SpecVersion, i);
+                        await UpgradeVersionAsync(lastStoredVersionNum.Value, i, blockHash, cancellationToken);
+                    }
+                    else
+                    {
+                        if (i % 5000 == 0)
+                        {
+                            _logger.LogInformation("[{workerName}] Fetching block {blockNum}", nameof(VersionWorker), i);
+                        }
+                    }
+
+                    currentBlock = i;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "[{workerName}] Error when fetching block {blockNum}. Wait {nbMs} before trying again", nameof(VersionWorker), i, 2_000);
+
+                    // Try to fetch again the same block
+                    i--;
+                }
             }
         }
 

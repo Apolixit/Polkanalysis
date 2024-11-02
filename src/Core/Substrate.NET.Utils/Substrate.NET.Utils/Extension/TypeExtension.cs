@@ -87,9 +87,7 @@ namespace Substrate.NET.Utils
             if (destinationInstance is null)
                 throw new InvalidOperationException($"Cannot create instance of {sender}");
 
-            var destination = (T?)destinationInstance;
-            if (destination is null)
-                throw new InvalidCastException($"Unable to cast {sender.Name} to {nameof(T)}");
+            var destination = (T)destinationInstance;
 
             return destination!;
         }

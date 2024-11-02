@@ -77,7 +77,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
 
                 dbTable.Add(model);
 
-                var nbRows = _context.SaveChanges();
+                var nbRows = await _context.SaveChangesAsync(token);
                 if (nbRows != 1)
                     throw new InvalidOperationException("Inserted rows are inconsistent");
 

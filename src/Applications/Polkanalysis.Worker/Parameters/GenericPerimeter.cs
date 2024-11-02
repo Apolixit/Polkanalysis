@@ -16,7 +16,7 @@ namespace Polkanalysis.Worker.Parameters
         public T? From { get; set; }
         public T? To { get; set; }
         public bool OverrideIfAlreadyExists { get; set; } = false;
-        public bool IsSet => From != null && !From.Equals(default(T)) && To != null && !To.Equals(default(T));
+        public bool IsSet => From is not null && !From.Equals(default(T)) && To is not null && !To.Equals(default(T));
 
         protected GenericPerimeter(
             IConfiguration configuration,
@@ -28,7 +28,7 @@ namespace Polkanalysis.Worker.Parameters
             EnsureConfigurationIsSet(configuration, section);
 
             var substrateSection = configuration.GetSection(section).GetChildren().ToList();
-            if (substrateSection != null && substrateSection.Any())
+            if (substrateSection is not null && substrateSection.Any())
             {
                 var fromSection = substrateSection.FirstOrDefault(e => e.Key == "from");
                 var toSection = substrateSection.FirstOrDefault(e => e.Key == "to");

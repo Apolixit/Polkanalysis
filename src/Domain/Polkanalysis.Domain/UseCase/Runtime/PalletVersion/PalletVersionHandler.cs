@@ -179,7 +179,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
                     UpdateLastVersionWithBlockEnd(request.BlockStart, moduleName);
                 }
 
-                var nbRows = _dbContext.SaveChanges();
+                var nbRows = await _dbContext.SaveChangesAsync(cancellationToken);
                 var expectedRows = addedModules.Count + changedModules.Count * 2 + res.RemovedModules.Count();
                 if (nbRows != expectedRows)
                 {
