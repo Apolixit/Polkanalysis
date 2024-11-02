@@ -24,6 +24,7 @@ namespace Polkanalysis.Components.Services.Http
         }
 
         public static async Task<TRes> GetHelperAsync<TReq, TRes>(this IApiService apiService, string url, TReq req)
+            where TReq: class
         {
             string query = string.Empty;
             if(req != null)

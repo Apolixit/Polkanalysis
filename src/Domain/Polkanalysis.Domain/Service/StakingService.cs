@@ -602,7 +602,7 @@ namespace Polkanalysis.Domain.Service
                 poolLight.RewardPool = 0;
 
                 // Get context data from the database
-                var poolCreation = _dbContext.EventNominationPoolsCreated.FirstOrDefault(x => x.Pool_id == poolId);
+                var poolCreation = await _dbContext.EventNominationPoolsCreated.FirstOrDefaultAsync(x => x.Pool_id == poolId, cancellationToken);
                 if (poolCreation is null)
                     _logger.LogWarning($"Pool {poolId} does not have creation event register in the database");
                 else

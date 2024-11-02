@@ -60,7 +60,7 @@ var host = Host.CreateDefaultBuilder(args)
 
     services.AddOpentelemetry(logger!,
         "Polkanalysis.Worker",
-        new List<string>() { "Polkanalysis.Worker.Metrics" });
+        new List<string>() { DomainMetrics.DomainMetricsName });
 
     services.AddHttpClient();
 

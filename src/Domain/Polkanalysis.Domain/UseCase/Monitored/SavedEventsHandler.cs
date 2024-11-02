@@ -259,7 +259,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
           eventNode.ToJson()
             );
 
-            var aleadyExist = _dbContext.EventsInformation.FirstOrDefault(x => x.BlockchainName == entity.BlockchainName && x.EventId == entity.EventId && x.BlockId == entity.BlockId);
+            var aleadyExist = await _dbContext.EventsInformation.FirstOrDefaultAsync(x => x.BlockchainName == entity.BlockchainName && x.EventId == entity.EventId && x.BlockId == entity.BlockId, cancellationToken);
 
             if (aleadyExist is null)
                 _dbContext.EventsInformation.Add(entity);
@@ -293,8 +293,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 LastOccurenceScannedBlockId = lastOccurence ?? 0 // Assuming default value for LastOccurenceScannedBlockId is 0
             };
 
-            var existingModel = _dbContext.EventManager
-                .FirstOrDefault(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent);
+            var existingModel = await _dbContext.EventManager
+                .FirstOrDefaultAsync(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent, cancellationToken);
 
             _logger.LogDebug("[{handler}][{method}] {typeOperation} {moduleName} {eventName}. Last scan {lastScan}, last occurrence = {lastOccurrence}", nameof(SavedEventsHandler), nameof(LogEventManagerAsync), existingModel is null ? "Insert" : "Update", moduleName, moduleEvent, lastOccurence?.ToString() ?? "never", lastScan);
 

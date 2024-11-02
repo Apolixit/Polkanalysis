@@ -129,7 +129,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
                 lastVersion.BlockEndDateTime = await _coreService.GetDateTimeFromTimestampAsync(request.BlockStart - 1, cancellationToken);
             }
 
-            var nbRows = _dbContext.SaveChanges();
+            var nbRows = await _dbContext.SaveChangesAsync(cancellationToken);
             var nbRowsExpected = 1 + (hasPreviousVersion ? 1 : 0);
             if (nbRows != nbRowsExpected)
                 _logger.LogWarning("[{handler}] Inserted rows are inconsistent. Expected {expectedResult} but was {result}", nameof(SpecVersionHandler), nbRowsExpected, nbRows);

@@ -17,6 +17,7 @@ namespace Polkanalysis.Domain.Metrics
     [ExcludeFromCodeCoverage]
     public class DomainMetrics : IDomainMetrics
     {
+        public const string DomainMetricsName = "Polkanalysis.Domain.Metrics";
         private Counter<int> CountEventsAnalyzed { get; set; }
         private Histogram<double> RatioOfEventsAnalyzedPerBlockHistogram { get; set; }
         private Histogram<double> RatioOfBlockAnalyzedHistogram { get; set; }
@@ -33,7 +34,7 @@ namespace Polkanalysis.Domain.Metrics
         /// <param name="configuration"></param>
         public DomainMetrics(IMeterFactory meterFactory, IConfiguration configuration)
         {
-            var meter = meterFactory.Create("Polkanalysis.Domain.Metrics");
+            var meter = meterFactory.Create(DomainMetricsName);
 
             // Counter of the number of blocks analyzed by the worker
             CountEventsAnalyzed = meter.CreateCounter<int>(

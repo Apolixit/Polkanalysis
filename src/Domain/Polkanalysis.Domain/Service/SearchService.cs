@@ -152,7 +152,7 @@ namespace Polkanalysis.Domain.Service
         /// <returns></returns>
         private async Task<SearchResultDto?> SearchBlockByHashAsync(string hash, CancellationToken token)
         {
-            var res = _db.BlockInformation.FirstOrDefault(x => x.BlockHash.ToLower() == hash.ToLower());
+            var res = await _db.BlockInformation.FirstOrDefaultAsync(x => x.BlockHash.ToLower() == hash.ToLower(), token);
             if (res is null)
                 return null;
 
@@ -173,7 +173,7 @@ namespace Polkanalysis.Domain.Service
         /// <returns></returns>
         private async Task<SearchResultDto?> SearchBlockByNumberAsync(uint blockNum, CancellationToken token)
         {
-            var res = _db.BlockInformation.FirstOrDefault(x => x.BlockNumber == blockNum);
+            var res = await _db.BlockInformation.FirstOrDefaultAsync(x => x.BlockNumber == blockNum, token);
 
             if (res is null)
                 return null;

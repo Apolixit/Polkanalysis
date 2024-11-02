@@ -73,7 +73,7 @@ namespace Polkanalysis.Api
                                       });
                 });
 
-                builder.Services.AddOpentelemetry(microsftLogger, "Polkanalysis.API");
+                builder.Services.AddOpentelemetry(microsftLogger, "Polkanalysis.API", new List<string>() { Domain.Metrics.DomainMetrics.DomainMetricsName });
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit

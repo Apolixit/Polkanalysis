@@ -15,6 +15,7 @@ using ApexCharts;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Domain.Metrics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,7 +48,7 @@ builder.Services.AddDatabase();
 
 builder.Services.AddDataGridEntityFrameworkAdapter();
 
-builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.App");
+builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.App", new List<string>() { DomainMetrics.DomainMetricsName });
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -72,6 +73,6 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<StartApp>()
     .AddInteractiveServerRenderMode()
-    .AddAdditionalAssemblies(typeof(Polkanalysis.Components.Pages.Index).Assembly);
+    .AddAdditionalAssemblies(typeof(Polkanalysis.Components.Pages.Contact).Assembly);
 
-app.Run();
+await app.RunAsync();
