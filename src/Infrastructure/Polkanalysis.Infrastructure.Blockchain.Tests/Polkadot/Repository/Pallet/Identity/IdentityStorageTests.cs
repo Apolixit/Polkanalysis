@@ -36,7 +36,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             Assert.That(mapped.Info.Encode(), Is.EqualTo(coreResult.Info.Encode()));
             Assert.That(mapped.Encode(), Is.EqualTo(coreResult.Encode()));
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.IdentityOfAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Identity.IdentityOfAsync);
 
             Assert.That(coreResult.Info.Display.Encode(), Is.EquivalentTo(expectedResult.Info.Display.Bytes));
             Assert.That(coreResult.Info.Legal.Encode(), Is.EquivalentTo(expectedResult.Info.Legal.Bytes));
@@ -55,7 +55,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 IdentityExt.Registration,
-                Registration>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.IdentityOfAsync);
+                Registration>(new SubstrateAccount(MockAddress), _substrateService.Storage.Identity.IdentityOfAsync);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new SubstrateAccount("1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih"),
                 new EnumData(Data.Raw6, new FlexibleNameable().FromText("AZIMUT")));
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.SuperOfAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Identity.SuperOfAsync);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 BaseTuple<AccountId32Ext, IdentityExt.EnumData>,
-                    BaseTuple<SubstrateAccount, EnumData>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SuperOfAsync);
+                    BaseTuple<SubstrateAccount, EnumData>>(new SubstrateAccount(MockAddress), _substrateService.Storage.Identity.SuperOfAsync);
         }
 
         [Test]
@@ -94,7 +94,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                     new SubstrateAccount("16aXLhFh9mZoyW5emqZM6fJWTqbWENGrJkAoGwtR1S8XoFwY")
                 }));
 
-            var res = await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.SubsOfAsync);
+            var res = await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Identity.SubsOfAsync);
 
             Assert.That(res.Value[0].As<U128>().Value, Is.EqualTo(expectedResult.Value[0].As<U128>().Value));
 
@@ -109,7 +109,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task SubsOfNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync
-                <SubstrateAccount, BaseTuple<U128, BaseVec<AccountId32Ext>>, BaseTuple<U128, BaseVec<SubstrateAccount>>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SubsOfAsync);
+                <SubstrateAccount, BaseTuple<U128, BaseVec<AccountId32Ext>>, BaseTuple<U128, BaseVec<SubstrateAccount>>>(new SubstrateAccount(MockAddress), _substrateService.Storage.Identity.SubsOfAsync);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                         new U64(0))),
             });
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Identity.RegistrarsAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Identity.RegistrarsAsync);
         }
 
         [Test]
@@ -147,7 +147,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 BaseVec<BaseOpt<IdentityExt.RegistrarInfo>>,
-                BaseVec<BaseOpt<RegistrarInfo>>>(_substrateRepository.Storage.Identity.RegistrarsAsync);
+                BaseVec<BaseOpt<RegistrarInfo>>>(_substrateService.Storage.Identity.RegistrarsAsync);
         }
     }
 }

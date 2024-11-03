@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain.P
         [Test]
         public async Task ParachainId_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.ParachainInfo.ParachainIdAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.ParachainInfo.ParachainIdAsync(CancellationToken.None);
             
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Value.Value, Is.EqualTo(1004));

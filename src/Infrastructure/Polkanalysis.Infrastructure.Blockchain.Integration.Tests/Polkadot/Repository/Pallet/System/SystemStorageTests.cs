@@ -25,9 +25,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         {
             _substrateDecoding = new SubstrateDecoding(
                 new EventNodeMapping(),
-                _substrateRepository,
+                _substrateService,
                 new PalletBuilder(
-                    _substrateRepository,
+                    _substrateService,
                     Substitute.For<ILogger<PalletBuilder>>()),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
@@ -96,7 +96,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(18112436, "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")]
         public async Task Account_ShouldWorkAsync(int numBlock, string accountAddress)
         {
-            var res = await _substrateRepository.At(numBlock).Storage.System.AccountAsync(
+            var res = await _substrateService.At(numBlock).Storage.System.AccountAsync(
                 new SubstrateAccount(accountAddress),
                 CancellationToken.None);
 
@@ -107,14 +107,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(10000)]
         public async Task GetAllAccounts_ShouldWorkAsync(int nb)
         {
-            await SystemStorageAbstractTests.GetAllAccounts_ShouldWorkAsync(_substrateRepository, nb);
+            await SystemStorageAbstractTests.GetAllAccounts_ShouldWorkAsync(_substrateService, nb);
         }
 
         [Test, Ignore("Todo debug")]
         [TestCase(100)]
         public async Task GetAllAccounts_FromSpecificHashShouldWorkAsync(int nb)
         {
-            var query = await _substrateRepository.At("0x8AC682A247013A2EA8EB3623B4D2E7B2AEC2DF09B57E9F42D6A91AD9F2362F2C").Storage.System.AccountsQueryAsync(CancellationToken.None);
+            var query = await _substrateService.At("0x8AC682A247013A2EA8EB3623B4D2E7B2AEC2DF09B57E9F42D6A91AD9F2362F2C").Storage.System.AccountsQueryAsync(CancellationToken.None);
             var res = await query.Take(nb).ExecuteAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
@@ -128,7 +128,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(BlockFromLast10Versions))]
         public async Task Number_ShouldWorkAsync(int block)
         {
-            var blockNum = await _substrateRepository.At(block).Storage.System.NumberAsync(CancellationToken.None);
+            var blockNum = await _substrateService.At(block).Storage.System.NumberAsync(CancellationToken.None);
             Assert.That(blockNum, Is.Not.Null);
             Assert.That(blockNum.Value, Is.GreaterThan(0));
         }
@@ -137,7 +137,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(BlockFromLast10Versions))]
         public async Task BlockWeight_ShouldWorkAsync(int block)
         {
-            var res = await _substrateRepository.At(block).Storage.System.BlockWeightAsync(CancellationToken.None);
+            var res = await _substrateService.At(block).Storage.System.BlockWeightAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
@@ -145,8 +145,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task BlockHash_ShouldWorkAsync()
         {
-            var blockId = await _substrateRepository.Storage.System.NumberAsync(CancellationToken.None);
-            var res = await _substrateRepository.Storage.System.BlockHashAsync(new U32(blockId - 10), CancellationToken.None);
+            var blockId = await _substrateService.Storage.System.NumberAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.System.BlockHashAsync(new U32(blockId - 10), CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
@@ -154,7 +154,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test, Category(NoTestCase)]
         public async Task ExtrinsicData_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.System.ExtrinsicDataAsync(new U32(1), CancellationToken.None);
+            var res = await _substrateService.Storage.System.ExtrinsicDataAsync(new U32(1), CancellationToken.None);
 
             Assert.That(res, Is.Null);
         }
@@ -163,7 +163,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(BlockFromLast10Versions))]
         public async Task ParentHash_ShouldWorkAsync(int block)
         {
-            var res = await _substrateRepository.At(block).Storage.System.ParentHashAsync(CancellationToken.None);
+            var res = await _substrateService.At(block).Storage.System.ParentHashAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
@@ -172,7 +172,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(BlockFromLast10Versions))]
         public async Task Digest_ShouldWorkAsync(int block)
         {
-            var res = await _substrateRepository.At(block).Storage.System.DigestAsync(CancellationToken.None);
+            var res = await _substrateService.At(block).Storage.System.DigestAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
@@ -187,7 +187,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         public async Task EventsAt_ShouldWorkAsync(int blockNumber)
         {
             // 18,112,436 -> 18,112,443
-            var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
+            var res = await _substrateService.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
@@ -197,8 +197,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [CancelAfter(RepositoryMaxTimeout)]
         public async Task EventsAsNode_ShouldWorkAsync(int blockNumber)
         {
-            var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
-            var metadata = await _substrateRepository.At(blockNumber).GetMetadataAsync(CancellationToken.None).ConfigureAwait(false);
+            var res = await _substrateService.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
+            var metadata = await _substrateService.At(blockNumber).GetMetadataAsync(CancellationToken.None).ConfigureAwait(false);
 
             var tasked = new List<Task<IEventNode>>();
             
@@ -223,8 +223,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [CancelAfter(RepositoryMaxTimeout)]
         public async Task EventsAsNode_DebugBug_ShouldWorkAsync(int blockNumber)
         {
-            var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
-            var metadata = await _substrateRepository.At(blockNumber).GetMetadataAsync(CancellationToken.None);
+            var res = await _substrateService.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
+            var metadata = await _substrateService.At(blockNumber).GetMetadataAsync(CancellationToken.None);
 
             var decoded0 = await _substrateDecoding.DecodeEventAsync(res.Value[48], metadata, CancellationToken.None);
             var decoded = await _substrateDecoding.DecodeEventAsync(res.Value[49], metadata, CancellationToken.None);
@@ -239,7 +239,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task ExtrinsicFailedAsNode_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.At(22666089).Storage.System.EventsAsync(CancellationToken.None);
+            var res = await _substrateService.At(22666089).Storage.System.EventsAsync(CancellationToken.None);
 
             var eventNode = await _substrateDecoding.DecodeEventAsync(res.Value[56], CancellationToken.None);
 
@@ -258,7 +258,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task Events_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.System.EventsAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.System.EventsAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
@@ -266,7 +266,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test, Ignore(NoTestCase)]
         public async Task EventTopics_ShouldWorkAsync()
         {
-            //var res = await _substrateRepository.Storage.System.EventTopicsAsync(CancellationToken.None);
+            //var res = await _substrateService.Storage.System.EventTopicsAsync(CancellationToken.None);
 
             //Assert.That(res, Is.Not.Null);
             Assert.Fail();
@@ -276,7 +276,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(AllBlockVersionTestCases))]
         public async Task LastRuntimeUpgrade_ShouldWorkAsync(int blockNumber)
         {
-            var res = await _substrateRepository.At(blockNumber).Storage.System.LastRuntimeUpgradeAsync(CancellationToken.None);
+            var res = await _substrateService.At(blockNumber).Storage.System.LastRuntimeUpgradeAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
@@ -284,7 +284,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test, Category(NoTestCase)]
         public async Task ExecutionPhase_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.System.ExecutionPhaseAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.System.ExecutionPhaseAsync(CancellationToken.None);
 
             Assert.That(res, Is.Null);
         }
@@ -292,7 +292,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task GetMetadata_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray("0x82fbb5fb09611ed2f999415275b53033d8b368ffa2ebd5d3dbeb7e094cbb09c0"), CancellationToken.None);
+            var res = await _substrateService.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray("0x82fbb5fb09611ed2f999415275b53033d8b368ffa2ebd5d3dbeb7e094cbb09c0"), CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }

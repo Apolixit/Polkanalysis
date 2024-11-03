@@ -21,8 +21,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Rpc
         [TestCase(14003402)]
         public async Task GetBlockAsync_ShouldSuccessAsync(int blockNumber)
         {
-            var blockHash = await _substrateRepository.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)blockNumber), CancellationToken.None);
-            var res = await _substrateRepository.Rpc.Chain.GetBlockAsync(blockHash, CancellationToken.None);
+            var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)blockNumber), CancellationToken.None);
+            var res = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }

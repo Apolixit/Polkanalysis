@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
@@ -11,6 +11,7 @@ using Substrate.NET.Metadata.V14;
 using Substrate.NET.Utils.Address;
 using Substrate.NET.Utils.Core;
 using Substrate.NetApi;
+using Substrate.NetApi.Exceptions;
 using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Rpc;
@@ -37,8 +38,8 @@ namespace Polkanalysis.Infrastructure.Blockchain
 
         private readonly ILogger _logger;
 
-        protected readonly Uri _endpointUri;
-        public Uri EndpointUri => _endpointUri;
+        protected readonly EndpointInformation _endpointInformation;
+        public EndpointInformation EndpointInformation => _endpointInformation;
         private readonly ISubstrateEndpoint _substrateconfiguration;
 
         protected BlockchainAbstractService(ISubstrateEndpoint substrateconfiguration, ILogger logger)
@@ -46,7 +47,7 @@ namespace Polkanalysis.Infrastructure.Blockchain
             _substrateconfiguration = substrateconfiguration;
             _logger = logger;
 
-            _endpointUri = _substrateconfiguration.WsEndpointUri;
+            _endpointInformation = _substrateconfiguration.GetEndpoint(BlockchainName);
         }
 
         public ITimeQueryable At(BlockNumber blockNumber)
@@ -148,17 +149,23 @@ namespace Polkanalysis.Infrastructure.Blockchain
             try
             {
                 AjunaClient.ConnectionSet += (sender, e) 
-                    => _logger.LogInformation("Successfully connected to {blockchainName} (endpoint : {endpointUri})", BlockchainName, EndpointUri);
+                    => _logger.LogInformation("Successfully connected to {blockchainName} (endpoint : {providerName} {endpointUri})", BlockchainName, EndpointInformation.Name, EndpointInformation.Uri);
 
                 AjunaClient.ConnectionLost += (sender, e) 
-                    => _logger.LogWarning("Connection lost to {blockchainName} (endpoint : {endpointUri}), trying to reconnect...", BlockchainName, EndpointUri);
+                    => _logger.LogWarning("Connection lost to {blockchainName} (endpoint : {providerName} {endpointUri}), trying to reconnect...", BlockchainName, EndpointInformation.Name, EndpointInformation.Uri);
 
                 AjunaClient.OnReconnected += (sender, e) 
-                    => _logger.LogInformation("Reconnected to {blockchainName} (endpoint : {endpointUri}) after {nbRetry} retry", BlockchainName, EndpointUri, (int)e);
+                    => _logger.LogInformation("Reconnected to {blockchainName} (endpoint : {providerName} {endpointUri}) after {nbRetry} retry", BlockchainName, EndpointInformation.Name, EndpointInformation.Uri, (int)e);
 
                 await AjunaClient.ConnectAsync(token);
 
-            } catch(Exception ex)
+            } catch(UnableToReconnectException ex)
+            {
+                // We are unable to reconnect to the current RPC node. Let's try another one
+                //var nextEndpoint = _substrateconfiguration.GetNextEndpoint(BlockchainName, _endpointInformation.Uri.OriginalString);
+                _logger.LogError(ex.Message);
+            }
+            catch(Exception ex)
             {
                 _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
             }

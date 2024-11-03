@@ -16,8 +16,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot
         [Test, Ignore("Todo setup mock")]
         public void TimeQueryable_WithCurentBlockLowerThanQueryableBlock_ShouldThrowException()
         {
-            _substrateRepository.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), Arg.Any<CancellationToken>()).Returns(MockHash);
-            _substrateRepository.Rpc.Chain.GetBlockAsync().Returns(
+            _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), Arg.Any<CancellationToken>()).Returns(MockHash);
+            _substrateService.Rpc.Chain.GetBlockAsync().Returns(
                 new TempNewBlockData(new TempNewBlock() { 
                     Header = new Substrate.NetApi.Model.Rpc.Header() { 
                         Number = new Substrate.NetApi.Model.Types.Primitive.U64(10) 
@@ -25,7 +25,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot
                 }, null!)
             );
 
-            Assert.Throws<InvalidOperationException>(() => _substrateRepository.At(new BlockNumber(20)));
+            Assert.Throws<InvalidOperationException>(() => _substrateService.At(new BlockNumber(20)));
         }
     }
 }

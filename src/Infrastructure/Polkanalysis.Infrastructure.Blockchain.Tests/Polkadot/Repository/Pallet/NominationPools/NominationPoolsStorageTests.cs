@@ -21,91 +21,91 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCaseSource(nameof(U128TestCase))]
         public async Task MinJoinBond_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.MinJoinBondAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.MinJoinBondAsync);
         }
 
         [Test]
         public async Task MinJoinBondNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.MinJoinBondAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.MinJoinBondAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task MinCreateBond_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.MinCreateBondAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.MinCreateBondAsync);
         }
 
         [Test]
         public async Task MinCreateBondNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.MinCreateBondAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.MinCreateBondAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task MaxPools_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.MaxPoolsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.MaxPoolsAsync);
         }
 
         [Test]
         public async Task MaxPoolsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.MaxPoolsAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.MaxPoolsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task MaxPoolMembers_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.MaxPoolMembersAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.MaxPoolMembersAsync);
         }
 
         [Test]
         public async Task MaxPoolMembersNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.MaxPoolMembersAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.MaxPoolMembersAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task MaxPoolMembersPerPool_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.MaxPoolMembersAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.MaxPoolMembersAsync);
         }
 
         [Test]
         public async Task MaxPoolMembersPerPoolNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.MaxPoolMembersPerPoolAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.MaxPoolMembersPerPoolAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForPoolMembers_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.MaxPoolMembersAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.MaxPoolMembersAsync);
         }
 
         [Test]
         public async Task CounterForPoolMembersNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.CounterForPoolMembersAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.CounterForPoolMembersAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForBondedPools_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.MaxPoolMembersAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.MaxPoolMembersAsync);
         }
 
         [Test]
         public async Task CounterForBondedPoolsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.CounterForBondedPoolsAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.CounterForBondedPoolsAsync);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new BaseVec<BaseTuple<U32, U128>>(new BaseTuple<U32, U128>[] { }));
 
             await MockStorageCallWithInputAsync
-                (new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.PoolMembersAsync);
+                (new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.NominationPools.PoolMembersAsync);
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 NominationPoolsExt.PoolMember,
-                PoolMember>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.NominationPools.PoolMembersAsync);
+                PoolMember>(new SubstrateAccount(MockAddress), _substrateService.Storage.NominationPools.PoolMembersAsync);
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new BaseOpt<SubstrateAccount>(new SubstrateAccount("12d3Rt2khozZE2sZdUr5Gu5kJzCC9HHX3CDN4pAyraHp34H"))
             );
 
-            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.BondedPoolsAsync, 9431);
+            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateService.Storage.NominationPools.BondedPoolsAsync, 9431);
         }
 
         [Test]
@@ -179,7 +179,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             );
 
             var result = await MockStorageCallWithInputAsync
-                (new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.BondedPoolsAsync);
+                (new U32(1), coreResult, expectedResult, _substrateService.Storage.NominationPools.BondedPoolsAsync);
 
             Assert.That(result.Points.Value, Is.EqualTo(expectedResult.Points.Value));
             Assert.That(result.State.Value, Is.EqualTo(PoolState.Open));
@@ -200,7 +200,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 U32,
                 NominationPoolsExt.BondedPoolInner,
                 BondedPoolInner>
-                (new U32(1), _substrateRepository.Storage.NominationPools.BondedPoolsAsync);
+                (new U32(1), _substrateService.Storage.NominationPools.BondedPoolsAsync);
         }
 
         [Test]
@@ -218,7 +218,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             );
 
             var result = await MockStorageCallWithInputAsync
-                (new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.RewardPoolsAsync);
+                (new U32(1), coreResult, expectedResult, _substrateService.Storage.NominationPools.RewardPoolsAsync);
 
             Assert.That(result.LastRecordedRewardCounter.Value, Is.EqualTo(expectedResult.LastRecordedRewardCounter.Value));
             Assert.That(result.LastRecordedTotalPayouts.Value, Is.EqualTo(expectedResult.LastRecordedTotalPayouts.Value));
@@ -234,20 +234,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 U32,
                 NominationPoolsExt.RewardPool,
                 RewardPool>
-                (new U32(1), _substrateRepository.Storage.NominationPools.RewardPoolsAsync);
+                (new U32(1), _substrateService.Storage.NominationPools.RewardPoolsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForRewardPools_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.CounterForRewardPoolsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.CounterForRewardPoolsAsync);
         }
 
         [Test]
         public async Task CounterForRewardPoolsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.CounterForRewardPoolsAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.CounterForRewardPoolsAsync);
         }
 
         [Test]
@@ -349,7 +349,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             }
 
             var result = await MockStorageCallWithInputAsync
-                (new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.SubPoolsStorageAsync);
+                (new U32(1), coreResult, expectedResult, _substrateService.Storage.NominationPools.SubPoolsStorageAsync);
 
             Assert.That(result.NoEra.Points.Value, Is.EqualTo(expectedResult.NoEra.Points.Value));
             Assert.That(result.NoEra.Balance.Value, Is.EqualTo(expectedResult.NoEra.Balance.Value));
@@ -362,20 +362,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 U32,
                 NominationPoolsExt.SubPools,
                 SubPools>
-                (new U32(1), _substrateRepository.Storage.NominationPools.SubPoolsStorageAsync);
+                (new U32(1), _substrateService.Storage.NominationPools.SubPoolsStorageAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForSubPoolsStorage_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.CounterForRewardPoolsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.CounterForRewardPoolsAsync);
         }
 
         [Test]
         public async Task CounterForSubPoolsStorageNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.CounterForSubPoolsStorageAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.CounterForSubPoolsStorageAsync);
         }
 
         [Test]
@@ -388,13 +388,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new FlexibleNameable().FromText(poolName);
 
-            _substrateRepository.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
+            _substrateService.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
             {
                 SpecVersion = 9370
             });
-            _substrateRepository.AjunaClient.GetStorageAsync<BaseVec<U8>>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(coreResult);
+            _substrateService.AjunaClient.GetStorageAsync<BaseVec<U8>>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(coreResult);
 
-            var res = await _substrateRepository.Storage.NominationPools.MetadataAsync(new U32(1), CancellationToken.None);
+            var res = await _substrateService.Storage.NominationPools.MetadataAsync(new U32(1), CancellationToken.None);
             var nameableUncleaned = new FlexibleNameable(res);
             var nameableCleaned = new FlexibleNameable(res.Value);
 
@@ -412,60 +412,60 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 U32,
                 BaseVec<U8>,
                 FlexibleNameable>
-                (new U32(1), _substrateRepository.Storage.NominationPools.MetadataAsync);
+                (new U32(1), _substrateService.Storage.NominationPools.MetadataAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForMetadata_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.CounterForRewardPoolsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.CounterForRewardPoolsAsync);
         }
 
         [Test]
         public async Task CounterForMetadataNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.CounterForMetadataAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.CounterForMetadataAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task LastPoolId_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.CounterForRewardPoolsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.CounterForRewardPoolsAsync);
         }
 
         [Test]
         public async Task LastPoolIdNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.LastPoolIdAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.LastPoolIdAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task ReversePoolIdLookup_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.CounterForRewardPoolsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.CounterForRewardPoolsAsync);
         }
 
         [Test]
         public async Task ReversePoolIdLookupNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync
-                (new SubstrateAccount(MockAddress), _substrateRepository.Storage.NominationPools.ReversePoolIdLookupAsync);
+                (new SubstrateAccount(MockAddress), _substrateService.Storage.NominationPools.ReversePoolIdLookupAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForReversePoolIdLookup_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.NominationPools.CounterForRewardPoolsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.NominationPools.CounterForRewardPoolsAsync);
         }
 
         [Test]
         public async Task CounterForReversePoolIdLookupNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.NominationPools.CounterForReversePoolIdLookupAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.NominationPools.CounterForReversePoolIdLookupAsync);
         }
     }
 }

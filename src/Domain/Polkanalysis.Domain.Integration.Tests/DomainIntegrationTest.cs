@@ -1,33 +1,27 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary;
 using NUnit.Framework;
-using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Configuration.Contracts.Endpoints;
+using Microsoft.Extensions.Configuration;
+using Polkanalysis.Configuration.Extensions;
+using Polkanalysis.Abstract.Tests;
 
 namespace Polkanalysis.Domain.Integration.Tests
 {
     /// <summary>
     /// Test main class to be connected to endpoint
     /// </summary>
-    public abstract class IntegrationTest
+    public abstract class DomainIntegrationTest : GlobalIntegrationTest
     {
-        protected ISubstrateService _substrateService;
-        protected ISubstrateEndpoint _substrateEndpoint;
-
         /// <summary>
         /// A repository doesn't exceed <see cref="RepositoryMaxTimeout"/> millisecond to respond
         /// </summary>
         public const int RepositoryMaxTimeout = 5000;
 
-        protected IntegrationTest()
+        protected DomainIntegrationTest() : base()
         {
-            _substrateEndpoint = GetEndpoint();
-
-            if (_substrateEndpoint == null)
-                throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
+            
         }
-
-        internal abstract ISubstrateEndpoint GetEndpoint();
-        //public virtual Task ConnectDependenciesAsync() => Task.CompletedTask;
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test
@@ -41,7 +35,6 @@ namespace Polkanalysis.Domain.Integration.Tests
                 try
                 {
                     await _substrateService.ConnectAsync(CancellationToken.None);
-                    //await ConnectDependenciesAsync();
                 }
                 catch (Exception)
                 {

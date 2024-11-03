@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
@@ -18,6 +17,7 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Events;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Substrate.NET.Utils.Core;
+using Polkanalysis.Configuration.Contracts.Endpoints;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
 {
@@ -43,7 +43,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             {
                 if (_peopleChainClient == null)
                 {
-                    _peopleChainClient = new SubstrateClientExt(_endpointUri, ChargeTransactionPayment.Default());
+                    _peopleChainClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
                 }
                 return _peopleChainClient;
             }

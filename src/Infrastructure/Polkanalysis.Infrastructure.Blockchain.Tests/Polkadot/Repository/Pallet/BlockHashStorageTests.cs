@@ -29,10 +29,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             //_substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), null, CancellationToken.None).ReturnsNull();
 
-            ((PolkadotService)_substrateRepository).PolkadotClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), CancellationToken.None).Returns(storageResult);
+            ((PolkadotService)_substrateService).PolkadotClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), CancellationToken.None).Returns(storageResult);
 
 
-            _substrateRepository.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
+            _substrateService.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
             {
                 SpecVersion = version
             });
@@ -47,7 +47,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
 
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
@@ -63,7 +63,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new Bool().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Authorship.DidSetUnclesAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Authorship.DidSetUnclesAsync(CancellationToken.None);
 
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
@@ -77,7 +77,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Babe.EpochIndexAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U64().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Babe.EpochIndexAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Babe.EpochIndexAsync(CancellationToken.None);
 
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
@@ -91,7 +91,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U128().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
 
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
@@ -105,7 +105,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Crowdloan.EndingsCountAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Crowdloan.EndingsCountAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Crowdloan.EndingsCountAsync(CancellationToken.None);
 
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
@@ -127,7 +127,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Identity.RegistrarsAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash, Is.EqualTo(new RegistarInfo()));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Identity.RegistrarsAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Identity.RegistrarsAsync(CancellationToken.None);
             Assert.That(resWithBlockHash.Encode(), Is.EqualTo(expectedResult.Encode()));
         }
 
@@ -140,7 +140,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.NominationPools.MaxPoolsAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.NominationPools.MaxPoolsAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.NominationPools.MaxPoolsAsync(CancellationToken.None);
 
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
@@ -154,7 +154,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.ParaSessionInfo.EarliestStoredSessionAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.ParaSessionInfo.EarliestStoredSessionAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.ParaSessionInfo.EarliestStoredSessionAsync(CancellationToken.None);
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
 
@@ -167,7 +167,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Paras.FutureCodeUpgradesAsync(new Id(1), CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Paras.FutureCodeUpgradesAsync(new Id(1), CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Paras.FutureCodeUpgradesAsync(new Id(1), CancellationToken.None);
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
 
@@ -181,7 +181,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Registrar.NextFreeParaIdAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new Id().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Registrar.NextFreeParaIdAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Registrar.NextFreeParaIdAsync(CancellationToken.None);
             Assert.That(resWithBlockHash.Value.Value, Is.EqualTo(expectedResult.Value.Value));
         }
 
@@ -194,7 +194,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Session.CurrentIndexAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Session.CurrentIndexAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Session.CurrentIndexAsync(CancellationToken.None);
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
 
@@ -207,7 +207,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Staking.CounterForValidatorsAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Staking.CounterForValidatorsAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Staking.CounterForValidatorsAsync(CancellationToken.None);
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
 
@@ -220,7 +220,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.System.NumberAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.System.NumberAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.System.NumberAsync(CancellationToken.None);
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
 
@@ -233,7 +233,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             //var resWithoutBlockHash = await _substrateRepository.Storage.Timestamp.NowAsync(CancellationToken.None);
             //Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U64().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Timestamp.NowAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateService.At(BlockHash).Storage.Timestamp.NowAsync(CancellationToken.None);
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }
     }

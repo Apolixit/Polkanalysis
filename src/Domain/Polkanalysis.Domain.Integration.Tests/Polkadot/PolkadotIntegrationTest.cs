@@ -1,5 +1,4 @@
-﻿using Polkanalysis.Configuration.Contracts;
-using NSubstitute;
+﻿using NSubstitute;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Database;
@@ -10,44 +9,26 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Domain.Integration.Tests.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Configuration.Contracts.Endpoints;
+using Polkanalysis.Configuration.Extensions;
 
 namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 {
-    public abstract class PolkadotIntegrationTest : IntegrationTest
+    public abstract class PolkadotIntegrationTest : DomainIntegrationTest
     {
         protected SubstrateDbContext _substrateDbContext;
         private PeopleChainService _peopleChainService = default!;
 
-        protected PolkadotIntegrationTest()
+        protected PolkadotIntegrationTest() : base()
         {
             var peopleChainIntegrationTest = new PeopleChainIntegrationTest();
-            _peopleChainService = new PeopleChainService(
-                peopleChainIntegrationTest.GetEndpoint(), 
-                new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
-                Substitute.For<ILogger<PeopleChainService>>());
-
+            
             _substrateService = new PolkadotService(
-                    _substrateEndpoint,
+                    _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
-                    _peopleChainService);
+                    (PeopleChainService)peopleChainIntegrationTest.GetSubstrateService());
         }
-
-        public string PolkadotEndpointUri => "wss://dot-rpc.stakeworld.io";
-        internal override ISubstrateEndpoint GetEndpoint()
-        {
-            var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
-
-            substrateConfigurationMock.BlockchainName.Returns("Polkadot");
-            substrateConfigurationMock.WsEndpointUri.Returns(new Uri(PolkadotEndpointUri));
-
-            return substrateConfigurationMock;
-        }
-
-        //public async override Task ConnectDependenciesAsync()
-        //{
-        //    await _peopleChainService.ConnectAsync();
-        //}
 
         [SetUp]
         protected void SetupBase()

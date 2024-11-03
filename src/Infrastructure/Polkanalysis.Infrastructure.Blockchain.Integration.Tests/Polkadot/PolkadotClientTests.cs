@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Abstract.Tests;
+using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
-    internal class PolkadotClientTests
+    internal class PolkadotClientTests : GlobalIntegrationTest
     {
         private PeopleChainService _peopleChainService = default!;
         private PolkadotService _polkadotService = default!;
@@ -24,28 +25,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         protected void Init()
         {
             var peopleChainIntegration = new PeopleChain.PeopleChainIntegrationTests();
-            _peopleChainService = new PeopleChainService(
-                    peopleChainIntegration.GetEndpoint(),
-                    new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
-                    Substitute.For<ILogger<PeopleChainService>>()
-                    );
 
-            //var polkadotIntegration = new PolkadotIntegrationTest();
             _polkadotService = new PolkadotService(
-                    GetPolkadotEndpoint(),
+                    _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
-                    _peopleChainService);
-        }
-
-        internal ISubstrateEndpoint GetPolkadotEndpoint()
-        {
-            var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
-
-            substrateConfigurationMock.BlockchainName.Returns("Polkadot");
-            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://dot-rpc.stakeworld.io"));
-
-            return substrateConfigurationMock;
+                    (PeopleChainService)peopleChainIntegration.GetSubstrateService());
         }
 
         [SetUp]

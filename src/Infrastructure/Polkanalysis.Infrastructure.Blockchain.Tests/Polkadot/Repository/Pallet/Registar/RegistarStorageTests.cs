@@ -15,14 +15,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Id(3341);
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Registrar.NextFreeParaIdAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Registrar.NextFreeParaIdAsync);
         }
 
         [Test]
         public async Task NextFreeParaIdNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id, Id>(_substrateRepository.Storage.Registrar.NextFreeParaIdAsync);
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id, Id>(_substrateService.Storage.Registrar.NextFreeParaIdAsync);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new BaseOpt<Bool>(new Bool(false))
             );
 
-            await MockStorageCallWithInputAsync(new Id(2098), coreResult, expectedResult, _substrateRepository.Storage.Registrar.ParasAsync);
+            await MockStorageCallWithInputAsync(new Id(2098), coreResult, expectedResult, _substrateService.Storage.Registrar.ParasAsync);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 Id,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.paras_registrar.ParaInfo,
-                ParaInfo>(new Id(1), _substrateRepository.Storage.Registrar.ParasAsync);
+                ParaInfo>(new Id(1), _substrateService.Storage.Registrar.ParasAsync);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Id(1);
 
-            await MockStorageCallWithInputAsync(new Id(2098), coreResult, expectedResult, _substrateRepository.Storage.Registrar.PendingSwapAsync);
+            await MockStorageCallWithInputAsync(new Id(2098), coreResult, expectedResult, _substrateService.Storage.Registrar.PendingSwapAsync);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 Id,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id,
-                Id>(new Id(1), _substrateRepository.Storage.Registrar.PendingSwapAsync);
+                Id>(new Id(1), _substrateService.Storage.Registrar.PendingSwapAsync);
         }
     }
 }

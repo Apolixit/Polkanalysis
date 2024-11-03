@@ -16,21 +16,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task Validators_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Session.ValidatorsAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Session.ValidatorsAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task QueuedKeys_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Session.QueuedKeysAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Session.QueuedKeysAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task NextKeys_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Session.NextKeysAsync(new SubstrateAccount("1zugcag7cJVBtVRnFxv5Qftn7xKAnR6YJ9x4x3XLgGgmNnS"), CancellationToken.None);
+            var res = await _substrateService.Storage.Session.NextKeysAsync(new SubstrateAccount("1zugcag7cJVBtVRnFxv5Qftn7xKAnR6YJ9x4x3XLgGgmNnS"), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             var input = new BaseTuple<FlexibleNameable, Hexa>();
             input.Create(i2, new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
 
-            var res = await _substrateRepository.Storage.Session.KeyOwnerAsync(input, CancellationToken.None);
+            var res = await _substrateService.Storage.Session.KeyOwnerAsync(input, CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
     }

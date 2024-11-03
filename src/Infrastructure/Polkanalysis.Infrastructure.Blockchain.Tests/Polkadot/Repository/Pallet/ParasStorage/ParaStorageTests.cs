@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new PvfCheckActiveVoteState();
 
-            await MockStorageCallWithInputAsync(new Hash("Hash"), coreResult, expectedResult, _substrateRepository.Storage.Paras.PvfActiveVoteMapAsync);
+            await MockStorageCallWithInputAsync(new Hash("Hash"), coreResult, expectedResult, _substrateService.Storage.Paras.PvfActiveVoteMapAsync);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 Hash, RuntimeParachainsExt.PvfCheckActiveVoteState,
-                PvfCheckActiveVoteState>(new Hash("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB"), _substrateRepository.Storage.Paras.PvfActiveVoteMapAsync);
+                PvfCheckActiveVoteState>(new Hash("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB"), _substrateService.Storage.Paras.PvfActiveVoteMapAsync);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new Hash("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB")
             });
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Paras.PvfActiveVoteListAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Paras.PvfActiveVoteListAsync);
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<BaseVec<
                     ParachainPrimitivesExt.ValidationCodeHash>,
-                BaseVec<Hash>>(_substrateRepository.Storage.Paras.PvfActiveVoteListAsync);
+                BaseVec<Hash>>(_substrateService.Storage.Paras.PvfActiveVoteListAsync);
         }
 
         [Test]
@@ -64,14 +64,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new Id(1001),
             });
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Paras.ParachainsAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Paras.ParachainsAsync);
         }
 
         [Test]
         public async Task ParachainsNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<BaseVec<ParachainPrimitivesExt.Id>,
-                 BaseVec<Id>>(_substrateRepository.Storage.Paras.ParachainsAsync);
+                 BaseVec<Id>>(_substrateService.Storage.Paras.ParachainsAsync);
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumParaLifecycle();
             expectedResult.Create(Contracts.Pallet.Paras.Enums.ParaLifecycle.Parachain);
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.ParaLifecyclesAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Paras.ParaLifecyclesAsync);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<Id,
                  RuntimeParachainsExt.EnumParaLifecycle,
-                 EnumParaLifecycle>(new Id(1), _substrateRepository.Storage.Paras.ParaLifecyclesAsync);
+                 EnumParaLifecycle>(new Id(1), _substrateService.Storage.Paras.ParaLifecyclesAsync);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new DataCode();
             expectedResult.Create("0xE90268D00B822D44D8CAEEBC484B5822B6A40D2DABC5E1BC8D5CCDD4DE11DD69F5B596FD0B00E33D514E525B14C4326C3514FD9F164B1CBF38D30B8ED4996AB98BBD805A5F30A3E46970B690A290B804338A6715321CECFC6879143AC0C8E66AC5E41C4E7010080661757261203813570800000000056175726101016EBE124E2E70844236E508890E0D9E68E2304552D7402753B2BF22837052FD2EA6E2CD1854A13A926561EA26D60C037B5C1C67405565BCFC4FAC38A6B1748385");
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.HeadsAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Paras.HeadsAsync);
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<Id,
                  ParachainPrimitivesExt.HeadData,
-                 DataCode>(new Id(2094), _substrateRepository.Storage.Paras.HeadsAsync);
+                 DataCode>(new Id(2094), _substrateService.Storage.Paras.HeadsAsync);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Hash("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB");
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.CurrentCodeHashAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Paras.CurrentCodeHashAsync);
         }
 
         [Test]
@@ -130,7 +130,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<Id,
                  ParachainPrimitivesExt.ValidationCodeHash,
-                 Hash>(new Id(2094), _substrateRepository.Storage.Paras.CurrentCodeHashAsync);
+                 Hash>(new Id(2094), _substrateService.Storage.Paras.CurrentCodeHashAsync);
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Hash(hash);
 
-            var result = await MockStorageCallWithInputAsync(new BaseTuple<Id, U32>(new Id(2094), new U32(1)), coreResult, expectedResult, _substrateRepository.Storage.Paras.PastCodeHashAsync);
+            var result = await MockStorageCallWithInputAsync(new BaseTuple<Id, U32>(new Id(2094), new U32(1)), coreResult, expectedResult, _substrateService.Storage.Paras.PastCodeHashAsync);
 
             Assert.That(Utils.Bytes2HexString(result.Bytes), Is.EqualTo(hash));
         }
@@ -152,7 +152,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<BaseTuple<Id, U32>,
                 ParachainPrimitivesExt.ValidationCodeHash,
-                Hash>(new BaseTuple<Id, U32>(new Id(2094), new U32(1)), _substrateRepository.Storage.Paras.PastCodeHashAsync);
+                Hash>(new BaseTuple<Id, U32>(new Id(2094), new U32(1)), _substrateService.Storage.Paras.PastCodeHashAsync);
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new BaseVec<ReplacementTimes>(new ReplacementTimes[] { }),
                 new BaseOpt<U32>(new U32(14563191)));
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.PastCodeMetaAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Paras.PastCodeMetaAsync);
         }
 
         [Test]
@@ -173,7 +173,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<Id,
                 RuntimeParachainsExt.ParaPastCodeMeta,
-                ParaPastCodeMeta>(new Id(2094), _substrateRepository.Storage.Paras.PastCodeMetaAsync);
+                ParaPastCodeMeta>(new Id(2094), _substrateService.Storage.Paras.PastCodeMetaAsync);
         }
 
         [Test]
@@ -195,7 +195,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Paras.PastCodePruningAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Paras.PastCodePruningAsync);
         }
 
         [Test]
@@ -203,7 +203,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 BaseVec<BaseTuple<ParachainPrimitivesExt.Id, U32>>,
-                BaseVec<BaseTuple<Id, U32>>>(_substrateRepository.Storage.Paras.PastCodePruningAsync);
+                BaseVec<BaseTuple<Id, U32>>>(_substrateService.Storage.Paras.PastCodePruningAsync);
         }
 
         [Test]
@@ -214,13 +214,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new U32(1);
 
-            await MockStorageCallWithInputAsync(new Id(1), coreResult, expectedResult, _substrateRepository.Storage.Paras.FutureCodeUpgradesAsync);
+            await MockStorageCallWithInputAsync(new Id(1), coreResult, expectedResult, _substrateService.Storage.Paras.FutureCodeUpgradesAsync);
         }
 
         [Test]
         public async Task FutureCodeUpgradesNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new Id(1), _substrateRepository.Storage.Paras.FutureCodeUpgradesAsync);
+            await MockStorageCallNullWithInputAsync(new Id(1), _substrateService.Storage.Paras.FutureCodeUpgradesAsync);
         }
 
         [Test]
@@ -231,7 +231,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Hash("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB");
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.FutureCodeHashAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Paras.FutureCodeHashAsync);
         }
 
         [Test]
@@ -239,7 +239,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<Id,
                  ParachainPrimitivesExt.ValidationCodeHash,
-                 Hash>(new Id(2094), _substrateRepository.Storage.Paras.FutureCodeHashAsync);
+                 Hash>(new Id(2094), _substrateService.Storage.Paras.FutureCodeHashAsync);
         }
 
         [Test]
@@ -251,7 +251,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumUpgradeGoAhead();
             expectedResult.Create(UpgradeGoAhead.GoAhead);
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.UpgradeGoAheadSignalAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Paras.UpgradeGoAheadSignalAsync);
         }
 
         [Test]
@@ -260,7 +260,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 Id,
                 PrimitivesV2Ext.EnumUpgradeGoAhead,
-                EnumUpgradeGoAhead>(new Id(2094), _substrateRepository.Storage.Paras.UpgradeGoAheadSignalAsync);
+                EnumUpgradeGoAhead>(new Id(2094), _substrateService.Storage.Paras.UpgradeGoAheadSignalAsync);
         }
 
         [Test]
@@ -272,7 +272,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumUpgradeRestriction();
             expectedResult.Create(UpgradeRestriction.Present);
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.UpgradeRestrictionSignalAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Paras.UpgradeRestrictionSignalAsync);
         }
 
         [Test]
@@ -281,7 +281,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 Id,
                 PrimitivesV2Ext.EnumUpgradeRestriction,
-                EnumUpgradeRestriction>(new Id(2094), _substrateRepository.Storage.Paras.UpgradeRestrictionSignalAsync);
+                EnumUpgradeRestriction>(new Id(2094), _substrateService.Storage.Paras.UpgradeRestrictionSignalAsync);
         }
 
         [Test]
@@ -303,7 +303,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Paras.UpgradeCooldownsAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Paras.UpgradeCooldownsAsync);
         }
 
         [Test]
@@ -312,7 +312,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullAsync<
                 BaseVec<BaseTuple<ParachainPrimitivesExt.Id, U32>>,
                 BaseVec<BaseTuple<Id, U32>>
-                >(_substrateRepository.Storage.Paras.UpgradeCooldownsAsync);
+                >(_substrateService.Storage.Paras.UpgradeCooldownsAsync);
         }
 
         [Test]
@@ -334,7 +334,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Paras.UpcomingUpgradesAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Paras.UpcomingUpgradesAsync);
         }
 
         [Test]
@@ -343,7 +343,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullAsync<
                 BaseVec<BaseTuple<ParachainPrimitivesExt.Id, U32>>,
                 BaseVec<BaseTuple<Id, U32>>
-                >(_substrateRepository.Storage.Paras.UpcomingUpgradesAsync);
+                >(_substrateService.Storage.Paras.UpcomingUpgradesAsync);
         }
 
         [Test]
@@ -359,7 +359,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new Id[] { new Id(1) }
             );
 
-            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateRepository.Storage.Paras.ActionsQueueAsync);
+            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateService.Storage.Paras.ActionsQueueAsync);
         }
 
         [Test]
@@ -367,7 +367,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<U32,
                 BaseVec<ParachainPrimitivesExt.Id>,
-                BaseVec<Id>>(new U32(1), _substrateRepository.Storage.Paras.ActionsQueueAsync);
+                BaseVec<Id>>(new U32(1), _substrateService.Storage.Paras.ActionsQueueAsync);
         }
 
         [Test]
@@ -378,7 +378,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new ParaGenesisArgs();
 
-            await MockStorageCallWithInputAsync(new Id(1), coreResult, expectedResult, _substrateRepository.Storage.Paras.UpcomingParasGenesisAsync);
+            await MockStorageCallWithInputAsync(new Id(1), coreResult, expectedResult, _substrateService.Storage.Paras.UpcomingParasGenesisAsync);
         }
 
         [Test]
@@ -386,7 +386,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<Id,
                 RuntimeParachainsExt.ParaGenesisArgs,
-                ParaGenesisArgs>(new Id(1), _substrateRepository.Storage.Paras.UpcomingParasGenesisAsync);
+                ParaGenesisArgs>(new Id(1), _substrateService.Storage.Paras.UpcomingParasGenesisAsync);
         }
 
         [Test]
@@ -397,13 +397,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new U32(1);
 
-            await MockStorageCallWithInputAsync(input, expectedResult, _substrateRepository.Storage.Paras.CodeByHashRefsAsync);
+            await MockStorageCallWithInputAsync(input, expectedResult, _substrateService.Storage.Paras.CodeByHashRefsAsync);
         }
 
         [Test]
         public async Task CodeByHashRefsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new Hash("0x9c900905bf8cb084be9ce07bfc122857071f81d53142b25f5fea04986e5d79ab"), _substrateRepository.Storage.Paras.CodeByHashRefsAsync);
+            await MockStorageCallNullWithInputAsync(new Hash("0x9c900905bf8cb084be9ce07bfc122857071f81d53142b25f5fea04986e5d79ab"), _substrateService.Storage.Paras.CodeByHashRefsAsync);
         }
 
         [Test]
@@ -417,13 +417,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new DataCode("0x52bc537646db8e0528b52ffd00588454058ec14668155310480b291d80119800c008e433ad990f0926591c7c9afc8dd71f5b53056d14365de7242059ed0a9fbd8de1ce56ba4744009ba31fac38d31d5b3b410d0dd59b6863af8555956");
 
-            await MockStorageCallWithInputAsync(input, coreResult, expectedResult, _substrateRepository.Storage.Paras.CodeByHashAsync);
+            await MockStorageCallWithInputAsync(input, coreResult, expectedResult, _substrateService.Storage.Paras.CodeByHashAsync);
         }
 
         [Test]
         public async Task CodeByHashNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new Hash("0x9c900905bf8cb084be9ce07bfc122857071f81d53142b25f5fea04986e5d79ab"), _substrateRepository.Storage.Paras.CodeByHashRefsAsync);
+            await MockStorageCallNullWithInputAsync(new Hash("0x9c900905bf8cb084be9ce07bfc122857071f81d53142b25f5fea04986e5d79ab"), _substrateService.Storage.Paras.CodeByHashRefsAsync);
         }
     }
 }

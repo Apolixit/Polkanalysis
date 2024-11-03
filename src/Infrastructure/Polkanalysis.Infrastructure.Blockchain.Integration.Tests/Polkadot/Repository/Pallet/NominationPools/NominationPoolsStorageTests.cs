@@ -15,10 +15,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task PoolMembers_ShouldWorkAsync()
         {
-            var query = await _substrateRepository.Storage.NominationPools.PoolMembersQueryAsync(CancellationToken.None);
+            var query = await _substrateService.Storage.NominationPools.PoolMembersQueryAsync(CancellationToken.None);
             var poolMembersAll = await query.Take(2).ExecuteAsync(CancellationToken.None);
 
-            var res = await _substrateRepository.Storage.NominationPools.PoolMembersAsync(
+            var res = await _substrateService.Storage.NominationPools.PoolMembersAsync(
                 poolMembersAll.First().Item1, CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
@@ -26,7 +26,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task PoolMembersAll_ShouldWorkAsync()
         {
-            var query = await _substrateRepository.Storage.NominationPools.PoolMembersQueryAsync(CancellationToken.None);
+            var query = await _substrateService.Storage.NominationPools.PoolMembersQueryAsync(CancellationToken.None);
             var res = await query.ExecuteAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
@@ -34,7 +34,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task BondedPools_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.NominationPools.BondedPoolsAsync(
+            var res = await _substrateService.Storage.NominationPools.BondedPoolsAsync(
                 new U32(1), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
@@ -42,7 +42,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task BondedPoolsQuery_ShouldWorkAsync()
         {
-            var boundedPoolsQuery = await _substrateRepository.Storage.NominationPools.BondedPoolsQueryAsync(CancellationToken.None);
+            var boundedPoolsQuery = await _substrateService.Storage.NominationPools.BondedPoolsQueryAsync(CancellationToken.None);
             var res = await boundedPoolsQuery.ExecuteAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
@@ -55,7 +55,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task BondedPoolsQuery_WithTooMuchSkip_ShouldReturnEmptyAsync()
         {
-            var boundedPoolsQuery = await _substrateRepository.Storage.NominationPools.BondedPoolsQueryAsync(CancellationToken.None);
+            var boundedPoolsQuery = await _substrateService.Storage.NominationPools.BondedPoolsQueryAsync(CancellationToken.None);
             var res = await boundedPoolsQuery.Skip(1000).ExecuteAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
@@ -65,7 +65,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task RewardPools_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.NominationPools.RewardPoolsAsync(
+            var res = await _substrateService.Storage.NominationPools.RewardPoolsAsync(
                 new U32(1), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
@@ -73,7 +73,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task SubPoolsStorage_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.NominationPools.SubPoolsStorageAsync(
+            var res = await _substrateService.Storage.NominationPools.SubPoolsStorageAsync(
                 new U32(1), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
@@ -81,7 +81,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task Metadata_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.NominationPools.MetadataAsync(
+            var res = await _substrateService.Storage.NominationPools.MetadataAsync(
                 new U32(7), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
@@ -90,14 +90,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         public async Task CurrentVersion_ShouldWorkAsync()
         {
             // Pallet ID = 39
-            var res = await _substrateRepository.Storage.NominationPools.PalletVersionAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.NominationPools.PalletVersionAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task CounterForSubPoolsStorage_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.NominationPools.CounterForSubPoolsStorageAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.NominationPools.CounterForSubPoolsStorageAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
     }

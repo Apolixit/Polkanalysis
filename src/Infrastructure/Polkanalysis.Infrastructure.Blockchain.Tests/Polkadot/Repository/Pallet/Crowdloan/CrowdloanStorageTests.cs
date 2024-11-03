@@ -18,13 +18,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCaseSource(nameof(U32TestCase))]
         public async Task EndingsCount_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Crowdloan.EndingsCountAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Crowdloan.EndingsCountAsync);
         }
 
         [Test]
         public async Task EndingsCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Crowdloan.EndingsCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Crowdloan.EndingsCountAsync);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new U32(55),
                 new U32(0));
 
-            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Crowdloan.FundsAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateService.Storage.Crowdloan.FundsAsync);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 Id,
                 CrowdloanExt.FundInfo,
-                FundInfo>(new Id(2), _substrateRepository.Storage.Crowdloan.FundsAsync);
+                FundInfo>(new Id(2), _substrateService.Storage.Crowdloan.FundsAsync);
         }
 
         [Test]
@@ -74,14 +74,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new Id(3340),
             });
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Crowdloan.NewRaiseAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Crowdloan.NewRaiseAsync);
         }
 
         [Test]
         public async Task NewRaiseNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id>,
-                BaseVec<Id>>(_substrateRepository.Storage.Crowdloan.NewRaiseAsync);
+                BaseVec<Id>>(_substrateService.Storage.Crowdloan.NewRaiseAsync);
         }
     }
 }

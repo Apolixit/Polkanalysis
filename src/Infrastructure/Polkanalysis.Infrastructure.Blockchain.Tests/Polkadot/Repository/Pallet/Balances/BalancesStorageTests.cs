@@ -18,26 +18,26 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCaseSource(nameof(U128TestCase))]
         public async Task TotalIssuance_ShouldWorkAsync(U128 input)
         {
-            await MockStorageCallAsync(input, _substrateRepository.Storage.Balances.TotalIssuanceAsync);
+            await MockStorageCallAsync(input, _substrateService.Storage.Balances.TotalIssuanceAsync);
         }
 
         [Test]
         public async Task TotalIssuanceNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Balances.TotalIssuanceAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Balances.TotalIssuanceAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task InactiveIssuance_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Balances.InactiveIssuanceAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Balances.InactiveIssuanceAsync);
         }
 
         [Test]
         public async Task InactiveIssuanceNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Balances.InactiveIssuanceAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Balances.InactiveIssuanceAsync);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             expectedResult.Create(new U128(1000000000), new U128(200000), new U128(500000), new U128(800));
 
             await MockStorageCallWithInputAsync
-                (account, coreRes, expectedResult, _substrateRepository.Storage.Balances.AccountAsync, 9122);
+                (account, coreRes, expectedResult, _substrateService.Storage.Balances.AccountAsync, 9122);
 
             // Old properties have to be set
             Assert.That(expectedResult.FeeFrozen, Is.Not.Null);
@@ -80,7 +80,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             expectedResult.Create(new U128(1000000000), new U128(200000), new U128(500000), new U128(800));
 
             await MockStorageCallWithInputAsync
-                (account, coreRes, expectedResult, _substrateRepository.Storage.Balances.AccountAsync);
+                (account, coreRes, expectedResult, _substrateService.Storage.Balances.AccountAsync);
         }
 
         [Test]
@@ -95,7 +95,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             expectedResult.Create(new U128(1000000000), new U128(200000), new U128(500000), new ExtraFlags(new U128(200)));
 
             await MockStorageCallWithInputAsync
-                (account, coreRes, expectedResult, _substrateRepository.Storage.Balances.AccountAsync, 9430);
+                (account, coreRes, expectedResult, _substrateService.Storage.Balances.AccountAsync, 9430);
 
             // New properties has to be set
             Assert.That(expectedResult.Frozen, Is.Not.Null);
@@ -118,7 +118,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var res = await MockStorageCallNullWithInputAsync<SubstrateAccount,
                 BalancesExtV9370.AccountData,
-                AccountData>(testAccount, _substrateRepository.Storage.Balances.AccountAsync);
+                AccountData>(testAccount, _substrateService.Storage.Balances.AccountAsync);
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new SubstrateAccount(MockAddress),
                 extResult,
                 expectedResult,
-                _substrateRepository.Storage.Balances.LocksAsync, 9122);
+                _substrateService.Storage.Balances.LocksAsync, 9122);
 
             var balanceLock = res.Value.FirstOrDefault();
             Assert.That(balanceLock, Is.Not.Null);
@@ -180,7 +180,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new SubstrateAccount(MockAddress),
                 extResult,
                 expectedResult,
-                _substrateRepository.Storage.Balances.LocksAsync, 9430);
+                _substrateService.Storage.Balances.LocksAsync, 9430);
 
             var balanceLock = res.Value.FirstOrDefault();
             Assert.That(balanceLock, Is.Not.Null);
@@ -194,7 +194,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<SubstrateAccount,
                 BaseVec<BalancesExtV9370.BalanceLock>,
-                BaseVec<BalanceLock>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Balances.LocksAsync);
+                BaseVec<BalanceLock>>(new SubstrateAccount(MockAddress), _substrateService.Storage.Balances.LocksAsync);
         }
 
         [Test]
@@ -217,7 +217,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 BaseVec<BalancesExtV9370.ReserveData>,
-                BaseVec<ReserveData>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Balances.ReservesAsync);
+                BaseVec<ReserveData>>(new SubstrateAccount(MockAddress), _substrateService.Storage.Balances.ReservesAsync);
         }
     }
 }
