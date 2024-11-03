@@ -6,6 +6,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NetApi.Model.Meta;
+using Polkanalysis.Configuration.Contracts.Endpoints;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts
 {
@@ -35,8 +36,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         public ICalls Calls { get; }
         public IEvents Events { get; }
         public IErrors Errors { get; }
-        IEnumerable<ISubstrateService> ChainDependencies { get; }
-        Uri EndpointUri { get; }
+        public IEnumerable<ISubstrateService> ChainDependencies { get; }
+        public EndpointInformation EndpointInformation { get; }
 
         public bool IsConnected();
         public Task ConnectAsync(CancellationToken token);

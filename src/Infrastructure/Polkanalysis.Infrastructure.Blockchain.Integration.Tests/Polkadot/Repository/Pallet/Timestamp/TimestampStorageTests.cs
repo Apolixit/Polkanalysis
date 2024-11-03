@@ -12,7 +12,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task Now_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Timestamp.NowAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Timestamp.NowAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task DidUpdate_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Timestamp.DidUpdateAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Timestamp.DidUpdateAsync(CancellationToken.None);
             Assert.That(res, Is.Null);
         }
     }

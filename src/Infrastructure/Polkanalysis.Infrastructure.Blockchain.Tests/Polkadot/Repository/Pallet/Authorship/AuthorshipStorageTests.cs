@@ -28,13 +28,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 uncleEnumExpected
             });
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Authorship.UnclesAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Authorship.UnclesAsync);
         }
 
         [Test]
         public async Task UnclesNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<BaseVec<Ext.EnumUncleEntryItem>, BaseVec<EnumUncleEntryItem>>(_substrateRepository.Storage.Authorship.UnclesAsync);
+            await MockStorageCallNullAsync<BaseVec<Ext.EnumUncleEntryItem>, BaseVec<EnumUncleEntryItem>>(_substrateService.Storage.Authorship.UnclesAsync);
         }
 
         [Test]
@@ -45,13 +45,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new SubstrateAccount(MockAddress);
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Authorship.AuthorAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Authorship.AuthorAsync);
         }
 
         [Test]
         public async Task AuthorNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<AccountId32, SubstrateAccount>(_substrateRepository.Storage.Authorship.AuthorAsync);
+            await MockStorageCallNullAsync<AccountId32, SubstrateAccount>(_substrateService.Storage.Authorship.AuthorAsync);
         }
 
         [Test]
@@ -59,13 +59,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCase(false)]
         public async Task DidSetUncles_ShouldWorkAsync(bool expectedResult)
         {
-            await MockStorageCallAsync(new Bool(expectedResult), _substrateRepository.Storage.Authorship.DidSetUnclesAsync);
+            await MockStorageCallAsync(new Bool(expectedResult), _substrateService.Storage.Authorship.DidSetUnclesAsync);
         }
 
         [Test]
         public async Task DidSetUnclesNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Authorship.DidSetUnclesAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Authorship.DidSetUnclesAsync);
         }
     }
 }

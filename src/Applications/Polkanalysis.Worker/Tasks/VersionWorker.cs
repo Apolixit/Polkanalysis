@@ -79,9 +79,6 @@ namespace Polkanalysis.Worker.Tasks
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "[{workerName}] Error when fetching block {blockNum}. Wait {nbMs} before trying again", nameof(VersionWorker), i, 2_000);
-
-                    // Try to fetch again the same block
-                    i--;
                 }
             }
         }

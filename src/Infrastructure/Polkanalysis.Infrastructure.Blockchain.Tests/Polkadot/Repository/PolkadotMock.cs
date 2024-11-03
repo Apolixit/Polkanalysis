@@ -4,7 +4,6 @@ using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System.Text;
 using Substrate.NET.Utils;
@@ -17,13 +16,14 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Configuration.Contracts.Endpoints;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 {
     public abstract class PolkadotMock
     {
         public const uint DefaultVersionForTest = 9370;
-        protected ISubstrateService _substrateRepository;
+        protected ISubstrateService _substrateService;
         protected PolkadotMapping _polkadotMapping;
 
         public const string MockAddress = "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS";
@@ -91,15 +91,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
                 Arg.Any<string>(),
                 Arg.Is(CancellationToken.None))).DoNotCallBase();
 
-            _substrateRepository = polkadotRepository;
+            _substrateService = polkadotRepository;
         }
 
         protected virtual void MockStorageAndVersion<T>(T storageResult, uint version)
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(storageResult);
+            _substrateService.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(storageResult);
 
-            _substrateRepository.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
+            _substrateService.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
             {
                 SpecVersion = version
             });

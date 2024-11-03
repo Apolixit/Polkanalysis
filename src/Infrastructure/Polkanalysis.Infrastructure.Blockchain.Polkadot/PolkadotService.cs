@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Configuration.Contracts;
 using Microsoft.Extensions.Logging;
 using Substrate.NetApi;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage;
@@ -15,6 +14,7 @@ using Substrate.NetApi.Modules.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 using Substrate.NET.Utils.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Configuration.Contracts.Endpoints;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -46,7 +46,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             {
                 if (_polkadotClient == null)
                 {
-                    _polkadotClient = new SubstrateClientExt(_endpointUri, ChargeTransactionPayment.Default());
+                    _polkadotClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
                     _polkadotClient.AddJsonConverter(new ExtrinsicOldJsonConverter(ChargeTransactionPayment.Default()));
                     _polkadotClient.AddJsonConverter(new ExtrinsicNewJsonConverter(ChargeTransactionPayment.Default()));
                 }

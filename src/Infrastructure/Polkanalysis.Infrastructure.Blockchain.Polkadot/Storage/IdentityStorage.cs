@@ -20,8 +20,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             _peopleChainService = peopleChainService;
         }
 
-        
-
         public async Task<Registration?> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);

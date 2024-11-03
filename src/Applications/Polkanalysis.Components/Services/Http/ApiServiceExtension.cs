@@ -15,7 +15,7 @@ namespace Polkanalysis.Components.Services.Http
             this IApiService apiService, 
             string url)
         {
-            var response = await apiService.Get<TRes>(url);
+            var response = await apiService.GetAsync<TRes>(url);
             if (!response.Success)
             {
                 throw new InvalidOperationException(await response.GetBody());
@@ -32,7 +32,7 @@ namespace Polkanalysis.Components.Services.Http
                 query = ObjToQueryString(req);
             }
 
-            var response = await apiService.Get<TRes>($"{url}/{query}");
+            var response = await apiService.GetAsync<TRes>($"{url}/{query}");
             if (!response.Success)
             {
                 throw new InvalidOperationException(await response.GetBody());

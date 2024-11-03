@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task NextFreeParaId_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Registrar.NextFreeParaIdAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Registrar.NextFreeParaIdAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(2094)]
         public async Task Paras_ShouldWorkAsync(int paraId)
         {
-            var res = await _substrateRepository.Storage.Registrar.ParasAsync(new Id((uint)paraId), CancellationToken.None);
+            var res = await _substrateService.Storage.Registrar.ParasAsync(new Id((uint)paraId), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
     }

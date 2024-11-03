@@ -16,26 +16,26 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCaseSource(nameof(U32TestCase))]
         public async Task ValidatorCount_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.ValidatorCountAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.ValidatorCountAsync);
         }
 
         [Test]
         public async Task ValidatorCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.ValidatorCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.ValidatorCountAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task MinimumValidatorCount_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.MinimumValidatorCountAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.MinimumValidatorCountAsync);
         }
 
         [Test]
         public async Task MinimumValidatorCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.ValidatorCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.ValidatorCountAsync);
         }
 
         [Test]
@@ -50,14 +50,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new BaseVec<SubstrateAccount>(new SubstrateAccount[] {
                 new SubstrateAccount(MockAddress2)
             });
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.InvulnerablesAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Staking.InvulnerablesAsync);
         }
 
         [Test]
         public async Task InvulnerablesNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                BaseVec<AccountId32Ext>, BaseVec<SubstrateAccount>>(_substrateRepository.Storage.Staking.InvulnerablesAsync);
+                BaseVec<AccountId32Ext>, BaseVec<SubstrateAccount>>(_substrateService.Storage.Staking.InvulnerablesAsync);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new SubstrateAccount("1nQjyHGZmXaCEedntaV1Cq9VvHKmUYLqo1BRm85AomYELLH");
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Staking.BondedAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Staking.BondedAsync);
         }
 
         [Test]
@@ -77,33 +77,33 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 AccountId32Ext,
-                SubstrateAccount>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Staking.BondedAsync);
+                SubstrateAccount>(new SubstrateAccount(MockAddress), _substrateService.Storage.Staking.BondedAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task MinNominatorBond_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.MinNominatorBondAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.MinNominatorBondAsync);
         }
 
         [Test]
         public async Task MinNominatorBondNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.MinNominatorBondAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.MinNominatorBondAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task MinValidatorBond_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.MinValidatorBondAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.MinValidatorBondAsync);
         }
 
         [Test]
         public async Task MinValidatorBondNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.MinValidatorBondAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.MinValidatorBondAsync);
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Perbill(new U32(0));
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.MinCommissionAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Staking.MinCommissionAsync);
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 SpArithmeticExt.Perbill, Perbill
-                >(_substrateRepository.Storage.Staking.MinCommissionAsync);
+                >(_substrateService.Storage.Staking.MinCommissionAsync);
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 StakingExt.StakingLedger,
-                StakingLedger>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Staking.LedgerAsync);
+                StakingLedger>(new SubstrateAccount(MockAddress), _substrateService.Storage.Staking.LedgerAsync);
         }
 
         [Test]
@@ -150,7 +150,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumRewardDestination();
             expectedResult.Create(RewardDestination.Account, new SubstrateAccount("162hzMgmVHYRjuRLJVmEwDkMEvh8C8D7fRPYmnDfkpwEAa3c"));
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Staking.PayeeAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Staking.PayeeAsync);
         }
 
         [Test]
@@ -162,7 +162,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumRewardDestination();
             expectedResult.Create(RewardDestination.Staked, new BaseVoid());
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Staking.PayeeAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Staking.PayeeAsync);
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 StakingExt.EnumRewardDestination,
-                EnumRewardDestination>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Staking.PayeeAsync);
+                EnumRewardDestination>(new SubstrateAccount(MockAddress), _substrateService.Storage.Staking.PayeeAsync);
         }
 
         [Test]
@@ -182,7 +182,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new ValidatorPrefs(new BaseCom<Perbill>(new CompactInteger(100000000)), new Bool(false));
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Staking.ValidatorsAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Staking.ValidatorsAsync);
         }
 
         [Test]
@@ -192,33 +192,33 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 SubstrateAccount,
                 StakingExt.ValidatorPrefs,
                 ValidatorPrefs
-                >(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Staking.ValidatorsAsync);
+                >(new SubstrateAccount(MockAddress), _substrateService.Storage.Staking.ValidatorsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForValidators_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.CounterForValidatorsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.CounterForValidatorsAsync);
         }
 
         [Test]
         public async Task CounterForValidatorsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.CounterForValidatorsAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.CounterForValidatorsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task MaxValidatorsCount_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.MaxValidatorsCountAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.MaxValidatorsCountAsync);
         }
 
         [Test]
         public async Task MaxValidatorsCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.MaxValidatorsCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.MaxValidatorsCountAsync);
         }
 
         [Test]
@@ -248,7 +248,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             }),
             new U32(444), new Bool(false));
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Staking.NominatorsAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Staking.NominatorsAsync);
         }
 
         [Test]
@@ -257,46 +257,46 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 StakingExt.Nominations,
-                Nominations>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Staking.NominatorsAsync);
+                Nominations>(new SubstrateAccount(MockAddress), _substrateService.Storage.Staking.NominatorsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CounterForNominators_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.CounterForNominatorsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.CounterForNominatorsAsync);
         }
 
         [Test]
         public async Task CounterForNominatorsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.CounterForNominatorsAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.CounterForNominatorsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task MaxNominatorsCount_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.MaxNominatorsCountAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.MaxNominatorsCountAsync);
         }
 
         [Test]
         public async Task MaxNominatorsCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.MaxNominatorsCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.MaxNominatorsCountAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CurrentEra_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.CurrentEraAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.CurrentEraAsync);
         }
 
         [Test]
         public async Task CurrentEraNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.CurrentEraAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.CurrentEraAsync);
         }
 
         [Test]
@@ -307,7 +307,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new ActiveEraInfo(new U32(1022), new BaseOpt<U64>(new U64(1679326578001)));
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.ActiveEraAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Staking.ActiveEraAsync);
         }
 
         [Test]
@@ -315,20 +315,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 StakingExt.ActiveEraInfo,
-                ActiveEraInfo>(_substrateRepository.Storage.Staking.ActiveEraAsync);
+                ActiveEraInfo>(_substrateService.Storage.Staking.ActiveEraAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task ErasStartSessionIndex_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateRepository.Storage.Staking.ErasStartSessionIndexAsync);
+            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateService.Storage.Staking.ErasStartSessionIndexAsync);
         }
 
         [Test]
         public async Task ErasStartSessionIndexNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new U32(1), _substrateRepository.Storage.Staking.ErasStartSessionIndexAsync);
+            await MockStorageCallNullWithInputAsync(new U32(1), _substrateService.Storage.Staking.ErasStartSessionIndexAsync);
         }
 
         [Test]
@@ -346,7 +346,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }));
 
             await MockStorageCallWithInputAsync(
-                new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), coreResult, expectedResult, _substrateRepository.Storage.Staking.ErasStakersAsync);
+                new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), coreResult, expectedResult, _substrateService.Storage.Staking.ErasStakersAsync);
         }
 
         [Test]
@@ -355,7 +355,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                BaseTuple<U32, SubstrateAccount>,
                StakingExt.Exposure,
-               Exposure>(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateRepository.Storage.Staking.ErasStakersAsync);
+               Exposure>(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateService.Storage.Staking.ErasStakersAsync);
         }
 
         [Test]
@@ -373,7 +373,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }));
 
             await MockStorageCallWithInputAsync(
-                new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), coreResult, expectedResult, _substrateRepository.Storage.Staking.ErasStakersClippedAsync);
+                new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), coreResult, expectedResult, _substrateService.Storage.Staking.ErasStakersClippedAsync);
         }
 
         [Test]
@@ -382,7 +382,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                BaseTuple<U32, SubstrateAccount>,
                StakingExt.Exposure,
-               Exposure>(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateRepository.Storage.Staking.ErasStakersClippedAsync);
+               Exposure>(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateService.Storage.Staking.ErasStakersClippedAsync);
         }
 
         [Test]
@@ -393,7 +393,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new ValidatorPrefs(new BaseCom<Perbill>(new CompactInteger(100000000)), new Bool(false));
 
-            await MockStorageCallWithInputAsync(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), coreResult, expectedResult, _substrateRepository.Storage.Staking.ErasValidatorPrefsAsync);
+            await MockStorageCallWithInputAsync(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), coreResult, expectedResult, _substrateService.Storage.Staking.ErasValidatorPrefsAsync);
         }
 
         [Test]
@@ -402,20 +402,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                BaseTuple<U32, SubstrateAccount>,
                StakingExt.ValidatorPrefs,
-               ValidatorPrefs>(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateRepository.Storage.Staking.ErasValidatorPrefsAsync);
+               ValidatorPrefs>(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateService.Storage.Staking.ErasValidatorPrefsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task ErasValidatorReward_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateRepository.Storage.Staking.ErasValidatorRewardAsync);
+            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateService.Storage.Staking.ErasValidatorRewardAsync);
         }
 
         [Test]
         public async Task ErasValidatorRewardNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new U32(1), _substrateRepository.Storage.Staking.ErasValidatorRewardAsync);
+            await MockStorageCallNullWithInputAsync(new U32(1), _substrateService.Storage.Staking.ErasValidatorRewardAsync);
         }
 
         [Test]
@@ -435,7 +435,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                         new U32(16880)),
                 ]));
 
-            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateRepository.Storage.Staking.ErasRewardPointsAsync);
+            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateService.Storage.Staking.ErasRewardPointsAsync);
         }
 
         [Test]
@@ -444,20 +444,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 U32,
                 StakingExt.EraRewardPoints,
-                EraRewardPoints>(new U32(1), _substrateRepository.Storage.Staking.ErasRewardPointsAsync);
+                EraRewardPoints>(new U32(1), _substrateService.Storage.Staking.ErasRewardPointsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task ErasTotalStake_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateRepository.Storage.Staking.ErasTotalStakeAsync);
+            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateService.Storage.Staking.ErasTotalStakeAsync);
         }
 
         [Test]
         public async Task ErasTotalStakeNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new U32(1), _substrateRepository.Storage.Staking.ErasTotalStakeAsync);
+            await MockStorageCallNullWithInputAsync(new U32(1), _substrateService.Storage.Staking.ErasTotalStakeAsync);
         }
 
         [Test]
@@ -469,14 +469,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumForcing();
             expectedResult.Create(Forcing.NotForcing);
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.ForceEraAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Staking.ForceEraAsync);
         }
 
         [Test]
         public async Task ForceEraNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                StakingExt.EnumForcing, EnumForcing>(_substrateRepository.Storage.Staking.ForceEraAsync);
+                StakingExt.EnumForcing, EnumForcing>(_substrateService.Storage.Staking.ForceEraAsync);
         }
 
         [Test]
@@ -487,7 +487,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Perbill(new U32(100000000));
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.SlashRewardFractionAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Staking.SlashRewardFractionAsync);
         }
 
         [Test]
@@ -495,33 +495,33 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 SpArithmeticExt.Perbill, Perbill
-                >(_substrateRepository.Storage.Staking.SlashRewardFractionAsync);
+                >(_substrateService.Storage.Staking.SlashRewardFractionAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task CanceledSlashPayout_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.CanceledSlashPayoutAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.CanceledSlashPayoutAsync);
         }
 
         [Test]
         public async Task CanceledSlashPayoutNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.CanceledSlashPayoutAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.CanceledSlashPayoutAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U128TestCase))]
         public async Task MinimumActiveStake_ShouldWorkAsync(U128 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.MinimumActiveStakeAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.MinimumActiveStakeAsync);
         }
 
         [Test]
         public async Task MinimumActiveStakeNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.MinimumActiveStakeAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.MinimumActiveStakeAsync);
         }
 
         [Test]
@@ -540,7 +540,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 U32,
                 BaseVec<StakingExt.UnappliedSlash>,
-                BaseVec<UnappliedSlash>>(new U32(1), _substrateRepository.Storage.Staking.UnappliedSlashesAsync);
+                BaseVec<UnappliedSlash>>(new U32(1), _substrateService.Storage.Staking.UnappliedSlashesAsync);
         }
 
         [Test]
@@ -549,13 +549,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new BaseVec<BaseTuple<U32, U32>>();
             expectedResult.Create("0x10E303000076170000E40300007C170000E503000082170000E603000088170000");
 
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.BondedErasAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.BondedErasAsync);
         }
 
         [Test]
         public async Task BondedErasNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.BondedErasAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.BondedErasAsync);
         }
 
         [Test]
@@ -570,7 +570,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             await MockStorageCallWithInputAsync(
                 new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)),
-                coreResult, expectedResult, _substrateRepository.Storage.Staking.ValidatorSlashInEraAsync);
+                coreResult, expectedResult, _substrateService.Storage.Staking.ValidatorSlashInEraAsync);
         }
 
         [Test]
@@ -580,7 +580,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 BaseTuple<U32, SubstrateAccount>,
                 BaseTuple<SpArithmeticExt.Perbill, U128>,
                 BaseTuple<Perbill, U128>
-                >(new BaseTuple<U32, SubstrateAccount>(new U32(0), new SubstrateAccount(MockAddress)), _substrateRepository.Storage.Staking.ValidatorSlashInEraAsync);
+                >(new BaseTuple<U32, SubstrateAccount>(new U32(0), new SubstrateAccount(MockAddress)), _substrateService.Storage.Staking.ValidatorSlashInEraAsync);
         }
 
         [Test]
@@ -589,7 +589,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallWithInputAsync(
                 new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)),
-                expectedResult, _substrateRepository.Storage.Staking.NominatorSlashInEraAsync);
+                expectedResult, _substrateService.Storage.Staking.NominatorSlashInEraAsync);
         }
 
         [Test]
@@ -599,7 +599,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 BaseTuple<U32, SubstrateAccount>,
                 BaseTuple<SpArithmeticExt.Perbill, U128>,
                 BaseTuple<Perbill, U128>
-                >(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateRepository.Storage.Staking.ValidatorSlashInEraAsync);
+                >(new BaseTuple<U32, SubstrateAccount>(new U32(1), new SubstrateAccount(MockAddress)), _substrateService.Storage.Staking.ValidatorSlashInEraAsync);
         }
 
         [Test]
@@ -620,7 +620,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             await MockStorageCallWithInputAsync(
                 new SubstrateAccount(MockAddress),
-                coreResult, expectedResult, _substrateRepository.Storage.Staking.SlashingSpansAsync);
+                coreResult, expectedResult, _substrateService.Storage.Staking.SlashingSpansAsync);
         }
 
         [Test]
@@ -629,7 +629,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 StakingExt.slashing.SlashingSpans,
-                SlashingSpans>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Staking.SlashingSpansAsync);
+                SlashingSpans>(new SubstrateAccount(MockAddress), _substrateService.Storage.Staking.SlashingSpansAsync);
         }
 
         [Test]
@@ -644,7 +644,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             await MockStorageCallWithInputAsync(
                 new BaseTuple<SubstrateAccount, U32>(new SubstrateAccount(MockAddress), new U32(1)),
-                coreResult, expectedResult, _substrateRepository.Storage.Staking.SpanSlashAsync);
+                coreResult, expectedResult, _substrateService.Storage.Staking.SpanSlashAsync);
         }
 
         [Test]
@@ -653,7 +653,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 BaseTuple<SubstrateAccount, U32>,
                 StakingExt.slashing.SpanRecord,
-                SpanRecord>(new BaseTuple<SubstrateAccount, U32>(new SubstrateAccount(MockAddress), new U32(1)), _substrateRepository.Storage.Staking.SpanSlashAsync);
+                SpanRecord>(new BaseTuple<SubstrateAccount, U32>(new SubstrateAccount(MockAddress), new U32(1)), _substrateService.Storage.Staking.SpanSlashAsync);
         }
 
         [Test]
@@ -662,7 +662,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             Assert.ThrowsAsync<ArgumentNullException>(async () => await MockStorageCallNullWithInputAsync<
                 BaseTuple<SubstrateAccount, U32>,
                 StakingExt.slashing.SpanRecord,
-                SpanRecord>(null!, _substrateRepository.Storage.Staking.SpanSlashAsync));
+                SpanRecord>(null!, _substrateService.Storage.Staking.SpanSlashAsync));
 
         }
 
@@ -673,20 +673,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 BaseTuple<SubstrateAccount, U32>,
                 StakingExt.slashing.SpanRecord,
-                SpanRecord>(new BaseTuple<SubstrateAccount, U32>(), _substrateRepository.Storage.Staking.SpanSlashAsync);
+                SpanRecord>(new BaseTuple<SubstrateAccount, U32>(), _substrateService.Storage.Staking.SpanSlashAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CurrentPlannedSession_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.CurrentPlannedSessionAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.CurrentPlannedSessionAsync);
         }
 
         [Test]
         public async Task CurrentPlannedSessionNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.CurrentPlannedSessionAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.CurrentPlannedSessionAsync);
         }
 
         [Test]
@@ -697,13 +697,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new BaseTuple<U32, Bool>(new U32(20), new Bool(false))
             });
 
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Staking.OffendingValidatorsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Staking.OffendingValidatorsAsync);
         }
 
         [Test]
         public async Task OffendingValidatorsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.OffendingValidatorsAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Staking.OffendingValidatorsAsync);
         }
 
         [Test]
@@ -715,7 +715,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumReleases();
             expectedResult.Create(Releases.V11_0_0);
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.StorageVersionAsync, 9122);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Staking.StorageVersionAsync, 9122);
         }
 
         [Test]
@@ -723,7 +723,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_staking.EnumReleases,
-                EnumReleases>(_substrateRepository.Storage.Staking.StorageVersionAsync, 9122);
+                EnumReleases>(_substrateService.Storage.Staking.StorageVersionAsync, 9122);
         }
 
         [Test]
@@ -734,7 +734,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Percent(new U8(90));
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.ChillThresholdAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Staking.ChillThresholdAsync);
         }
 
         [Test]
@@ -742,7 +742,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 SpArithmeticExt.Percent,
-                Percent>(_substrateRepository.Storage.Staking.ChillThresholdAsync);
+                Percent>(_substrateService.Storage.Staking.ChillThresholdAsync);
         }
     }
 }

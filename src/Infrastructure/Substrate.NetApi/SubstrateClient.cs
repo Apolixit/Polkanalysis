@@ -439,7 +439,7 @@ namespace Substrate.NetApi
                     if (retry == _maxRetryAttempts)
                     {
                         Logger.Error("Max reconnection attempts reached. Unable to reconnect.");
-                        throw;
+                        throw new UnableToReconnectException($"Max {retry} reconnection attempts reached. Unable to reconnect.", retry);
                     }
 
                     await Task.Delay(_delayRetryMilliseconds * retry, CancellationToken.None);

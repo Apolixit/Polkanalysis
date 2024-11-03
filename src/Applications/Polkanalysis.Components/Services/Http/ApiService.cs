@@ -36,7 +36,7 @@ namespace Polkanalysis.Components.Services.Http
             return _apiUri.AbsoluteUri.Substring(0, _apiUri.AbsoluteUri.Length - 1) + url;
         }
 
-        public async Task<HttpResponseWrapper<T>> Get<T>(string url)
+        public async Task<HttpResponseWrapper<T>> GetAsync<T>(string url)
         {
             var responseHTTP = await _httpClient.GetAsync(getUrl(url));
 
@@ -52,7 +52,7 @@ namespace Polkanalysis.Components.Services.Http
             }
         }
 
-        public async Task<HttpResponseWrapper<object>> Post<T>(string url, T data)
+        public async Task<HttpResponseWrapper<object>> PostAsync<T>(string url, T data)
         {
             var dataJson = JsonSerializer.Serialize(data);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
@@ -60,7 +60,7 @@ namespace Polkanalysis.Components.Services.Http
             return new HttpResponseWrapper<object>(null!, response.IsSuccessStatusCode, response);
         }
 
-        public async Task<HttpResponseWrapper<TResponse>> Post<T, TResponse>(string url, T data)
+        public async Task<HttpResponseWrapper<TResponse>> PostAsync<T, TResponse>(string url, T data)
         {
             var dataJson = JsonSerializer.Serialize(data);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
@@ -76,7 +76,7 @@ namespace Polkanalysis.Components.Services.Http
             }
         }
 
-        public async Task<HttpResponseWrapper<object>> Put<T>(string url, T data)
+        public async Task<HttpResponseWrapper<object>> PutAsync<T>(string url, T data)
         {
             var dataJson = JsonSerializer.Serialize(data);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
@@ -84,7 +84,7 @@ namespace Polkanalysis.Components.Services.Http
             return new HttpResponseWrapper<object>(default!, response.IsSuccessStatusCode, response);
         }
 
-        public async Task<HttpResponseWrapper<object>> Delete(string url)
+        public async Task<HttpResponseWrapper<object>> DeleteAsync(string url)
         {
             var responseHTTP = await _httpClient.DeleteAsync(getUrl(url));
             return new HttpResponseWrapper<object>(null!, responseHTTP.IsSuccessStatusCode, responseHTTP);

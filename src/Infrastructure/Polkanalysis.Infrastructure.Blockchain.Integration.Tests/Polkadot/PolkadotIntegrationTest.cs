@@ -1,5 +1,4 @@
-﻿using Polkanalysis.Configuration.Contracts;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
@@ -7,10 +6,11 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
+using Polkanalysis.Configuration.Contracts.Endpoints;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
-    public class PolkadotIntegrationTest : IntegrationTest
+    public class PolkadotIntegrationTest : InfrastructureIntegrationTest
     {
         private PeopleChainService _peopleChainService = default!;
 
@@ -23,8 +23,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
                     Substitute.For<ILogger<PeopleChainService>>()
                     );
 
-            _substrateRepository = new PolkadotService(
-                    _substrateEndpoint,
+            _substrateService = new PolkadotService(
+                    _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
                     _peopleChainService);
@@ -34,29 +34,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         protected void Setup()
         {
             // Just clean blockhash everytime
-            _substrateRepository.Storage.BlockHash = null;
-        }
-
-        internal override ISubstrateEndpoint GetEndpoint()
-        {
-            var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
-
-            substrateConfigurationMock.BlockchainName.Returns("Polkadot");
-            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://dot-rpc.stakeworld.io"));
-
-            return substrateConfigurationMock;
+            _substrateService.Storage.BlockHash = null;
         }
 
         protected async Task<string> GetBlockHashAsync(int blockNum)
         {
-            var res = await _substrateRepository.AjunaClient.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber((uint)blockNum));
+            var res = await _substrateService.AjunaClient.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber((uint)blockNum));
             return res.Value;
         }
-
-        //public static IEnumerable<int> AllBlockVersionTestCases = new List<int>()
-        //{
-        //    16500000
-        //};
 
         public static IEnumerable<int> AllBlockVersionTestCases = new List<int>()
         {

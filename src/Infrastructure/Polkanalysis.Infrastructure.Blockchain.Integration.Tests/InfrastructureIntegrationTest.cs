@@ -1,36 +1,26 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary;
 using NUnit.Framework;
-using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Configuration.Contracts.Endpoints;
+using Polkanalysis.Abstract.Tests;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
 {
     /// <summary>
     /// Test main class to be connected to endpoint
     /// </summary>
-    public abstract class IntegrationTest
+    public abstract class InfrastructureIntegrationTest : GlobalIntegrationTest
     {
-        protected ISubstrateService _substrateRepository = default!;
-        protected ISubstrateEndpoint _substrateEndpoint = default!;
-
         protected const string NoTestCase = "NO TEST CASE";
         /// <summary>
         /// A repository doesn't exceed <see cref="RepositoryMaxTimeout"/> millisecond to respond
         /// </summary>
         public const int RepositoryMaxTimeout = 2000;
 
-        protected IntegrationTest()
+        protected InfrastructureIntegrationTest()
         {
-            _substrateEndpoint = GetEndpoint();
-
-            if (_substrateEndpoint == null)
-                throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
         }
-
-        internal abstract ISubstrateEndpoint GetEndpoint();
-
-        //public abstract Task ConnectDependenciesAsync();
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test
@@ -39,13 +29,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
         [OneTimeSetUp]
         public virtual async Task ConnectAsync()
         {
-            if (_substrateRepository != null && !_substrateRepository.IsConnected())
+            if (_substrateService != null && !_substrateService.IsConnected())
             {
                 try
                 {
-                    await _substrateRepository.ConnectAsync(CancellationToken.None);
+                    await _substrateService.ConnectAsync(CancellationToken.None);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Assert.Ignore("Substrate node is not currently running. All tests are ignore.");
                 }
@@ -59,9 +49,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
         [OneTimeTearDown]
         public virtual async Task DisconnectAsync()
         {
-            if (_substrateRepository != null && _substrateRepository.IsConnected())
+            if (_substrateService != null && _substrateService.IsConnected())
             {
-                await _substrateRepository.CloseAsync(CancellationToken.None);
+                await _substrateService.CloseAsync(CancellationToken.None);
             }
         }
     }

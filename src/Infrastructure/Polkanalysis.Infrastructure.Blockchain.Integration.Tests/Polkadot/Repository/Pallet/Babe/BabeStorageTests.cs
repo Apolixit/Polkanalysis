@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(AuthorithiesVersionTestCases))]
         public async Task Authorities_ShouldWorkAsync((int numBlock, string firstAuthorityAddress, string lastAuthorityAddress, int num) input)
         {
-            var res = await _substrateRepository.At(input.numBlock).Storage.Babe.AuthoritiesAsync(CancellationToken.None);
+            var res = await _substrateService.At(input.numBlock).Storage.Babe.AuthoritiesAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Value.Length, Is.GreaterThan(1));
@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(BlockFromVersion9090))]
         public async Task AuthorVrfRandomness_ShouldWorkAsync(int numBlock)
         {
-            var res = await _substrateRepository.At(numBlock).Storage.Babe.AuthorVrfRandomnessAsync(CancellationToken.None);
+            var res = await _substrateService.At(numBlock).Storage.Babe.AuthorVrfRandomnessAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -58,7 +58,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(CurrentSlotVersionTestCases))]
         public async Task CurrentSlot_ShouldWorkAsync((int numBlock, ulong value) input)
         {
-            var res = await _substrateRepository.At(input.numBlock).Storage.Babe.CurrentSlotAsync(CancellationToken.None);
+            var res = await _substrateService.At(input.numBlock).Storage.Babe.CurrentSlotAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Value.Value, Is.EqualTo(input.value));
@@ -67,48 +67,48 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test, Ignore(NoTestCase)]
         public async Task PendingEpochConfigChange_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Babe.PendingEpochConfigChangeAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Babe.PendingEpochConfigChangeAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task EpochConfig_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Babe.EpochConfigAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Babe.EpochConfigAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task NextEpochConfig_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Babe.NextEpochConfigAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Babe.NextEpochConfigAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task Randomness_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Babe.RandomnessAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Babe.RandomnessAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
         [Test]
         public async Task NextRandomness_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Babe.NextRandomnessAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Babe.NextRandomnessAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task UnderConstruction_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Babe.UnderConstructionAsync(new U32(0), CancellationToken.None);
+            var res = await _substrateService.Storage.Babe.UnderConstructionAsync(new U32(0), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test, Ignore(NoTestCase)]
         public async Task Initialized_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Babe.InitializedAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Babe.InitializedAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
     }

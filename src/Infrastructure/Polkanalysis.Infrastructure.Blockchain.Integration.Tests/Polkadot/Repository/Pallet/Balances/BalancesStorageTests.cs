@@ -12,14 +12,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task InactiveIssuance_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Balances.InactiveIssuanceAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Balances.InactiveIssuanceAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
         public async Task TotalIssuance_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
+            var res = await _substrateService.Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -89,11 +89,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         public async Task Account_ShouldWorkAsync(int numBlock, string accountAddress)
         {
             var testAccount = new SubstrateAccount(accountAddress);
-            var res1 = await _substrateRepository.At(numBlock).Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
+            var res1 = await _substrateService.At(numBlock).Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
 
             Assert.That(res1, Is.Not.Null);
 
-            //var res2 = await _substrateRepository.At("0x05c4845d91ee84d795c725491c07f7fb5b6adc5fcae209c3ac7dcfc80913cb72").Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
+            //var res2 = await _substrateService.At("0x05c4845d91ee84d795c725491c07f7fb5b6adc5fcae209c3ac7dcfc80913cb72").Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
             //Assert.That(res2, Is.Not.Null);
         }
 
@@ -101,7 +101,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(22495740, "13UVJyLnbVp8c4FQeiGG4wgZ8fTPB4dJZ21YasxCzie2jyC3")] // block 22495731 - balances (Locked) events on this account
         public async Task Locks_ShouldWorkAsync(int blockNumber, string accountAddress)
         {
-            var res = await _substrateRepository.At(blockNumber).Storage.Balances.LocksAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
+            var res = await _substrateService.At(blockNumber).Storage.Balances.LocksAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
             
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Value.Length, Is.GreaterThan(0));
@@ -112,7 +112,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         //[TestCase(22495153, "15k9niqckMg338cFBoz9vWFGwnCtwPBquKvqJEfHApijZkDz")] // block 	22495152 - balances (Reserved) events on this account
         public async Task Reserves_ShouldWorkAsync(int blockNumber, string accountAddress)
         {
-            var res = await _substrateRepository.At(blockNumber).Storage.Balances.ReservesAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
+            var res = await _substrateService.At(blockNumber).Storage.Balances.ReservesAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -124,7 +124,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(16500000)]
         public async Task InactiveIssuanceAsync_ShouldWorkAsync(int numBlock)
         {
-            var res = await _substrateRepository.At(numBlock).Storage.Balances.InactiveIssuanceAsync(CancellationToken.None);
+            var res = await _substrateService.At(numBlock).Storage.Balances.InactiveIssuanceAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -132,7 +132,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(22495160, "16DKyH4fggEXeGwCytqM19e9NFGkgR2neZPDJ5ta8BKpPbPK")]
         public async Task HoldsAsync_ShouldWorkAsync(int blockNumber, string accountAddress)
         {
-            var res = await _substrateRepository.At(blockNumber).Storage.Balances.HoldsAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
+            var res = await _substrateService.At(blockNumber).Storage.Balances.HoldsAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -140,7 +140,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(22406190, "13UVJyLnbVp8c4FQeiGWPxJyYv51Y4TxbNNc7RgSVnSduy7E")] // block 	22406183 - balances (Frozen) events on this account
         public async Task FreezesAsync_ShouldWorkAsync(int blockNumber, string accountAddress)
         {
-            var res = await _substrateRepository.At(blockNumber).Storage.Balances.FreezesAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
+            var res = await _substrateService.At(blockNumber).Storage.Balances.FreezesAsync(new SubstrateAccount(accountAddress), CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Value, Has.Length.EqualTo(1));

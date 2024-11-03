@@ -13,13 +13,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCaseSource(nameof(U64TestCase))]
         public async Task Now_ShouldWorkAsync(U64 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Timestamp.NowAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Timestamp.NowAsync);
         }
 
         [Test]
         public async Task NowNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Timestamp.NowAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Timestamp.NowAsync);
         }
 
         [Test]
@@ -27,13 +27,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCase(false)]
         public async Task DidUpdate_ShouldWorkAsync(bool expectedResult)
         {
-            await MockStorageCallAsync(new Bool(expectedResult), _substrateRepository.Storage.Timestamp.DidUpdateAsync);
+            await MockStorageCallAsync(new Bool(expectedResult), _substrateService.Storage.Timestamp.DidUpdateAsync);
         }
 
         [Test]
         public async Task DidUpdateNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Timestamp.DidUpdateAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Timestamp.DidUpdateAsync);
         }
     }
 }

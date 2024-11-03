@@ -19,13 +19,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCaseSource(nameof(U32TestCase))]
         public async Task AuctionCounter_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Auctions.AuctionCounterAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Auctions.AuctionCounterAsync);
         }
 
         [Test]
         public async Task AuctionCounterNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Auctions.AuctionCounterAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Auctions.AuctionCounterAsync);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new BaseTuple<U32, U32>();
             expectedResult.Create("0x0B00000038ACD900");
 
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Auctions.AuctionInfoAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Auctions.AuctionInfoAsync);
 
             Assert.That(((U32)expectedResult.Value[0]).Value, Is.EqualTo(11));
             Assert.That(((U32)expectedResult.Value[1]).Value, Is.EqualTo(14265400));
@@ -43,7 +43,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task AuctionInfoNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Auctions.AuctionInfoAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Auctions.AuctionInfoAsync);
         }
 
         [Test]
@@ -54,14 +54,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallWithInputAsync(
                 new BaseTuple<SubstrateAccount, Id>(new SubstrateAccount(MockAddress), new Id(1)),
                 expectedResult,
-                _substrateRepository.Storage.Auctions.ReservedAmountsAsync);
+                _substrateService.Storage.Auctions.ReservedAmountsAsync);
         }
 
         [Test]
         public async Task ReservedAmountsNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync(
-                new BaseTuple<SubstrateAccount, Id>(new SubstrateAccount(MockAddress), new Id(1)), _substrateRepository.Storage.Auctions.ReservedAmountsAsync);
+                new BaseTuple<SubstrateAccount, Id>(new SubstrateAccount(MockAddress), new Id(1)), _substrateService.Storage.Auctions.ReservedAmountsAsync);
         }
 
         [Test]
@@ -81,9 +81,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var extResult = new Arr36BaseOpt();
             //extResult.Create(new[] { new BaseOpt<BaseTuple<AccountId32v9200, Idv9200, U128>>(baseTuple) });
 
-            _substrateRepository.AjunaClient.GetStorageAsync<Arr36BaseOpt>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(extResult);
+            _substrateService.AjunaClient.GetStorageAsync<Arr36BaseOpt>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(extResult);
 
-            var res = await _substrateRepository.Storage.Auctions.WinningAsync(new U32(1), CancellationToken.None);
+            var res = await _substrateService.Storage.Auctions.WinningAsync(new U32(1), CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Value.Length, Is.EqualTo(1));
@@ -94,7 +94,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task WinningNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync<U32, Arr36BaseOpt, Winning>
-                (new U32(1), _substrateRepository.Storage.Auctions.WinningAsync);
+                (new U32(1), _substrateService.Storage.Auctions.WinningAsync);
         }
     }
 }

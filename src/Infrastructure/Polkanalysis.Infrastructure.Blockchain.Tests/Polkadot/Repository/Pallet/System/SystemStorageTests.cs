@@ -32,29 +32,29 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             expectedResult.Create(new U32(15), new U32(1), new U32(1), new U32(0), accountData);
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), extResult, expectedResult, _substrateRepository.Storage.System.AccountAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), extResult, expectedResult, _substrateService.Storage.System.AccountAsync);
         }
 
         [Test]
         public async Task AccountNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<
+            _substrateService.AjunaClient.GetStorageAsync<
                 FrameSystemExt.AccountInfo>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
-            await MockStorageCallNullWithInputAsync(new SubstrateAccount(MockAddress), _substrateRepository.Storage.System.AccountAsync);
+            await MockStorageCallNullWithInputAsync(new SubstrateAccount(MockAddress), _substrateService.Storage.System.AccountAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task ExtrinsicCount_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.System.ExtrinsicCountAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.System.ExtrinsicCountAsync);
         }
 
         [Test]
         public async Task ExtrinsicCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.System.ExtrinsicCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.System.ExtrinsicCountAsync);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new Weight(new U64(0), new U64(0)),
                 new Weight(new U64(498963718992), new U64(0)));
 
-            var result = await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.BlockWeightAsync);
+            var result = await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.System.BlockWeightAsync);
 
             Assert.That(
                 result.Normal.RefTime.Value.Value, 
@@ -86,20 +86,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task BlockWeightNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.frame_support.dispatch.PerDispatchClassT1,
-                FrameSupportDispatchPerDispatchClassWeight>(_substrateRepository.Storage.System.BlockWeightAsync);
+                FrameSupportDispatchPerDispatchClassWeight>(_substrateService.Storage.System.BlockWeightAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task AllExtrinsicsLen_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.System.AllExtrinsicsLenAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.System.AllExtrinsicsLenAsync);
         }
 
         [Test]
         public async Task AllExtrinsicsLenNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.System.AllExtrinsicsLenAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.System.AllExtrinsicsLenAsync);
         }
 
         [Test]
@@ -110,39 +110,39 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Hash("0xB425DD3C71BE9C7F0B4D3E6D80FE18F72C5002F16DA9929FD3E1C46BAC45EF72");
 
-            await MockStorageCallWithInputAsync(new U32(10), coreResult, expectedResult, _substrateRepository.Storage.System.BlockHashAsync);
+            await MockStorageCallWithInputAsync(new U32(10), coreResult, expectedResult, _substrateService.Storage.System.BlockHashAsync);
         }
 
         [Test]
         public async Task BlockHashNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync<U32, H256, Hash>(new U32(10), _substrateRepository.Storage.System.BlockHashAsync);
+            await MockStorageCallNullWithInputAsync<U32, H256, Hash>(new U32(10), _substrateService.Storage.System.BlockHashAsync);
         }
 
         [Test]
         public async Task ExtrinsicData_ShouldWorkAsync()
         {
             var expectedResult = new BaseVec<U8>(new U8[] { new U8(10) });
-            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateRepository.Storage.System.ExtrinsicDataAsync);
+            await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateService.Storage.System.ExtrinsicDataAsync);
         }
 
         [Test]
         public async Task ExtrinsicDataNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new U32(1), _substrateRepository.Storage.System.ExtrinsicDataAsync);
+            await MockStorageCallNullWithInputAsync(new U32(1), _substrateService.Storage.System.ExtrinsicDataAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task Number_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.System.NumberAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.System.NumberAsync);
         }
 
         [Test]
         public async Task NumberNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.System.NumberAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.System.NumberAsync);
         }
 
         [Test]
@@ -153,13 +153,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new Hash("0x3DFA8D1FDCE8D02C914C91BCE466BD0C01AA428E410F5FC3F16980AFE2D2B86C");
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.ParentHashAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.System.ParentHashAsync);
         }
 
         [Test]
         public async Task ParentHashNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<H256, Hash>(_substrateRepository.Storage.System.ParentHashAsync);
+            await MockStorageCallNullAsync<H256, Hash>(_substrateService.Storage.System.ParentHashAsync);
         }
 
         [Test]
@@ -178,13 +178,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             enumDigest.Create(DigestItem.PreRuntime, preruntimeValue);
 
             var expectedResult = new Digest(new BaseVec<EnumDigestItem>(new EnumDigestItem[] { enumDigest }));
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.DigestAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.System.DigestAsync);
         }
 
         [Test]
         public async Task DigestNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_runtime.generic.digest.Digest, Digest>(_substrateRepository.Storage.System.DigestAsync);
+            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_runtime.generic.digest.Digest, Digest>(_substrateService.Storage.System.DigestAsync);
         }
 
         [Test, Ignore("Do not check Encode()")]
@@ -216,7 +216,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             firstEvent.Create(phase, new Contracts.Core.Maybe<EnumRuntimeEvent>(runtimeEvent), topics);
             expectedResult.Create(new EventRecord[] { firstEvent });
 
-            var result = await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.EventsAsync);
+            var result = await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.System.EventsAsync);
 
             Assert.That(result.Value[0].Phase.Value, Is.EqualTo(Phase.ApplyExtrinsic));
             Assert.That(result.Value[0].Phase.Value2.As<U32>().Value, Is.EqualTo(0));
@@ -245,20 +245,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 BaseVec<FrameSystemExt.EventRecord>,
-                BaseVec<EventRecord>>(_substrateRepository.Storage.System.EventsAsync);
+                BaseVec<EventRecord>>(_substrateService.Storage.System.EventsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task EventCount_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.System.EventCountAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.System.EventCountAsync);
         }
 
         [Test]
         public async Task EventCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.System.EventCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.System.EventCountAsync);
         }
 
         [Test]
@@ -270,7 +270,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new BaseTuple<U32, U32>(new U32(1), new U32(32))
             });
 
-            await MockStorageCallWithInputAsync(param, expectedResult, _substrateRepository.Storage.System.EventTopicsAsync);
+            await MockStorageCallWithInputAsync(param, expectedResult, _substrateService.Storage.System.EventTopicsAsync);
         }
 
         [Test]
@@ -278,7 +278,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<Hash,
                 BaseVec<BaseTuple<U32, U32>>,
-                BaseVec<BaseTuple<U32, U32>>>(new Hash("0x9067c4be52eb091d173f6a3172129da8e29a0bb5dd094e48959007918fcf1dbe"), _substrateRepository.Storage.System.EventTopicsAsync);
+                BaseVec<BaseTuple<U32, U32>>>(new Hash("0x9067c4be52eb091d173f6a3172129da8e29a0bb5dd094e48959007918fcf1dbe"), _substrateService.Storage.System.EventTopicsAsync);
         }
 
         [Test]
@@ -289,13 +289,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new LastRuntimeUpgradeInfo(new U32(9370), new Str("polkadot"));
 
-            await MockStorageCallAsync(resultCore, expectedResult, _substrateRepository.Storage.System.LastRuntimeUpgradeAsync);
+            await MockStorageCallAsync(resultCore, expectedResult, _substrateService.Storage.System.LastRuntimeUpgradeAsync);
         }
 
         [Test]
         public async Task LastRuntimeUpgradeNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<FrameSystemExt.LastRuntimeUpgradeInfo, LastRuntimeUpgradeInfo>(_substrateRepository.Storage.System.LastRuntimeUpgradeAsync);
+            await MockStorageCallNullAsync<FrameSystemExt.LastRuntimeUpgradeInfo, LastRuntimeUpgradeInfo>(_substrateService.Storage.System.LastRuntimeUpgradeAsync);
         }
 
         [Test]
@@ -303,13 +303,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCase(false)]
         public async Task UpgradedToU32RefCount_ShouldWorkAsync(bool expectedResult)
         {
-            await MockStorageCallAsync(new Bool(expectedResult), _substrateRepository.Storage.System.UpgradedToU32RefCountAsync);
+            await MockStorageCallAsync(new Bool(expectedResult), _substrateService.Storage.System.UpgradedToU32RefCountAsync);
         }
 
         [Test]
         public async Task UpgradedToU32RefCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.System.UpgradedToU32RefCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.System.UpgradedToU32RefCountAsync);
         }
 
         [Test]
@@ -317,13 +317,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCase(false)]
         public async Task UpgradedToTripleRefCount_ShouldWorkAsync(bool expectedResult)
         {
-            await MockStorageCallAsync(new Bool(expectedResult), _substrateRepository.Storage.System.UpgradedToTripleRefCountAsync);
+            await MockStorageCallAsync(new Bool(expectedResult), _substrateService.Storage.System.UpgradedToTripleRefCountAsync);
         }
 
         [Test]
         public async Task UpgradedToTripleRefCountNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.System.UpgradedToTripleRefCountAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.System.UpgradedToTripleRefCountAsync);
         }
 
         [Test]
@@ -335,13 +335,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new EnumPhase();
             expectedResult.Create(Phase.ApplyExtrinsic, new U32(1));
 
-            await MockStorageCallAsync(resultCore, expectedResult, _substrateRepository.Storage.System.ExecutionPhaseAsync);
+            await MockStorageCallAsync(resultCore, expectedResult, _substrateService.Storage.System.ExecutionPhaseAsync);
         }
 
         [Test]
         public async Task ExecutionPhaseNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<FrameSystemExt.EnumPhase, EnumPhase>(_substrateRepository.Storage.System.ExecutionPhaseAsync);
+            await MockStorageCallNullAsync<FrameSystemExt.EnumPhase, EnumPhase>(_substrateService.Storage.System.ExecutionPhaseAsync);
         }
     }
 }

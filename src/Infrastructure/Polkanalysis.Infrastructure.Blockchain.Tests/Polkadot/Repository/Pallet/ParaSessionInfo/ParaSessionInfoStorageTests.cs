@@ -27,7 +27,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            var res = await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
+            var res = await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
 
             Assert.That(res.Value[0].As<PublicSr25519>().Key, Is.EqualTo(KeyType.Sr25519));
             Assert.That(res.Value[1].As<PublicSr25519>().Key, Is.EqualTo(KeyType.Sr25519));
@@ -38,20 +38,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<BaseVec<
                         PrimitiveV2Ext.assignment_app.Public>, BaseVec<PublicSr25519>>(
-                _substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
+                _substrateService.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task EarliestStoredSession_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.ParaSessionInfo.EarliestStoredSessionAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.ParaSessionInfo.EarliestStoredSessionAsync);
         }
 
         [Test]
         public async Task EarliestStoredSessionNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.ParaSessionInfo.EarliestStoredSessionAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.ParaSessionInfo.EarliestStoredSessionAsync);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new U32(43), new U32(0), new U32(40), new U32(89), new U32(2), new U32(30)
             );
 
-            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateRepository.Storage.ParaSessionInfo.SessionsAsync);
+            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateService.Storage.ParaSessionInfo.SessionsAsync);
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 U32,
                 PrimitiveV2Ext.SessionInfo,
-                SessionInfo>(new U32(1), _substrateRepository.Storage.ParaSessionInfo.SessionsAsync);
+                SessionInfo>(new U32(1), _substrateService.Storage.ParaSessionInfo.SessionsAsync);
         }
 
         [Test]
@@ -172,7 +172,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            await MockStorageCallWithInputAsync(new U32(6114), coreResult, expectedResult, _substrateRepository.Storage.ParaSessionInfo.AccountKeysAsync);
+            await MockStorageCallWithInputAsync(new U32(6114), coreResult, expectedResult, _substrateService.Storage.ParaSessionInfo.AccountKeysAsync);
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<U32,
                 BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>,
-                BaseVec<SubstrateAccount>>(new U32(1), _substrateRepository.Storage.ParaSessionInfo.AccountKeysAsync);
+                BaseVec<SubstrateAccount>>(new U32(1), _substrateService.Storage.ParaSessionInfo.AccountKeysAsync);
         }
     }
 }

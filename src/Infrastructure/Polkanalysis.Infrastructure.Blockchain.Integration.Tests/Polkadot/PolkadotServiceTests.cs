@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         public async Task GetMetadata_ShouldWorkAsync(string hash)
         {
 
-            var metadata = await _substrateRepository.At(hash).GetMetadataAsync(CancellationToken.None);
+            var metadata = await _substrateService.At(hash).GetMetadataAsync(CancellationToken.None);
 
             Assert.That(metadata, Is.Not.Null);
             Assert.That(metadata.NodeMetadata, Is.Not.Null);
@@ -50,7 +50,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         [Test]
         public async Task Module_CheckEveryCurrentRuntimeModule_ShouldWorkAsync()
         {
-            var metadata = await _substrateRepository.GetMetadataAsync(CancellationToken.None);
+            var metadata = await _substrateService.GetMetadataAsync(CancellationToken.None);
 
             metadata.NodeMetadata.Modules.Select(x => x.Value).ToList().ForEach(module =>
             {
@@ -65,10 +65,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
             var wasConnectedCalled = false;
 
-            await _substrateRepository.ConnectAsync(CancellationToken.None);
-            Assert.That(_substrateRepository.IsConnected);
+            await _substrateService.ConnectAsync(CancellationToken.None);
+            Assert.That(_substrateService.IsConnected);
 
-            var task = _substrateRepository.CheckBlockchainStateAsync(isConnected => wasConnectedCalled = isConnected, cancellationTokenSource.Token);
+            var task = _substrateService.CheckBlockchainStateAsync(isConnected => wasConnectedCalled = isConnected, cancellationTokenSource.Token);
 
             try
             {

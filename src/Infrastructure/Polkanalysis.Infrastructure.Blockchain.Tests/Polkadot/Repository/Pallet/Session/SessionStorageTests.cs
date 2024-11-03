@@ -26,7 +26,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Session.ValidatorsAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Session.ValidatorsAsync);
         }
 
         [Test]
@@ -34,20 +34,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 BaseVec<AccountId32Ext>,
-                BaseVec<SubstrateAccount>>(_substrateRepository.Storage.Session.ValidatorsAsync);
+                BaseVec<SubstrateAccount>>(_substrateService.Storage.Session.ValidatorsAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task CurrentIndex_ShouldWorkAsync(U32 expectedResult)
         {
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Session.CurrentIndexAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Session.CurrentIndexAsync);
         }
 
         [Test]
         public async Task CurrentIndexNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Session.CurrentIndexAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Session.CurrentIndexAsync);
         }
 
         [Test]
@@ -55,13 +55,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [TestCase(false)]
         public async Task QueuedChanged_ShouldWorkAsync(bool expectedResult)
         {
-            await MockStorageCallAsync(new Bool(expectedResult), _substrateRepository.Storage.Session.QueuedChangedAsync);
+            await MockStorageCallAsync(new Bool(expectedResult), _substrateService.Storage.Session.QueuedChangedAsync);
         }
 
         [Test]
         public async Task QueuedChangedNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Session.QueuedChangedAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Session.QueuedChangedAsync);
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Session.QueuedKeysAsync);
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateService.Storage.Session.QueuedKeysAsync);
         }
 
         [Test]
@@ -106,20 +106,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullAsync<
                 BaseVec<BaseTuple<AccountId32Ext, RuntimeExt.SessionKeys>>,
-                BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>(_substrateRepository.Storage.Session.QueuedKeysAsync);
+                BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>(_substrateService.Storage.Session.QueuedKeysAsync);
         }
 
         [Test]
         public async Task DisabledValidators_ShouldWorkAsync()
         {
             var expectedResult = new BaseVec<U32>(new U32[] { new U32(10), new U32(20) });
-            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Session.DisabledValidatorsAsync);
+            await MockStorageCallAsync(expectedResult, _substrateService.Storage.Session.DisabledValidatorsAsync);
         }
 
         [Test]
         public async Task DisabledValidatorsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Session.DisabledValidatorsAsync);
+            await MockStorageCallNullAsync(_substrateService.Storage.Session.DisabledValidatorsAsync);
         }
 
         [Test]
@@ -136,7 +136,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new PublicSr25519("0x3a2cdcb143ba3e7fa41dccf5534c6fd36ef91187d55e35dac9d3925ac08e2c22")
             );
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Session.NextKeysAsync);
+            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateService.Storage.Session.NextKeysAsync);
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
                 RuntimeExt.SessionKeys,
-                SessionKeysPolka>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Session.NextKeysAsync);
+                SessionKeysPolka>(new SubstrateAccount(MockAddress), _substrateService.Storage.Session.NextKeysAsync);
         }
 
         [Test]
@@ -159,7 +159,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new SubstrateAccount("1XQn94kWaMVJG16AWPKGmYFERfttsjZq4ompSTz2jxHK6uL");
 
-            await MockStorageCallWithInputAsync(input, coreResult, expectedResult, _substrateRepository.Storage.Session.KeyOwnerAsync);
+            await MockStorageCallWithInputAsync(input, coreResult, expectedResult, _substrateService.Storage.Session.KeyOwnerAsync);
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 BaseTuple<FlexibleNameable, Hexa>, AccountId32Ext, SubstrateAccount>(
-                new BaseTuple<FlexibleNameable, Hexa>(new FlexibleNameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b")), _substrateRepository.Storage.Session.KeyOwnerAsync);
+                new BaseTuple<FlexibleNameable, Hexa>(new FlexibleNameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b")), _substrateService.Storage.Session.KeyOwnerAsync);
         }
     }
 }
