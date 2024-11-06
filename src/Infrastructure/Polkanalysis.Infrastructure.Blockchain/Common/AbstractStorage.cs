@@ -4,14 +4,10 @@ using Newtonsoft.Json.Linq;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Helpers;
+using Polkanalysis.Infrastructure.Database;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Common
 {

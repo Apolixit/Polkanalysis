@@ -30,7 +30,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
                     _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
-                    (PeopleChainService)peopleChainIntegration.GetSubstrateService());
+                    (PeopleChainService)peopleChainIntegration.GetSubstrateService(),
+                    _serviceProvider);
         }
 
         [SetUp]

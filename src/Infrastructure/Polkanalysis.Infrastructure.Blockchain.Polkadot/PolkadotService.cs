@@ -21,20 +21,23 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
     public class PolkadotService : BlockchainAbstractService
     {
         private SubstrateClientExt? _polkadotClient;
+        private readonly IServiceProvider _serviceProvider;
         private readonly PeopleChainService _peopleChainService;
         private readonly PolkadotMapping _blockchainMapping;
         private readonly ILogger<PolkadotService> _logger;
-        
+
 
         public PolkadotService(
             ISubstrateEndpoint substrateconfiguration,
             PolkadotMapping blockchainMapping,
             ILogger<PolkadotService> logger,
-            PeopleChainService peopleChainService) : base(substrateconfiguration, logger)
+            PeopleChainService peopleChainService,
+            IServiceProvider serviceProvider) : base(substrateconfiguration, logger)
         {
             _blockchainMapping = blockchainMapping;
             _logger = logger;
             _peopleChainService = peopleChainService;
+            _serviceProvider = serviceProvider;
         }
 
         public override string BlockchainName => "Polkadot";
@@ -67,7 +70,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             get
             {
                 if (_polkadotStorage == null)
-                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _blockchainMapping, _logger, _peopleChainService);
+                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _blockchainMapping, _logger, _peopleChainService, _serviceProvider);
 
                 return _polkadotStorage;
             }

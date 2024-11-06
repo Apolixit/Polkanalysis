@@ -1,18 +1,22 @@
 # Polkanalysis
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Apolixit_Polkanalysis&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Apolixit_Polkanalysis)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Apolixit_Polkanalysis&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Apolixit_Polkanalysis)
 [![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOTNET](https://img.shields.io/badge/Framework-NET_7_/_ASP_NET_Core_Blazor_/_NET_MAUI-green)](https://learn.microsoft.com/fr-fr/dotnet/core)
+[![DOTNET](https://img.shields.io/badge/Framework-NET_8_/_ASP_NET_Core_Blazor_/_NET_MAUI-green)](https://learn.microsoft.com/fr-fr/dotnet/core)
 [![SubstrateGaming](https://img.shields.io/badge/Substrate_Gaming-Substrate.NET.Toolchain-blue)](https://github.com/SubstrateGaming)
 
 
 Polkanalysis is a Substrate-based blockchain explorer written in .NET.  
-It provide front end application and display aggregated data from the blockchain.
+Polkanalysis allows users to monitor both real-time and historical data on a Substrate-based blockchain
+
+Polkanalysis
 
 ## Developpement state
-__This application is under heavy developpement. It plans to be release Q1 2024 !__
+__This application is under heavy developpement. It plans to be release Q1 2025 !__
 
 The application currently support :
 * [Polkadot](https://polkadot.network)
-* [Kusama](https://kusama.network/)
+* [PeopleChain](https://forum.polkadot.network/t/people-chain-launch-and-identity-migration-plan/5930)
 
 For more information about the project, please check the Roadmap
 
@@ -22,39 +26,15 @@ You can start everything with :
 docker-compose up -d
 ```
 
-### Details
-They are 3 docker compose file in the project
-#### Run the entire application with every project :
+Or you can start only dependencies with docker :
 ```
-docker-compose up -d
+docker-compose -f docker-compose-base.yml up -d
 ```
-
-This command is going to run :
-* Blazor web application
-* ASP.NET Core API
-* Hosted background service
-* A PostgreSQL database
-* A Elasticsearch + Kibana application to have a friend application logs view
-
-#### Run only the background worker :
-```
-docker-compose -f docker-compose-worker up -d
-```
-
-This command is going to run :
-* Hosted background service
-* A PostgreSQL database
-
-#### Run only front app :
-```
-docker-compose -f docker-compose-webapp up -d
-```
-
-This command is going to run :
-* Blazor web application
-* ASP.NET Core API
-* A PostgreSQL database
+And run project one by one
 
 
+## Architecture
 
+View it [on IcePanel](https://s.icepanel.io/7HTG6lgfZPrXYU/Sfwv).
+![image](https://bl6pap003files.storage.live.com/y4ms4lR7my0aN7vwxKlCiWROidSGcbEQ4OyB2B54I5CjglCPuz-qWuIkfiJUQBzCK2VTqkNGt1bcg4P9qMAiTmh0jlzQHKu-zP90NNBW0qNOrXZ0P8nTIlVu0VkBvr4feUfnriysRgl0FW3JGRxOfQp4WLSIFcGVwLPQSM4EC1uEspu_6D-yxvQk4tZj6fmoJMUQx6bTYmCynQK9nJX25Yb9AvbaV6rLRFQDEcEcoOhHOc?encodeFailures=1&width=1400&height=1134)
 

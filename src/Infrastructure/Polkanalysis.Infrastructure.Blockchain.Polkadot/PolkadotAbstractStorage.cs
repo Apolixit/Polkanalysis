@@ -47,44 +47,44 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             _client = client;
         }
 
-        protected async Task<(bool isExisting, uint blockNumber)> IsPeopleChainAlreadyExistsAsync(SubstrateClient otherClient, CancellationToken token)
-        {
-            Guard.Against.NullOrEmpty(BlockHash, nameof(BlockHash));
+        //protected async Task<(bool isExisting, uint blockNumber)> IsPeopleChainAlreadyExistsAsync(SubstrateClient otherClient, CancellationToken token)
+        //{
+        //    Guard.Against.NullOrEmpty(BlockHash, nameof(BlockHash));
 
-            var polkadotBlockDataTask = _client.Chain.GetBlockAsync(new Hash(BlockHash), token);
-            var polkadotCurrentBlockNumTask = _client.Chain.GetBlockAsync(token);
-            var otherChainCurrentBlockNumTask = otherClient.Chain.GetBlockAsync(token);
-            var tasks = new List<Task>()
-            {
-                polkadotBlockDataTask, polkadotCurrentBlockNumTask, otherChainCurrentBlockNumTask
-            };
+        //    var polkadotBlockDataTask = _client.Chain.GetBlockAsync(new Hash(BlockHash), token);
+        //    var polkadotCurrentBlockNumTask = _client.Chain.GetBlockAsync(token);
+        //    var otherChainCurrentBlockNumTask = otherClient.Chain.GetBlockAsync(token);
+        //    var tasks = new List<Task>()
+        //    {
+        //        polkadotBlockDataTask, polkadotCurrentBlockNumTask, otherChainCurrentBlockNumTask
+        //    };
 
-            await Task.WhenAll(tasks.ToArray());
+        //    await Task.WhenAll(tasks.ToArray());
 
-            var polkadotBlockData = await polkadotBlockDataTask;
-            var polkadotCurrentBlockNum = await polkadotCurrentBlockNumTask;
-            var otherChainCurrentBlockNum = await otherChainCurrentBlockNumTask;
+        //    var polkadotBlockData = await polkadotBlockDataTask;
+        //    var polkadotCurrentBlockNum = await polkadotCurrentBlockNumTask;
+        //    var otherChainCurrentBlockNum = await otherChainCurrentBlockNumTask;
 
-            var deltaBlock = polkadotCurrentBlockNum.Block.Header.Number.Value - polkadotBlockData.Block.Header.Number.Value;
+        //    var deltaBlock = polkadotCurrentBlockNum.Block.Header.Number.Value - polkadotBlockData.Block.Header.Number.Value;
 
-            if(deltaBlock > otherChainCurrentBlockNum.Block.Header.Number.Value) return (false, 0);
+        //    if(deltaBlock > otherChainCurrentBlockNum.Block.Header.Number.Value) return (false, 0);
 
-            var blockFromPeopleChain = otherChainCurrentBlockNum.Block.Header.Number.Value - deltaBlock;
-            return (true, (uint)blockFromPeopleChain);
-        }
+        //    var blockFromPeopleChain = otherChainCurrentBlockNum.Block.Header.Number.Value - deltaBlock;
+        //    return (true, (uint)blockFromPeopleChain);
+        //}
 
-        /// <summary>
-        /// Get the associated hash from an other chain
-        /// </summary>
-        /// <param name="otherClient"></param>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        protected async Task<Hash> GetAssociatedHashFromOtherChainAsync(SubstrateClient otherClient, uint blockNumber, CancellationToken token)
-        {
-            var peopleChainBlockHash = await otherClient.Chain.GetBlockHashAsync(new BlockNumber(blockNumber), token);
+        ///// <summary>
+        ///// Get the associated hash from an other chain
+        ///// </summary>
+        ///// <param name="otherClient"></param>
+        ///// <param name="token"></param>
+        ///// <returns></returns>
+        //protected async Task<Hash> GetAssociatedHashFromOtherChainAsync(SubstrateClient otherClient, uint blockNumber, CancellationToken token)
+        //{
+        //    var peopleChainBlockHash = await otherClient.Chain.GetBlockHashAsync(new BlockNumber(blockNumber), token);
 
-            return peopleChainBlockHash;
-        }
+        //    return peopleChainBlockHash;
+        //}
 
         /// <summary>
         /// Shortcut to build an AccountId32Base (often used as input)

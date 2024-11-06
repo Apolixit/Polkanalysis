@@ -7,12 +7,17 @@ using Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Configuration.Contracts.Endpoints;
+using Microsoft.EntityFrameworkCore;
+using Polkanalysis.Infrastructure.Database;
+using Polkanalysis.Infrastructure.Blockchain.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
     public class PolkadotIntegrationTest : InfrastructureIntegrationTest
     {
-        private PeopleChainService _peopleChainService = default!;
+        protected PeopleChainService _peopleChainService = default!;
+        protected DelegateSystemChain _delegateSystemChain = default!;
 
         protected PolkadotIntegrationTest()
         {
@@ -27,14 +32,30 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
                     _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
-                    _peopleChainService);
+                    _peopleChainService,
+                    _serviceProvider);
         }
 
         [SetUp]
-        protected void Setup()
+        protected void SetupPolkadot()
         {
             // Just clean blockhash everytime
             _substrateService.Storage.BlockHash = null;
+
+            var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
+                .UseInMemoryDatabase("SubstrateTest")
+            .Options;
+            _substrateDbContext = new SubstrateDbContext(contextOption);
+
+            _delegateSystemChain = new DelegateSystemChain(_substrateService, _substrateDbContext, Substitute.For<ILogger<DelegateSystemChain>>());
+            _serviceProvider.GetService(typeof(IDelegateSystemChain)).Returns(_delegateSystemChain);
+        }
+
+        [TearDown]
+        public void TearDownPolkadot()
+        {
+            _substrateDbContext.Database.EnsureDeleted();
+            _substrateDbContext.Dispose();
         }
 
         protected async Task<string> GetBlockHashAsync(int blockNum)

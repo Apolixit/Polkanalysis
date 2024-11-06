@@ -22,6 +22,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
     <PackageReference Include="NUnit" Version="4.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageReference Include="NUnit.Analyzers" Version="4.2.0">
@@ -37,6 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
     <ProjectReference Include="..\Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj" />
   </ItemGroup>
 
