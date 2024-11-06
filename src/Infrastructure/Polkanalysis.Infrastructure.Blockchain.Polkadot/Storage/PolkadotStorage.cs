@@ -24,16 +24,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
     public class PolkadotStorage : IStorage
     {
         private SubstrateClientExt _polkadotClient;
+        private readonly IServiceProvider _serviceProvider;
         private readonly PeopleChainService _peopleChainService;
         public readonly PolkadotMapping _mapper;
         private readonly ILogger _logger;
 
-        public PolkadotStorage(SubstrateClientExt polkadotClient, PolkadotMapping mapper, ILogger logger, PeopleChainService peopleChainService)
+        public PolkadotStorage(SubstrateClientExt polkadotClient,
+                               PolkadotMapping mapper,
+                               ILogger logger,
+                               PeopleChainService peopleChainService,
+                               IServiceProvider serviceProvider)
         {
             _polkadotClient = polkadotClient;
             _mapper = mapper;
             _logger = logger;
             _peopleChainService = peopleChainService;
+            _serviceProvider = serviceProvider;
         }
 
         private IAuctionsStorage? _auctionsStorages = null;
@@ -118,7 +124,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             get
             {
                 if (_identityStorage == null)
-                    _identityStorage = new IdentityStorage(_polkadotClient, _mapper, _logger, _peopleChainService);
+                    _identityStorage = new IdentityStorage(_polkadotClient, _mapper, _logger, _peopleChainService, _serviceProvider);
 
                 _identityStorage.BlockHash = BlockHash;
                 return _identityStorage;

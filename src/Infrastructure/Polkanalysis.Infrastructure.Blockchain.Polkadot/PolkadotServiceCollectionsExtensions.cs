@@ -6,6 +6,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using System.Diagnostics.CodeAnalysis;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Common;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -35,6 +37,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
                 default:
                     throw new NotSupportedException($"{blockchainName} is not supported by the application");
             }
+
+            services.AddTransient<IDelegateSystemChain, DelegateSystemChain>();
 
             return services;
         }

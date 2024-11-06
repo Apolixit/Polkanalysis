@@ -23,7 +23,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
     public abstract class PolkadotMock
     {
         public const uint DefaultVersionForTest = 9370;
+
         protected ISubstrateService _substrateService;
+        protected PeopleChainService _peopleChainService;
+
         protected PolkadotMapping _polkadotMapping;
 
         public const string MockAddress = "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS";
@@ -66,8 +69,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         [SetUp]
         public void Setup()
         {
-            var peopleChainService = new PeopleChainService(
-                    Substitute.For<ISubstrateEndpoint>(),
+            var peopleChainConfiguration = Substitute.For<ISubstrateEndpoint>();
+            peopleChainConfiguration.GetEndpoint("PeopleChain").Returns(new EndpointInformation()
+            {
+                Name = "PcProvider",
+                Uri = new Uri("wss://fakeuri")
+            });
+            _peopleChainService = new PeopleChainService(
+                    peopleChainConfiguration,
                     new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
                     Substitute.For<ILogger<PeopleChainService>>()
                     );
@@ -78,7 +87,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
                 Substitute.For<ISubstrateEndpoint>(),
                 new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                 Substitute.For<ILogger<PolkadotService>>(),
-                peopleChainService);
+                _peopleChainService,
+                Substitute.For<IServiceProvider>());
 
             // Mock a part of Substrate Client call
             polkadotRepository.PolkadotClient = Substitute.ForPartsOf<SubstrateClientExt>(

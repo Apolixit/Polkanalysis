@@ -1,7 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Configuration.Extensions;
+using Polkanalysis.Infrastructure.Blockchain.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +20,8 @@ namespace Polkanalysis.Abstract.Tests
         protected ISubstrateService _substrateService = default!;
         protected IConfigurationRoot _endpointConfiguration;
         protected ISubstrateEndpoint _substrateEndpoints;
+        protected SubstrateDbContext _substrateDbContext = default!;
+        protected IServiceProvider _serviceProvider;
 
         public GlobalIntegrationTest()
         {
@@ -26,6 +33,8 @@ namespace Polkanalysis.Abstract.Tests
 
             if (_substrateEndpoints == null)
                 throw new InvalidOperationException($"{nameof(_substrateEndpoints)} is null. You must provide a valid Substrate endpoint");
+
+            _serviceProvider = Substitute.For<IServiceProvider>();
         }
 
         public ISubstrateEndpoint GetEndpoint()
@@ -37,6 +46,11 @@ namespace Polkanalysis.Abstract.Tests
         public ISubstrateService GetSubstrateService()
             => _substrateService;
 
-        
+
+        //[SetUp]
+        //protected void Setup()
+        //{
+        //    _serviceProvider.GetService(typeof(IDelegateSystemChain)).Returns(new DelegateSystemChain(_substrateService, _substrateDbContext, Substitute.For<ILogger<DelegateSystemChain>>()));
+        //}
     }
 }

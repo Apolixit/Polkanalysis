@@ -16,7 +16,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 {
     public abstract class PolkadotIntegrationTest : DomainIntegrationTest
     {
-        protected SubstrateDbContext _substrateDbContext;
+        //protected SubstrateDbContext _substrateDbContext;
         private PeopleChainService _peopleChainService = default!;
 
         protected PolkadotIntegrationTest() : base()
@@ -27,7 +27,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
                     _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
-                    (PeopleChainService)peopleChainIntegrationTest.GetSubstrateService());
+                    (PeopleChainService)peopleChainIntegrationTest.GetSubstrateService(),
+                    _serviceProvider);
         }
 
         [SetUp]

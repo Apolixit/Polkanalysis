@@ -78,11 +78,11 @@ jobs:
     - name: Test Solution
       run: dotnet test Polkanalysis.sln --verbosity normal --logger "trx;LogFileName=test-results.trx"
 
-    - name: Publish Test Results
+    - name: Publish Tests Results
       uses: dorny/test-reporter@v1
       if: always()
       with:
-        name: Test results
+        name: Tests results
         path: "**/test-results.trx"
         reporter: dotnet-trx
         fail-on-error: true
