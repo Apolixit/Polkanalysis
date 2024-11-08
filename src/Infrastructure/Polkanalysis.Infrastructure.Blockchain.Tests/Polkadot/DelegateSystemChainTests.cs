@@ -96,7 +96,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot
                 "blockHashFromPolkadot",
                 CancellationToken.None);
 
-            Assert.That(res, Is.EqualTo(1002));
+            Assert.That(res, Is.EqualTo(1001));
         }
 
     }

@@ -36,12 +36,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
                     _serviceProvider);
         }
 
-        [SetUp]
-        protected void SetupPolkadot()
+        [OneTimeSetUp]
+        protected void OneTimeSetupPolkadot()
         {
-            // Just clean blockhash everytime
-            _substrateService.Storage.BlockHash = null;
-
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")
             .Options;
@@ -51,7 +48,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             _serviceProvider.GetService(typeof(IDelegateSystemChain)).Returns(_delegateSystemChain);
         }
 
-        [TearDown]
+        [SetUp]
+        protected void SetupPolkadot()
+        {
+            // Just clean blockhash everytime
+            _substrateService.Storage.BlockHash = null;
+        }
+
+        [OneTimeTearDown]
         public void TearDownPolkadot()
         {
             _substrateDbContext.Database.EnsureDeleted();
