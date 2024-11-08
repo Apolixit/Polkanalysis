@@ -34,68 +34,48 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             Assert.ThrowsAsync<InvalidDataFromSystemParachainException>(async () => await _delegateSystemChain.GetAssociatedHashFromOtherChainAsync(
                 _peopleChainService.AjunaClient,
                 _peopleChainService.BlockchainName,
-                0,
+                uint.MaxValue,
                 CancellationToken.None));
         }
 
-        //[Test]
-        //public async Task CurrentBlockForSystemChain_FromDatabase_ShouldSucceedAsync()
-        //{
-        //    _substrateDbContext.BlockInformation.Add(new Database.Contracts.Model.Blocks.BlockInformationModel()
-        //    {
-        //        BlockchainName = "PeopleChain",
-        //        BlockNumber = 1000,
-        //        BlockDate = new DateTime(2024, 01, 01, 01, 00, 00),
-        //        BlockHash = "don't care",
-        //        EventsCount = 0,
-        //        ExtrinsicsCount = 0,
-        //        LogsCount = 0,
-        //        ValidatorAddress = "don't care"
-        //    });
-        //    _substrateDbContext.BlockInformation.Add(new Database.Contracts.Model.Blocks.BlockInformationModel()
-        //    {
-        //        BlockchainName = "PeopleChain",
-        //        BlockNumber = 1001,
-        //        BlockDate = new DateTime(2024, 01, 01, 01, 00, 12),
-        //        BlockHash = "don't care",
-        //        EventsCount = 0,
-        //        ExtrinsicsCount = 0,
-        //        LogsCount = 0,
-        //        ValidatorAddress = "don't care"
-        //    });
-        //    _substrateDbContext.BlockInformation.Add(new Database.Contracts.Model.Blocks.BlockInformationModel()
-        //    {
-        //        BlockchainName = "PeopleChain",
-        //        BlockNumber = 1002,
-        //        BlockDate = new DateTime(2024, 01, 01, 01, 00, 25), // A bit more than 12s
-        //        BlockHash = "don't care",
-        //        EventsCount = 0,
-        //        ExtrinsicsCount = 0,
-        //        LogsCount = 0,
-        //        ValidatorAddress = "don't care"
-        //    });
-        //    _substrateDbContext.BlockInformation.Add(new Database.Contracts.Model.Blocks.BlockInformationModel()
-        //    {
-        //        BlockchainName = "PeopleChain",
-        //        BlockNumber = 1003,
-        //        BlockDate = new DateTime(2024, 01, 01, 01, 00, 40), // More than 12s
-        //        BlockHash = "don't care",
-        //        EventsCount = 0,
-        //        ExtrinsicsCount = 0,
-        //        LogsCount = 0,
-        //        ValidatorAddress = "don't care"
-        //    });
-        //    _substrateDbContext.SaveChanges();
+        [Test]
+        [TestCase(22996447, "0x6b8f11638b5904c13f35863fdd312d91728ca7302862b5bb925d715392581f05", 624283, "0xbc31559b44b25a1f947751436cc2906def8b029ae5cd2bc17a7286cf93e10b9f")]
+        [TestCase(22666089, "0xd14d9606068b70847edbe551b38e5e9bbd793d49a93f3c5224b194cc66bb2edf", 470942, "0x817077adf0abc312e71e04c8f8c56850ae02d47b21bbf7d7491c1a2ac4d70d3b")]
+        [TestCase(23312316, "0x2c91d5b78ab94a352096caec5f89722d7eba12119bdc3fe9384c404a012577a7", 
+            778030, "0x1e3c16acb6b3849b95759495b630b205c98830fe849b814c77a9002f74317743")] // https://polkadot.subscan.io/block/23312316 | https://people-polkadot.subscan.io/block/778030
+        [TestCase(23312315, "0x749b042c2b8a0345cb2efce4a8c8d1afc419b22df344477949afffe13aba4314", 
+            778029, "0xf5bd022ebc188e6887bbbf50716457c2222aed5c5c978792ce0b143bfdf365bb")] // https://polkadot.subscan.io/block/23312315 | https://people-polkadot.subscan.io/block/778029
+        public async Task CurrentBlockForSystemChain_FromCalculation_ShouldSucceedAsync(
+            int polkadotBlockNumber, 
+            string polkadotBlockHash, 
+            int expectedPeopleChainBlockNumber, 
+            string expectedPeopleChainBlockHash)
+        {
+            var blockPeopleChain = await _delegateSystemChain.CurrentBlockForSystemChainAsync(
+                _peopleChainService.AjunaClient,
+                "PeopleChain",
+                polkadotBlockHash,
+                CancellationToken.None);
 
-        //    //_substrateService.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), "blockHashFromPolkadot", CancellationToken.None).Returns();
+            Assert.That(blockPeopleChain, Is.EqualTo(expectedPeopleChainBlockNumber));
 
-        //    var res = await _delegateSystemChain.CurrentBlockForSystemChainAsync(
-        //        _peopleChainService.AjunaClient, 
-        //        "PeopleChain",
-        //        "Polkadot", 
-        //        CancellationToken.None);
+            var hashPeopleChain = await _delegateSystemChain.GetAssociatedHashFromOtherChainAsync(_peopleChainService.AjunaClient, "PeopleChain", blockPeopleChain, CancellationToken.None);
 
-        //    Assert.That(res, Is.EqualTo(1002));
-        //}
+            Assert.That(hashPeopleChain, Is.Not.Null);
+            Assert.That(hashPeopleChain.Value.ToUpper(), Is.EqualTo(expectedPeopleChainBlockHash.ToUpper()));
+        }
+
+        [Test]
+        [TestCase(21604404, "0x3d4ccbe223b11212d255fb454ea2c83eaf3e72313fb60ba9afc5c3a14cb67093")]
+        public void CurrentBlockForSystemChain_WhenParachainDidntExistYet_ShouldThrowException(
+            int polkadotBlockNumber,
+            string polkadotBlockHash)
+        {
+            Assert.ThrowsAsync<SystemParachainDidntExistYetException>(async() => await _delegateSystemChain.CurrentBlockForSystemChainAsync(
+                _peopleChainService.AjunaClient,
+                "PeopleChain",
+                polkadotBlockHash,
+                CancellationToken.None));
+        }
     }
 }

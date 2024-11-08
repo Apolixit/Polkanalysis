@@ -17,6 +17,8 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Configuration.Contracts.Endpoints;
+using Microsoft.Extensions.DependencyInjection;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 {
@@ -26,6 +28,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 
         protected ISubstrateService _substrateService;
         protected PeopleChainService _peopleChainService;
+        protected IServiceProvider _serviceProvider;
 
         protected PolkadotMapping _polkadotMapping;
 
@@ -69,6 +72,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         [SetUp]
         public void Setup()
         {
+            _serviceProvider = Substitute.For<IServiceProvider>();
+            _serviceProvider.GetService(typeof(IDelegateSystemChain)).Returns(Substitute.For<IDelegateSystemChain>());
+
             var peopleChainConfiguration = Substitute.For<ISubstrateEndpoint>();
             peopleChainConfiguration.GetEndpoint("PeopleChain").Returns(new EndpointInformation()
             {
@@ -88,7 +94,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
                 new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                 Substitute.For<ILogger<PolkadotService>>(),
                 _peopleChainService,
-                Substitute.For<IServiceProvider>());
+                _serviceProvider);
 
             // Mock a part of Substrate Client call
             polkadotRepository.PolkadotClient = Substitute.ForPartsOf<SubstrateClientExt>(

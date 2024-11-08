@@ -6,6 +6,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Exceptions;
 using Polkanalysis.Infrastructure.Database;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Blocks;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -17,6 +18,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
         private readonly ISubstrateService _substrateService;
         private readonly SubstrateDbContext _db;
         protected readonly ILogger<DelegateSystemChain> _logger;
+
+        // Lock to avoid concurrency issue
+        private static object lockDatabase = new object();
 
         public DelegateSystemChain(ISubstrateService substrateService, SubstrateDbContext db, ILogger<DelegateSystemChain> logger)
         {
@@ -36,6 +40,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             try
             {
                 var peopleChainBlockHash = await systemChainClient.Chain.GetBlockHashAsync(new BlockNumber(blockNumber), token);
+
+                if(peopleChainBlockHash is null)
+                    throw new InvalidDataFromSystemParachainException($"[{systemChainName}] Unable to get hash from blocknumber {blockNumber}", blockNumber);
 
                 return peopleChainBlockHash;
             }
@@ -64,11 +71,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             var sourceBlockTime = getBlocktimeFromBlockchainName(_substrateService.BlockchainName);
             var systemChainBlockTime = getBlocktimeFromBlockchainName(systemChainName);
 
-            var polkadotCurrentDate = await GetDateTimeFromTimestampAsync(_substrateService.AjunaClient, sourceChainBlockHash, token);
-            var systemChainBlockNumber = await getBlockNumberFromDateTimeAsync(polkadotCurrentDate, systemChainName, token);
+            var sourceCurrentDate = await GetDateTimeFromTimestampAsync(_substrateService.AjunaClient, sourceChainBlockHash, token);
+            var systemChainBlockNumberFromDatabase = await getBlockNumberFromDateTimeAsync(sourceCurrentDate, systemChainName, token);
 
-            if (systemChainBlockNumber is not null)
-                return systemChainBlockNumber.Value;
+            if (systemChainBlockNumberFromDatabase is not null)
+                return systemChainBlockNumberFromDatabase.Value;
 
             var polkadotBlockDataTask = _substrateService.AjunaClient.Chain.GetBlockAsync(new Hash(sourceChainBlockHash), token);
             var polkadotCurrentBlockNumTask = _substrateService.AjunaClient.Chain.GetBlockAsync(token);
@@ -88,17 +95,30 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             Guard.Against.Null(polkadotCurrentBlockNum, nameof(polkadotCurrentBlockNum), message: $"Unable to get current block number from [{_substrateService.BlockchainName}]_client.Chain.GetBlockAsync({sourceChainBlockHash})");
             Guard.Against.Null(systemChainCurrentBlockNum, nameof(systemChainCurrentBlockNum), message: $"Unable to get current block number from [{systemChainName}]");
 
+            var polkadotNumFromHash = polkadotBlockData.Block.Header.Number.Value;
+            var polkadotCurrentNum = polkadotCurrentBlockNum.Block.Header.Number.Value;
+            var peopleChainCurrentNum = systemChainCurrentBlockNum.Block.Header.Number.Value;
             // This is not good and just aproximative, need to change
-            var deltaBlock = (sourceBlockTime / systemChainBlockTime) * polkadotCurrentBlockNum.Block.Header.Number.Value - polkadotBlockData.Block.Header.Number.Value;
-            var approxBlockFromSystemChain = (int)systemChainCurrentBlockNum.Block.Header.Number.Value - (int)deltaBlock;
+#if DEBUG
+            var deltaBlock2 = polkadotCurrentNum - polkadotNumFromHash;
+            var approxBlockFromSystemChain2 = (int)peopleChainCurrentNum - (int)deltaBlock2;
+#endif
+            var deltaBlock = (double)((double)sourceBlockTime / (double)systemChainBlockTime) * (polkadotCurrentNum - polkadotNumFromHash);
+            var approxBlockFromSystemChain = (int)peopleChainCurrentNum - (int)deltaBlock;
             // If system chain does not exists => return 0
             //if (deltaBlock > systemChainCurrentBlockNum.Block.Header.Number.Value) return 0;
 
-            var blockFromSystemChain = await FindClosestBlockInSystemChainAsync(
-                (uint)polkadotCurrentBlockNum.Block.Header.Number.Value,
+            var blockFromSystemChain = await TryFindClosestBlockInSystemChainAsync(
+                sourceCurrentDate,
                 approxBlockFromSystemChain,
-                systemChainClient, token);
-            return blockFromSystemChain;
+                systemChainClient,
+                systemChainBlockTime,
+                token);
+
+            if (blockFromSystemChain is null)
+                throw new InvalidDataFromSystemParachainException($"Unable to determine block at the same time from {_substrateService.BlockchainName} (block {polkadotBlockData.Block.Header.Number.Value} / Date = {sourceCurrentDate}) to SystemParachain {systemChainName}", (uint)polkadotBlockData.Block.Header.Number.Value);
+
+            return blockFromSystemChain.Value;
         }
 
         /// <summary>
@@ -109,50 +129,40 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
         /// <param name="systemChainClient">The client of the target chain</param>
         /// <param name="token"></param>
         /// <returns>The closest block of the system chain that fit the source blocknumber</returns>
-        internal async Task<uint> FindClosestBlockInSystemChainAsync(uint sourceBlockNumber, int approxBlockSystemChain, SubstrateClient systemChainClient, CancellationToken token)
+        internal async Task<uint?> TryFindClosestBlockInSystemChainAsync(
+            DateTime sourceTargetDate, 
+            int approxBlockSystemChain, 
+            SubstrateClient systemChainClient, 
+            uint systemChainBlockTime,
+            CancellationToken token)
         {
-            uint approxBlockSystemChainPositive = (uint)Math.Max(1, approxBlockSystemChain);
+            int maxIteration = 10;
+            int currentIteration = 0;
 
-            var sourceBlockHash = await systemChainClient.Chain.GetBlockHashAsync(new BlockNumber(sourceBlockNumber), token);
-            DateTime targetTimestamp = await GetDateTimeFromTimestampAsync(_substrateService.AjunaClient, sourceBlockHash?.Value, token);
-
-            // Limit the search range around the approximate block (e.g., ±100 blocks)
-            uint minBlock = approxBlockSystemChainPositive - 100;
-            uint maxBlock = approxBlockSystemChainPositive + 100;
-
-            // Initialize binary search to find the closest time-matching block in SystemParachain that is <= targetTimestamp
-            uint closestBlock = approxBlockSystemChainPositive;
-            TimeSpan smallestDifference = TimeSpan.MaxValue;
-
-            while (minBlock <= maxBlock)
+            int currentBlock = approxBlockSystemChain;
+            while (currentIteration < maxIteration)
             {
-                uint midBlock = Math.Max(1, (minBlock + maxBlock) / 2);
-                var midBlockHash = await systemChainClient.Chain.GetBlockHashAsync(new BlockNumber(midBlock), token);
-                DateTime midTimestamp = await GetDateTimeFromTimestampAsync(_substrateService.AjunaClient, midBlockHash?.Value, token);
+                currentBlock = Math.Max(1, currentBlock);
+                var midBlockHash = await systemChainClient.Chain.GetBlockHashAsync(new BlockNumber((uint)currentBlock), token);
+                DateTime midTimestamp = await GetDateTimeFromTimestampAsync(systemChainClient, midBlockHash?.Value, token);
 
-                // Only consider midBlock if its timestamp is <= targetTimestamp
-                if (midTimestamp <= targetTimestamp)
-                {
-                    TimeSpan difference = targetTimestamp - midTimestamp;
+                // If the SystemParachain didn't exists at this date, let's quit
+                if (currentBlock == 1 && midTimestamp > sourceTargetDate)
+                    throw new SystemParachainDidntExistYetException($"SystemParachain didn't exist at {sourceTargetDate}");
 
-                    // Update if this difference is smaller than the current smallest difference
-                    if (difference < smallestDifference)
-                    {
-                        smallestDifference = difference;
-                        closestBlock = midBlock;
-                    }
+                TimeSpan difference = sourceTargetDate - midTimestamp;
+                var isBeforeTargetDate = difference.TotalMilliseconds >= 0;
 
-                    // Move the search range up, as we're looking for a closer timestamp, if possible
-                    minBlock = midBlock + 1;
-                }
-                else
-                {
-                    // If midTimestamp > targetTimestamp, search in the lower range
-                    maxBlock = midBlock - 1;
-                }
+                if (isBeforeTargetDate && difference.TotalMilliseconds <= systemChainBlockTime)
+                    return (uint)currentBlock; // This is not absolutely valid, but let's try
+
+                var nbBlockToShift = (int)Math.Floor((double)difference.TotalMilliseconds / (double)systemChainBlockTime);
+                currentBlock += nbBlockToShift;
+
+                currentIteration++;
             }
 
-            return closestBlock;
+            return null;
         }
 
         /// <summary>
@@ -168,12 +178,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
 
             DateTime lowerBound = referenceDate.AddSeconds(-blockTimeSystemChain * 2);
 
-            var block = await _db
+            BlockInformationModel? block = null;
+            lock (lockDatabase)
+            {
+                block = _db
                 .BlockInformation
                 .AsNoTracking()
                 .Where(x => x.BlockchainName == systemChainName && x.BlockDate <= referenceDate && x.BlockDate >= lowerBound)
                 .OrderByDescending(x => x.BlockDate)
-                .FirstOrDefaultAsync(token);
+                .FirstOrDefault();
+            }
 
             return block?.BlockNumber;
         }

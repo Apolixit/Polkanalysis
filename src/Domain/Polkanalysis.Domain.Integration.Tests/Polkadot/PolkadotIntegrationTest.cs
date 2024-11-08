@@ -11,13 +11,15 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Configuration.Extensions;
+using Polkanalysis.Infrastructure.Blockchain.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 
 namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 {
     public abstract class PolkadotIntegrationTest : DomainIntegrationTest
     {
-        //protected SubstrateDbContext _substrateDbContext;
         private PeopleChainService _peopleChainService = default!;
+        protected DelegateSystemChain _delegateSystemChain = default!;
 
         protected PolkadotIntegrationTest() : base()
         {
@@ -31,13 +33,16 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
                     _serviceProvider);
         }
 
-        [SetUp]
+        [OneTimeSetUp]
         protected void SetupBase()
         {
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")
             .Options;
             _substrateDbContext = new SubstrateDbContext(contextOption);
+
+            _delegateSystemChain = new DelegateSystemChain(_substrateService, _substrateDbContext, Substitute.For<ILogger<DelegateSystemChain>>());
+            _serviceProvider.GetService(typeof(IDelegateSystemChain)).Returns(_delegateSystemChain);
 
             _substrateDbContext.TokenPrices.Add(new Infrastructure.Database.Contracts.Model.Price.TokenPriceModel()
             {
@@ -49,7 +54,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
             _substrateDbContext.SaveChanges();
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDownBase()
         {
             _substrateDbContext.Database.EnsureDeleted();
