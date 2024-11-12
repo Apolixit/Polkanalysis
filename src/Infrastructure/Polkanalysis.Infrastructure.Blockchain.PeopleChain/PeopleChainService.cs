@@ -37,20 +37,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             _logger = logger;
         }
 
+        protected override async Task InstanciateSubstrateServiceAsync()
+        {
+            _peopleChainClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
+        }
+
         public SubstrateClientExt PeopleChainClient
         {
             get
             {
                 if (_peopleChainClient == null)
                 {
-                    _peopleChainClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
+                    InstanciateSubstrateServiceAsync();
                 }
-                return _peopleChainClient;
-            }
 
-            set
-            {
-                _peopleChainClient = value;
+                return _peopleChainClient!;
             }
         }
 

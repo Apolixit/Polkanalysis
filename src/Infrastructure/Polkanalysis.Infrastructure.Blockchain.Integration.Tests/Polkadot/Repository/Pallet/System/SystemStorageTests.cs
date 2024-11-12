@@ -33,8 +33,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         public static IEnumerable<TestCaseData> AccountTestCases()
-        {
-            var testCases = new List<TestCaseData>
+            => FilterTestCase(new List<TestCaseData>
             {
                 new TestCaseData(14033244, "13gLE9RuaZ3vmZwVaZfsvPMNnTHPVhXKoMWjsNaP6F6ccA7s"),
                 new TestCaseData(1, "12H7nsDUrJUSCQQJrTKAFfyCWSactiSdjoVUixqcd9CZHTGt"),
@@ -80,16 +79,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
                 new TestCaseData(12000000, "14Fqi7dFQfRtQRrtBW7BL5m9E1fbTp3dvAnW19AUqEKhWCFd"),
                 new TestCaseData(12220000, "1nTfEEWASm1x6D16FPLLjPFC42Fb7Q5zLovrxQpPQe6j86s"),
                 new TestCaseData(12400000, "168bhPTpsgByfKqM2pgUfZ2wPxQQpgTwxsA9iTV7vAN4wQiU"),
-                new TestCaseData(12800000, "13BN4WksoyexwDWhGsMMUbU5okehD5gHj7EhhEMZaD7qETv"),
-                new TestCaseData(13000000, "1zugcagdx7CVs1B5sTXy5syZUTmULaBQbnFLwouCtHwr7Z"),
-                new TestCaseData(13500000, "15aggtSEf4Ey8NVMTfGg6SGggfhbhYHD6do1T12yMsbLZ2X"),
-                new TestCaseData(14000000, "14NRxEYPd3cSHSTFTFJeenYGx8tgt6REgpbWYPczN8fyQDsT")
-            };
-
-            if(Category == "light") return new List<TestCaseData>() { testCases.First(), testCases.Last() };
-
-            return testCases;
-        }
+                new TestCaseData(12800000, "13BN4WksoyexwDWhGsMMUbU5okehD19GzdyqL4DMPR2KkQpP"),
+                new TestCaseData(13000000, "1Ew5wAsMtvbRdd4RdxSheLpEkSRc718gtcfTv8EmgzEbknA"),
+                new TestCaseData(13900000, "14DE8GdKnNvgoXCLFq62ZjNz2zsGqnxXBsRMwNpiPip2JSFJ"),
+                new TestCaseData(14400000, "153Fz22gxQP8HM8RbnvEt9XWsXu9nR8jxZC2MbQFmuKhN62f"),
+                new TestCaseData(15400000, "145MSC4N7BsnnXjunBjD7t5oKn6T2AR3T8Zi9zcupXUJoumC"),
+                new TestCaseData(16400000, "1XQn94kWaMVJG16AWPKGmYFERfttsjZq4ompSTz2jxHK6uL"),
+                new TestCaseData(16500000, "14d2kv44xf9nFnYdms32dYPKQsr5C9urbDzTz7iwU8iHb9az"),
+                new TestCaseData(17907450, "168bhPTpsgByfKqM2pgUfZ2wPxQQpgTwxsA9iTV7vAN4wQiU"),
+                new TestCaseData(18794175, "14g7XsFWsMpsPNkwQNhdHfsqKRehdRbpPLaGVTEhBe4Pt3Eu"),
+                new TestCaseData(20029640, "16CmXwZbMu56nyYGqvqVjTaQhFpEtmuxuwF132BE4dd1QnoW"),
+                new TestCaseData(20215034, "16ARoGkkDSTmeu9tDvfBDksu4qURGz6s1HSvXzrwGnsjFtKg"),
+                new TestCaseData(20443970, "13TBraYSRLejaxxMqAYFQ87RNPoCy3c4LTE3Y7FKq4qcFEqf"),
+                new TestCaseData(21318590, "1sAkfdTH3cHAdJRYqMPNdeV7GhTKrddvMfkQrm3pQBABWrN"),
+                new TestCaseData(21460214, "11uMPbeaEDJhUxzU4ZfWW9VQEsryP9XqFcNRfPdYda6aFWJ"),
+                new TestCaseData(21562434, "14x97B47NEi8v1dSBPYobQDwe44U5Xj5RGATWpihQCyXcSX4"),
+                new TestCaseData(22422694, "16DKyH4fggEXeGwCytqM19e9NFGkgR2neZPDJ5ta8BKpPbPK"),
+                new TestCaseData(18112436, "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS"),
+            });
 
         [Test]
         [TestCaseSource(nameof(AccountTestCases))]

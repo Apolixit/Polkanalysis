@@ -43,23 +43,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
         public override string BlockchainName => "Polkadot";
         public override SubstrateClient AjunaClient => PolkadotClient;
 
+        protected override async Task InstanciateSubstrateServiceAsync()
+        {
+            _polkadotClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
+            _polkadotClient.AddJsonConverter(new ExtrinsicOldJsonConverter(ChargeTransactionPayment.Default()));
+            _polkadotClient.AddJsonConverter(new ExtrinsicNewJsonConverter(ChargeTransactionPayment.Default()));
+        }
+
         public SubstrateClientExt PolkadotClient
         {
             get
             {
                 if (_polkadotClient == null)
                 {
-                    _polkadotClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
-                    _polkadotClient.AddJsonConverter(new ExtrinsicOldJsonConverter(ChargeTransactionPayment.Default()));
-                    _polkadotClient.AddJsonConverter(new ExtrinsicNewJsonConverter(ChargeTransactionPayment.Default()));
+                    InstanciateSubstrateServiceAsync();
                 }
-                return _polkadotClient;
+                return _polkadotClient!;
             }
-
-            set
-            {
-                _polkadotClient = value;
-            }
+            set { _polkadotClient = value; }
         }
 
         
