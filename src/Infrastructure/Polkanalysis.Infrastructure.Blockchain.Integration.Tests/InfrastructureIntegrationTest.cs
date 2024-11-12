@@ -18,41 +18,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
         /// </summary>
         public const int RepositoryMaxTimeout = 2000;
 
-        protected InfrastructureIntegrationTest()
+        protected InfrastructureIntegrationTest() : base()
         {
-        }
-
-        /// <summary>
-        /// Connect to the endpoint at the beggining of test
-        /// </summary>
-        /// <returns></returns>
-        [OneTimeSetUp]
-        public virtual async Task ConnectAsync()
-        {
-            if (_substrateService != null && !_substrateService.IsConnected())
-            {
-                try
-                {
-                    await _substrateService.ConnectAsync(CancellationToken.None);
-                }
-                catch (Exception)
-                {
-                    Assert.Ignore("Substrate node is not currently running. All tests are ignore.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Close connection when tests are finished
-        /// </summary>
-        /// <returns></returns>
-        [OneTimeTearDown]
-        public virtual async Task DisconnectAsync()
-        {
-            if (_substrateService != null && _substrateService.IsConnected())
-            {
-                await _substrateService.CloseAsync(CancellationToken.None);
-            }
         }
     }
 }

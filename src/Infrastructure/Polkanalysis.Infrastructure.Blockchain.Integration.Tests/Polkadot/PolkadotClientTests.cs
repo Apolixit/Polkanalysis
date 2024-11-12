@@ -3,6 +3,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Abstract.Tests;
 using Polkanalysis.Configuration.Contracts.Endpoints;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot;
@@ -21,12 +22,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         private PeopleChainService _peopleChainService = default!;
         private PolkadotService _polkadotService = default!;
 
-        [OneTimeSetUp]
-        protected void Init()
+        //Don't connect
+        public override Task ConnectAsync() { return Task.CompletedTask; }
+        // Don't disconnect
+        public override Task DisconnectAsync() { return Task.CompletedTask; }
+
+        protected override ISubstrateService MockSubstrateService()
         {
             var peopleChainIntegration = new PeopleChain.PeopleChainIntegrationTests();
 
-            _polkadotService = new PolkadotService(
+            return new PolkadotService(
                     _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
@@ -38,14 +43,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         public async Task SetupAsync()
         {
             // I got some trouble with parallel test, so I will make sure to close the connection before starting a new test
-            if(_polkadotService.IsConnected())
+            if (_polkadotService.IsConnected())
             {
                 await _polkadotService.CloseAsync(CancellationToken.None);
             }
-            
+
             Assert.That(_polkadotService.IsConnected(), Is.False);
         }
-        
+
         [TearDown]
         public async Task TeardownAsync()
         {
@@ -115,7 +120,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         {
             await _polkadotService.ConnectAsync(CancellationToken.None);
             Assert.That(_polkadotService.IsConnected(), Is.True);
-            
+
             await _polkadotService.CloseAsync(CancellationToken.None);
             Assert.That(_polkadotService.IsConnected(), Is.False);
         }
@@ -133,7 +138,5 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 
             Assert.That(_polkadotService.AjunaClient.IsConnected, Is.True);
         }
-
-        
     }
 }

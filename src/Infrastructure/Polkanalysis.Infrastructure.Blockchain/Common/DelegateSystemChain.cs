@@ -13,6 +13,9 @@ using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Common
 {
+    /// <summary>
+    /// Get data associated to the System Parachain, especially the block number & the hash
+    /// </summary>
     public class DelegateSystemChain : IDelegateSystemChain
     {
         private readonly ISubstrateService _substrateService;
@@ -20,7 +23,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
         protected readonly ILogger<DelegateSystemChain> _logger;
 
         // Lock to avoid concurrency issue
-        private static object lockDatabase = new object();
+        private static readonly object lockDatabase = new object();
 
         public DelegateSystemChain(ISubstrateService substrateService, SubstrateDbContext db, ILogger<DelegateSystemChain> logger)
         {
@@ -48,7 +51,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"[{systemChainName}] Unable to get hash from blocknumber {blockNumber}");
+                _logger.LogError(ex, "[{systemChainName}] Unable to get hash from blocknumber {blockNumber}", systemChainName, blockNumber);
                 throw new InvalidDataFromSystemParachainException($"[{systemChainName}] Unable to get hash from blocknumber {blockNumber}", blockNumber);
             }
         }
@@ -63,16 +66,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
         /// <returns>0 if the SystemParachain does not exists, otherwise return its blocknumber</returns>
         public async Task<uint> CurrentBlockForSystemChainAsync(SubstrateClient systemChainClient, string systemChainName, string sourceChainBlockHash, CancellationToken token)
         {
-            // Todo Romain, return a class
-            Guard.Against.NullOrEmpty(sourceChainBlockHash, nameof(sourceChainBlockHash));
-            Guard.Against.NullOrEmpty(systemChainName, nameof(systemChainName));
+            Guard.Against.NullOrEmpty(sourceChainBlockHash);
+            Guard.Against.NullOrEmpty(systemChainName);
 
             // Thips is bad, I need to change this asap by calling Babe & Aura
             var sourceBlockTime = getBlocktimeFromBlockchainName(_substrateService.BlockchainName);
             var systemChainBlockTime = getBlocktimeFromBlockchainName(systemChainName);
 
             var sourceCurrentDate = await GetDateTimeFromTimestampAsync(_substrateService.AjunaClient, sourceChainBlockHash, token);
-            var systemChainBlockNumberFromDatabase = await getBlockNumberFromDateTimeAsync(sourceCurrentDate, systemChainName, token);
+            var systemChainBlockNumberFromDatabase = getBlockNumberFromDateTime(sourceCurrentDate, systemChainName, token);
 
             if (systemChainBlockNumberFromDatabase is not null)
                 return systemChainBlockNumberFromDatabase.Value;
@@ -91,22 +93,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             var polkadotCurrentBlockNum = await polkadotCurrentBlockNumTask;
             var systemChainCurrentBlockNum = await systemChainCurrentBlockNumTask;
 
-            Guard.Against.Null(polkadotBlockData, nameof(polkadotBlockData), message: $"Unable to get block data from [{_substrateService.BlockchainName}]_client.Chain.GetBlockAsync({sourceChainBlockHash})");
-            Guard.Against.Null(polkadotCurrentBlockNum, nameof(polkadotCurrentBlockNum), message: $"Unable to get current block number from [{_substrateService.BlockchainName}]_client.Chain.GetBlockAsync({sourceChainBlockHash})");
-            Guard.Against.Null(systemChainCurrentBlockNum, nameof(systemChainCurrentBlockNum), message: $"Unable to get current block number from [{systemChainName}]");
+            Guard.Against.Null(polkadotBlockData, message: $"Unable to get block data from [{_substrateService.BlockchainName}]_client.Chain.GetBlockAsync({sourceChainBlockHash})");
+            Guard.Against.Null(polkadotCurrentBlockNum, message: $"Unable to get current block number from [{_substrateService.BlockchainName}]_client.Chain.GetBlockAsync({sourceChainBlockHash})");
+            Guard.Against.Null(systemChainCurrentBlockNum, message: $"Unable to get current block number from [{systemChainName}]");
 
             var polkadotNumFromHash = polkadotBlockData.Block.Header.Number.Value;
             var polkadotCurrentNum = polkadotCurrentBlockNum.Block.Header.Number.Value;
             var peopleChainCurrentNum = systemChainCurrentBlockNum.Block.Header.Number.Value;
-            // This is not good and just aproximative, need to change
-#if DEBUG
-            var deltaBlock2 = polkadotCurrentNum - polkadotNumFromHash;
-            var approxBlockFromSystemChain2 = (int)peopleChainCurrentNum - (int)deltaBlock2;
-#endif
+
             var deltaBlock = (double)((double)sourceBlockTime / (double)systemChainBlockTime) * (polkadotCurrentNum - polkadotNumFromHash);
             var approxBlockFromSystemChain = (int)peopleChainCurrentNum - (int)deltaBlock;
-            // If system chain does not exists => return 0
-            //if (deltaBlock > systemChainCurrentBlockNum.Block.Header.Number.Value) return 0;
 
             var blockFromSystemChain = await TryFindClosestBlockInSystemChainAsync(
                 sourceCurrentDate,
@@ -122,7 +118,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
         }
 
         /// <summary>
-        /// 
+        /// Iterate on the timestamp of the chain to determine the block number that is the closest to the source block number
         /// </summary>
         /// <param name="sourceBlockNumber">The block number in the "source" chain</param>
         /// <param name="approxBlockSystemChain">The approximative block number of the target chain</param>
@@ -172,7 +168,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
         /// <param name="systemChainName"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        protected async Task<uint?> getBlockNumberFromDateTimeAsync(DateTime referenceDate, string systemChainName, CancellationToken token)
+        protected uint? getBlockNumberFromDateTime(DateTime referenceDate, string systemChainName, CancellationToken token)
         {
             var blockTimeSystemChain = getBlocktimeFromBlockchainName(systemChainName);
 
@@ -197,7 +193,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common
             string parameters = RequestGenerator.GetStorage("Timestamp", "Now", type: 0, hashers: null, keys: null);
             var currentTimestamp = await client.GetStorageAsync<U64>(parameters, blockHash, cancellationToken);
 
-            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(currentTimestamp.Value);
+            var dt = DateTime.UnixEpoch.AddMilliseconds(currentTimestamp.Value);
 
             return dt;
         }

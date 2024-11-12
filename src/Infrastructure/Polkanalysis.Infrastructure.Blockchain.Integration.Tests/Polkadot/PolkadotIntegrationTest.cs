@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Blockchain.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
@@ -19,7 +20,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         protected PeopleChainService _peopleChainService = default!;
         protected DelegateSystemChain _delegateSystemChain = default!;
 
-        protected PolkadotIntegrationTest()
+        
+
+        protected PolkadotIntegrationTest() : base()
+        {
+        }
+
+        protected override ISubstrateService MockSubstrateService()
         {
             var peopleChainIntegration = new PeopleChainIntegrationTests();
             _peopleChainService = new PeopleChainService(
@@ -28,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
                     Substitute.For<ILogger<PeopleChainService>>()
                     );
 
-            _substrateService = new PolkadotService(
+            return new PolkadotService(
                     _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
@@ -76,10 +83,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         /// <summary>
         /// Start from SpecVersion = 26 (block 2500000)
         /// </summary>
-        public static IEnumerable<int> BlockFromVersion26 => AllBlockVersionTestCases.Skip(19);
-        public static IEnumerable<int> BlockFromVersion9090 => AllBlockVersionTestCases.Skip(26);
-        public static IEnumerable<int> BlockFromVersion9340 => AllBlockVersionTestCases.Skip(45);
+        public static IEnumerable<int> BlockFromVersion26 => FilterTestCase(AllBlockVersionTestCases.Skip(19));
 
-        public static IEnumerable<int> BlockFromLast10Versions => AllBlockVersionTestCases.Skip(AllBlockVersionTestCases.Count() - 10);
+        public static IEnumerable<int> BlockFromVersion9090 => FilterTestCase(AllBlockVersionTestCases.Skip(26));
+        public static IEnumerable<int> BlockFromVersion9340 => FilterTestCase(AllBlockVersionTestCases.Skip(45));
+
+        public static IEnumerable<int> BlockFromLast10Versions => FilterTestCase(AllBlockVersionTestCases.Skip(AllBlockVersionTestCases.Count() - 10));
     }
 }

@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.Tests.Service.Block
             var res1 = await _coreService.GetDateTimeFromTimestampAsync(blockHash: null, CancellationToken.None);
             var res2 = await _coreService.GetDateTimeFromTimestampAsync(blockNum: null, CancellationToken.None);
 
-            var expectedDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            var expectedDate = DateTime.UnixEpoch;
             Assert.That(res1, Is.EqualTo(expectedDate));
             Assert.That(res2, Is.EqualTo(expectedDate));
         }
