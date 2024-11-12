@@ -18,10 +18,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res.As<U32>().Value, Is.GreaterThan(1));
         }
 
-        public static IEnumerable<int> AuctionInformationTestCases = new List<int>()
+        public static IEnumerable<int> AuctionInformationTestCases = FilterTestCase(new List<int>()
         {
             17510400, 17337600, 17164800, 16992000, 13547200, 13374400, 13201600, 12856000, 12683200, 12164800, 11992000, 11128000, 10782400, 10264000, 9745600, 9070110, 8868510, 8263710, 7759710
-        };
+        });
 
         /// <summary>
         /// Get information about current Auction

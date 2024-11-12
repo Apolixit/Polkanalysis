@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Integration.Tests.PeopleChain
 {
@@ -16,17 +17,14 @@ namespace Polkanalysis.Domain.Integration.Tests.PeopleChain
     {
         public PeopleChainIntegrationTest() : base()
         {
-            _substrateService = new PeopleChainService(
+        }
+
+        protected override ISubstrateService MockSubstrateService()
+        {
+            return new PeopleChainService(
                 _substrateEndpoints,
                 new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
                 Substitute.For<ILogger<PeopleChainService>>());
         }
-        //public string PeopleChainEndpointUri => "wss://rpc-people-polkadot.luckyfriday.io";
-
-        //internal override ISubstrateEndpoint GetEndpoint()
-        //{
-        //    var substrateConfiguration = new SubstrateEndpoint(_endpointConfiguration);
-        //    return substrateConfiguration;
-        //}
     }
 }

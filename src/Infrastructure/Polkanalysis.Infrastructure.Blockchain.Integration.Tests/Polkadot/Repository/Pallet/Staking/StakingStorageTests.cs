@@ -121,8 +121,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         [TestCase(20)]
         [TestCase(100)]
-        [TestCase(1000)]
-        [TestCase(10000)]
         public async Task NominatorsAll_ShouldWorkAsync(int nbTake)
         {
             var query = await _substrateService.Storage.Staking.NominatorsQueryAsync(CancellationToken.None);

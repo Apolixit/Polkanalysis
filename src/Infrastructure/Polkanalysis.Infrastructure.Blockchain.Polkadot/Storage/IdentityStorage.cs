@@ -37,7 +37,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             var accountId32 = await MapAccoundId32Async(account, token);
             var version = await GetVersionAsync(token);
 
-            Registration? res = null;
             if (version < 1002000)
             {
                 return Map<IType, Registration>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));

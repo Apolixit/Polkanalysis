@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.Service
                 _ => await _substrateService.At(blockHash).Storage.Timestamp.NowAsync(cancellationToken)
             };
 
-            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(currentTimestamp.Value);
+            var dt = DateTime.UnixEpoch.AddMilliseconds(currentTimestamp.Value);
 
             if(dt > DateTime.UtcNow)
             {

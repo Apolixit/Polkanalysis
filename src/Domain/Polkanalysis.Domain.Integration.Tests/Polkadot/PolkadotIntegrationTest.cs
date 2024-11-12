@@ -13,19 +13,24 @@ using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Configuration.Extensions;
 using Polkanalysis.Infrastructure.Blockchain.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 {
-    public abstract class PolkadotIntegrationTest : DomainIntegrationTest
+    public class PolkadotIntegrationTest : DomainIntegrationTest
     {
         private PeopleChainService _peopleChainService = default!;
         protected DelegateSystemChain _delegateSystemChain = default!;
 
         protected PolkadotIntegrationTest() : base()
         {
+        }
+
+        protected override ISubstrateService MockSubstrateService()
+        {
             var peopleChainIntegrationTest = new PeopleChainIntegrationTest();
-            
-            _substrateService = new PolkadotService(
+
+            return new PolkadotService(
                     _substrateEndpoints,
                     new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),

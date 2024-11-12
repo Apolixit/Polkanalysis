@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj" />
     <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />

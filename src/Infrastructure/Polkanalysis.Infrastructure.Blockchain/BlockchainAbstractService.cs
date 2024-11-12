@@ -4,6 +4,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
+using Polkanalysis.Infrastructure.Blockchain.Exceptions;
 using Substrate.NET.Metadata;
 using Substrate.NET.Metadata.Base;
 using Substrate.NET.Metadata.Service;
@@ -17,6 +18,7 @@ using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using System.Net.WebSockets;
 
 namespace Polkanalysis.Infrastructure.Blockchain
 {
@@ -162,12 +164,30 @@ namespace Polkanalysis.Infrastructure.Blockchain
             } catch(UnableToReconnectException ex)
             {
                 // We are unable to reconnect to the current RPC node. Let's try another one
-                //var nextEndpoint = _substrateconfiguration.GetNextEndpoint(BlockchainName, _endpointInformation.Uri.OriginalString);
+                var nextEndpoint = _substrateconfiguration.GetNextEndpoint(BlockchainName, _endpointInformation.Uri.OriginalString);
                 _logger.LogError(ex.Message);
+
+                throw;
+            }
+            catch(WebSocketException ex)
+            {
+                if(ex.ErrorCode == 429)
+                {
+                    _logger.LogError(ex, "Too many request to {blockchainName} (endpoint : {providerName} {endpointUri})", BlockchainName, EndpointInformation.Name, EndpointInformation.Uri);
+
+                    throw new TooManyRequestsException(EndpointInformation);
+                }
+                    
+                else
+                    _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
+
+                throw;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
+
+                throw;
             }
 
             List<Task> tasks = new List<Task>();
