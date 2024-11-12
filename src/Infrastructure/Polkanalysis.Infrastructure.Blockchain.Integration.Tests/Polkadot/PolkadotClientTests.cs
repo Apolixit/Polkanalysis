@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Polkanalysis.Abstract.Tests;
 using Polkanalysis.Configuration.Contracts.Endpoints;
@@ -8,6 +9,7 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +21,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
     internal class PolkadotClientTests : GlobalIntegrationTest
     {
-        private PeopleChainService _peopleChainService = default!;
-        private PolkadotService _polkadotService = default!;
+        //private PeopleChainService _peopleChainService = default!;
+        //private PolkadotService _substrateService = default!;
 
         //Don't connect
         public override Task ConnectAsync() { return Task.CompletedTask; }
@@ -43,35 +45,35 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         public async Task SetupAsync()
         {
             // I got some trouble with parallel test, so I will make sure to close the connection before starting a new test
-            if (_polkadotService.IsConnected())
+            if (_substrateService.IsConnected())
             {
-                await _polkadotService.CloseAsync(CancellationToken.None);
+                await _substrateService.CloseAsync(CancellationToken.None);
             }
 
-            Assert.That(_polkadotService.IsConnected(), Is.False);
+            Assert.That(_substrateService.IsConnected(), Is.False);
         }
 
         [TearDown]
         public async Task TeardownAsync()
         {
-            await _polkadotService.CloseAsync(CancellationToken.None);
+            await _substrateService.CloseAsync(CancellationToken.None);
         }
 
         [Test]
         public async Task Connect_ShouldConnectToPolkadotAndItDependenciesSuccessfullyAsync()
         {
-            Assert.That(_polkadotService.AjunaClient.IsConnected, Is.False);
-            Assert.That(_polkadotService.ChainDependencies.All(x => x.IsConnected() == false));
+            Assert.That(_substrateService.AjunaClient.IsConnected, Is.False);
+            Assert.That(_substrateService.ChainDependencies.All(x => x.IsConnected() == false));
 
-            await _polkadotService.ConnectAsync(CancellationToken.None);
+            await _substrateService.ConnectAsync(CancellationToken.None);
 
-            Assert.That(_polkadotService.AjunaClient.IsConnected, Is.True);
-            Assert.That(_polkadotService.ChainDependencies.All(x => x.IsConnected() == true));
+            Assert.That(_substrateService.AjunaClient.IsConnected, Is.True);
+            Assert.That(_substrateService.ChainDependencies.All(x => x.IsConnected() == true));
 
-            await _polkadotService.CloseAsync(CancellationToken.None);
+            await _substrateService.CloseAsync(CancellationToken.None);
 
-            Assert.That(_polkadotService.AjunaClient.IsConnected, Is.False);
-            Assert.That(_polkadotService.ChainDependencies.All(x => x.IsConnected() == false));
+            Assert.That(_substrateService.AjunaClient.IsConnected, Is.False);
+            Assert.That(_substrateService.ChainDependencies.All(x => x.IsConnected() == false));
         }
 
         [Test]
@@ -80,10 +82,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             var onConnectionSetTriggered = new TaskCompletionSource<bool>();
             var onConnectionSetTriggeredForPeopleChain = new TaskCompletionSource<bool>();
 
-            _polkadotService.AjunaClient.ConnectionSet += (sender, e) => onConnectionSetTriggered.SetResult(true);
-            _polkadotService.ChainDependencies.First().AjunaClient.ConnectionSet += (sender, e) => onConnectionSetTriggeredForPeopleChain.SetResult(true);
+            _substrateService.AjunaClient.ConnectionSet += (sender, e) => onConnectionSetTriggered.SetResult(true);
+            _substrateService.ChainDependencies.First().AjunaClient.ConnectionSet += (sender, e) => onConnectionSetTriggeredForPeopleChain.SetResult(true);
 
-            await _polkadotService.ConnectAsync(CancellationToken.None);
+            await _substrateService.ConnectAsync(CancellationToken.None);
 
             await Task.WhenAll(
                 Task.WhenAny(onConnectionSetTriggered.Task, Task.Delay(TimeSpan.FromMinutes(1))),
@@ -100,11 +102,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             var onConnectionLostTriggered = new TaskCompletionSource<bool>();
             var onConnectionLostTriggeredForPeopleChain = new TaskCompletionSource<bool>();
 
-            _polkadotService.AjunaClient.ConnectionLost += (sender, e) => onConnectionLostTriggered.SetResult(true);
-            _polkadotService.ChainDependencies.First().AjunaClient.ConnectionLost += (sender, e) => onConnectionLostTriggeredForPeopleChain.SetResult(true);
+            _substrateService.AjunaClient.ConnectionLost += (sender, e) => onConnectionLostTriggered.SetResult(true);
+            _substrateService.ChainDependencies.First().AjunaClient.ConnectionLost += (sender, e) => onConnectionLostTriggeredForPeopleChain.SetResult(true);
 
-            await _polkadotService.ConnectAsync(CancellationToken.None);
-            await _polkadotService.CloseAsync(CancellationToken.None);
+            await _substrateService.ConnectAsync(CancellationToken.None);
+            await _substrateService.CloseAsync(CancellationToken.None);
 
             await Task.WhenAll(
                 await Task.WhenAny(onConnectionLostTriggered.Task, Task.Delay(TimeSpan.FromMinutes(1))),
@@ -118,25 +120,46 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         [Test]
         public async Task ManuallyDisconnect_ShouldNotTryToReconnectAsync()
         {
-            await _polkadotService.ConnectAsync(CancellationToken.None);
-            Assert.That(_polkadotService.IsConnected(), Is.True);
+            await _substrateService.ConnectAsync(CancellationToken.None);
+            Assert.That(_substrateService.IsConnected(), Is.True);
 
-            await _polkadotService.CloseAsync(CancellationToken.None);
-            Assert.That(_polkadotService.IsConnected(), Is.False);
+            await _substrateService.CloseAsync(CancellationToken.None);
+            Assert.That(_substrateService.IsConnected(), Is.False);
         }
 
         [Test, Ignore("Todo debug already connected")]
         public async Task DisconnectedPrematurely_ShouldTryToReconnectAsync()
         {
             var onReconnectedTriggered = new TaskCompletionSource<(bool, int)>();
-            _polkadotService.AjunaClient.OnReconnected += (sender, e) => onReconnectedTriggered.SetResult((true, e));
+            _substrateService.AjunaClient.OnReconnected += (sender, e) => onReconnectedTriggered.SetResult((true, e));
 
-            await _polkadotService.ConnectAsync(CancellationToken.None);
-            await _polkadotService.AjunaClient._socket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
+            await _substrateService.ConnectAsync(CancellationToken.None);
+            await _substrateService.AjunaClient._socket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
 
             await Task.WhenAny(onReconnectedTriggered.Task, Task.Delay(TimeSpan.FromMinutes(1)));
 
-            Assert.That(_polkadotService.AjunaClient.IsConnected, Is.True);
+            Assert.That(_substrateService.AjunaClient.IsConnected, Is.True);
         }
+
+        //[Test]
+        //public async Task ConnectToFirstNode_ThenTooMuchRequests_ShouldConnectToTheSecondNodeAsync()
+        //{
+        //    await _substrateService.ConnectAsync(CancellationToken.None);
+        //    Assert.That(_substrateService.IsConnected(), Is.True);
+
+        //    var firstProviderName = _substrateService.EndpointInformation.Name;
+        //    Assert.That(_substrateService.EndpointInformation.Name, Is.Not.Null);
+
+        //    // Close to simulate too much requests
+        //    _substrateService.AjunaClient.InvokeAsync<U32>("plouf", "ok", CancellationToken.None).ThrowsAsync<WebSocketException>();
+
+        //    await _substrateService.AjunaClient.InvokeAsync<U32>("plouf", "ok", CancellationToken.None);
+
+        //    Assert.That(_substrateService.IsConnected(), Is.True);
+        //    var secondProviderName = _substrateService.EndpointInformation.Name;
+        //    Assert.That(secondProviderName, Is.Not.Null);
+            
+        //    Assert.That(firstProviderName, Is.EqualTo(secondProviderName));
+        //}
     }
 }

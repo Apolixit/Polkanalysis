@@ -138,6 +138,9 @@ namespace Polkanalysis.Infrastructure.Blockchain
         }
 
         public Hash GenesisHash => AjunaClient.GenesisHash;
+
+        protected abstract Task InstanciateSubstrateServiceAsync();
+
         public bool IsConnected() => AjunaClient.IsConnected;
 
         public async Task ConnectAsync(CancellationToken token)
@@ -163,19 +166,19 @@ namespace Polkanalysis.Infrastructure.Blockchain
 
             } catch(UnableToReconnectException ex)
             {
-                // We are unable to reconnect to the current RPC node. Let's try another one
-                var nextEndpoint = _substrateconfiguration.GetNextEndpoint(BlockchainName, _endpointInformation.Uri.OriginalString);
                 _logger.LogError(ex.Message);
+                await TryToConnectToAnotherEndpointAsync(token);
 
                 throw;
             }
-            catch(WebSocketException ex)
+            catch (WebSocketException ex)
             {
                 if(ex.ErrorCode == 429)
                 {
                     _logger.LogError(ex, "Too many request to {blockchainName} (endpoint : {providerName} {endpointUri})", BlockchainName, EndpointInformation.Name, EndpointInformation.Uri);
 
-                    throw new TooManyRequestsException(EndpointInformation);
+                    //throw new TooManyRequestsException(EndpointInformation);
+                    await TryToConnectToAnotherEndpointAsync(token);
                 }
                     
                 else
@@ -198,6 +201,17 @@ namespace Polkanalysis.Infrastructure.Blockchain
             }
             
             await Task.WhenAll(tasks.ToArray());
+        }
+
+        private async Task TryToConnectToAnotherEndpointAsync(CancellationToken token)
+        {
+            await CloseAsync(token);
+
+            // We are unable to reconnect to the current RPC node. Let's try another one
+            var nextEndpoint = _substrateconfiguration.GetNextEndpoint(BlockchainName, _endpointInformation.Uri.OriginalString);
+            await InstanciateSubstrateServiceAsync();
+
+            await ConnectAsync(token);
         }
 
         public async Task CloseAsync(CancellationToken token)

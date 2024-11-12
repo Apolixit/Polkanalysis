@@ -72,11 +72,8 @@ jobs:
       run: |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"Apolixit_Polkanalysis" /o:"apolixit" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
         dotnet build Polkanalysis.sln
-        dotnet-coverage collect "dotnet test Polkanalysis.sln" -f xml -o "coverage.xml"
+        dotnet-coverage collect "CATEGORY=full dotnet test Polkanalysis.sln --verbosity normal --logger 'trx;LogFileName=test-results.trx" -f xml -o "coverage.xml"
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-
-    - name: Test Solution
-      run: dotnet test Polkanalysis.sln --verbosity normal --logger "trx;LogFileName=test-results.trx"
 
     - name: Publish Tests Results
       uses: dorny/test-reporter@v1

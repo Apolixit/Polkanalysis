@@ -4,9 +4,6 @@
 name: Build and deploy Blazor WebApp
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
 
 jobs:
