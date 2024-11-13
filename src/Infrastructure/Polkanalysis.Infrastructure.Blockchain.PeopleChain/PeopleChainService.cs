@@ -4,15 +4,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
 using Polkanalysis.PeopleChain.NetApiExt.Generated;
 using Substrate.NetApi;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Rpc;
-using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NetApi.Model.Extrinsics;
 using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
-using Substrate.NET.Metadata.Service;
-using Substrate.NET.Metadata.V14;
-using Substrate.NET.Utils.Address;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Events;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
@@ -101,12 +94,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
 
         public override IErrors Errors => throw new NotImplementedException();
 
-        public override IEnumerable<string> DependenciesName => [];
-
         public override ILogger Logger => _logger;
         public override string NetApiExtAssembly => "Polkanalysis.PeopleChain.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         public override string NetApiExtModelNamespace => "Polkanalysis.PeopleChain.NetApiExt.Generated.Model";
 
+        public override IEnumerable<string> DependenciesName => [];
         public override IEnumerable<ISubstrateService> ChainDependencies => [];
     }
 }

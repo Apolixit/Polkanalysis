@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.Mythos\Polkanalysis.Infrastructure.Blockchain.Mythos.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.PeopleChain\Polkanalysis.Infrastructure.Blockchain.PeopleChain.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
   </ItemGroup>

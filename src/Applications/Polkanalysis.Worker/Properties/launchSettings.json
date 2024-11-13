@@ -6,7 +6,7 @@
     },
     "Polkanalysis.Worker": {
       "commandName": "Project",
-      "commandLineArgs": "polkadot",
+      "commandLineArgs": "mythos",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

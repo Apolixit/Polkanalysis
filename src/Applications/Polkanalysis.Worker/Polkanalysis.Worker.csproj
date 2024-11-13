@@ -43,6 +43,7 @@
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj" />
     <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Mythos\Polkanalysis.Infrastructure.Blockchain.Mythos.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Polkadot\Polkanalysis.Infrastructure.Blockchain.Polkadot.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
   </ItemGroup>
