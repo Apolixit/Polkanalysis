@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Configuration.Contracts.Endpoints;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Mythos.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Mythos.Storage;
 using Polkanalysis.Mythos.NetApiExt.Generated;
 using Substrate.NetApi.Model.Extrinsics;
 
@@ -37,6 +40,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mythos
         protected override async Task InstanciateSubstrateServiceAsync()
         {
             _mythosClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
+
+            SubstrateAccount.IsSubstrate = false;
         }
 
         public SubstrateClientExt MythosClient
@@ -54,9 +59,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mythos
 
         public override Substrate.NetApi.SubstrateClient AjunaClient => MythosClient;
 
-        public override Blockchain.Contracts.Contracts.IStorage Storage => throw new NotImplementedException();
+        private IStorage? _mythosStorage = null;
+        public override IStorage Storage
+        {
+            get
+            {
+                if (_mythosStorage == null)
+                    _mythosStorage = new MythosStorage(MythosClient, _blockchainMapping, _logger);
 
-        public override Blockchain.Contracts.Rpc.IRpc Rpc => throw new NotImplementedException();
+                return _mythosStorage;
+            }
+        }
+
+
+        //public override Blockchain.Contracts.Rpc.IRpc Rpc => throw new NotImplementedException();
 
         public override Blockchain.Contracts.Contracts.IConstants Constants => throw new NotImplementedException();
 

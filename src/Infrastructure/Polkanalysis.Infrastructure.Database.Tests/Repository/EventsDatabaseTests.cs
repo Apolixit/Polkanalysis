@@ -21,6 +21,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
 
         public const string MockAddress = "5He5uUCWMLXvfJmSWTcD2ZHDerBU4VH91z92SekRcctuGifV";
         public const string MockAddress2 = "5EerUgnr9WVAgHbynVD4YYDJKzkaCZP7Uz4METJJSk3Jg15x";
+        public const string MockAddress3 = "5EU6EyEq6RhqYed1gCYyQRVttdy6FC9yAtUUGzPe3gfpFX8y";
         
         public const double FiveDots = 50_000_000_000;
         public const double TenDots = 100_000_000_000;

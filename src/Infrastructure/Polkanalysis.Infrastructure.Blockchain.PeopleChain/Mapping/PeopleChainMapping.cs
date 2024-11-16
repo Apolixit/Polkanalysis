@@ -233,7 +233,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping
 
                 CreateMap<BaseVec<U8>, FlexibleNameable>().ConvertUsing(x => new FlexibleNameable().FromU8(x.Value));
 
-                CreateMap<Arr32U8, Hexa>().ConvertUsing(x => new Hexa(x));
+                CreateMap<Arr32U8, Hexa32>().ConvertUsing(x => new Hexa32(x));
 
                 CreateMap<Arr1U8, NameableSize1>().ConvertUsing(x => new NameableSize1(x));
                 CreateMap<Arr2U8, NameableSize2>().ConvertUsing(x => new NameableSize2(x));

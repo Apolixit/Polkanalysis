@@ -270,7 +270,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
                 CreateMap<BaseVec<U8>, FlexibleNameable>().ConvertUsing(x => new FlexibleNameable().FromU8(x.Value));
 
-                CreateMap<Arr32U8, Hexa>().ConvertUsing(x => new Hexa(x));
+                CreateMap<Arr32U8, Hexa32>().ConvertUsing(x => new Hexa32(x));
 
                 CreateMap<Arr1U8, NameableSize1>().ConvertUsing(x => new NameableSize1(x));
                 CreateMap<Arr2U8, NameableSize2>().ConvertUsing(x => new NameableSize2(x));
@@ -790,7 +790,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             {
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.KeyTypeIdBase, FlexibleNameable>().ConvertUsing(new KeyTypeIdConverter());
                 CreateMap<FlexibleNameable, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.KeyTypeIdBase>().ConvertUsing(new KeyTypeIdReverseConverter());
-                CreateMap<Hexa, BaseVec<U8>>().ConvertUsing(x => new BaseVec<U8>(x.Value));
+                CreateMap<Hexa32, BaseVec<U8>>().ConvertUsing(x => new BaseVec<U8>(x.Value));
                 ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys, SessionKeysPolka>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime.SessionKeysBase, SessionKeysPolka>().ConvertUsing(new SessionKeyConverter());
             }

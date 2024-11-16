@@ -50,12 +50,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntim
         Referenda = 41,
         Whitelist = 42,
         MessageQueue = 43,
-        ParachainSystem = 44
+        ParachainSystem = 44,
+        Nfts = 45,
     }
 
-    /// <summary>
-    /// >> 19 - Variant[polkadot_runtime.RuntimeEvent]
-    /// </summary>
     public sealed class EnumRuntimeEvent : BaseEnumExt<RuntimeEvent,
         System.Enums.EnumEvent,
         Scheduler.Enums.EnumEvent,
@@ -101,7 +99,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntim
         Referenda.Enums.EnumEvent,
         WhiteList.Enums.EnumEvent,
         MessageQueue.Enums.EnumEvent,
-        CumulusPalletParachainSystem.Enums.EnumEvent>
+        CumulusPalletParachainSystem.Enums.EnumEvent,
+        Nfts.Enums.EnumEvent>
     {
     }
 }

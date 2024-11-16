@@ -233,7 +233,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
         private NodeType? nodeTypeFromPolkanalysisInfrastructure(Type type, MetaData metadata)
         {
             var customAttribute = type.GetCustomAttribute<DomainMappingAttribute>();
-            if (customAttribute is null) return null;
+            if (customAttribute is null)
+                throw new InvalidOperationException($"Domain mapping attribute is not implemented for {type.FullName}");
 
             List<string> arguments = customAttribute.ExtractAsList(type.Name);
 

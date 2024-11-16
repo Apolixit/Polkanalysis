@@ -64,17 +64,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             }
         }
 
-        private IRpc? _rpc = null;
-        public override IRpc Rpc
-        {
-            get
-            {
-                if (_rpc == null)
-                    _rpc = new Rpc(PeopleChainClient, new TmpChain(PeopleChainClient, MetadataHelper.GetMetadataFromHex));
+        //private IRpc? _rpc = null;
+        //public override IRpc Rpc
+        //{
+        //    get
+        //    {
+        //        if (_rpc == null)
+        //            _rpc = new Rpc(PeopleChainClient, new TmpChain(PeopleChainClient, MetadataHelper.GetMetadataFromHex));
 
-                return _rpc;
-            }
-        }
+        //        return _rpc;
+        //    }
+        //}
 
         public override IConstants Constants => throw new NotImplementedException();
 

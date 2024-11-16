@@ -1,47 +1,49 @@
-﻿
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Types;
+﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Newtonsoft.Json.Linq;
 using Substrate.NET.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using System.Collections.Generic;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 {
     [DomainMapping("sp_core/crypto >> AccountId32")]
+    [DomainMapping("account >> AccountId20")]
     public class SubstrateAccount : BaseType
     {
+        public static bool IsSubstrate = true;
+        //public static Bool IsSubstrateRomain = new Bool(true);
+
         // TODO : override Equals !
         public SubstrateAccount()
         {
-            TypeSize = 32;
+            
         }
-        public SubstrateAccount(string address) : this(Utils.GetPublicKeyFrom(address))
-        {
 
+        public SubstrateAccount(string address) 
+            : this(address.Length == 32 || address.Length == 48 ? 
+                  Utils.GetPublicKeyFrom(address) :
+                  Utils.HexToByteArray(address))
+        {
+            
         }
 
         public SubstrateAccount(U8[] value) : this(value.ToBytes()) { }
         protected SubstrateAccount(byte[] value) : this()
         {
+            TypeSize = value.Length;
+
             Create(value);
         }
 
-        // From AccountId32
-        public Hexa Value { get; set; }
-        //public Hash Address { get; internal set; }
+        public FlexibleNameable Value { get; set; }
 
         public override byte[] Encode()
         {
             var result = new List<byte>();
+            //result.AddRange(IsSubstrateRomain.Encode());
             result.AddRange(Value.Encode());
             return result.ToArray();
         }
@@ -49,7 +51,30 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Hexa();
+            //IsSubstrateRomain.Decode(byteArray, ref p);
+
+            if (IsSubstrate)
+            {
+                Value = new Hexa32();
+
+            }
+            else
+            {
+                Value = new Hexa20();
+            }
+            //if (byteArray.Length == 20)
+            //{
+            //    Value = new Hexa20();
+            //}
+            //else if(byteArray.Length == 32)
+            //{
+            //    Value = new Hexa32();
+            //}
+            //else
+            //{
+            //    throw new InvalidCastException("Invalid account length");
+            //}
+
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }
@@ -78,6 +103,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         public string ToPublicKey()
         {
             return Utils.Bytes2HexString(Utils.GetPublicKeyFrom(ToStringAddress()));
+        }
+
+        public string ToEthereumAddress()
+        {
+            return ToPublicKey().Substring(0, 42);
         }
 
         public string ToStringAddress(short ss58 = 42)

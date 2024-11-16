@@ -124,7 +124,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new SessionInfo(
                 new BaseVec<U32>(new U32[] { new U32(144), new U32(81) }),
-                new Hexa("0xd385f13394068e87b0cf39c525782df628ea9a5d41364914cae4a951eb7c3359"),
+                new Hexa32("0xd385f13394068e87b0cf39c525782df628ea9a5d41364914cae4a951eb7c3359"),
                 new U32(6),
                 new BaseVec<PublicSr25519>(new PublicSr25519[] {
                     new PublicSr25519("0xdc23d2e5dd85889560c2c3dc197cb19e0b2e2698ee79a4aea14234a0ee823a3d"),

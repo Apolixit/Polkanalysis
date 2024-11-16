@@ -6,6 +6,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Crowdloan;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.NominationPools;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Staking;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System;
@@ -41,6 +42,9 @@ namespace Polkanalysis.Infrastructure.Database
         /// </summary>
         public DbSet<EventsInformationModel> EventsInformation { get; set; }
 
+        #region Nfts
+        public DbSet<NftsCreatedModel> EventNftsCreated { get; set; }
+        #endregion
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
         public DbSet<BalancesDustLostModel> EventBalancesDustLost { get; set; }
@@ -119,6 +123,9 @@ namespace Polkanalysis.Infrastructure.Database
             modelBuilder.Entity<EventsInformationModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId });
 
+            #region Nfts
+            modelBuilder.Entity<NftsCreatedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.Creator, c.Owner });
+            #endregion
             #region Balances
 
             modelBuilder.Entity<BalancesBalanceSetModel>()

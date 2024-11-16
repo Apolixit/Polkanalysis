@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInf
     public class SessionInfo : BaseType
     {
         public BaseVec<U32> ActiveValidatorIndices { get; set; }
-        public Hexa RandomSeed { get; set; }
+        public Hexa32 RandomSeed { get; set; }
         public U32 DisputePeriod { get; set; }
         public BaseVec<PublicSr25519> Validators { get; set; }
         public BaseVec<PublicSr25519> DiscoveryKeys { get; set; }
@@ -28,12 +28,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInf
 
         public SessionInfo() { }
 
-        public SessionInfo(BaseVec<U32> activeValidatorIndices, Hexa randomSeed, U32 disputePeriod, BaseVec<PublicSr25519> validators, BaseVec<PublicSr25519> discoveryKeys, BaseVec<PublicSr25519> assignmentKeys, BaseVec<BaseVec<U32>> validatorGroups, U32 nCores, U32 zerothDelayTrancheWidth, U32 relayVrfModuloSamples, U32 nDelayTranches, U32 noShowSlots, U32 neededApprovals)
+        public SessionInfo(BaseVec<U32> activeValidatorIndices, Hexa32 randomSeed, U32 disputePeriod, BaseVec<PublicSr25519> validators, BaseVec<PublicSr25519> discoveryKeys, BaseVec<PublicSr25519> assignmentKeys, BaseVec<BaseVec<U32>> validatorGroups, U32 nCores, U32 zerothDelayTrancheWidth, U32 relayVrfModuloSamples, U32 nDelayTranches, U32 noShowSlots, U32 neededApprovals)
         {
             Create(activeValidatorIndices, randomSeed, disputePeriod, validators, discoveryKeys, assignmentKeys, validatorGroups, nCores, zerothDelayTrancheWidth, relayVrfModuloSamples, nDelayTranches, noShowSlots, neededApprovals);
         }
 
-        public void Create(BaseVec<U32> activeValidatorIndices, Hexa randomSeed, U32 disputePeriod, BaseVec<PublicSr25519> validators, BaseVec<PublicSr25519> discoveryKeys, BaseVec<PublicSr25519> assignmentKeys, BaseVec<BaseVec<U32>> validatorGroups, U32 nCores, U32 zerothDelayTrancheWidth, U32 relayVrfModuloSamples, U32 nDelayTranches, U32 noShowSlots, U32 neededApprovals)
+        public void Create(BaseVec<U32> activeValidatorIndices, Hexa32 randomSeed, U32 disputePeriod, BaseVec<PublicSr25519> validators, BaseVec<PublicSr25519> discoveryKeys, BaseVec<PublicSr25519> assignmentKeys, BaseVec<BaseVec<U32>> validatorGroups, U32 nCores, U32 zerothDelayTrancheWidth, U32 relayVrfModuloSamples, U32 nDelayTranches, U32 noShowSlots, U32 neededApprovals)
         {
             ActiveValidatorIndices = activeValidatorIndices;
             RandomSeed = randomSeed;
@@ -89,7 +89,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInf
             var start = p;
             ActiveValidatorIndices = new BaseVec<U32>();
             ActiveValidatorIndices.Decode(byteArray, ref p);
-            RandomSeed = new Hexa();
+            RandomSeed = new Hexa32();
             RandomSeed.Decode(byteArray, ref p);
             DisputePeriod = new U32();
             DisputePeriod.Decode(byteArray, ref p);

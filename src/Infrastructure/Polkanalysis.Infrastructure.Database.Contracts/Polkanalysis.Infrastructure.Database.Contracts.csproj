@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Model\Events\Nfts\" />
     <Folder Include="Model\Events\NominationPools\" />
   </ItemGroup>
 

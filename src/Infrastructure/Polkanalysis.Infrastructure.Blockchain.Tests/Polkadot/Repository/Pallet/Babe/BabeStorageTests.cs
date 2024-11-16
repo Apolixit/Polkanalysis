@@ -99,7 +99,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var extResult = new Arr32U8();
             extResult.Create(Utils.HexToByteArray("0xACD9FF8E35EDDED5289E9D4C150A0765B166A469918034651A60B1B33664BF7E"));
 
-            var expectedResult = new Hexa();
+            var expectedResult = new Hexa32();
             expectedResult.Create(Utils.HexToByteArray("0xACD9FF8E35EDDED5289E9D4C150A0765B166A469918034651A60B1B33664BF7E"));
 
             await MockStorageCallAsync(extResult, expectedResult, _substrateService.Storage.Babe.RandomnessAsync);
@@ -108,7 +108,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task RandomnessNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<Arr32U8, Hexa>(_substrateService.Storage.Babe.RandomnessAsync);
+            await MockStorageCallNullAsync<Arr32U8, Hexa32>(_substrateService.Storage.Babe.RandomnessAsync);
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var extResult = new Arr32U8();
             extResult.Create(Utils.HexToByteArray("0x8E605504927B5C616B25F2C7E6A8FD8F73DCDBD8D2F3A9FEF470B2B253A667C4"));
 
-            var expectedResult = new Hexa();
+            var expectedResult = new Hexa32();
             expectedResult.Create(Utils.HexToByteArray("0x8E605504927B5C616B25F2C7E6A8FD8F73DCDBD8D2F3A9FEF470B2B253A667C4"));
 
             await MockStorageCallAsync(extResult, expectedResult, _substrateService.Storage.Babe.NextRandomnessAsync);
@@ -156,7 +156,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             //_substrateRepository.AjunaClient.GetStorageAsync<Arr32U8>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
-            await MockStorageCallNullAsync<Arr32U8, Hexa>(_substrateService.Storage.Babe.NextRandomnessAsync);
+            await MockStorageCallNullAsync<Arr32U8, Hexa32>(_substrateService.Storage.Babe.NextRandomnessAsync);
         }
 
         [Test]
@@ -206,10 +206,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var extResult = new BaseVec<Arr32U8>();
             extResult.Create(Utils.HexToByteArray("0x089A24025AD716349176BD6F75EDBC971D6BB5D970BB2A89A490AFA0A93709F75898B0603D0E55EA7E16E86DE8D6037C39B4F3E68EB18C6ABE4A8D5E837AEC2DFC"));
 
-            var expectedResult = new BaseVec<Hexa>(new Hexa[]
+            var expectedResult = new BaseVec<Hexa32>(new Hexa32[]
             {
-                new Hexa("0x9a24025ad716349176bd6f75edbc971d6bb5d970bb2a89a490afa0a93709f758"),
-                new Hexa("0x98b0603d0e55ea7e16e86de8d6037c39b4f3e68eb18c6abe4a8d5e837aec2dfc"),
+                new Hexa32("0x9a24025ad716349176bd6f75edbc971d6bb5d970bb2a89a490afa0a93709f758"),
+                new Hexa32("0x98b0603d0e55ea7e16e86de8d6037c39b4f3e68eb18c6abe4a8d5e837aec2dfc"),
             });
 
             await MockStorageCallWithInputAsync(
@@ -222,7 +222,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task UnderConstructionNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync<U32, BaseVec<Arr32U8>, BaseVec<Hexa>>(new U32(0), _substrateService.Storage.Babe.UnderConstructionAsync);
+            await MockStorageCallNullWithInputAsync<U32, BaseVec<Arr32U8>, BaseVec<Hexa32>>(new U32(0), _substrateService.Storage.Babe.UnderConstructionAsync);
         }
 
         [Test]
@@ -256,7 +256,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             extSubRes.Create(Utils.HexToByteArray("0xD95389AB38F371D4B960865243B283E995BA3E199F95FDB65E481ECB8A1C951A"));
             resCore.Create(extSubRes);
 
-            var expectedResult = new BaseOpt<Hexa>(new Hexa("0xD95389AB38F371D4B960865243B283E995BA3E199F95FDB65E481ECB8A1C951A"));
+            var expectedResult = new BaseOpt<Hexa32>(new Hexa32("0xD95389AB38F371D4B960865243B283E995BA3E199F95FDB65E481ECB8A1C951A"));
 
             await MockStorageCallAsync(resCore, expectedResult, _substrateService.Storage.Babe.AuthorVrfRandomnessAsync);
         }
@@ -264,7 +264,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task AuthorVrfRandomnessNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<BaseOpt<Arr32U8>, BaseOpt<Hexa>>(_substrateService.Storage.Babe.AuthorVrfRandomnessAsync);
+            await MockStorageCallNullAsync<BaseOpt<Arr32U8>, BaseOpt<Hexa32>>(_substrateService.Storage.Babe.AuthorVrfRandomnessAsync);
         }
 
         [Test]

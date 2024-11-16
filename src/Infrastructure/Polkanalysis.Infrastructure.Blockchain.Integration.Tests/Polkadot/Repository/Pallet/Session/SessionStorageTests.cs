@@ -38,8 +38,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         public async Task KeyOwner_ShouldWorkAsync()
         {
             var i2 = new FlexibleNameable().FromText("gran");
-            var input = new BaseTuple<FlexibleNameable, Hexa>();
-            input.Create(i2, new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
+            var input = new BaseTuple<FlexibleNameable, Hexa32>();
+            input.Create(i2, new Hexa32("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
 
             var res = await _substrateService.Storage.Session.KeyOwnerAsync(input, CancellationToken.None);
             Assert.That(res, Is.Not.Null);

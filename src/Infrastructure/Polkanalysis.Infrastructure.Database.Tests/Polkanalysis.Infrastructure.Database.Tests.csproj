@@ -44,4 +44,8 @@
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\Events\Nfts\" />
+  </ItemGroup>
+
 </Project>
