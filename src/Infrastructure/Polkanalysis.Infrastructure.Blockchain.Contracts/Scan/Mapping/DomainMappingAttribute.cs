@@ -39,7 +39,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping
 
         public List<string> ExtractAsList(string className)
         {
-            var mapping = OriginClasses.ToList().First();
+            var mapping = OriginClasses.ToList().Last();
             List<string> arguments = new List<string>();
 
             arguments = mapping.Split("/").ToList();

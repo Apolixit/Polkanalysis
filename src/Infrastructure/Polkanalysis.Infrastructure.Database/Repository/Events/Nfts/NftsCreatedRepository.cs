@@ -13,6 +13,9 @@ using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Types;
 using System.Numerics;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using Substrate.NetApi;
+using System.Text;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 

@@ -37,10 +37,10 @@ var host = Host.CreateDefaultBuilder(args)
     logger.LogInformation("Starting Polkanalysis Worker hosted service for {blockchainName}...", blockchainName);
 
     services
-    //.AddHostedService<EventsWorker>()
+    .AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
     //.AddHostedService<StakingWorker>()
-    .AddHostedService<VersionWorker>()
+    //.AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {

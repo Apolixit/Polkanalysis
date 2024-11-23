@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime
 {
-    [DomainMapping("polkadot_runtime", "people_polkadot_runtime")]
+    [DomainMapping("polkadot_runtime", "people_polkadot_runtime", "mainnet_runtime")]
     public enum RuntimeEvent
     {
         System = 0,

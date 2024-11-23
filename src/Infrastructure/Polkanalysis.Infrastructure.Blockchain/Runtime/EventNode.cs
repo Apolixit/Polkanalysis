@@ -34,6 +34,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             }
         }
 
+        public string ModuleName => getRuntimeEvent().Name;
+
+        public string MethodName => EventData.Name;
+
         private Enum? _method = null;
         public Enum Method
         {
@@ -104,5 +108,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
                 return _eventData;
             }
         }
+
+        
     }
 }

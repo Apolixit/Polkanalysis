@@ -44,6 +44,7 @@ namespace Polkanalysis.Infrastructure.Database
 
         #region Nfts
         public DbSet<NftsCreatedModel> EventNftsCreated { get; set; }
+        public DbSet<NftsTeamChangedModel> EventNftsTeamChanged { get; set; }
         #endregion
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
@@ -125,6 +126,8 @@ namespace Polkanalysis.Infrastructure.Database
 
             #region Nfts
             modelBuilder.Entity<NftsCreatedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.Creator, c.Owner });
+
+            modelBuilder.Entity<NftsTeamChangedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.Issuer, c.Admin, c.Freezer });
             #endregion
             #region Balances
 

@@ -2,6 +2,7 @@
 using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 using Polkanalysis.Infrastructure.Blockchain.Mythos.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Mythos.Storage;
 using Polkanalysis.Mythos.NetApiExt.Generated;
@@ -40,8 +41,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mythos
         protected override async Task InstanciateSubstrateServiceAsync()
         {
             _mythosClient = new SubstrateClientExt(_endpointInformation.Uri, ChargeTransactionPayment.Default());
-
+                
             SubstrateAccount.IsSubstrate = false;
+            _mythosClient.AddJsonConverter(new ExtrinsicOldJsonConverter(ChargeTransactionPayment.Default()));
+            _mythosClient.AddJsonConverter(new ExtrinsicNewJsonConverter(ChargeTransactionPayment.Default()));
         }
 
         public SubstrateClientExt MythosClient

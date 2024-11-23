@@ -123,11 +123,12 @@ namespace Polkanalysis.Worker.Tasks
             try
             {
                 var monitorTask = MonitorBlockAsync(blockNumber.Value, stoppingToken);
-                var saveBlockTask = SaveBlockInformationAsync(blockNumber, stoppingToken);
-                var saveExtrinsicsTask = SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
+                //var saveBlockTask = SaveBlockInformationAsync(blockNumber, stoppingToken);
+                //var saveExtrinsicsTask = SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
                 var saveEventsTask = SaveEventsInformationAsync(blockNumber, stoppingToken);
 
-                await Task.WhenAll(monitorTask, saveBlockTask, saveExtrinsicsTask, saveEventsTask);
+                //await Task.WhenAll(monitorTask, saveBlockTask, saveExtrinsicsTask, saveEventsTask);
+                await Task.WhenAll(monitorTask, saveEventsTask);
             }
             catch (Exception ex)
             {

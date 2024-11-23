@@ -123,11 +123,11 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                      * Romain : I don't use Task.When all because I don't gain any milliseconds and also give me some concurrency call to database, so let's keep it like this
                      */
                     // Save all the events into the database
-                    await SaveEventAsync(request, currentDate, i, ev, eventNode, cancellationToken);
+                    //await SaveEventAsync(request, currentDate, i, ev, eventNode, cancellationToken);
 
                     // If the events have custom tables, save them
                     await SaveCustomTrackedEventsAsync(request, currentDate, i, ev, eventNode, cancellationToken);
-
+                    
                     // Log into the database that we have analyzed this event
                     await LogEventsAsync(request, eventNode, cancellationToken);
 
@@ -167,12 +167,12 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         /// <returns></returns>
         private async Task SaveCustomTrackedEventsAsync(SavedEventsCommand request, DateTime currentDate, int i, EventRecord ev, IEventNode eventNode, CancellationToken cancellationToken)
         {
-            var eventFound = _eventsFactory.TryFind(eventNode.Module, eventNode.Method);
+            var eventFound = _eventsFactory.TryFind(eventNode.ModuleName, eventNode.MethodName);
 
             // Is this event has to be insert in database ?
             if (eventFound is null)
             {
-                _logger.LogDebug("[{handler}][{module}][{method}] has no database event linked", nameof(SavedEventsHandler), eventNode.Module, eventNode.Method);
+                _logger.LogDebug("[{handler}][{module}][{method}] has no database event linked", nameof(SavedEventsHandler), eventNode.ModuleName, eventNode.MethodName);
                 return;
             }
 
@@ -189,8 +189,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         /// <returns></returns>
         private async Task LogEventsAsync(SavedEventsCommand request, IEventNode eventNode, CancellationToken cancellationToken)
         {
-            var moduleName = eventNode.Module.ToString();
-            var eventName = eventNode.Method.ToString();
+            var moduleName = eventNode.ModuleName;
+            var eventName = eventNode.MethodName;
 
             await LogEventManagerAsync((int)request.BlockNumber.Value, (int)request.BlockNumber.Value, moduleName, eventName, cancellationToken);
 
@@ -357,8 +357,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
             var subEvent = (BaseEnumType)ev.Event.Value!;
             await _eventsFactory.ExecuteInsertAsync(
-            eventNode.Module,
-                eventNode.Method,
+            eventNode.ModuleName,
+                eventNode.MethodName,
                 databaseModel,
                 subEvent.GetValue2(),
             cancellationToken);
