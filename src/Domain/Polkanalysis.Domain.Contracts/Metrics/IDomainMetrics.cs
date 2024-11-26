@@ -50,7 +50,27 @@ namespace Polkanalysis.Domain.Contracts.Metrics
         /// </summary>
         /// <param name="value"></param>
         /// <param name="blockchainName"></param>
-        void RecordRatioEventAnalyzed(double value, string blockchainName);
-        void RecordRatioBlockAnalyzed(double value, string blockchainName);
+        void RecordRatioEventAnalyzedPerBlock(double value, string blockchainName);
+
+        /// <summary>
+        /// The ratio of events analyzed on the total number of blocks
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="blockchainName"></param>
+        void RecordRatioEventsAnalyzedOnTotal(double value, string blockchainName);
+
+        /// <summary>
+        /// The ratio of blocks analyzed on the total number of blocks
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="blockchainName"></param>
+        void RecordRatioBlockAnalyzedOnTotal(double value, string blockchainName);
+
+        /// <summary>
+        /// The ratio of events extrinsics on the total number of blocks
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="blockchainName"></param>
+        void RecordRatioExtrinsicsAnalyzedOnTotal(double value, string blockchainName);
     }
 }

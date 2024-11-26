@@ -177,7 +177,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
             return await task;
         }
 
-        public async Task ExecuteInsertAsync(RuntimeEvent runtimeEvent, Enum eventValue, EventModel eventModel, IType details, CancellationToken token)
+        public async Task ExecuteInsertAsync(string runtimeEvent, string eventValue, EventModel eventModel, IType details, CancellationToken token)
         {
             var databaseLinked = TryFind(runtimeEvent, eventValue);
 
@@ -186,14 +186,11 @@ namespace Polkanalysis.Infrastructure.Database.Repository
             await databaseLinked.DatabaseInsert.InsertAsync(eventModel, details, token);
         }
 
-        public EventElementFactory? TryFind(RuntimeEvent runtimeEvent, Enum eventValue)
-        {
-            return Mapped.FirstOrDefault(x =>
-            x.EventName.Equals($"{runtimeEvent}.{eventValue}"));
-            //return Mapped.FirstOrDefault(x =>
-            //x.RuntimeEvent.Equals(runtimeEvent) &&
-            //x.EventValue.ToString().Equals(eventValue.ToString()));
-        }
+        public EventElementFactory? TryFind(RuntimeEvent runtimeEvent, Enum eventValue) => TryFind(runtimeEvent.ToString(), eventValue.ToString());
+
+        public EventElementFactory? TryFind(string runtimeEventName, string eventValueName)
+            => Mapped.FirstOrDefault(x => x.EventName.Equals($"{runtimeEventName}.{eventValueName}"));
+
         public bool Has(RuntimeEvent runtimeEvent, Enum eventValue)
         {
             return TryFind(runtimeEvent, eventValue) != null;

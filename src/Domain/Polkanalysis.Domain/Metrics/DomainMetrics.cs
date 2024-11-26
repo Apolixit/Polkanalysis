@@ -20,7 +20,9 @@ namespace Polkanalysis.Domain.Metrics
         public const string DomainMetricsName = "Polkanalysis.Domain.Metrics";
         private Counter<int> CountEventsAnalyzed { get; set; }
         private Histogram<double> RatioOfEventsAnalyzedPerBlockHistogram { get; set; }
-        private Histogram<double> RatioOfBlockAnalyzedHistogram { get; set; }
+        private Histogram<double> RatioOfBlockAnalyzedOnTotalHistogram { get; set; }
+        private Histogram<double> RatioOfExtrinsicsAnalyzedOnTotalHistogram { get; set; }
+        private Histogram<double> RatioOfEventsAnalyzedOnTotalHistogram { get; set; }
         private Histogram<double> AverageTimeToAnalyzeEventsForEachBlock { get; set; }
         private Histogram<double> AverageTimeToAnalyzeExtrinsicsForEachBlock { get; set; }
         private Histogram<double> AverageTimeToAnalyzeBlocksForEachBlock { get; set; }
@@ -48,10 +50,20 @@ namespace Polkanalysis.Domain.Metrics
                 "%",
                 "Histogram of Substrate events analyzed by the worker");
 
-            RatioOfBlockAnalyzedHistogram = meter.CreateHistogram<double>(
-                "ratio_blocks_analyzed",
+            RatioOfBlockAnalyzedOnTotalHistogram = meter.CreateHistogram<double>(
+                "ratio_blocks_analyzed_on_total",
                 "%",
                 "Histogram which represent the number of block analyzed compare to the total number of block");
+
+            RatioOfExtrinsicsAnalyzedOnTotalHistogram = meter.CreateHistogram<double>(
+                "ratio_extrinsics_analyzed_on_total",
+                "%",
+                "Histogram which represent the number of extrinsics analyzed compare to the total number of block");
+
+            RatioOfEventsAnalyzedOnTotalHistogram = meter.CreateHistogram<double>(
+                "ratio_events_analyzed_on_total",
+                "%",
+                "Histogram which represent the number of events analyzed compare to the total number of block");
 
             AverageTimeToAnalyzeEventsForEachBlock = meter.CreateHistogram<double>(
                     "average_time_to_analyze_events_per_block",
@@ -83,12 +95,14 @@ namespace Polkanalysis.Domain.Metrics
         }
 
         public void IncreaseAnalyzedEventsCount(string blockchainName) => CountEventsAnalyzed.Add(1, new KeyValuePair<string, object?>("blockchain", blockchainName));
-        public void RecordRatioEventAnalyzed(double value, string blockchainName) => RatioOfEventsAnalyzedPerBlockHistogram.Record(value);
+        public void RecordRatioEventAnalyzedPerBlock(double value, string blockchainName) => RatioOfEventsAnalyzedPerBlockHistogram.Record(value);
         public void RecordAverageTimeToAnalyzeEventsForEachBlock(double value, string blockchainName) => AverageTimeToAnalyzeEventsForEachBlock.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
         public void RecordAverageTimeToAnalyzeExtrinsicsForEachBlock(double value, string blockchainName) => AverageTimeToAnalyzeExtrinsicsForEachBlock.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
         public void RecordAverageTimeToAnalyzeBlocksForEachBlock(double value, string blockchainName) => AverageTimeToAnalyzeBlocksForEachBlock.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
         public void RecordAverageTimeToAnalyzeAFullBlockByWorker(double value, string blockchainName) => AverageTimeToAnalyzeAFullBlockByWorker.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
-        public void RecordRatioBlockAnalyzed(double value, string blockchainName) => RatioOfBlockAnalyzedHistogram.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
         public void RecordAverageTimeToAnalyzeStakersByEra(double value, string blockchainName) => AverageTimeToAnalyzeEraStakersByEra.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
+        public void RecordRatioBlockAnalyzedOnTotal(double value, string blockchainName) => RatioOfBlockAnalyzedOnTotalHistogram.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
+        public void RecordRatioExtrinsicsAnalyzedOnTotal(double value, string blockchainName) => RatioOfExtrinsicsAnalyzedOnTotalHistogram.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
+        public void RecordRatioEventsAnalyzedOnTotal(double value, string blockchainName) => RatioOfEventsAnalyzedOnTotalHistogram.Record(value, new KeyValuePair<string, object?>("blockchain", blockchainName));
     }
 }
