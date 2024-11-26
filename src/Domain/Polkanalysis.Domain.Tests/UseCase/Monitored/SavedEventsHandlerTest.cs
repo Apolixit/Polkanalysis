@@ -26,6 +26,7 @@ using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using System.Diagnostics;
 using Substrate.NetApi.Model.Meta;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -55,6 +56,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _coreService.GetDateTimeFromTimestampAsync(MockHash, CancellationToken.None).Returns(new DateTime(2024, 1, 1));
             _substrateService.At(Arg.Any<Hash>()).GetMetadataAsync(CancellationToken.None).ReturnsNull();
 
+            var configuration = Substitute.For<IConfiguration>();
+            configuration["CoreMonitored:SaveEvents:SaveAll"].Returns("true");
+
             _useCase = new SavedEventsHandler(_substrateService,
                                               _eventsFactory,
                                               _logger,
@@ -62,7 +66,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _substrateDbContext,
                                               _substrateDecoding,
                                               _domainMetrics,
-                                              _coreService);
+                                              _coreService,
+                                              configuration);
         }
 
         /// <summary>
