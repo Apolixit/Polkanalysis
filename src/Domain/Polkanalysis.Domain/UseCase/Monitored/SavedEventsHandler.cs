@@ -182,6 +182,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "[{handler}] Unable to decode event from block {blockNum} event num {eventNum}", nameof(SavedEventsHandler), request.BlockNumber, i);
+
+                    throw;
                 }
             }
 
