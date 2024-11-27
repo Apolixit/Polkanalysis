@@ -57,7 +57,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _substrateService.At(Arg.Any<Hash>()).GetMetadataAsync(CancellationToken.None).ReturnsNull();
 
             var configuration = Substitute.For<IConfiguration>();
-            configuration["CoreMonitored:SaveEvents:SaveAll"].Returns("true");
+            configuration["Worker:EventsConfig:SaveAllEvents"].Returns("true");
 
             _useCase = new SavedEventsHandler(_substrateService,
                                               _eventsFactory,

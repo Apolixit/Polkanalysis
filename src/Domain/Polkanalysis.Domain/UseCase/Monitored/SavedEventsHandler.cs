@@ -117,9 +117,9 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 var ev = events.Value[i];
                 IEventNode? eventNode = null;
 
-                string palletName = ev.Event.Core.GetValue()!.ToString() ?? 
+                string palletName = (ev.Event.Value is not null ? ev.Event.Value : ev.Event.Core).GetValue()!.ToString() ?? 
                     throw new InvalidOperationException($"[{nameof(SavedEventsHandler)}] Runtime Event pallet name is null");
-                string eventName = ev.Event.Core.GetValue2().GetValue()!.ToString() ?? 
+                string eventName = (ev.Event.Value is not null ? ev.Event.Value : ev.Event.Core).GetValue2().GetValue()!.ToString() ?? 
                     throw new InvalidOperationException($"[{nameof(SavedEventsHandler)}] Runtime Event name inside {palletName} is null");
 
                 try
