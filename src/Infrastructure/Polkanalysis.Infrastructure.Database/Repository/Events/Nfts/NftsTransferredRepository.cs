@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
     public class SearchCriteriaNftsTransferred : SearchCriteria
     {
         public NumberCriteria<double>? Collection { get; set; }
-		public NumberCriteria<double>? Item { get; set; }
+		public string? Item { get; set; }
 		public string? From { get; set; }
 		public string? To { get; set; }
 		
@@ -44,7 +44,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
         protected override Task<IQueryable<NftsTransferredModel>> SearchInnerAsync(SearchCriteriaNftsTransferred criteria, IQueryable<NftsTransferredModel> model, CancellationToken token)
         {
             if (criteria.Collection is not null) model = model.WhereCriteria(criteria.Collection, x => x.Collection);
-			if (criteria.Item is not null) model = model.WhereCriteria(criteria.Item, x => x.Item);
+			if (criteria.Item is not null) model = model.Where(x => x.Item == criteria.Item);
 			if (criteria.From is not null) model = model.Where(x => x.From == criteria.From);
 			if (criteria.To is not null) model = model.Where(x => x.To == criteria.To);
 			
@@ -58,7 +58,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
             
 			var collection = (double)(BigInteger)convertedData.Value[0].As<IncrementableU256>().Value;
 
-			var item = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);;
+			var item = ((U128)convertedData.Value[1]).Value.ToString();
 
 			var from = convertedData.Value[2].As<SubstrateAccount>().ToStringAddress();
 

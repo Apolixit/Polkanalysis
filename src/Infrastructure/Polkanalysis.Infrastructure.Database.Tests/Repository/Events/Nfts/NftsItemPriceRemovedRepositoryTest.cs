@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsItemPriceRemoved.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "ItemPriceRemoved", 10, 20));
+            _substrateDbContext.EventNftsItemPriceRemoved.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "ItemPriceRemoved", 10, MockItemNft));
         }
 
         [Test]
@@ -41,14 +41,14 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000_000_000, 20)]
-        public async Task BuildModel_WhenValidItemPriceRemoved_ShouldBuildModelSuccessfullyAsync(double collection, double item, double expected1)
+        [TestCase(0, MockItemNft, MockItemNft)]
+        public async Task BuildModel_WhenValidItemPriceRemoved_ShouldBuildModelSuccessfullyAsync(double collection, string item, string expected1)
         {
             var enumItemPriceRemoved = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumItemPriceRemoved.Create(
                    Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.ItemPriceRemoved,
                     new BaseTuple<IncrementableU256, U128>(
-                        new IncrementableU256(collection), new U128(new BigInteger(item))
+                        new IncrementableU256(collection), new U128(BigInteger.Parse(item))
                         )
 
             );
@@ -62,7 +62,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleName, Is.EqualTo("Nfts"));
             Assert.That(model.ModuleEvent, Is.EqualTo("ItemPriceRemoved"));
             Assert.That(model.Collection, Is.EqualTo(collection));
-Assert.That(model.Item, Is.EqualTo(expected1));
+            Assert.That(model.ItemValue(), Is.EqualTo(BigInteger.Parse(expected1)));
         }
 
         [Test]
@@ -71,7 +71,7 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsItemPriceRemovedRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20)
+                Item = MockItemNft,
             }, CancellationToken.None);
 
             Assert.That(res.Count(), Is.EqualTo(1));

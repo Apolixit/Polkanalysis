@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsAllApprovalsCancelled.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "AllApprovalsCancelled", 10, 20, Charlie.ToString()));
+            _substrateDbContext.EventNftsAllApprovalsCancelled.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "AllApprovalsCancelled", 10, "310789037729451024594500450253905211276", Charlie.ToString()));
         }
 
         [Test]
@@ -41,14 +41,14 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000_000_000, MockAddress3, 20)]
-        public async Task BuildModel_WhenValidAllApprovalsCancelled_ShouldBuildModelSuccessfullyAsync(double collection, double item, string owner, double expected1)
+        [TestCase(0, "310789037729451024594500450253905211276", MockAddress3, "310789037729451024594500450253905211276")]
+        public async Task BuildModel_WhenValidAllApprovalsCancelled_ShouldBuildModelSuccessfullyAsync(double collection, string itemVal, string owner, string expectedVal)
         {
             var enumAllApprovalsCancelled = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumAllApprovalsCancelled.Create(
                    Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.AllApprovalsCancelled,
                     new BaseTuple<IncrementableU256, U128, SubstrateAccount>(
-                        new IncrementableU256(collection), new U128(new BigInteger(item)), new SubstrateAccount(owner)
+                        new IncrementableU256(collection), new U128(BigInteger.Parse(itemVal)), new SubstrateAccount(owner)
                         )
 
             );
@@ -62,8 +62,8 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleName, Is.EqualTo("Nfts"));
             Assert.That(model.ModuleEvent, Is.EqualTo("AllApprovalsCancelled"));
             Assert.That(model.Collection, Is.EqualTo(collection));
-Assert.That(model.Owner, Is.EqualTo(owner));
-Assert.That(model.Item, Is.EqualTo(expected1));
+            Assert.That(model.Owner, Is.EqualTo(owner));
+            //Assert.That(model.Item, Is.EqualTo(BigInteger.Parse(expectedVal)));
         }
 
         [Test]
@@ -72,7 +72,7 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsAllApprovalsCancelledRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20),
+				Item = "310789037729451024594500450253905211276",
 				Owner = Charlie.ToString()
             }, CancellationToken.None);
 

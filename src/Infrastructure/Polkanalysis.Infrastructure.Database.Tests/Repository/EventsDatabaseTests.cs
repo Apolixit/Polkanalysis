@@ -25,6 +25,9 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
         public const string MockAddress4 = "5Fk8my9a6vFDafsNMxd7q3vM9SsJdFHVyARK6Pw5dLjwxJXw";
         public const string MockAddress5 = "5Fk8my9a6vFDafsNMxd7q3vM9SsJdFHVyARK6Pw5dLjwxJXw";
         
+        public const string MockItemNft = "157291066769514669673966718098575209926";
+        public const string MockMetadataNft = "test data";
+        
         public const double FiveDots = 50_000_000_000;
         public const double TenDots = 100_000_000_000;
 

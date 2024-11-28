@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
     public class SearchCriteriaNftsItemPriceSet : SearchCriteria
     {
         public NumberCriteria<double>? Collection { get; set; }
-		public NumberCriteria<double>? Item { get; set; }
+		public string? Item { get; set; }
 		public NumberCriteria<double>? Price { get; set; }
 		public string? Whitelisted_buyer { get; set; }
 		
@@ -44,7 +44,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
         protected override Task<IQueryable<NftsItemPriceSetModel>> SearchInnerAsync(SearchCriteriaNftsItemPriceSet criteria, IQueryable<NftsItemPriceSetModel> model, CancellationToken token)
         {
             if (criteria.Collection is not null) model = model.WhereCriteria(criteria.Collection, x => x.Collection);
-			if (criteria.Item is not null) model = model.WhereCriteria(criteria.Item, x => x.Item);
+			if (criteria.Item is not null) model = model.Where(x => x.Item == criteria.Item);
 			if (criteria.Price is not null) model = model.WhereCriteria(criteria.Price, x => x.Price);
 			if (criteria.Whitelisted_buyer is not null) model = model.Where(x => x.Whitelisted_buyer == criteria.Whitelisted_buyer);
 			
@@ -58,7 +58,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
             
 			var collection = (double)(BigInteger)convertedData.Value[0].As<IncrementableU256>().Value;
 
-			var item = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);;
+			var item = ((U128)convertedData.Value[1]).Value.ToString();
 
 			var price = ((U128)convertedData.Value[2]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);;
 

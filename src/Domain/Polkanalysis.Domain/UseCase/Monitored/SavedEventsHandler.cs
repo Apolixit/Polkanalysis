@@ -123,7 +123,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                      * Romain : I don't use Task.When all because I don't gain any milliseconds and also give me some concurrency call to database, so let's keep it like this
                      */
                     // Save all the events into the database
-                    //await SaveEventAsync(request, currentDate, i, ev, eventNode, cancellationToken);
+                    await SaveEventAsync(request, currentDate, i, ev, eventNode, cancellationToken);
 
                     // If the events have custom tables, save them
                     await SaveCustomTrackedEventsAsync(request, currentDate, i, ev, eventNode, cancellationToken);

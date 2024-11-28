@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsApprovalCancelled.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "ApprovalCancelled", 10, 20, Charlie.ToString(), Dave.ToString()));
+            _substrateDbContext.EventNftsApprovalCancelled.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "ApprovalCancelled", 10, MockItemNft, Charlie.ToString(), Dave.ToString()));
         }
 
         [Test]
@@ -41,14 +41,14 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000, MockAddress3, MockAddress4, 20)]
-        public async Task BuildModel_WhenValidApprovalCancelled_ShouldBuildModelSuccessfullyAsync(double collection, double item, string owner, string delegateParam, double expected1)
+        [TestCase(0, MockItemNft, MockAddress3, MockAddress4, MockItemNft)]
+        public async Task BuildModel_WhenValidApprovalCancelled_ShouldBuildModelSuccessfullyAsync(double collection, string item, string owner, string delegateParam, string expected1)
         {
             var enumApprovalCancelled = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumApprovalCancelled.Create(
                    Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.ApprovalCancelled,
                     new BaseTuple<IncrementableU256, U128, SubstrateAccount, SubstrateAccount>(
-                        new IncrementableU256(collection), new U128(new BigInteger(item)), new SubstrateAccount(owner), new SubstrateAccount(delegateParam)
+                        new IncrementableU256(collection), new U128(BigInteger.Parse(item)), new SubstrateAccount(owner), new SubstrateAccount(delegateParam)
                         )
 
             );
@@ -62,9 +62,9 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleName, Is.EqualTo("Nfts"));
             Assert.That(model.ModuleEvent, Is.EqualTo("ApprovalCancelled"));
             Assert.That(model.Collection, Is.EqualTo(collection));
-Assert.That(model.Owner, Is.EqualTo(owner));
-Assert.That(model.Delegate, Is.EqualTo(delegateParam));
-Assert.That(model.Item, Is.EqualTo(expected1));
+            Assert.That(model.Owner, Is.EqualTo(owner));
+            Assert.That(model.Delegate, Is.EqualTo(delegateParam));
+            Assert.That(model.ItemValue(), Is.EqualTo(BigInteger.Parse(expected1)));
         }
 
         [Test]
@@ -73,9 +73,9 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsApprovalCancelledRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20),
-				Owner = Charlie.ToString(),
-				Delegate = Dave.ToString()
+                Item = MockItemNft,
+                Owner = Charlie.ToString(),
+                Delegate = Dave.ToString()
             }, CancellationToken.None);
 
             Assert.That(res.Count(), Is.EqualTo(1));

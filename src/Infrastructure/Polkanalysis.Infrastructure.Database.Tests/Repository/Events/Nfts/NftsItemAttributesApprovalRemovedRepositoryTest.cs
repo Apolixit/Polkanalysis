@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsItemAttributesApprovalRemoved.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "ItemAttributesApprovalRemoved", 10, 20, Charlie.ToString()));
+            _substrateDbContext.EventNftsItemAttributesApprovalRemoved.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "ItemAttributesApprovalRemoved", 10, MockItemNft, Charlie.ToString()));
         }
 
         [Test]
@@ -41,14 +41,14 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000_000_000, MockAddress3, 20)]
-        public async Task BuildModel_WhenValidItemAttributesApprovalRemoved_ShouldBuildModelSuccessfullyAsync(double collection, double item, string delegateParam, double expected1)
+        [TestCase(0, MockItemNft, MockAddress3, MockItemNft)]
+        public async Task BuildModel_WhenValidItemAttributesApprovalRemoved_ShouldBuildModelSuccessfullyAsync(double collection, string item, string delegateParam, string expected1)
         {
             var enumItemAttributesApprovalRemoved = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumItemAttributesApprovalRemoved.Create(
                    Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.ItemAttributesApprovalRemoved,
                     new BaseTuple<IncrementableU256, U128, SubstrateAccount>(
-                        new IncrementableU256(collection), new U128(new BigInteger(item)), new SubstrateAccount(delegateParam)
+                        new IncrementableU256(collection), new U128(BigInteger.Parse(item)), new SubstrateAccount(delegateParam)
                         )
 
             );
@@ -63,7 +63,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleEvent, Is.EqualTo("ItemAttributesApprovalRemoved"));
             Assert.That(model.Collection, Is.EqualTo(collection));
 Assert.That(model.Delegate, Is.EqualTo(delegateParam));
-Assert.That(model.Item, Is.EqualTo(expected1));
+Assert.That(model.ItemValue(), Is.EqualTo(BigInteger.Parse(expected1)));
         }
 
         [Test]
@@ -72,7 +72,7 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsItemAttributesApprovalRemovedRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20),
+				Item = MockItemNft,
 				Delegate = Charlie.ToString()
             }, CancellationToken.None);
 

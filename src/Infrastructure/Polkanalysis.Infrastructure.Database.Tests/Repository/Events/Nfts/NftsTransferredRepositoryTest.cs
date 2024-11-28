@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsTransferred.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "Transferred", 10, 20, Charlie.ToString(), Dave.ToString()));
+            _substrateDbContext.EventNftsTransferred.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "Transferred", 10, MockItemNft, Charlie.ToString(), Dave.ToString()));
         }
 
         [Test]
@@ -41,14 +41,14 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000_000_000, MockAddress3, MockAddress4, 20)]
-        public async Task BuildModel_WhenValidTransferred_ShouldBuildModelSuccessfullyAsync(double collection, double item, string from, string to, double expected1)
+        [TestCase(0, MockItemNft, MockAddress3, MockAddress4, MockItemNft)]
+        public async Task BuildModel_WhenValidTransferred_ShouldBuildModelSuccessfullyAsync(double collection, string item, string from, string to, string expected1)
         {
             var enumTransferred = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumTransferred.Create(
                    Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.Transferred,
                     new BaseTuple<IncrementableU256, U128, SubstrateAccount, SubstrateAccount>(
-                        new IncrementableU256(collection), new U128(new BigInteger(item)), new SubstrateAccount(from), new SubstrateAccount(to)
+                        new IncrementableU256(collection), new U128(BigInteger.Parse(item)), new SubstrateAccount(from), new SubstrateAccount(to)
                         )
 
             );
@@ -62,9 +62,32 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleName, Is.EqualTo("Nfts"));
             Assert.That(model.ModuleEvent, Is.EqualTo("Transferred"));
             Assert.That(model.Collection, Is.EqualTo(collection));
-Assert.That(model.From, Is.EqualTo(from));
-Assert.That(model.To, Is.EqualTo(to));
-Assert.That(model.Item, Is.EqualTo(expected1));
+            Assert.That(model.From, Is.EqualTo(from));
+            Assert.That(model.To, Is.EqualTo(to));
+            Assert.That(model.ItemValue(), Is.EqualTo(BigInteger.Parse(expected1)));
+        }
+
+        [Test]
+        [TestCase(0, "310789037729451024594500450253905211276", MockAddress3, MockAddress4, "310789037729451024594500450253905211276")]
+        public async Task BuildModel_WhenValidTransferred_ShouldInsertSuccessfullyAsync(double collection, string item, string from, string to, string expected1)
+        {
+            var enumTransferred = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
+            enumTransferred.Create(
+                   Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.Transferred,
+                    new BaseTuple<IncrementableU256, U128, SubstrateAccount, SubstrateAccount>(
+                        new IncrementableU256(collection), new U128(BigInteger.Parse(item)), new SubstrateAccount(from), new SubstrateAccount(to)
+                        )
+
+            );
+
+            await _nftsTransferredRepository.InsertAsync(
+                BuildEventModel("Nfts", "Transferred"),
+                enumTransferred,
+                CancellationToken.None);
+
+            var lastEntry = _substrateDbContext.EventNftsTransferred.Last();
+            Assert.That(lastEntry.Collection, Is.EqualTo(collection));
+            Assert.That(lastEntry.ItemValue, Is.EqualTo(BigInteger.Parse(expected1)));
         }
 
         [Test]
@@ -73,9 +96,9 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsTransferredRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20),
-				From = Charlie.ToString(),
-				To = Dave.ToString()
+                Item = MockItemNft,
+                From = Charlie.ToString(),
+                To = Dave.ToString()
             }, CancellationToken.None);
 
             Assert.That(res.Count(), Is.EqualTo(1));

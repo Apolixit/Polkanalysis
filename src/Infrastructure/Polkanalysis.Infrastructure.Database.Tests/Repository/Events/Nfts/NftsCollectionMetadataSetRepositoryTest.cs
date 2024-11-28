@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsCollectionMetadataSet.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "CollectionMetadataSet", 10, "test data"));
+            _substrateDbContext.EventNftsCollectionMetadataSet.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "CollectionMetadataSet", 10, MockMetadataNft));
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, "test data")]
+        [TestCase(0, "test data 2")]
         public async Task BuildModel_WhenValidCollectionMetadataSet_ShouldBuildModelSuccessfullyAsync(double collection, string data)
         {
             var enumCollectionMetadataSet = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
@@ -62,7 +62,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleName, Is.EqualTo("Nfts"));
             Assert.That(model.ModuleEvent, Is.EqualTo("CollectionMetadataSet"));
             Assert.That(model.Collection, Is.EqualTo(collection));
-Assert.That(model.Data, Is.EqualTo(data));
+            Assert.That(model.Data, Is.EqualTo(data));
         }
 
         [Test]
@@ -71,7 +71,7 @@ Assert.That(model.Data, Is.EqualTo(data));
             var res = await _nftsCollectionMetadataSetRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Data = Bob.ToString()
+                Data = MockMetadataNft
             }, CancellationToken.None);
 
             Assert.That(res.Count(), Is.EqualTo(1));

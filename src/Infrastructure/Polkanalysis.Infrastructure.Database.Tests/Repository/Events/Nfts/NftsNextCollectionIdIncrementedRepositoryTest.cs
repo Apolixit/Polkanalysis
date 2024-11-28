@@ -41,12 +41,12 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0)]
+        [TestCase(2)]
         public async Task BuildModel_WhenValidNextCollectionIdIncremented_ShouldBuildModelSuccessfullyAsync(double next_id)
         {
             var enumNextCollectionIdIncremented = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumNextCollectionIdIncremented.Create(
-                   Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.NextCollectionIdIncremented, new IncrementableU256(next_id));
+                   Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.NextCollectionIdIncremented, new BaseOpt<IncrementableU256>(new IncrementableU256(next_id)));
 
             var model = await _nftsNextCollectionIdIncrementedRepository.BuildModelAsync(
                 BuildEventModel("Nfts", "NextCollectionIdIncremented"),

@@ -13,9 +13,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
     [DomainMapping("account >> AccountId20")]
     public class SubstrateAccount : BaseType
     {
-        public static bool IsSubstrate = true;
-        //public static Bool IsSubstrateRomain = new Bool(true);
-
         // TODO : override Equals !
         public SubstrateAccount()
         {
@@ -23,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         }
 
         public SubstrateAccount(string address) 
-            : this(address.Length == 32 || address.Length == 48 ? 
+            : this(address.Length == 32 || address.Length == 48 || address.Length == 47 ? 
                   Utils.GetPublicKeyFrom(address) :
                   Utils.HexToByteArray(address))
         {
@@ -40,10 +37,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 
         public FlexibleNameable Value { get; set; }
 
+        private static bool isSubstrate = true;
+        public static bool IsSubstrate { get => isSubstrate; set => isSubstrate = value; }
+
         public override byte[] Encode()
         {
             var result = new List<byte>();
-            //result.AddRange(IsSubstrateRomain.Encode());
             result.AddRange(Value.Encode());
             return result.ToArray();
         }
@@ -51,7 +50,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            //IsSubstrateRomain.Decode(byteArray, ref p);
 
             if (IsSubstrate)
             {

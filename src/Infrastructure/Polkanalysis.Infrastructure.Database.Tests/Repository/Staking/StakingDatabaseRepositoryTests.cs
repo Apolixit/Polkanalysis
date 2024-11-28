@@ -53,7 +53,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
                     new Exposure(
                         new BaseCom<U128>(new Substrate.NetApi.CompactInteger(new U32((uint)Faker.RandomNumber.Next(1, 10_000)))),
                         new BaseCom<U128>(new Substrate.NetApi.CompactInteger(new U32((uint)Faker.RandomNumber.Next(1, 10_000)))),
-                        new BaseVec<IndividualExposure>(new IndividualExposure[] {
+                        new BaseVec<IndividualExposure>([
                             new IndividualExposure(
                                 new SubstrateAccount(MockAddress2),
                                 new BaseCom<U128>(new Substrate.NetApi.CompactInteger(new U32((uint)Faker.RandomNumber.Next(1, 10_000))))
@@ -62,7 +62,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
                                 new SubstrateAccount(MockAddress3),
                                 new BaseCom<U128>(new Substrate.NetApi.CompactInteger(new U32((uint)Faker.RandomNumber.Next(1, 10_000))))
                             )
-                        })
+                        ])
                 )));
         }
 

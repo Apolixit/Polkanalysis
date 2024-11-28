@@ -32,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsTipSent.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "TipSent", 10, 20, Charlie.ToString(), Dave.ToString(), 50));
+            _substrateDbContext.EventNftsTipSent.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "TipSent", 10, MockItemNft, Charlie.ToString(), Dave.ToString(), 50));
         }
 
         [Test]
@@ -42,11 +42,11 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000_000_000, MockAddress3, MockAddress4, 500_000_000_000, 20, 50)]
-        public async Task BuildModel_WhenValidTipSent_ShouldBuildModelSuccessfullyAsync(double collection, double item, string sender, string receiver, double amount, double expected1, double expected2)
+        [TestCase(0, MockItemNft, MockAddress3, MockAddress4, 500_000_000_000, MockItemNft, 50)]
+        public async Task BuildModel_WhenValidTipSent_ShouldBuildModelSuccessfullyAsync(double collection, string item, string sender, string receiver, double amount, string expected1, double expected2)
         {
             var bt = new BaseTuple<IncrementableU256, U128, SubstrateAccount, SubstrateAccount, U128>();
-            bt.Create(new IncrementableU256(collection), new U128(new BigInteger(item)), new SubstrateAccount(sender), new SubstrateAccount(receiver), new U128(new BigInteger(amount)));
+            bt.Create(new IncrementableU256(collection), new U128(BigInteger.Parse(item)), new SubstrateAccount(sender), new SubstrateAccount(receiver), new U128(new BigInteger(amount)));
 
             var enumTipSent = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumTipSent.Create(
@@ -61,10 +61,10 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleName, Is.EqualTo("Nfts"));
             Assert.That(model.ModuleEvent, Is.EqualTo("TipSent"));
             Assert.That(model.Collection, Is.EqualTo(collection));
-Assert.That(model.Sender, Is.EqualTo(sender));
-Assert.That(model.Receiver, Is.EqualTo(receiver));
-Assert.That(model.Item, Is.EqualTo(expected1));
-				Assert.That(model.Amount, Is.EqualTo(expected2));
+            Assert.That(model.Sender, Is.EqualTo(sender));
+            Assert.That(model.Receiver, Is.EqualTo(receiver));
+            Assert.That(model.ItemValue(), Is.EqualTo(BigInteger.Parse(expected1)));
+            Assert.That(model.Amount, Is.EqualTo(expected2));
         }
 
         [Test]
@@ -73,10 +73,10 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsTipSentRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20),
-				Sender = Charlie.ToString(),
-				Receiver = Dave.ToString(),
-				Amount = NumberCriteria<double>.Equal(50)
+                Item = MockItemNft,
+                Sender = Charlie.ToString(),
+                Receiver = Dave.ToString(),
+                Amount = NumberCriteria<double>.Equal(50)
             }, CancellationToken.None);
 
             Assert.That(res.Count(), Is.EqualTo(1));

@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsIssued.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "Issued", 10, 20, Charlie.ToString()));
+            _substrateDbContext.EventNftsIssued.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "Issued", 10, MockItemNft, Charlie.ToString()));
         }
 
         [Test]
@@ -41,14 +41,14 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000_000_000, MockAddress3, 20)]
-        public async Task BuildModel_WhenValidIssued_ShouldBuildModelSuccessfullyAsync(double collection, double item, string owner, double expected1)
+        [TestCase(0, MockItemNft, MockAddress3, MockItemNft)]
+        public async Task BuildModel_WhenValidIssued_ShouldBuildModelSuccessfullyAsync(double collection, string item, string owner, string expected1)
         {
             var enumIssued = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumIssued.Create(
                    Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.Event.Issued,
                     new BaseTuple<IncrementableU256, U128, SubstrateAccount>(
-                        new IncrementableU256(collection), new U128(new BigInteger(item)), new SubstrateAccount(owner)
+                        new IncrementableU256(collection), new U128(BigInteger.Parse(item)), new SubstrateAccount(owner)
                         )
 
             );
@@ -63,7 +63,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleEvent, Is.EqualTo("Issued"));
             Assert.That(model.Collection, Is.EqualTo(collection));
 Assert.That(model.Owner, Is.EqualTo(owner));
-Assert.That(model.Item, Is.EqualTo(expected1));
+Assert.That(model.ItemValue(), Is.EqualTo(BigInteger.Parse(expected1)));
         }
 
         [Test]
@@ -72,7 +72,7 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsIssuedRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20),
+				Item = MockItemNft,
 				Owner = Charlie.ToString()
             }, CancellationToken.None);
 

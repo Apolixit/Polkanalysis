@@ -1,4 +1,5 @@
 ﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Helpers;
 using Substrate.NetApi;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Common
         [Test]
         public void SubstrateAccount_FromAccountId20_ShouldCreate()
         {
-            var account = new SubstrateAccount("0x6f08Fb1fC80DE904a9026065E4d36c3a5AC06AEF");
-            Assert.That(account.ToString().ToLower(), Is.EqualTo("13Waz2A924yWXTNDztwJMH6WNqWHKeMm9RP78giWRJ8Y6eNr".ToLower()));
+            using(new TemporarySubstrateAccountState(false))
+            {
+                var account = new SubstrateAccount("0x6f08Fb1fC80DE904a9026065E4d36c3a5AC06AEF");
+                Assert.That(account.ToString().ToLower(), Is.EqualTo("13Waz2A924yWXTNDztwJMH6WNqWHKeMm9RP78giWRJ8Y6eNr".ToLower()));
+            }
         }
 
         [Test]

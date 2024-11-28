@@ -70,7 +70,7 @@ namespace Polkanalysis.Infrastructure.Database
         public DbSet<NftsItemTransferUnlockedModel> EventNftsItemTransferUnlocked { get; set; }
         public DbSet<NftsNextCollectionIdIncrementedModel> EventNftsNextCollectionIdIncremented { get; set; }
         public DbSet<NftsOwnerChangedModel> EventNftsOwnerChanged { get; set; }
-        public DbSet<NftsOwnershipAcceptanceChangedModel> EventNftsOwnershipAcceptanceChanged { get; set; }
+        //public DbSet<NftsOwnershipAcceptanceChangedModel> EventNftsOwnershipAcceptanceChanged { get; set; }
         public DbSet<NftsTipSentModel> EventNftsTipSent { get; set; }
         public DbSet<NftsTransferApprovedModel> EventNftsTransferApproved { get; set; }
         public DbSet<NftsTransferredModel> EventNftsTransferred { get; set; }
@@ -162,7 +162,7 @@ namespace Polkanalysis.Infrastructure.Database
             modelBuilder.Entity<NftsItemTransferUnlockedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.Item });
             modelBuilder.Entity<NftsNextCollectionIdIncrementedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Next_id });
             modelBuilder.Entity<NftsOwnerChangedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.New_owner });
-            modelBuilder.Entity<NftsOwnershipAcceptanceChangedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Who, c.Maybe_collection});
+            //modelBuilder.Entity<NftsOwnershipAcceptanceChangedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Who});
             modelBuilder.Entity<NftsTipSentModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.Item, c.Sender, c.Receiver, c.Amount});
             modelBuilder.Entity<NftsTransferApprovedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.Item, c.Owner, c.Delegate, c.Deadline});
             modelBuilder.Entity<NftsTransferredModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Collection, c.Item, c.From, c.To });

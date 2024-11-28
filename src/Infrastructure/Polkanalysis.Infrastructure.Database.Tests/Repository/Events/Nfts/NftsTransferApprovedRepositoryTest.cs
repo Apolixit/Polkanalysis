@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 
         protected override void mockDatabase()
         {
-            _substrateDbContext.EventNftsTransferApproved.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "TransferApproved", 10, 20, Charlie.ToString(), Dave.ToString(), 50));
+            _substrateDbContext.EventNftsTransferApproved.Add(new("Polkadot", 0, new DateTime(2024, 01, 01), 0, "Nfts", "TransferApproved", 10, MockItemNft, Charlie.ToString(), Dave.ToString(), 50));
         }
 
         [Test]
@@ -41,11 +41,11 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
         }
 
         [Test]
-        [TestCase(0, 200_000_000_000, MockAddress3, MockAddress4, 40u, 20)]
-        public async Task BuildModel_WhenValidTransferApproved_ShouldBuildModelSuccessfullyAsync(double collection, double item, string owner, string delegateParam, uint? deadline, double expected1)
+        [TestCase(0, MockItemNft, MockAddress3, MockAddress4, 40u, MockItemNft)]
+        public async Task BuildModel_WhenValidTransferApproved_ShouldBuildModelSuccessfullyAsync(double collection, string item, string owner, string delegateParam, uint? deadline, string expected1)
         {
             var bt = new BaseTuple<IncrementableU256, U128, SubstrateAccount, SubstrateAccount, BaseOpt<U32>>();
-            bt.Create(new IncrementableU256(collection), new U128(new BigInteger(item)), new SubstrateAccount(owner), new SubstrateAccount(delegateParam), new BaseOpt<U32>(new U32(deadline!.Value)));
+            bt.Create(new IncrementableU256(collection), new U128(BigInteger.Parse(item)), new SubstrateAccount(owner), new SubstrateAccount(delegateParam), new BaseOpt<U32>(new U32(deadline!.Value)));
 
             var enumTransferApproved = new Blockchain.Contracts.Pallet.Nfts.Enums.EnumEvent();
             enumTransferApproved.Create(
@@ -60,10 +60,10 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             Assert.That(model.ModuleName, Is.EqualTo("Nfts"));
             Assert.That(model.ModuleEvent, Is.EqualTo("TransferApproved"));
             Assert.That(model.Collection, Is.EqualTo(collection));
-Assert.That(model.Owner, Is.EqualTo(owner));
-Assert.That(model.Delegate, Is.EqualTo(delegateParam));
-Assert.That(model.Deadline, Is.EqualTo(deadline));
-Assert.That(model.Item, Is.EqualTo(expected1));
+            Assert.That(model.Owner, Is.EqualTo(owner));
+            Assert.That(model.Delegate, Is.EqualTo(delegateParam));
+            Assert.That(model.Deadline, Is.EqualTo(deadline));
+            Assert.That(model.ItemValue(), Is.EqualTo(BigInteger.Parse(expected1)));
         }
 
         [Test]
@@ -72,10 +72,10 @@ Assert.That(model.Item, Is.EqualTo(expected1));
             var res = await _nftsTransferApprovedRepository.SearchAsync(new()
             {
                 Collection = NumberCriteria<double>.Equal(10),
-				Item = NumberCriteria<double>.Equal(20),
-				Owner = Charlie.ToString(),
-				Delegate = Dave.ToString(),
-				Deadline = NumberCriteria<uint>.Equal(50)
+                Item = MockItemNft,
+                Owner = Charlie.ToString(),
+                Delegate = Dave.ToString(),
+                Deadline = NumberCriteria<uint>.Equal(50)
             }, CancellationToken.None);
 
             Assert.That(res.Count(), Is.EqualTo(1));
