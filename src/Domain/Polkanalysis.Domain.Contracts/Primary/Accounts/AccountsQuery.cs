@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
-    public class AccountsQuery : IRequest<Result<PagedResponseDto<AccountLightDto>, ErrorResult>>
+    public class AccountsQuery : IRequest<Result<PagedResponseDto<AccountLightDto>, ErrorResult>>, ICached
     {
         public AccountsQuery() {
             Pagination = Pagination.Default;
@@ -26,5 +26,10 @@ namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 
         public AccountType? AccountRole { get; set; }
         public Pagination Pagination { get; set; }
+
+        public int CacheDurationInMinutes => Constants.Cache.MediumCache;
+
+        public string GenerateCacheKey()
+            => $"{nameof(AccountsQuery)}";
     }
 }

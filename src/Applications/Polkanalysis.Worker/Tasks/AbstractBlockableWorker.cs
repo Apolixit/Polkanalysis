@@ -25,14 +25,14 @@ namespace Polkanalysis.Worker.Tasks
         protected readonly IDomainMetrics _domainMetrics = domainMetrics;
         private readonly ILogger _logger = logger;
 
-        protected BlockPerimeter _blockPerimeter;
+        protected BlockPerimeter _blockPerimeter = default!;
         protected abstract string WorkerName { get; }
 
         protected abstract Task AnalyseInnerAsync(BlockNumber blockNumber, Hash blockHash, CancellationToken stoppingToken);
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            RunAsync(stoppingToken);
+            await RunAsync(stoppingToken);
         }
 
         /// <summary>

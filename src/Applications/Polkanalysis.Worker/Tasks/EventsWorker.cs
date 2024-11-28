@@ -46,18 +46,6 @@ namespace Polkanalysis.Worker.Tasks
 
         }
 
-        private async Task SaveBlockInformationAsync(BlockNumber blockNumber, CancellationToken token)
-        {
-            // Save block information into database
-            await _mediator.Send(new SavedBlocksCommand(blockNumber), token);
-        }
-
-        private async Task SaveExtrinsicInformationAsync(BlockNumber blockNumber, CancellationToken token)
-        {
-            // Save extrinsic information into database
-            await _mediator.Send(new SavedExtrinsicsCommand(blockNumber), token);
-        }
-
         private async Task SaveEventsInformationAsync(BlockNumber blockNumber, CancellationToken token)
         {
             // Save event information into database
