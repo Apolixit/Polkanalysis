@@ -12,8 +12,8 @@ namespace Polkanalysis.Domain.Contracts.Common
             PageNumber = pageNumber;
         }
 
-        public int PageSize { get; set; } = Constants.DefaultPageSize;
-        public int PageNumber { get; set; } = Constants.DefaultPageNumber;
+        public int PageSize { get; set; } = Constants.Pagination.DefaultPageSize;
+        public int PageNumber { get; set; } = Constants.Pagination.DefaultPageNumber;
 
         public static Pagination Default => new Pagination();
     }

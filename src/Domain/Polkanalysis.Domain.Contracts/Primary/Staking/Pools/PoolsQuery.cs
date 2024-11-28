@@ -13,7 +13,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.Staking.Pools
 {
     public class PoolsQuery : IRequest<Result<IEnumerable<PoolLightDto>, ErrorResult>>, ICached
     {
-        public int CacheDurationInMinutes => 30;
+        public int CacheDurationInMinutes => Settings.Constants.Cache.FastCache;
 
         public string GenerateCacheKey()
         {

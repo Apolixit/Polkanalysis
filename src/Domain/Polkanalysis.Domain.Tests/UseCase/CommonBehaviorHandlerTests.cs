@@ -11,6 +11,7 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Common;
 using Polkanalysis.Domain.UseCase;
 using Substrate.NetApi.Extensions;
+using Polkanalysis.Domain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.UseCase
 {
@@ -47,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase
 
     public class ConcreteQuery(string Name) : IRequest<Result<SampleDto, ErrorResult>>, ICached
     {
-        public int CacheDurationInMinutes => 1;
+        public int CacheDurationInMinutes => Contracts.Settings.Constants.Cache.VeryFastCache;
 
         public string GenerateCacheKey()
         {

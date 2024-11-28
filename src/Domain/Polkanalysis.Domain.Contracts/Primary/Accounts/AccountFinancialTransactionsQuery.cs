@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
-    public class AccountFinancialTransactionsQuery : IRequest<Result<AccountFinancialTransactionsDto, ErrorResult>>
+    public class AccountFinancialTransactionsQuery : IRequest<Result<AccountFinancialTransactionsDto, ErrorResult>>, ICached
     {
         protected AccountFinancialTransactionsQuery()
         {
@@ -35,5 +35,10 @@ namespace Polkanalysis.Domain.Contracts.Primary.Accounts
         public string AccountAddress { get; set; }
         public RangeDate RangeDate { get; set; }
         public Pagination Pagination { get; set; }
+
+        public int CacheDurationInMinutes => Constants.Cache.MediumCache;
+
+        public string GenerateCacheKey()
+            => $"{nameof(AccountFinancialTransactionsQuery)}_{AccountAddress}_{(RangeDate.From is not null ? RangeDate.From.Value.ToString("dd.MM.yyyy") : "0")}_{(RangeDate.To is not null ? RangeDate.To.Value.ToString("dd.MM.yyyy") : "0")}";
     }
 }

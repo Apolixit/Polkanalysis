@@ -66,7 +66,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events
             var res = _eventsFactory.GetSearchCriteriasParameters(balancesDustLostCriteria.GetType()).ToArray();
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.Count(), Is.EqualTo(4));
+            Assert.That(res.Length, Is.EqualTo(4));
         }
 
         [Test]

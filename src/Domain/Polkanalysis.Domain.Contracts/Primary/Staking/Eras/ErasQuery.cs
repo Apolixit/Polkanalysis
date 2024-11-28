@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.Staking.Eras
     {
         public string? ValidatorAddress { get; set; }
 
-        public int CacheDurationInMinutes => 30;
+        public int CacheDurationInMinutes => Settings.Constants.Cache.FastCache;
 
         public string GenerateCacheKey()
         {

@@ -23,6 +23,7 @@ using Substrate.NET.Utils;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types.Base;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
@@ -56,7 +57,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         /// <summary>
         /// The number of custom events that have been tracked and inserted into the database for a given block
         /// </summary>
-        private List<int> _nbTrackedEvents = new List<int>();
+        private readonly List<int> _nbTrackedEvents = new List<int>();
 
         public SavedEventsHandler(ISubstrateService substrateService, IEventsFactory eventsFactory, ILogger<SavedEventsHandler> logger, IDistributedCache cache, SubstrateDbContext dbContext, ISubstrateDecoding substrateDecode, IDomainMetrics domainMetrics, ICoreService coreService, IConfiguration configuration) : base(logger, cache)
         {
