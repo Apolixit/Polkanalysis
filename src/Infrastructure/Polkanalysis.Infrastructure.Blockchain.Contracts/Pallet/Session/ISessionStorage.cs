@@ -64,6 +64,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa> key, CancellationToken token);
+        public Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa32> key, CancellationToken token);
     }
 }

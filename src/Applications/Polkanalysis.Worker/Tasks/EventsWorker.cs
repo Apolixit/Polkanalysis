@@ -1,12 +1,23 @@
 ﻿using Microsoft.Extensions.Logging;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Polkanalysis.Worker.Parameters.Context;
 using Polkanalysis.Worker.Parameters;
+using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Microsoft.Extensions.Hosting;
+using System.Diagnostics.Metrics;
+using Polkanalysis.Domain.Metrics;
+using Substrate.NetApi;
 using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
+using System;
+using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Metrics;
 
 namespace Polkanalysis.Worker.Tasks
@@ -14,21 +25,16 @@ namespace Polkanalysis.Worker.Tasks
     /// <summary>
     /// Fetch events and call the domain to insert the information into the database
     /// </summary>
-    public class EventsWorker : AbstractBlockableWorker
+    public class EventsWorker(
+        ISubstrateService substrateService,
+        IExplorerService explorerService,
+        PerimeterService perimeterService,
+        ILogger<EventsWorker> logger,
+        IDomainMetrics domainMetrics,
+        IMediator mediator) : AbstractBlockableWorker(substrateService, explorerService, perimeterService, mediator, domainMetrics, logger)
     {
-        private readonly ILogger<EventsWorker> _logger;
+        private readonly ILogger<EventsWorker> _logger = logger;
         protected override string WorkerName => nameof(EventsWorker);
-
-        public EventsWorker(
-            ISubstrateService substrateService,
-            IExplorerService explorerservice,
-            PerimeterService perimeterService,
-            ILogger<EventsWorker> logger,
-            IDomainMetrics domainMetrics,
-            IMediator mediator) : base(substrateService, explorerservice, perimeterService, mediator, domainMetrics, logger)
-        {
-            _logger = logger;
-        }
 
         protected override async Task AnalyseInnerAsync(BlockNumber blockNumber, Hash blockHash, CancellationToken stoppingToken)
         {
@@ -44,6 +50,18 @@ namespace Polkanalysis.Worker.Tasks
                 _logger.LogError(ex, "[{workerName}] Fail to get events from block {blockNum}", WorkerName, blockNumber.Value);
             }
 
+        }
+
+        private async Task SaveBlockInformationAsync(BlockNumber blockNumber, CancellationToken token)
+        {
+            // Save block information into database
+            await _mediator.Send(new SavedBlocksCommand(blockNumber), token);
+        }
+
+        private async Task SaveExtrinsicInformationAsync(BlockNumber blockNumber, CancellationToken token)
+        {
+            // Save extrinsic information into database
+            await _mediator.Send(new SavedExtrinsicsCommand(blockNumber), token);
         }
 
         private async Task SaveEventsInformationAsync(BlockNumber blockNumber, CancellationToken token)

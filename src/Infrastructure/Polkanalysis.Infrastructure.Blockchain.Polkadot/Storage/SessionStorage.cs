@@ -26,7 +26,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             return Map<IType, BaseVec<U32>>(await _client.SessionStorage.DisabledValidatorsAsync(token));
         }
 
-        public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa> key, CancellationToken token)
+        public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa32> key, CancellationToken token)
         {
             // (Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>
             var version = await GetVersionAsync(token);

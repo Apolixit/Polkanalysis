@@ -77,19 +77,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             }
         }
 
-        private IRpc? _rpc = null;
-        public override IRpc Rpc
-        {
-            get
-            {
-                if (_rpc == null)
-                {
-                    _rpc = new Rpc(PolkadotClient, new TmpChain(PolkadotClient, MetadataHelper.GetMetadataFromHex));
-                }
+        //private IRpc? _rpc = null;
+        //public override IRpc Rpc
+        //{
+        //    get
+        //    {
+        //        if (_rpc == null)
+        //        {
+        //            _rpc = new Rpc(PolkadotClient, new TmpChain(PolkadotClient, MetadataHelper.GetMetadataFromHex));
+        //        }
 
-                return _rpc;
-            }
-        }
+        //        return _rpc;
+        //    }
+        //}
 
         public override IConstants Constants => throw new NotImplementedException();
 

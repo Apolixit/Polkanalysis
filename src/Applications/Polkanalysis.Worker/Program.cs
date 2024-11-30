@@ -58,6 +58,10 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddHostedService<VersionWorker>();
 
     services
+    //.AddHostedService<EventsWorker>()
+    //.AddHostedService<PriceWorker>()
+    //.AddHostedService<StakingWorker>()
+    .AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {

@@ -53,7 +53,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hexa> RandomnessAsync(CancellationToken token);
+        public Task<Hexa32> RandomnessAsync(CancellationToken token);
 
         /// <summary>
         /// Pending epoch configuration change that will be applied when the next epoch is enacted.
@@ -67,7 +67,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hexa> NextRandomnessAsync(CancellationToken token);
+        public Task<Hexa32> NextRandomnessAsync(CancellationToken token);
 
         /// <summary>
         /// Next epoch authorities.
@@ -97,7 +97,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BaseVec<Hexa>> UnderConstructionAsync(U32 key, CancellationToken token);
+        public Task<BaseVec<Hexa32>> UnderConstructionAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  Temporary value (cleared at block finalization) which is `Some`
@@ -115,7 +115,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BaseOpt<Hexa>> AuthorVrfRandomnessAsync(CancellationToken token);
+        public Task<BaseOpt<Hexa32>> AuthorVrfRandomnessAsync(CancellationToken token);
 
         /// <summary>
         ///  The block numbers when the last and current epoch have started, respectively `N-1` and

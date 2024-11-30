@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -44,7 +45,9 @@ namespace Polkanalysis.Worker.Tasks
 
             var lastStoredVersion = storedVersions.Value.LastOrDefault();
             uint? lastStoredVersionNum = storedVersions.Value.LastOrDefault()?.SpecVersion;
-            var lastBlockNum = await _polkadotService.Storage.System.NumberAsync(cancellationToken);
+            //var lastBlockNum = await _polkadotService.Storage.System.NumberAsync(cancellationToken);
+
+            var lastBlockNum = (await _polkadotService.Rpc.Chain.GetHeaderAsync()).Number;
             currentBlock = storedVersions.Value.LastOrDefault()?.BlockStart ?? 1;
 
             if (lastStoredVersion != null)

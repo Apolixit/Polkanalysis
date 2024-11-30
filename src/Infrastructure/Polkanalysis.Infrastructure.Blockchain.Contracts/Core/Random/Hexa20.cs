@@ -11,18 +11,18 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random
 {
-    public class Hexa : FlexibleNameable
+    public class Hexa20 : FlexibleNameable
     {
-        public Hexa()
+        public Hexa20()
         {
-            IntegerSize = 32;
+            IntegerSize = 20;
         }
 
-        public Hexa(string hex) : this()
+        public Hexa20(string hex) : this()
         {
             Create(Utils.HexToByteArray(hex));
         }
-        public Hexa(BaseType value) : base(value) { }
+        public Hexa20(BaseType value) : base(value) { }
         public override string Display()
         {
             return Utils.Bytes2HexString(Value.ToBytes());

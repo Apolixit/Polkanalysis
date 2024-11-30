@@ -490,6 +490,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mapping
                 CreateMap<IType, Contracts.Pallet.Xcm.v2.Enums.EnumOutcome>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumOutcome>());
                 CreateMap<IType, Contracts.Pallet.Xcm.v2.Enums.EnumResponse>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumResponse>());
                 CreateMap<IType, Contracts.Pallet.Xcm.v2.Enums.EnumWeightLimit>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumWeightLimit>());
+                
+                CreateMap<IType, Contracts.Pallet.Nfts.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Nfts.Enums.EnumEvent>());
+                CreateMap<IType, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.EnumAttributeNamespace>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.EnumAttributeNamespace>());
+                CreateMap<IType, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.EnumPalletAttributes>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.EnumPalletAttributes>());
+                CreateMap<IType, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.EnumPriceDirection>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Enums.EnumPriceDirection>());
 
                 CreateMap<IType, EnumFreezeReason>().ConvertUsing(new EnumConverter<EnumFreezeReason>());
                 CreateMap<IType, EnumRuntimeFreezeReason>().ConvertUsing(new EnumConverter<EnumRuntimeFreezeReason>());
@@ -634,6 +639,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mapping
                 baseEnumExtBytes.AddRange(source.GetValue2().Encode());
                 //baseEnumExtBytes.AddRange(new BaseVoid().Encode());
             }
+
+
 
             destination.Create(baseEnumExtBytes.ToArray());
 

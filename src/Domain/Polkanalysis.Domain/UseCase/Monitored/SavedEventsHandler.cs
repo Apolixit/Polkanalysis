@@ -1,6 +1,5 @@
 ﻿using Algolia.Search.Models.Common;
 using FluentValidation;
-using MessagePack.Resolvers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;

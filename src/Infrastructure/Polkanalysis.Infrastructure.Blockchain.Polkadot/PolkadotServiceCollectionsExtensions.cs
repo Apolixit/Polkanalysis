@@ -8,6 +8,8 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Common;
+using Polkanalysis.Infrastructure.Blockchain.Mythos;
+using Polkanalysis.Infrastructure.Blockchain.Mythos.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -33,6 +35,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
                 case "peoplechain":
                     RegisterSubstrateService(services, typeof(ISubstrateService), typeof(PeopleChainService), registerAsSingleton);
                     services.AddTransient<PeopleChainMapping>();
+                    break;
+                case "mythos":
+                    RegisterSubstrateService(services, typeof(ISubstrateService), typeof(MythosService), registerAsSingleton);
+                    services.AddTransient<MythosMapping>();
                     break;
                 default:
                     throw new NotSupportedException($"{blockchainName} is not supported by the application");

@@ -30,8 +30,8 @@ namespace Polkanalysis.Domain.Service
         {
             _substrateNodeRepository = substrateNodeRepository;
 
-            if (RequiredStorage.Any(s => s == null))
-                throw new PalletNotImplementedException($"{_substrateNodeRepository.BlockchainName} does not implement all storages required by {nameof(IAccountService)}");
+            //if (RequiredStorage.Any(s => s == null))
+            //    throw new PalletNotImplementedException($"{_substrateNodeRepository.BlockchainName} does not implement all storages required by {nameof(IAccountService)}");
 
             _db = db;
             _logger = logger;

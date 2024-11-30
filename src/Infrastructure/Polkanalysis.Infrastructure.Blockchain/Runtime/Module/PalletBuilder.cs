@@ -233,30 +233,28 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime.Module
         private NodeType? nodeTypeFromPolkanalysisInfrastructure(Type type, MetaData metadata)
         {
             var customAttribute = type.GetCustomAttribute<DomainMappingAttribute>();
-            if (customAttribute is null) return null;
+            if (customAttribute is null)
+                throw new InvalidOperationException($"Domain mapping attribute is not implemented for {type.FullName}");
 
-            List<string> arguments = customAttribute.ExtractAsList(type.Name);
-
-            //arguments = splittedNamespace.Skip(5).ToList();
-
-            //var palletName = ParseComplexPalletName(arguments[0]);
-            //arguments[0] = palletName.ToLowerInvariant() == "system" ? "frame_system" : $"pallet_{palletName.ToLowerInvariant()}";
-            //arguments[1] = $"pallet";
-
-            NodeType? nodeType = null;
-            nodeType = metadata.NodeMetadata.Types
-                .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
-
-            if (nodeType is null)
+            foreach(var originClass in customAttribute.OriginClasses)
             {
-                arguments.Insert(1, "pallet"); // Sorry ...
+                List<string> arguments = DomainMappingAttribute.ExtractAsList(originClass, type.Name);
 
+                NodeType? nodeType = null;
                 nodeType = metadata.NodeMetadata.Types
-                .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
-            }
+                    .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
 
-            if (nodeType is not null)
-                return nodeType;
+                if (nodeType is null)
+                {
+                    arguments.Insert(1, "pallet"); // Sorry ...
+
+                    nodeType = metadata.NodeMetadata.Types
+                    .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
+                }
+
+                if (nodeType is not null)
+                    return nodeType;
+            }
 
             return null;
         }

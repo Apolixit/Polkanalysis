@@ -39,37 +39,13 @@ services:
     networks:
       - polkanalysis_network
 
-  prometheus:
-    container_name: Polkanalysis_Prometheus
-    build:
-      context: ./docker/prometheus
-    depends_on:
-      - polkanalysis.worker
+  cache:
+    container_name: Polkanalysis_Redis
+    image: redis:latest
+    restart: always
     ports:
-      - 9090:9090
-    networks:
-      - polkanalysis_network
-
-  grafana:
-    container_name: Polkanalysis_Grafana
-    image: grafana/grafana-enterprise
-    restart: unless-stopped
-    ports:
-     - '3000:3000'
-    networks:
-      - polkanalysis_network
-
-  otel-collector:
-    container_name: Polkanalysis_OtelCollector
-    image: otel/opentelemetry-collector:0.97.0
-    command: ["--config=/etc/otel-collector-config.yaml"]
+      - '6379:6379'
+    # command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     volumes:
-      - ./docker/otel-collector/otel-collector-config.yaml:/etc/otel-collector-config.yaml
-    ports:
-      - "8888:8888"
-      - "8889:8889"
-      - "13133:13133"
-      - "4317:4317"
-    networks:
-      - polkanalysis_network
+      - polkanalysis_data:/data
 

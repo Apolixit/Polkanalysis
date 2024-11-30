@@ -682,6 +682,1144 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.ToTable("EventIdentityIdentitySet");
                 });
 
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsAllApprovalsCancelledModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Owner");
+
+                    b.ToTable("EventNftsAllApprovalsCancelled");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsApprovalCancelledModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Delegate")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Owner", "Delegate");
+
+                    b.ToTable("EventNftsApprovalCancelled");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsBurnedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Owner");
+
+                    b.ToTable("EventNftsBurned");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsCollectionConfigChangedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection");
+
+                    b.ToTable("EventNftsCollectionConfigChanged");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsCollectionLockedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection");
+
+                    b.ToTable("EventNftsCollectionLocked");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsCollectionMaxSupplySetModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Max_supply")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Max_supply");
+
+                    b.ToTable("EventNftsCollectionMaxSupplySet");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsCollectionMetadataClearedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection");
+
+                    b.ToTable("EventNftsCollectionMetadataCleared");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsCollectionMetadataSetModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Data")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Data");
+
+                    b.ToTable("EventNftsCollectionMetadataSet");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsCollectionMintSettingsUpdatedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection");
+
+                    b.ToTable("EventNftsCollectionMintSettingsUpdated");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsCreatedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Creator")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Creator", "Owner");
+
+                    b.ToTable("EventNftsCreated");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsDestroyedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection");
+
+                    b.ToTable("EventNftsDestroyed");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsForceCreatedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Owner");
+
+                    b.ToTable("EventNftsForceCreated");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsIssuedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Owner");
+
+                    b.ToTable("EventNftsIssued");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemAttributesApprovalAddedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Delegate")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Delegate");
+
+                    b.ToTable("EventNftsItemAttributesApprovalAdded");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemAttributesApprovalRemovedModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BlockchainName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Delegate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Item")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventNftsItemAttributesApprovalRemoved");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemBoughtModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Seller")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Buyer")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Price", "Seller", "Buyer");
+
+                    b.ToTable("EventNftsItemBought");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemMetadataClearedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item");
+
+                    b.ToTable("EventNftsItemMetadataCleared");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemMetadataSetModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Data")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Data");
+
+                    b.ToTable("EventNftsItemMetadataSet");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemPriceRemovedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item");
+
+                    b.ToTable("EventNftsItemPriceRemoved");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemPriceSetModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Whitelisted_buyer")
+                        .HasColumnType("text");
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Price");
+
+                    b.ToTable("EventNftsItemPriceSet");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemPropertiesLockedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Lock_metadata")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Lock_attributes")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Lock_metadata", "Lock_attributes");
+
+                    b.ToTable("EventNftsItemPropertiesLocked");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemTransferLockedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item");
+
+                    b.ToTable("EventNftsItemTransferLocked");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsItemTransferUnlockedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item");
+
+                    b.ToTable("EventNftsItemTransferUnlocked");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsNextCollectionIdIncrementedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Next_id")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Next_id");
+
+                    b.ToTable("EventNftsNextCollectionIdIncremented");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsOwnerChangedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("New_owner")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "New_owner");
+
+                    b.ToTable("EventNftsOwnerChanged");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsTeamChangedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Issuer")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Admin")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Freezer")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Issuer", "Admin", "Freezer");
+
+                    b.ToTable("EventNftsTeamChanged");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsTipSentModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sender")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Receiver")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Sender", "Receiver", "Amount");
+
+                    b.ToTable("EventNftsTipSent");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsTransferApprovedModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Delegate")
+                        .HasColumnType("text");
+
+                    b.Property<long>("Deadline")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "Owner", "Delegate", "Deadline");
+
+                    b.ToTable("EventNftsTransferApproved");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nfts.NftsTransferredModel", b =>
+                {
+                    b.Property<string>("BlockchainName")
+                        .HasColumnType("text");
+
+                    b.Property<long>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ModuleName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ModuleEvent")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Collection")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("text");
+
+                    b.Property<string>("From")
+                        .HasColumnType("text");
+
+                    b.Property<string>("To")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("BlockchainName", "BlockId", "EventId", "ModuleName", "ModuleEvent", "Collection", "Item", "From", "To");
+
+                    b.ToTable("EventNftsTransferred");
+                });
+
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.NominationPools.NominationPoolsBondedModel", b =>
                 {
                     b.Property<string>("BlockchainName")
@@ -1299,12 +2437,6 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraStakersModel", b =>
                 {
-                    b.Property<int>("EraStakersId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EraStakersId"));
-
                     b.Property<string>("BlockchainName")
                         .HasColumnType("text");
 
@@ -1326,7 +2458,7 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<BigInteger>("TotalStake")
                         .HasColumnType("numeric");
 
-                    b.HasKey("EraStakersId", "BlockchainName", "EraId", "ValidatorAddress");
+                    b.HasKey("BlockchainName", "EraId", "ValidatorAddress");
 
                     b.ToTable("EraStakersModels");
                 });
@@ -1430,7 +2562,7 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.HasOne("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraStakersModel", "EraStakers")
                         .WithMany("EraNominatorsVote")
                         .HasForeignKey("EraStakersId")
-                        .HasPrincipalKey("EraStakersId")
+                        .HasPrincipalKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

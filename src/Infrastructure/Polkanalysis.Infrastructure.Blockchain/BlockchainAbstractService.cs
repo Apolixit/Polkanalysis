@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Configuration.Contracts.Endpoints;
+using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
@@ -32,7 +33,18 @@ namespace Polkanalysis.Infrastructure.Blockchain
         public abstract SubstrateClient AjunaClient { get; }
         public abstract string BlockchainName { get; }
         public abstract IStorage Storage { get; }
-        public abstract IRpc Rpc { get; }
+        
+        private IRpc? _rpc = null;
+        public virtual IRpc Rpc
+        {
+            get
+            {
+                if (_rpc == null)
+                    _rpc = new Rpc(AjunaClient, new TmpChain(AjunaClient, MetadataHelper.GetMetadataFromHex));
+
+                return _rpc;
+            }
+        }
         public abstract IConstants Constants { get; }
         public abstract ICalls Calls { get; }
         public abstract IEvents Events { get; }
