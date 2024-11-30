@@ -25,31 +25,16 @@ namespace Polkanalysis.Worker.Tasks
     /// <summary>
     /// Fetch events and call the domain to insert the information into the database
     /// </summary>
-    public class EventsWorker : AbstractBlockableWorker
+    public class EventsWorker(
+        ISubstrateService substrateService,
+        IExplorerService explorerService,
+        PerimeterService perimeterService,
+        ILogger<EventsWorker> logger,
+        IDomainMetrics domainMetrics,
+        IMediator mediator) : AbstractBlockableWorker(substrateService, explorerService, perimeterService, mediator, domainMetrics, logger)
     {
-        private readonly ISubstrateService _polkadotRepository;
-        private readonly IExplorerService _explorerRepository;
-        private readonly PerimeterService _perimeterService;
-        private readonly IMediator _mediator;
-        private readonly IDomainMetrics _domainMetrics;
-        private readonly ILogger<EventsWorker> _logger;
+        private readonly ILogger<EventsWorker> _logger = logger;
         protected override string WorkerName => nameof(EventsWorker);
-
-        public EventsWorker(
-            ISubstrateService substrateService,
-            IExplorerService explorerservice,
-            PerimeterService perimeterService,
-            ILogger<EventsWorker> logger,
-            IDomainMetrics domainMetrics,
-            IMediator mediator) : base(substrateService, explorerservice, perimeterService, mediator, domainMetrics, logger)
-        {
-            _polkadotRepository = polkadotRepository;
-            _explorerRepository = explorerRepository;
-            _perimeterService = perimeterService;
-            _logger = logger;
-            _domainMetrics = domainMetrics;
-            _mediator = mediator;
-        }
 
         protected override async Task AnalyseInnerAsync(BlockNumber blockNumber, Hash blockHash, CancellationToken stoppingToken)
         {
