@@ -186,15 +186,12 @@ namespace Polkanalysis.Infrastructure.Database.Repository
             await databaseLinked.DatabaseInsert.InsertAsync(eventModel, details, token);
         }
 
-        public EventElementFactory? TryFind(string runtimeEvent, string eventValue)
-        {
-            return Mapped.FirstOrDefault(x =>
-            x.EventName.Equals($"{runtimeEvent}.{eventValue}"));
-            //return Mapped.FirstOrDefault(x =>
-            //x.RuntimeEvent.Equals(runtimeEvent) &&
-            //x.EventValue.ToString().Equals(eventValue.ToString()));
-        }
-        public bool Has(string runtimeEvent, string eventValue)
+        public EventElementFactory? TryFind(RuntimeEvent runtimeEvent, Enum eventValue) => TryFind(runtimeEvent.ToString(), eventValue.ToString());
+
+        public EventElementFactory? TryFind(string runtimeEventName, string eventValueName)
+            => Mapped.FirstOrDefault(x => x.EventName.Equals($"{runtimeEventName}.{eventValueName}"));
+
+        public bool Has(RuntimeEvent runtimeEvent, Enum eventValue)
         {
             return TryFind(runtimeEvent, eventValue) != null;
         }

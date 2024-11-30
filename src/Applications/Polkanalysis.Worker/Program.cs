@@ -22,6 +22,7 @@ using FluentValidation;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Metrics;
+using Polkanalysis.Worker;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
 
@@ -34,13 +35,33 @@ var host = Host.CreateDefaultBuilder(args)
 
     (logger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
 
-    logger.LogInformation("Starting Polkanalysis Worker hosted service for {blockchainName}...", blockchainName);
+    logger.LogInformation("Starting Polkanalysis Worker hosted service for {blockchainName} node {wssEndpoint}...", blockchainName, hostContext.Configuration["SubstrateEndpoint:Endpoint"]);
+
+    var workerConfig = hostContext.Configuration.GetSection("Worker").Get<WorkerConfig>() ?? throw new InvalidOperationException("Worker section is not defined in appSettings.json");
+
+    if (workerConfig.BlocksConfig.IsEnabled)
+        services.AddHostedService<BlockWorker>();
+
+    if (workerConfig.ExtrinsicsConfig.IsEnabled)
+        services.AddHostedService<ExtrinsicsWorker>();
+
+    if (workerConfig.EventsConfig.IsEnabled)
+        services.AddHostedService<EventsWorker>();
+
+    if (workerConfig.PriceConfig.IsEnabled)
+        services.AddHostedService<PriceWorker>();
+
+    if (workerConfig.StakingConfig.IsEnabled)
+        services.AddHostedService<StakingWorker>();
+
+    if (workerConfig.VersionConfig.IsEnabled)
+        services.AddHostedService<VersionWorker>();
 
     services
-    .AddHostedService<EventsWorker>()
+    //.AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
     //.AddHostedService<StakingWorker>()
-    //.AddHostedService<VersionWorker>()
+    .AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {

@@ -26,6 +26,7 @@ using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using System.Diagnostics;
 using Substrate.NetApi.Model.Meta;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -55,6 +56,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _coreService.GetDateTimeFromTimestampAsync(MockHash, CancellationToken.None).Returns(new DateTime(2024, 1, 1));
             _substrateService.At(Arg.Any<Hash>()).GetMetadataAsync(CancellationToken.None).ReturnsNull();
 
+            var configuration = Substitute.For<IConfiguration>();
+            configuration["Worker:EventsConfig:SaveAllEvents"].Returns("true");
+
             _useCase = new SavedEventsHandler(_substrateService,
                                               _eventsFactory,
                                               _logger,
@@ -62,7 +66,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _substrateDbContext,
                                               _substrateDecoding,
                                               _domainMetrics,
-                                              _coreService);
+                                              _coreService,
+                                              configuration);
         }
 
         /// <summary>
@@ -307,6 +312,37 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             Assert.That(result.IsSuccess);
             Assert.That(_substrateDbContext.EventsInformation.Count(), Is.EqualTo(1));
             Assert.That(_substrateDbContext.EventsInformation.First().BlockDate, Is.EqualTo(new DateTime(2024, 2, 2)));
+        }
+
+        [Test]
+        public async Task SavedEventHandler_WithDbUpdateException_ShouldAddBusinessErrorAsync()
+        {
+            EventRecord killedAccountEvent = buildKilledAccountEvent();
+
+            _substrateService.At(Arg.Any<Hash>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
+                new BaseVec<EventRecord>([killedAccountEvent]));
+            _substrateDecoding.DecodeEventAsync(killedAccountEvent, null!, CancellationToken.None).ThrowsAsync(new DbUpdateException());
+            var command = new SavedEventsCommand(new BlockNumber(1));
+
+            var result = await _useCase!.Handle(command, CancellationToken.None);
+
+            Assert.That(result.IsSuccess, Is.False);
+        }
+
+        [Test]
+        public async Task SavedEventHandler_WithException_ShouldAddBusinessErrorAsync()
+        {
+            EventRecord killedAccountEvent = buildKilledAccountEvent();
+
+            _substrateService.At(Arg.Any<Hash>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
+                new BaseVec<EventRecord>([killedAccountEvent]));
+            _substrateDecoding.DecodeEventAsync(killedAccountEvent, null!, CancellationToken.None).ThrowsAsync(new Exception());
+
+            var command = new SavedEventsCommand(new BlockNumber(1));
+
+            var result = await _useCase!.Handle(command, CancellationToken.None);
+
+            Assert.That(result.IsSuccess, Is.False);
         }
     }
 }
