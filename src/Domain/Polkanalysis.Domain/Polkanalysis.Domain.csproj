@@ -21,14 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Algolia.Search" Version="6.17.0" />
-    <PackageReference Include="Ardalis.GuardClauses" Version="4.6.0" />
+    <PackageReference Include="Algolia.Search" Version="7.9.2" />
+    <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
     <PackageReference Include="CSharp.OperationResult" Version="0.1.6" />
-    <PackageReference Include="MediatR" Version="12.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Substrate.NET.Metadata" Version="0.1.6" />
     <PackageReference Include="MediatR.Courier" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
