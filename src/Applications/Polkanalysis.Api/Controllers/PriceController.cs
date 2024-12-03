@@ -17,6 +17,11 @@ namespace Polkanalysis.Api.Controllers
         {
         }
 
+        /// <summary>
+        /// Get token price for current connected blockchain at given date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>The token price information</returns>
         [HttpGet]
         [Produces(typeof(TokenPriceDto))]
         [Description("Get token price for current connected blockchain at given date")]
@@ -29,6 +34,12 @@ namespace Polkanalysis.Api.Controllers
             });
         }
 
+        /// <summary>
+        /// Retrieve token price for current connected blockchain between two dates
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns>Historical price informations</returns>
         [HttpGet("{from}/{to}")]
         [Produces(typeof(HistoricalPriceDto))]
         [Description("Retrieve token price for current connected blockchain between two dates")]

@@ -34,6 +34,11 @@ namespace Polkanalysis.Domain.UseCase
         protected readonly ILogger<TLogger> _logger;
         protected readonly IDistributedCache _cache;
 
+        /// <summary>
+        /// Current child handler name
+        /// </summary>
+        protected string HandlerName => GetType().Name;
+
         protected Handler(ILogger<TLogger> logger, IDistributedCache cache)
         {
             _logger = logger;
@@ -113,7 +118,7 @@ namespace Polkanalysis.Domain.UseCase
                 return await HandleInnerAsync(request, cancellationToken);
             } catch(Exception ex)
             {
-                _logger.LogError(ex, "[{handler}] Exception thrown by HandlerInnerAsync", "MasterHandler");
+                _logger.LogError(ex, "[{handler}] Exception thrown by HandlerInnerAsync", HandlerName);
                 return UseCaseError(ErrorType.BusinessError, $"An error occured", ErrorCriticity.High);
             }
             

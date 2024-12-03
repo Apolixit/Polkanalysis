@@ -7,12 +7,13 @@ namespace Polkanalysis.Components.Tests.Display
 {
     public class ViewSelectorTests : BunitTestContext
     {
-        [Test, Ignore("Todo debug")]
+        [Test]
         public void ViewSelector_SwitchBetweenView_ShouldSuceed()
         {
             ViewDisplayType? currentViewTypeSelected = null;
             Action<ViewDisplayType> onViewChangedHandler = (ViewDisplayType viewType) => { currentViewTypeSelected = viewType; };
 
+            var component = RenderComponent<ViewSelector>();
             var viewSelectorComponent = TestContext!.RenderComponent<ViewSelector>(p => p
             .Add(x => x.OnViewSelected, onViewChangedHandler)
             );

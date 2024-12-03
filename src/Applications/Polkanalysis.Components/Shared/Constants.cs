@@ -1,4 +1,5 @@
 ﻿using Polkanalysis.Components.Components.Search;
+using Polkanalysis.Domain.Contracts.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Polkanalysis.Components.Shared
         public static DateTime? DefaultDate => null;
         public static DateTime? DefaultTime => new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        public static int DefaultPageSize => 10;
+        public static int DefaultPageSize => ConstantsPagination.DefaultPageSize;
 
         public static Dictionary<string, ComponentParameter> DeclaredComponents => new()
         {

@@ -41,7 +41,7 @@ namespace Polkanalysis.Domain.Contracts.Settings
 
     public class ConstantsPagination
     {
-        public int DefaultPageSize { get; private set; } = 10;
-        public int DefaultPageNumber { get; private set; } = 1;
+        public const int DefaultPageSize = 10;
+        public const int DefaultPageNumber = 1;
     }
 }

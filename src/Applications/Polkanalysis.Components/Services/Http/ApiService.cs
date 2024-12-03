@@ -3,8 +3,8 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Configuration.Contracts;
 using Ardalis.GuardClauses;
+using Polkanalysis.Configuration.Contracts.Api;
 
 namespace Polkanalysis.Components.Services.Http
 {

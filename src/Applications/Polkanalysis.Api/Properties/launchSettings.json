@@ -12,6 +12,7 @@
     },
     "https": {
       "commandName": "Project",
+      "commandLineArgs": "peopleChain",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
