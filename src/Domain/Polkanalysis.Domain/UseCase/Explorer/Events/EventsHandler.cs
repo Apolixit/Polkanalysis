@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
 
         public async override Task<Result<IEnumerable<EventDto>, ErrorResult>> HandleInnerAsync(EventsQuery request, CancellationToken cancellationToken)
         {
-            var result = await _explorerRepository.GetEventsAsync(request.BlockId, cancellationToken);
+            var result = await _explorerRepository.GetEventsAsync(request.BlockNumber, cancellationToken);
 
             return Helpers.Ok(result);
         }

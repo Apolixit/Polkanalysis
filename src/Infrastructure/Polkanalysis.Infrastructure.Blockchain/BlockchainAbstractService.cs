@@ -181,7 +181,7 @@ namespace Polkanalysis.Infrastructure.Blockchain
                 _logger.LogError(ex.Message);
                 await TryToConnectToAnotherEndpointAsync(token);
 
-                throw;
+                throw new SubstrateErrorNodeConnectionException(BlockchainName, _endpointInformation.Name, _endpointInformation.Uri.ToString(), "Error while trying to reconnect", ex);
             }
             catch (WebSocketException ex)
             {
@@ -196,13 +196,13 @@ namespace Polkanalysis.Infrastructure.Blockchain
                 else
                     _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
 
-                throw;
+                throw new SubstrateErrorNodeConnectionException(BlockchainName, _endpointInformation.Name, _endpointInformation.Uri.ToString(), $"Error while trying to connect", ex);
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
 
-                throw;
+                throw new SubstrateErrorNodeConnectionException(BlockchainName, _endpointInformation.Name, _endpointInformation.Uri.ToString(), "Unexpected error", ex);
             }
 
             List<Task> tasks = new List<Task>();

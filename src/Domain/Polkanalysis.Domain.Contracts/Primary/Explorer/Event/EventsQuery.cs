@@ -12,6 +12,6 @@ namespace Polkanalysis.Domain.Contracts.Primary.Explorer.Event
 {
     public class EventsQuery : IRequest<Result<IEnumerable<EventDto>, ErrorResult>>
     {
-        public uint BlockId { get; set; }
+        public uint BlockNumber { get; set; }
     }
 }

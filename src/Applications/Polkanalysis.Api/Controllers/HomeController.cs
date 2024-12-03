@@ -12,11 +12,15 @@ namespace Polkanalysis.Api.Controllers
         {
         }
 
+        /// <summary>
+        /// Default json message when calling API with no routes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet(), Route("/")]
         [Produces(typeof(HomeResponse))]
         public ActionResult<HomeResponse> Index()
         {
-            return new HomeResponse("0.1", "Polkanalysis API is currently under developpement. Release date estimated to Q1 2024. Check developpement activity on https://github.com/Apolixit/Polkanalysis");
+            return new HomeResponse("0.1", "Polkanalysis API is currently under developpement. Release date estimated to Q1 2025. Check developpement activity on https://github.com/Apolixit/Polkanalysis");
         }
     }
 }

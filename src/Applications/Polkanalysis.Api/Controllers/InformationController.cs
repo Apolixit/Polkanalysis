@@ -14,8 +14,14 @@ namespace Polkanalysis.Api.Controllers
         {
         }
 
+        /// <summary>
+        /// Return current connected blockchain global informations
+        /// </summary>
+        /// <returns>Blockchain informations</returns>
         [HttpGet()]
         [Produces(typeof(BlockchainDetailsDto))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Description("Return current connected blockchain global informations")]
         public async Task<ActionResult<BlockchainDetailsDto>> GetBlockchainInformationAsync()
         {

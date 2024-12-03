@@ -79,7 +79,7 @@ namespace Polkanalysis.Abstract.Tests
             }
             catch (Exception ex)
             {
-                Assert.Fail($"Substrate node is not currently running. Details : {ex.Message}");
+                Assert.Fail($"Node is not running : {ex.Message}");
             }
         }
 

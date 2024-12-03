@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Configuration.Contracts.Api;
 
 namespace Polkanalysis.Configuration.Extensions
 {

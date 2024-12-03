@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Configuration.Contracts.Api;
 using Polkanalysis.Domain.Contracts.Dto.Stats;
 using System.Net.Http.Json;
 

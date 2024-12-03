@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Configuration.Contracts.Api;
 using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Configuration.Contracts.Information;
 using System;

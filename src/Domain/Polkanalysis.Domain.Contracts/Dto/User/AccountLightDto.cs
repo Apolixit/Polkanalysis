@@ -9,7 +9,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
 {
     public class AccountLightDto
     {
-        public UserIdentityDto Address { get; set; }
+        public required UserIdentityDto Address { get; set; }
         public required BalancesDto Balances { get; set; }
     }
 }

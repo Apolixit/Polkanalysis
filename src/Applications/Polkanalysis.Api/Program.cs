@@ -13,6 +13,8 @@ using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Api.Filters;
+using Polkanalysis.Configuration.Contracts.Api;
 
 namespace Polkanalysis.Api
 {
@@ -23,6 +25,7 @@ namespace Polkanalysis.Api
             Microsoft.Extensions.Logging.ILogger microsoftLogger = default!;
             try
             {
+                var blockchainName = args[0] is null || args[0] == "--applicationName" ? "polkadot" : args[0];
                 var builder = WebApplication.CreateBuilder(args);
                 
                 var (microsftLogger, serilogLogger) = Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api", builder.Configuration);
@@ -33,14 +36,30 @@ namespace Polkanalysis.Api
 
                 // Add services to the container.
 
-                builder.Services.AddControllers().AddJsonOptions(x =>
+                // Manage controllers visibility depend of the blockchain
+                var controllerVisibility = new ApiVisibility(builder.Configuration).GetAvailableController(blockchainName).ToArray();
+
+                builder.Services.AddControllers(options => {
+                    options.Filters.Add(new ControllerVisibilityFilter(controllerVisibility));
+                }).AddJsonOptions(x =>
                 {
                     x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 });
 
-                // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
                 builder.Services.AddEndpointsApiExplorer();
-                builder.Services.AddSwaggerGen();
+                builder.Services.AddOpenApiDocument(options =>
+                {
+                    options.DocumentProcessors.Add(new ControllerVisibilityDocumentProcessor(controllerVisibility));
+                    options.PostProcess = document =>
+                    {
+                        document.Info = new NSwag.OpenApiInfo()
+                        {
+                            Title = $"Polkanalysis API for {blockchainName.ToUpper()}",
+                            Version = "v1",
+                            Description = $"A RESTful API that provides information about the {blockchainName.ToUpper()} blockchain.",
+                        };
+                    };
+                });
                 builder.Services.AddRouting(options =>
                 {
                     options.LowercaseUrls = true;
@@ -53,7 +72,7 @@ namespace Polkanalysis.Api
                 });
 
                 // For the API, we register Polkadot as singleton
-                builder.Services.AddSubstrateBlockchain("polkadot", registerAsSingleton: true);
+                builder.Services.AddSubstrateBlockchain(blockchainName, registerAsSingleton: true);
                 builder.Services.AddHttpClient();
                 builder.Services.AddEndpoint(builder.Configuration, registerAsSingleton: true);
                 builder.Services.AddSubstrateService();
@@ -61,6 +80,7 @@ namespace Polkanalysis.Api
                 builder.Services.AddSubstrateLogic();
                 builder.Services.AddSubstrateNodeBuilder();
                 builder.Services.AddMediatRAndPipelineBehaviors();
+                builder.Services.AddSingleton<IApiVisibility, ApiVisibility>();
 
                 builder.Services.AddCors(options =>
                 {
@@ -128,10 +148,9 @@ namespace Polkanalysis.Api
                 // Swagger will be available even in production, but not for now (need first release)
                 if(app.Environment.IsDevelopment())
                 {
-                    app.UseSwagger();
-                    app.UseSwaggerUI();
+                    app.UseOpenApi();
+                    app.UseSwaggerUi();
                 }
-                
 
                 app.UseHttpsRedirection();
                 app.UseAuthorization();
