@@ -16,6 +16,7 @@ using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Domain.Metrics;
+using Polkanalysis.Common.Monitoring.HealthCheck;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,11 +45,12 @@ builder.Services.AddSubstrateService();
 builder.Services.AddSubstrateLogic();
 builder.Services.AddSubstrateNodeBuilder();
 builder.Services.AddMediatRAndPipelineBehaviors();
-builder.Services.AddDatabase();
+builder.Services.AddEventsDatabaseRepositories();
 
 builder.Services.AddDataGridEntityFrameworkAdapter();
 
 builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.App", new List<string>() { DomainMetrics.DomainMetricsName });
+builder.Services.AddPolkanalysisHealthChecks();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

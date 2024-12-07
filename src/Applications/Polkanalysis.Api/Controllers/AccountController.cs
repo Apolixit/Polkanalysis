@@ -4,6 +4,7 @@ using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Settings;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using System.ComponentModel;
 
 namespace Polkanalysis.Api.Controllers

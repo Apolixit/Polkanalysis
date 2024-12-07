@@ -27,7 +27,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events
         [Test]
         public void AddEventDatabaseRepositories_ShouldRegisterRepositories()
         {
-            _services.AddDatabase();
+            _services.AddEventsDatabaseRepositories();
             _ = _services.BuildServiceProvider();
             Assert.That(_services.Count, Is.GreaterThan(3));
         }

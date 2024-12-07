@@ -76,7 +76,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddEndpoint(hostContext.Configuration, true);
     services.AddSubstrateService();
     services.AddSubstrateBlockchain(blockchainName.ToLower(), true);
-    services.AddDatabase();
+    services.AddEventsDatabaseRepositories();
     services.AddSubstrateLogic();
     services.AddSubstrateNodeBuilder();
 

@@ -17,14 +17,29 @@ namespace Polkanalysis.Common.Monitoring.HealthCheck
             _substrateService = substrateService;
         }
 
-        public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Check if we are connected and if it is not too laggy
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
             if(_substrateService.IsConnected())
             {
-                return Task.FromResult(HealthCheckResult.Healthy());
+                var elapsedTime = await _substrateService.PingAsync(cancellationToken);
+
+                if(elapsedTime < 100)
+                {
+                    return HealthCheckResult.Healthy();
+                } else
+                {
+                    return HealthCheckResult.Degraded(description: $"{_substrateService.BlockchainName} lag is greater than 100ms (currently {elapsedTime})");
+                }
+                
             } else
             {
-                return Task.FromResult(HealthCheckResult.Unhealthy());
+                return HealthCheckResult.Unhealthy(description: $"{_substrateService.BlockchainName} is not currently connected");
             }
         }
     }

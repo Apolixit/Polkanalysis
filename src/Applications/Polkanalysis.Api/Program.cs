@@ -15,7 +15,7 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Api.Filters;
 using Polkanalysis.Configuration.Contracts.Api;
-using Microsoft.Extensions.DependencyInjection;
+using Polkanalysis.Common.Monitoring.HealthCheck;
 using System.Configuration;
 
 namespace Polkanalysis.Api
@@ -80,7 +80,7 @@ namespace Polkanalysis.Api
                 builder.Services.AddHttpClient();
                 builder.Services.AddEndpoint(builder.Configuration, registerAsSingleton: true);
                 builder.Services.AddSubstrateService();
-                builder.Services.AddDatabase();
+                builder.Services.AddEventsDatabaseRepositories();
                 builder.Services.AddSubstrateLogic();
                 builder.Services.AddSubstrateNodeBuilder();
                 builder.Services.AddMediatRAndPipelineBehaviors();
@@ -98,6 +98,7 @@ namespace Polkanalysis.Api
                 });
 
                 builder.Services.AddOpentelemetry(microsftLogger, $"Polkanalysis.API.{blockchainName}", new List<string>() { Domain.Metrics.DomainMetrics.DomainMetricsName });
+                builder.Services.AddPolkanalysisHealthChecks();
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit
@@ -161,6 +162,7 @@ namespace Polkanalysis.Api
                 app.UseCors();
                 app.MapControllers();
 
+                app.MapHealthChecks("/health");
                 app.UseRateLimiter();
                 app.MapDefaultControllerRoute().RequireRateLimiting(ApiRateLimitOptions.TokenBucketPolicy);
 

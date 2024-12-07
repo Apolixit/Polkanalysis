@@ -19,6 +19,7 @@ using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.WebSockets;
 
@@ -247,6 +248,20 @@ namespace Polkanalysis.Infrastructure.Blockchain
             {
                 return AjunaClient.RuntimeVersion;
             }
+        }
+
+        /// <summary>
+        /// Ping the current blockchain
+        /// </summary>
+        /// <returns>The time (in millisecond) the blockchain response</returns>
+        public async Task<long> PingAsync(CancellationToken cancellationToken)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            _ = await Rpc.Chain.GetBlockHashAsync(cancellationToken);
+
+            stopwatch.Stop();
+
+            return stopwatch.ElapsedMilliseconds;
         }
 
         /// <summary>

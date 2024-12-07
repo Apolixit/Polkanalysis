@@ -26,8 +26,7 @@ namespace Polkanalysis.Api.Filters
                         // Appliquer une route dynamique
                         if (selector.AttributeRouteModel != null)
                         {
-                            selector.AttributeRouteModel.Template =
-                                $"api/{_blockchainName}/{selector.AttributeRouteModel.Template}";
+                            selector.AttributeRouteModel.Template = $"api/{_blockchainName}/[controller]";
                         }
                     }
                 }

@@ -22,7 +22,8 @@ namespace Polkanalysis.Common.Monitoring.HealthCheck
                     throw new ConfigurationErrorsException("SubstrateDb connection string is missing");
 
                 healthCheckBuilder.AddNpgSql(connexionString!);
-                
+                healthCheckBuilder.AddCheck<SubstrateHealthCheck>("SubstrateHealthCheck");
+
             }
             return services;
         }
