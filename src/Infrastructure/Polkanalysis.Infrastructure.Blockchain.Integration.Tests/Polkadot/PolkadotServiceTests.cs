@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +87,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             {
                 Assert.That(cancellationTokenSource.IsCancellationRequested, Is.True);
             }
+        }
+
+        [Test]
+        public void GenesisHash_ShouldSucceed()
+        {
+            Assert.That(_substrateService.GenesisHash.Value, Is.Not.Empty);
+        }
+
+        [Test]
+        public void RuntimeVersion_ShouldSucceed()
+        {
+            Assert.That(_substrateService.RuntimeVersion.SpecName, Is.Not.Empty);
+            Assert.That(_substrateService.RuntimeVersion.ImplName, Is.Not.Empty);
+            Assert.That(_substrateService.RuntimeVersion.AuthoringVersion, Is.GreaterThan(0));
+            Assert.That(_substrateService.RuntimeVersion.TransactionVersion, Is.GreaterThan(0));
         }
     }
 }

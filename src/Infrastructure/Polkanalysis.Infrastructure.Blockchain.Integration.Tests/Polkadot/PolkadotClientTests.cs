@@ -141,6 +141,27 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             Assert.That(_substrateService.AjunaClient.IsConnected, Is.True);
         }
 
+        [Test]
+        public async Task TryToConnectTwice_ShouldDoNothingAsync()
+        {
+            Assert.That(_substrateService.IsConnected(), Is.True);
+            await _substrateService.ConnectAsync(CancellationToken.None);
+            Assert.That(_substrateService.IsConnected(), Is.True);
+        }
+
+        [Test]
+        public async Task UnableToReconnectException_ShouldTryToReconnectToAnotherEndpointAsync()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public async Task Connect_UnexpectedException_ShouldFail()
+        {
+            // Test of SubstrateErrorNodeConnectionException
+            Assert.Fail();
+        }
+
         //[Test]
         //public async Task ConnectToFirstNode_ThenTooMuchRequests_ShouldConnectToTheSecondNodeAsync()
         //{
@@ -158,7 +179,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
         //    Assert.That(_substrateService.IsConnected(), Is.True);
         //    var secondProviderName = _substrateService.EndpointInformation.Name;
         //    Assert.That(secondProviderName, Is.Not.Null);
-            
+
         //    Assert.That(firstProviderName, Is.EqualTo(secondProviderName));
         //}
     }

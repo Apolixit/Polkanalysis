@@ -23,6 +23,7 @@ using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Metrics;
 using Polkanalysis.Worker;
+using System.Configuration;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
 
@@ -31,7 +32,7 @@ var host = Host.CreateDefaultBuilder(args)
     loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration).MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning))
 .ConfigureServices((hostContext, services) =>
 {
-    var blockchainName = args[0] is null || args[0] == "--applicationName" ? "polkadot" : args[0];
+    var blockchainName = hostContext.Configuration["blockchainName"] ?? throw new ConfigurationErrorsException("Please provide blockchainName in args...");
 
     (logger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
 

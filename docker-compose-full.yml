@@ -1,0 +1,118 @@
+version: '3.4'
+
+networks:
+  polkanalysis_network:
+    driver: bridge
+
+volumes:
+  polkanalysis_data:
+    driver: local
+
+services:
+  polkanalysis.api.polkadot:
+    container_name: Polkanalysis_Api_Polkadot
+    image: ${DOCKER_REGISTRY-}polkanalysis.api
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        ConnectionStrings__SubstrateDb: "Host=db;Port=5433;Username=postgres;Password=test;Database=Polkanalysis" # Connection string for the database mount with docker
+    ports:
+      - 5000:80
+    command: --blockchainName=polkadot
+    depends_on:
+      - db
+    networks:
+      - polkanalysis_network
+
+  polkanalysis.api.peoplechain:
+    container_name: Polkanalysis_Api_PeopleChain
+    image: ${DOCKER_REGISTRY-}polkanalysis.api
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        ConnectionStrings__SubstrateDb: "Host=db;Port=5433;Username=postgres;Password=test;Database=Polkanalysis"
+    ports:
+      - 5002:80
+    command: --blockchainName=peoplechain
+    depends_on:
+      - db
+    networks:
+      - polkanalysis_network
+
+  polkanalysis.worker.polkadot:
+    container_name: Polkanalysis_Worker_Polkadot
+    image: ${DOCKER_REGISTRY-}polkanalysis.worker
+    build:
+      context: .
+      dockerfile: worker.dockerfile
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        ConnectionStrings__SubstrateDb: "Host=db;Port=5433;Username=postgres;Password=test;Database=Polkanalysis"
+    command: --blockchainName=polkadot
+    depends_on:
+      - db
+    networks:
+      - polkanalysis_network
+
+  polkanalysis.worker.peoplechain:
+    container_name: Polkanalysis_Worker_PeopleChain
+    image: ${DOCKER_REGISTRY-}polkanalysis.worker
+    build:
+      context: .
+      dockerfile: worker.dockerfile
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        ConnectionStrings__SubstrateDb: "Host=db;Port=5433;Username=postgres;Password=test;Database=Polkanalysis"
+    command: --blockchainName=peoplechain
+    depends_on:
+      - db
+    networks:
+      - polkanalysis_network
+
+  db:
+    container_name: Polkanalysis_Database
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+    expose:
+    - "5433" # Publishes 5433 to other containers but NOT to host machine
+    ports:
+    - "5433:5433"
+    command: -p 5433
+    volumes:
+      - polkanalysis_data:/var/lib/postgresql/data
+    networks:
+      - polkanalysis_network
+
+  cache:
+    container_name: Polkanalysis_Redis
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    # command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - polkanalysis_data:/data
+
+  aspire-dashboard:
+    stdin_open: true
+    tty: true
+    ports:
+        - 18888:18888
+        - 4317:18889
+    container_name: Polkanalysis_Aspire_Dashboard
+    environment:
+        - DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT=1000
+        - DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT=1000
+        - DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT=1000
+        - DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS="true"
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    networks:
+      - polkanalysis_network
+

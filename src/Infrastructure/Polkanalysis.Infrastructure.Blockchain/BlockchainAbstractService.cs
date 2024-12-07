@@ -19,6 +19,7 @@ using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.WebSockets;
 
 namespace Polkanalysis.Infrastructure.Blockchain
@@ -248,8 +249,6 @@ namespace Polkanalysis.Infrastructure.Blockchain
             }
         }
 
-        
-
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status
         /// If we are not connected, try to reconnect
@@ -258,6 +257,7 @@ namespace Polkanalysis.Infrastructure.Blockchain
         /// <param name="cancellationToken">Allow to stop the check</param>
         /// <param name="millisecondCheck">Millisecond frequency to check if we are connected and try to reconnect</param>
         /// <returns></returns>
+        [ExcludeFromCodeCoverage]
         public async Task CheckBlockchainStateAsync(Action<bool> isConnectedCallback, CancellationToken cancellationToken, int millisecondCheck = 500)
         {
             try

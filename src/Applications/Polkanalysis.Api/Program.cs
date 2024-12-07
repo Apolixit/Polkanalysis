@@ -15,6 +15,8 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Api.Filters;
 using Polkanalysis.Configuration.Contracts.Api;
+using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 
 namespace Polkanalysis.Api
 {
@@ -25,13 +27,13 @@ namespace Polkanalysis.Api
             Microsoft.Extensions.Logging.ILogger microsoftLogger = default!;
             try
             {
-                var blockchainName = args[0] is null || args[0] == "--applicationName" ? "polkadot" : args[0];
                 var builder = WebApplication.CreateBuilder(args);
-                
-                var (microsftLogger, serilogLogger) = Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api", builder.Configuration);
+                var blockchainName = builder.Configuration["blockchainName"] ?? throw new ConfigurationErrorsException("Please provide blockchainName in args...");
+
+                var (microsftLogger, serilogLogger) = Common.Start.StartApplicationExtension.InitLoggerAndConfig($"Polkanalys.Api.{blockchainName}", builder.Configuration);
                 microsoftLogger = microsftLogger;
                 builder.Host.UseSerilog(serilogLogger);
-
+                
                 microsftLogger.LogInformation("Starting Polkanalysis API");
 
                 // Add services to the container.
@@ -39,8 +41,10 @@ namespace Polkanalysis.Api
                 // Manage controllers visibility depend of the blockchain
                 var controllerVisibility = new ApiVisibility(builder.Configuration).GetAvailableController(blockchainName).ToArray();
 
-                builder.Services.AddControllers(options => {
+                builder.Services.AddControllers(options =>
+                {
                     options.Filters.Add(new ControllerVisibilityFilter(controllerVisibility));
+                    options.Conventions.Add(new DynamicRouteConvention(blockchainName));
                 }).AddJsonOptions(x =>
                 {
                     x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -93,7 +97,7 @@ namespace Polkanalysis.Api
                                       });
                 });
 
-                builder.Services.AddOpentelemetry(microsftLogger, "Polkanalysis.API", new List<string>() { Domain.Metrics.DomainMetrics.DomainMetricsName });
+                builder.Services.AddOpentelemetry(microsftLogger, $"Polkanalysis.API.{blockchainName}", new List<string>() { Domain.Metrics.DomainMetrics.DomainMetricsName });
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit
@@ -105,19 +109,19 @@ namespace Polkanalysis.Api
                 // This FixedWindowLimiter will be use for CoinGecko API to avoid exceed to free quota limit
                 builder.Services.AddRateLimiter(_ =>
                     _.AddFixedWindowLimiter(policyName: ApiRateLimitOptions.FixedPolicy, options =>
-                {
-                    // A maximum of "NbMaxRequests" requests every "Frequency" seconds
-                    options.PermitLimit = rateLimitOptions.NbMaxRequests;
+                    {
+                        // A maximum of "NbMaxRequests" requests every "Frequency" seconds
+                        options.PermitLimit = rateLimitOptions.NbMaxRequests;
 
-                    // Period of refresh limit rate
-                    options.Window = TimeSpan.FromSeconds(rateLimitOptions.Frequency);
+                        // Period of refresh limit rate
+                        options.Window = TimeSpan.FromSeconds(rateLimitOptions.Frequency);
 
-                    // When token are now available, the process applies to give token to client in the queue
-                    options.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
+                        // When token are now available, the process applies to give token to client in the queue
+                        options.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
 
-                    // Maximum client in the queue when no tokens are available
-                    options.QueueLimit = rateLimitOptions.QueueLimit;
-                }));
+                        // Maximum client in the queue when no tokens are available
+                        options.QueueLimit = rateLimitOptions.QueueLimit;
+                    }));
 
                 // This TokenBucketLimiter will be use for general API calls
                 builder.Services.AddRateLimiter(_ =>
@@ -146,7 +150,7 @@ namespace Polkanalysis.Api
                 var app = builder.Build();
 
                 // Swagger will be available even in production, but not for now (need first release)
-                if(app.Environment.IsDevelopment())
+                if (app.Environment.IsDevelopment())
                 {
                     app.UseOpenApi();
                     app.UseSwaggerUi();
@@ -172,6 +176,8 @@ namespace Polkanalysis.Api
                 {
                     microsftLogger.LogError($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
                 }
+
+                microsftLogger.LogInformation("Polkanalysis.API is started for {blockchainName} and listening on {url}", blockchainName, string.Join(", ", app.Urls));
 
                 await app.RunAsync();
             }

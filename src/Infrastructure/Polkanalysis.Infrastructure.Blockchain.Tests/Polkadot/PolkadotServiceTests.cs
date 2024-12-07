@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot
 {
     internal class PolkadotServiceTests : PolkadotMock
     {
-        [Test, Ignore("Todo setup mock")]
+        [Test]
         public void TimeQueryable_WithCurentBlockLowerThanQueryableBlock_ShouldThrowException()
         {
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), Arg.Any<CancellationToken>()).Returns(MockHash);
@@ -27,5 +27,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot
 
             Assert.Throws<InvalidOperationException>(() => _substrateService.At(new BlockNumber(20)));
         }
+
+        [Test]
+        public void SignedExtensionMetadata_ShouldSucceed()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void GetExtrinsic_WithValidHex_ShouldSucceed()
+        {
+            Assert.Fail();
+        }
+
+        
     }
 }

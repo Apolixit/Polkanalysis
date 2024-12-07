@@ -19,10 +19,5 @@ namespace Polkanalysis.Infrastructure.Blockchain.Exceptions
             Provider = providerName;
             Uri = uri;
         }
-
-        public override string ToString()
-        {
-            return $"[{BlockchainName}] {base.ToString()} --> Inner Exception: {InnerException}";
-        }
     }
 }

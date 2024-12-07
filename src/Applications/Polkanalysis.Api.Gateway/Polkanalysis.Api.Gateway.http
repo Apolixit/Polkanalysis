@@ -1,0 +1,6 @@
+@Polkanalysis.ReverseProxy_HostAddress = http://localhost:5103
+
+GET {{Polkanalysis.ReverseProxy_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
