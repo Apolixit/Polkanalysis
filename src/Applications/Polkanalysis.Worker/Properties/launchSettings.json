@@ -6,7 +6,7 @@
     },
     "Polkanalysis.Worker": {
       "commandName": "Project",
-      "commandLineArgs": "polkadot",
+      "commandLineArgs": "--blockchainName=polkadot",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

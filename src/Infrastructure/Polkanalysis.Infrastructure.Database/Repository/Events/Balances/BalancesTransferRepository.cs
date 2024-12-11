@@ -11,6 +11,9 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Microsoft.AspNetCore.SignalR;
+using Polkanalysis.Hub;
+using Microsoft.AspNetCore.SignalR.Client;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
@@ -25,11 +28,14 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
     [BindEvents(RuntimeEvent.Balances, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Event.Transfer")]
     public class BalancesTransferRepository : EventDatabaseRepository<BalancesTransferModel, SearchCriteriaBalancesTransfer>
     {
+        private readonly HubConnection _hubConnection;
         public BalancesTransferRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
+            HubConnection hubConnection,
             ILogger<BalancesTransferRepository> logger) : base(context, substrateNodeRepository, logger)
         {
+            _hubConnection = hubConnection;
         }
 
         public override string SearchName => "Balances.Transfer";
@@ -47,7 +53,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         internal async override Task<BalancesTransferModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
-                Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
+                Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
                 BaseTuple<SubstrateAccount, SubstrateAccount, U128>>();
 
             var from = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
@@ -66,6 +72,13 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 from,
                 to,
                 amount);
+        }
+
+        public async override Task PublishEventToHubAsync(BalancesTransferModel model, CancellationToken token)
+        {
+            _logger.LogInformation("Publishing {eventName} to {hubName} with data: {blockchainName}, {blockId}, {from}, {to}, {amount}", SearchName, nameof(PolkanalysisHub), model.BlockchainName, model.BlockId, model.From, model.To, model.Amount);
+
+            await _hubConnection.InvokeAsync("BalancesTransfer", model.BlockchainName, model.BlockId, model.From, model.To, model.Amount, token);
         }
     }
 }

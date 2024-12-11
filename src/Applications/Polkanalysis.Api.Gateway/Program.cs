@@ -1,7 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Options;
+using NSwag.AspNetCore;
 using Polkanalysis.Api.Gateway;
+using Polkanalysis.Hub;
+using Polkanalysis.Infrastructure.Database.Hub;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using Yarp.ReverseProxy.Model;
+using Yarp.ReverseProxy.Swagger;
+using Yarp.ReverseProxy.Swagger.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,20 +17,29 @@ var builder = WebApplication.CreateBuilder(args);
 
 //builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-//builder.Services.AddOpenApi();
+//builder.Services.AddOpenApiDocument();
+//builder.Services.AddSwaggerGen();
 
+builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<IApiKeyValidator, ApiKeyValidator>();
 
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+var proxyCnfiguration = builder.Configuration.GetSection("ReverseProxy");
 builder.Services.AddReverseProxy()
-    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+    .LoadFromConfig(proxyCnfiguration)
+    .AddSwagger(proxyCnfiguration);
+
+builder.Services.AddSignalRServices(builder.Configuration);
 
 //builder.Services.AddHttpClient();
 //builder.Services.AddSingleton<NSwagAggregator>();
 
-//builder.Services.AddOpenApiDocument(options =>
-//{
-//    options.Title = "Polkanalysis Aggregated API";
-//    options.Version = "v1";
-//});
+builder.Services.AddOpenApiDocument(options =>
+{
+    options.Title = "Polkanalysis Aggregated API";
+    options.Version = "v1";
+});
 
 var app = builder.Build();
 
@@ -51,6 +68,27 @@ var app = builder.Build();
 //    c.DocumentPath = "/swagger/v1/swagger.json";
 //});
 
+app.UseSwaggerUI(options =>
+{
+    var config = app.Services.GetRequiredService<IOptionsMonitor<ReverseProxyDocumentFilterConfig>>().CurrentValue;
+    foreach (var cluster in config.Clusters)
+    {
+        options.SwaggerEndpoint($"/swagger/{cluster.Key}/swagger.json", cluster.Key);
+    }
+});
+
+//app.UseSwaggerUi(options =>
+//{
+//    var config = app.Services.GetRequiredService<IOptionsMonitor<ReverseProxyDocumentFilterConfig>>().CurrentValue;
+//    foreach (var cluster in config.Clusters)
+//    {
+//        options.SwaggerRoutes.Add(new SwaggerUiRoute(cluster.Key, $"/swagger/{cluster.Key}/swagger.json"));
+//    }
+//});
+
+app.UseRouting();
+app.UseSignalRConfiguration();
+app.UseMiddleware<ApiKeyMiddleware>();
 app.MapReverseProxy();
 
 app.Run();

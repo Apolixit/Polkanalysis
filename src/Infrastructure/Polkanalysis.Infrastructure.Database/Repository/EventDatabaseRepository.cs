@@ -8,6 +8,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Polkanalysis.Infrastructure.Database.Repository
 {
@@ -82,6 +83,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                     throw new InvalidOperationException("Inserted rows are inconsistent");
 
                 _logger.LogDebug("{moduleEvent} successfully inserted is database at block = {blockId}", eventModel.ModuleEvent, eventModel.BlockId);
+
+                // Publish event to hub
+                await PublishEventToHubAsync(model, token);
             }
             catch (Exception ex)
             {
@@ -160,5 +164,15 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         /// </summary>
         /// <returns></returns>
         public Type SearchCriterias => typeof(TSearchCriteria);
+
+        /// <summary>
+        /// Publish event to the hub (facultative)
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public virtual Task PublishEventToHubAsync(TModel model, CancellationToken token)
+        {
+            return Task.CompletedTask;
+        }
     }
 }
