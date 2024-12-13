@@ -16,6 +16,7 @@ using System.Numerics;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Substrate.NetApi;
 using System.Text;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 
@@ -35,7 +36,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
         public NftsCreatedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<NftsCreatedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<NftsCreatedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

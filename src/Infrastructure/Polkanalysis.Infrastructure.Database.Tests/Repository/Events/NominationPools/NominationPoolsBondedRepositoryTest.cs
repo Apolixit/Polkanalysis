@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Hub;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Database.Repository.Events.NominationPools;
@@ -25,6 +26,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nominatio
             _nominationPoolsBondedRepository = new NominationPoolsBondedRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<NominationPoolsBondedRepository>>());
         }
 

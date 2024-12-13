@@ -1,14 +1,12 @@
 ﻿using Ardalis.GuardClauses;
+using Polkanalysis.Hub;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types;
-using System.Runtime.InteropServices.Marshalling;
 
 namespace Polkanalysis.Infrastructure.Database.Repository
 {
@@ -23,6 +21,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
     {
         protected readonly SubstrateDbContext _context;
         protected readonly ISubstrateService _substrateNodeRepository;
+        protected readonly IHubConnection _hubConnection;
         protected readonly ILogger<EventDatabaseRepository<TModel, TSearchCriteria>> _logger;
 
         protected abstract DbSet<TModel> dbTable { get; }
@@ -31,10 +30,12 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         protected EventDatabaseRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
+            IHubConnection hubConnection,
             ILogger<EventDatabaseRepository<TModel, TSearchCriteria>> logger)
         {
             _context = context;
             _substrateNodeRepository = substrateNodeRepository;
+            _hubConnection = hubConnection;
             _logger = logger;
         }
 

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Hub;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
 {
@@ -24,6 +25,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
             _auctionStartedRepository = new AuctionsAuctionStartedRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<AuctionsAuctionStartedRepository>>());
         }
 

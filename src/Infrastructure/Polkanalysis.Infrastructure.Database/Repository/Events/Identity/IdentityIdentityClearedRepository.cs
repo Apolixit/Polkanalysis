@@ -11,6 +11,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
@@ -27,7 +28,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
         public IdentityIdentityClearedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<IdentityIdentityClearedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<IdentityIdentityClearedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

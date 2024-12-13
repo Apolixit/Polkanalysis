@@ -12,6 +12,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Hub;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.NominationPools
 {
@@ -25,6 +26,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nominatio
             _nominationPoolsMinBalanceExcessAdjustedRepository = new NominationPoolsMinBalanceExcessAdjustedRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<NominationPoolsMinBalanceExcessAdjustedRepository>>());
         }
 

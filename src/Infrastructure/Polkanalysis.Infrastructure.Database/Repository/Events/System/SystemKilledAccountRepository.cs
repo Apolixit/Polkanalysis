@@ -9,6 +9,7 @@ using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
@@ -24,7 +25,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
         public SystemKilledAccountRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<SystemKilledAccountRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<SystemKilledAccountRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

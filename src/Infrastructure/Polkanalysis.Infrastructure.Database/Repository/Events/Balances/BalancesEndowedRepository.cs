@@ -11,6 +11,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
@@ -27,7 +28,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         public BalancesEndowedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<BalancesEndowedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<BalancesEndowedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

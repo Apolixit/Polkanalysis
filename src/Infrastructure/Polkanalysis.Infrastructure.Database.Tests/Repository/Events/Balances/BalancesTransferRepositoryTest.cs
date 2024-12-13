@@ -1,20 +1,11 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Hub;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
 {
@@ -28,7 +19,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
             _balancesTransferRepository = new BalancesTransferRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IHubContext<PolkanalysisHub>>(),
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<BalancesTransferRepository>>());
         }
 

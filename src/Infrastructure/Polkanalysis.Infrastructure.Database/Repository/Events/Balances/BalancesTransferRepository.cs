@@ -13,7 +13,7 @@ using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Microsoft.AspNetCore.SignalR;
 using Polkanalysis.Hub;
-using Microsoft.AspNetCore.SignalR.Client;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
@@ -28,14 +28,12 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
     [BindEvents(RuntimeEvent.Balances, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Event.Transfer")]
     public class BalancesTransferRepository : EventDatabaseRepository<BalancesTransferModel, SearchCriteriaBalancesTransfer>
     {
-        private readonly HubConnection _hubConnection;
         public BalancesTransferRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            HubConnection hubConnection,
-            ILogger<BalancesTransferRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<BalancesTransferRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
-            _hubConnection = hubConnection;
         }
 
         public override string SearchName => "Balances.Transfer";

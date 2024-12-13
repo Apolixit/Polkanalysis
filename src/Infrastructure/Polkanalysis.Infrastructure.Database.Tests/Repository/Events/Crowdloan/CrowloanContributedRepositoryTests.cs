@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Hub;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
@@ -27,6 +28,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
             _crowloanContributedRepository = new CrowdloanContributedRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<CrowdloanContributedRepository>>());
         }
 

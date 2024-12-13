@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.NominationPool
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 
@@ -29,7 +30,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.NominationPools
         public NominationPoolsMinBalanceExcessAdjustedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<NominationPoolsMinBalanceExcessAdjustedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<NominationPoolsMinBalanceExcessAdjustedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

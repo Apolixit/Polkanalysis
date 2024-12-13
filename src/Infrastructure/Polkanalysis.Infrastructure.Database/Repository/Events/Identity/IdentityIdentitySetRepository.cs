@@ -9,6 +9,7 @@ using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
@@ -24,7 +25,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
         public IdentityIdentitySetRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<IdentityIdentitySetRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<IdentityIdentitySetRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

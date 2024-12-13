@@ -12,6 +12,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Hub;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Staking
 {
@@ -25,6 +26,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Staking
             _stakingEraPaidRepository = new StakingEraPaidRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<StakingEraPaidRepository>>());
         }
 

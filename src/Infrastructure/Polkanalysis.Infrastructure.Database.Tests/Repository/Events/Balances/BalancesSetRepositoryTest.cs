@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Hub;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
@@ -26,6 +27,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
             _balancesSetRepository = new BalancesBalanceSetRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<BalancesBalanceSetRepository>>());
         }
 

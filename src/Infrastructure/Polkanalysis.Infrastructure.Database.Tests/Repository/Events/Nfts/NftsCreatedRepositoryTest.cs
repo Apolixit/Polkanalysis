@@ -13,6 +13,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Types;
+using Polkanalysis.Hub;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 {
@@ -26,6 +27,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             _nftsCreatedRepository = new NftsCreatedRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<NftsCreatedRepository>>());
         }
 

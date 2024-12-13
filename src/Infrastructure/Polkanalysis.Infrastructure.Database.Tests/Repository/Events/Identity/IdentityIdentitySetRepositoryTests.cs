@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Hub;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Identity
 {
@@ -26,6 +27,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Identity
             _identityIdentitySetRepository = new IdentityIdentitySetRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<IdentityIdentitySetRepository>>());
         }
 

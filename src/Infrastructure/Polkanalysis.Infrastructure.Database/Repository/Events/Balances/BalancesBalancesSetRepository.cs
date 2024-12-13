@@ -11,6 +11,8 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Hub;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
@@ -28,8 +30,10 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         public BalancesBalanceSetRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<BalancesBalanceSetRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<BalancesBalanceSetRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
+            
         }
 
         public override string SearchName => "Balances.BalanceSet";
@@ -63,9 +67,14 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 eventModel.EventId,
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
-rootAccount,
-amount1,
-amount2);
+                rootAccount,
+                amount1,
+                amount2);
+        }
+
+        public async override Task PublishEventToHubAsync(BalancesBalanceSetModel model, CancellationToken token)
+        {
+            await _hubConnection.InvokeAsync("BalancesBalanceSet", model.BlockchainName, model.BlockId, model.RootAccount, model.Amount1, model.Amount2, token);
         }
     }
 }

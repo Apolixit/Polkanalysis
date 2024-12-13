@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Types;
 using Substrate.NET.Utils;
+using Polkanalysis.Hub;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
 {
@@ -27,6 +28,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Nfts
             _nftsTipSentRepository = new NftsTipSentRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<NftsTipSentRepository>>());
         }
 

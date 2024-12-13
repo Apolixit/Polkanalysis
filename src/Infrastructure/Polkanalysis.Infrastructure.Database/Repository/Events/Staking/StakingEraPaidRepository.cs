@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Staking;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 
@@ -30,7 +31,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Staking
         public StakingEraPaidRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<StakingEraPaidRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<StakingEraPaidRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

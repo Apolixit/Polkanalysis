@@ -1,4 +1,4 @@
-﻿//using Microsoft.AspNetCore.SignalR.Client;
+﻿//using Polkanalysis.Hub;
 //using Microsoft.Extensions.Logging;
 //using Polkanalysis.Infrastructure.Database.Contracts.Hub;
 
