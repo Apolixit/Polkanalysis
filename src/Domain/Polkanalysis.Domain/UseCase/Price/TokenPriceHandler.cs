@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Price;
@@ -14,7 +15,7 @@ namespace Polkanalysis.Domain.UseCase.Price
     public class TokenPriceHandler : Handler<TokenPriceHandler, TokenPriceDto, TokenPriceQuery>
     {
         private readonly HttpClient _httpClient;
-        public TokenPriceHandler(HttpClient httpClient, ILogger<TokenPriceHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public TokenPriceHandler(HttpClient httpClient, ILogger<TokenPriceHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _httpClient = httpClient;
         }
@@ -79,7 +80,7 @@ namespace Polkanalysis.Domain.UseCase.Price
         public TokenPriceCommandHandler(
             SubstrateDbContext dbContext, 
             ILogger<TokenPriceCommandHandler> logger,
-            IDistributedCache cache) : base(logger, cache)
+            HybridCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
         }

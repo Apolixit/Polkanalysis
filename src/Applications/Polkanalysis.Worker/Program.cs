@@ -23,6 +23,9 @@ using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Metrics;
 using Polkanalysis.Worker;
+using System.Configuration;
+using Polkanalysis.Hub;
+using Microsoft.AspNetCore.SignalR.Client;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
 
@@ -31,7 +34,7 @@ var host = Host.CreateDefaultBuilder(args)
     loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration).MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning))
 .ConfigureServices((hostContext, services) =>
 {
-    var blockchainName = args[0] is null || args[0] == "--applicationName" ? "polkadot" : args[0];
+    var blockchainName = hostContext.Configuration["blockchainName"] ?? throw new ConfigurationErrorsException("Please provide blockchainName in args...");
 
     (logger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
 
@@ -57,11 +60,29 @@ var host = Host.CreateDefaultBuilder(args)
     if (workerConfig.VersionConfig.IsEnabled)
         services.AddHostedService<VersionWorker>();
 
+    services.AddPolkanalysisSignalRServices(hostContext.Configuration);
+    //var hubConfig = hostContext.Configuration.GetSection("PolkanalysisHub").Get<HubConfig>() ?? throw new InvalidOperationException("PolkanalysisHub section is not defined in appSettings.json");
+    //if (hubConfig.IsActivated)
+    //{
+    //    services.AddSingleton(sp =>
+    //    {
+    //        var connection = new HubConnectionBuilder()
+    //            .WithUrl(hubConfig.Url)
+    //            .WithAutomaticReconnect()
+    //            .Build();
+
+    //        connection.StartAsync().Wait();
+
+    //        return connection;
+    //    });
+    //}
+
+
     services
     //.AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
     //.AddHostedService<StakingWorker>()
-    .AddHostedService<VersionWorker>()
+    //.AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {
@@ -75,9 +96,10 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddEndpoint(hostContext.Configuration, true);
     services.AddSubstrateService();
     services.AddSubstrateBlockchain(blockchainName.ToLower(), true);
-    services.AddDatabase();
+    services.AddEventsDatabaseRepositories();
     services.AddSubstrateLogic();
     services.AddSubstrateNodeBuilder();
+    services.AddPolkanalysisSignalRServices(hostContext.Configuration);
 
     services.AddOpentelemetry(logger!,
         "Polkanalysis.Worker",
@@ -97,9 +119,18 @@ var host = Host.CreateDefaultBuilder(args)
 })
 .Build();
 
+host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping.Register(async () =>
+{
+    var hubConnection = host.Services.GetRequiredService<HubConnection>();
+    if (hubConnection.State != HubConnectionState.Disconnected)
+    {
+        await hubConnection.StopAsync();
+        await hubConnection.DisposeAsync();
+    }
+    Console.WriteLine("HubConnection stopped and disposed.");
+});
+
 await host.ApplyMigrationAsync(logger!);
 await host.ConnectNodeAsync("Polkanalysis.Worker", logger!, CancellationToken.None);
 
 await host.RunAsync();
-
-

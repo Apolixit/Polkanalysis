@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
@@ -12,7 +13,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Pools
     {
         private readonly IStakingService _stakingRepository;
 
-        public PoolDetailHandler(IStakingService roleMemberRepository, ILogger<PoolDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public PoolDetailHandler(IStakingService roleMemberRepository, ILogger<PoolDetailHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _stakingRepository = roleMemberRepository;
         }

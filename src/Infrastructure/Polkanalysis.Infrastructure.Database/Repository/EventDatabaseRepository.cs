@@ -1,11 +1,10 @@
 ﻿using Ardalis.GuardClauses;
+using Polkanalysis.Hub;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types;
 
@@ -22,6 +21,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
     {
         protected readonly SubstrateDbContext _context;
         protected readonly ISubstrateService _substrateNodeRepository;
+        protected readonly IHubConnection _hubConnection;
         protected readonly ILogger<EventDatabaseRepository<TModel, TSearchCriteria>> _logger;
 
         protected abstract DbSet<TModel> dbTable { get; }
@@ -30,10 +30,12 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         protected EventDatabaseRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
+            IHubConnection hubConnection,
             ILogger<EventDatabaseRepository<TModel, TSearchCriteria>> logger)
         {
             _context = context;
             _substrateNodeRepository = substrateNodeRepository;
+            _hubConnection = hubConnection;
             _logger = logger;
         }
 
@@ -82,6 +84,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                     throw new InvalidOperationException("Inserted rows are inconsistent");
 
                 _logger.LogDebug("{moduleEvent} successfully inserted is database at block = {blockId}", eventModel.ModuleEvent, eventModel.BlockId);
+
+                // Publish event to hub
+                await PublishEventToHubAsync(model, token);
             }
             catch (Exception ex)
             {
@@ -160,5 +165,15 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         /// </summary>
         /// <returns></returns>
         public Type SearchCriterias => typeof(TSearchCriteria);
+
+        /// <summary>
+        /// Publish event to the hub (facultative)
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public virtual Task PublishEventToHubAsync(TModel model, CancellationToken token)
+        {
+            return Task.CompletedTask;
+        }
     }
 }

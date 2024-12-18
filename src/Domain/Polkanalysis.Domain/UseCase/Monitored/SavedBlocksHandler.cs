@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Exception;
@@ -48,7 +49,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                                   IExplorerService explorerService,
                                   ICoreService coreService,
                                   ILogger<SavedBlocksHandler> logger,
-                                  IDistributedCache cache,
+                                  HybridCache cache,
                                   IDomainMetrics domainMetrics) : base(logger, cache)
         {
             _substrateService = substrateService;

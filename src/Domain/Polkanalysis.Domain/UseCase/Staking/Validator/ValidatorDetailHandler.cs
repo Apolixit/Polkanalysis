@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Staking.Validator
 {
@@ -12,7 +13,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Validator
     {
         private readonly IStakingService _stakingService;
 
-        public ValidatorDetailHandler(IStakingService stakingService, ILogger<ValidatorDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public ValidatorDetailHandler(IStakingService stakingService, ILogger<ValidatorDetailHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _stakingService = stakingService;
         }

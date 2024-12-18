@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
@@ -15,7 +16,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Nominator
 
         public const int CacheDurationInMinutes = 30;
 
-        public NominatorsHandler(IStakingService roleMemberRepository, ILogger<NominatorsHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public NominatorsHandler(IStakingService roleMemberRepository, ILogger<NominatorsHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _stakingRepository = roleMemberRepository;
         }

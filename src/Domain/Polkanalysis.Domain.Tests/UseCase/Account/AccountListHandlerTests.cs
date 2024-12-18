@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common;
@@ -25,7 +26,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
         {
             _accountRepository = Substitute.For<IAccountService>();
             _logger = Substitute.For<ILogger<AccountListHandler>>();
-            _useCase = new AccountListHandler(_accountRepository, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new AccountListHandler(_accountRepository, _logger, Substitute.For<HybridCache>());
         }
 
         [Test]

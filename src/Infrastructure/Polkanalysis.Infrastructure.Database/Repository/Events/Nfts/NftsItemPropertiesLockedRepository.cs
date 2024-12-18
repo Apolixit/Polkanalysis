@@ -13,6 +13,7 @@ using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Types;
 using System.Numerics;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 
@@ -33,7 +34,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
         public NftsItemPropertiesLockedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<NftsItemPropertiesLockedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<NftsItemPropertiesLockedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

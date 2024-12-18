@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using OperationResult;
@@ -17,7 +18,7 @@ namespace Polkanalysis.Domain.UseCase.Statistics
         private readonly ISubstrateService _substrateService;
         private readonly IConfiguration _configuration;
 
-        public BlockchainInformationHandler(ISubstrateService substrateRepository, IConfiguration configuration, ILogger<BlockchainInformationHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public BlockchainInformationHandler(ISubstrateService substrateRepository, IConfiguration configuration, ILogger<BlockchainInformationHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _substrateService = substrateRepository;
             _configuration = configuration;

@@ -7,6 +7,7 @@ using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.UseCase.Runtime;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Module
 {
@@ -21,7 +22,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
             _logger = Substitute.For<ILogger<RuntimeModuleDetailHandler>>();
             _metadataService = Substitute.For<IMetadataService>();
 
-            _useCase = new RuntimeModuleDetailHandler(_logger, _metadataService, Substitute.For<IDistributedCache>());
+            _useCase = new RuntimeModuleDetailHandler(_logger, _metadataService, Substitute.For<HybridCache>());
             //base.Setup();
         }
 

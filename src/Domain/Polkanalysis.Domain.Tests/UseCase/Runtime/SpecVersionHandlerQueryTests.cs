@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
@@ -16,7 +17,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         public void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionHandler>>();
-            _useCase = new SpecVersionHandler(_substrateDbContext, _substrateService, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new SpecVersionHandler(_substrateDbContext, _substrateService, _logger, Substitute.For<HybridCache>());
         }
 
         private void insertRuntimeVersion(int i)

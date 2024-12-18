@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
+using Polkanalysis.Hub;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
@@ -22,8 +23,8 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events
             var substrateNodeRepository = Substitute.For<ISubstrateService>();
 
             _serviceProvider = Substitute.For<IServiceProvider>();
-            _serviceProvider.GetService(typeof(BalancesDustLostRepository)).Returns(new BalancesDustLostRepository(_substrateDbContext, substrateNodeRepository, Substitute.For<ILogger<BalancesDustLostRepository>>()));
-            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, substrateNodeRepository, Substitute.For<ILogger<SystemKilledAccountRepository>>()));
+            _serviceProvider.GetService(typeof(BalancesDustLostRepository)).Returns(new BalancesDustLostRepository(_substrateDbContext, substrateNodeRepository, Substitute.For<IHubConnection>(), Substitute.For<ILogger<BalancesDustLostRepository>>()));
+            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, substrateNodeRepository, Substitute.For<IHubConnection>(), Substitute.For<ILogger<SystemKilledAccountRepository>>()));
 
             _eventsFactory = new EventsFactory(_serviceProvider, Substitute.For<ILogger<EventsFactory>>());
         }

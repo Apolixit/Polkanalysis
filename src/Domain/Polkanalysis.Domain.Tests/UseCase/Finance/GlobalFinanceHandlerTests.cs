@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto;
@@ -59,7 +60,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
                                                    Substitute.For<ILogger<ExplorerService>>(),
                                                    Substitute.For<ICoreService>());
 
-            _useCase = new GlobalFinanceHandler(_financialService, _logger, _explorerService, Substitute.For<IDistributedCache>());
+            _useCase = new GlobalFinanceHandler(_financialService, _logger, _explorerService, Substitute.For<HybridCache>());
         }
 
         private void PopulateDatabase()

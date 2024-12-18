@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Auctions
@@ -25,7 +26,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Auctions
         public AuctionsAuctionClosedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<AuctionsAuctionClosedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<AuctionsAuctionClosedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

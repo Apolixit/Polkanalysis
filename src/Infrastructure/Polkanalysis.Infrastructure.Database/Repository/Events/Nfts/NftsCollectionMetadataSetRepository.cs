@@ -14,6 +14,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Nfts.Types;
 using System.Numerics;
 using System.Text;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 
@@ -32,7 +33,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Nfts
         public NftsCollectionMetadataSetRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<NftsCollectionMetadataSetRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<NftsCollectionMetadataSetRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

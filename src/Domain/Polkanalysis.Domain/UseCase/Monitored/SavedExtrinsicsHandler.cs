@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
@@ -51,7 +52,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         private readonly ILogger<SavedExtrinsicsHandler> _logger;
 
         public SavedExtrinsicsHandler(ISubstrateService substrateService, IExplorerService explorerService, SubstrateDbContext db, ILogger<SavedExtrinsicsHandler> logger,
-                                  IDistributedCache cache, ISubstrateDecoding substrateDecode, ICoreService coreService, IDomainMetrics domainMetrics) : base(logger, cache)
+                                  HybridCache cache, ISubstrateDecoding substrateDecode, ICoreService coreService, IDomainMetrics domainMetrics) : base(logger, cache)
         {
             _substrateService = substrateService;
             _explorerService = explorerService;

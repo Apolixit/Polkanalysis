@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using OperationResult;
@@ -58,7 +59,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         /// </summary>
         private readonly List<int> _nbTrackedEvents = new List<int>();
 
-        public SavedEventsHandler(ISubstrateService substrateService, IEventsFactory eventsFactory, ILogger<SavedEventsHandler> logger, IDistributedCache cache, SubstrateDbContext dbContext, ISubstrateDecoding substrateDecode, IDomainMetrics domainMetrics, ICoreService coreService, IConfiguration configuration) : base(logger, cache)
+        public SavedEventsHandler(ISubstrateService substrateService, IEventsFactory eventsFactory, ILogger<SavedEventsHandler> logger, HybridCache cache, SubstrateDbContext dbContext, ISubstrateDecoding substrateDecode, IDomainMetrics domainMetrics, ICoreService coreService, IConfiguration configuration) : base(logger, cache)
         {
             _substrateService = substrateService;
             _eventsFactory = eventsFactory;

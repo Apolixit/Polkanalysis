@@ -7,6 +7,7 @@ using NSubstitute;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Distributed;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service
 {
@@ -18,7 +19,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
+            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<HybridCache>());
         }
 
         [Test]

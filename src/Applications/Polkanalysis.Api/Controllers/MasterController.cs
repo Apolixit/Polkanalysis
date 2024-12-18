@@ -10,9 +10,12 @@ using System.Runtime.CompilerServices;
 
 namespace Polkanalysis.Api.Controllers
 {
+    /// <summary>
+    /// Controller to centralize mediator calls
+    /// </summary>
     [ApiController]
-    [Route("api/polkadot/[controller]")]
-    public class MasterController : Controller
+    [Route("api/[controller]")]
+    public abstract class MasterController : Controller
     {
         protected readonly IMediator _mediator;
         protected readonly ILogger<MasterController> _logger;

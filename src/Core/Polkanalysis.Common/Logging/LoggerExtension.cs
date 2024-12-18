@@ -17,17 +17,18 @@ namespace Polkanalysis.Common.Logging
     [ExcludeFromCodeCoverage]
     public static class LoggerExtension
     {
-        public static Logger BuildSerilogLogger(IConfiguration config)
+        public static Logger BuildSerilogLogger(IConfiguration config, string loggerName)
         {
             var loggerConfig = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
-                .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning);
+                .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
+                .Enrich.WithProperty("Application", loggerName);
             return loggerConfig.CreateLogger();
         }
 
         public static Microsoft.Extensions.Logging.ILogger CreateLogger(IConfiguration config, string loggerName)
         {
-            return new SerilogLoggerFactory(BuildSerilogLogger(config)).CreateLogger(loggerName);
+            return new SerilogLoggerFactory(BuildSerilogLogger(config, loggerName)).CreateLogger(loggerName);
         }
 
         public static Microsoft.Extensions.Logging.ILogger CreateLogger(Logger logger, string loggerName)

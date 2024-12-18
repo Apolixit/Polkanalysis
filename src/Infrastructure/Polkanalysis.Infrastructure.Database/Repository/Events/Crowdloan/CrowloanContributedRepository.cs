@@ -11,6 +11,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
@@ -28,7 +29,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
         public CrowdloanContributedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<CrowdloanContributedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<CrowdloanContributedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

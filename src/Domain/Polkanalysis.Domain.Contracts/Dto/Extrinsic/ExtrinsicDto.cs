@@ -8,10 +8,10 @@ namespace Polkanalysis.Domain.Contracts.Dto.Extrinsic
         public required uint Index { get; set; }
         public required uint BlockNumber { get; set; }
         public LifetimeDto? Lifetime { get; set; }
-        public required string Hash { get; set; }
         public required string CallEventName { get; set; }
         public required string PalletName { get; set; }
-        public AccountDto? Caller { get; set; }
+        public string JsonParameters { get; set; } = string.Empty;
+        public UserIdentityDto? Caller { get; set; }
         public double? EstimatedFees { get; set; }
         public double? RealFees { get; set; }
         public int Nonce { get; set; }

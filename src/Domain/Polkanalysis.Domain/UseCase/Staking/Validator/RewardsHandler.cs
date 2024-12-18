@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
@@ -18,7 +19,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Validator
     {
         private readonly IStakingService _stakingRepository;
 
-        public RewardsHandler(IStakingService stakingRepository, ILogger<RewardsHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public RewardsHandler(IStakingService stakingRepository, ILogger<RewardsHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _stakingRepository = stakingRepository;
         }

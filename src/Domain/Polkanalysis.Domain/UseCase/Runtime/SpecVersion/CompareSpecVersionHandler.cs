@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
@@ -27,7 +28,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
         public CompareSpecVersionHandler(
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
-            ILogger<CompareSpecVersionHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<CompareSpecVersionHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;

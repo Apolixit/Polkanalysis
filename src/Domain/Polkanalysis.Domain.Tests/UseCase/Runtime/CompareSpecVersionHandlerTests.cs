@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
@@ -38,7 +39,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _substrateService.BlockchainName.Returns("Polkadot");
 
             _useCase = new CompareSpecVersionHandler(
-                _substrateDbContext, _substrateService, _logger, Substitute.For<IDistributedCache>());
+                _substrateDbContext, _substrateService, _logger, Substitute.For<HybridCache>());
 
             _substrateDbContext.SpecVersionModels.Add(new Infrastructure.Database.Contracts.Model.Version.SpecVersionModel()
             {

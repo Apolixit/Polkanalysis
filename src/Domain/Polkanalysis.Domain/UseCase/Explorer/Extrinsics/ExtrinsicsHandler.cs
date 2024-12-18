@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
@@ -20,7 +21,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 
         public ExtrinsicsHandler(
             IExplorerService explorerRepository,
-            ILogger<ExtrinsicsHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<ExtrinsicsHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }

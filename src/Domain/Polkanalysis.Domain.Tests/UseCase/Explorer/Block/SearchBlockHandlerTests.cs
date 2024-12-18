@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Block;
@@ -26,7 +27,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
             _accountService = Substitute.For<IAccountService>();
             var logger = Substitute.For<ILogger<SearchBlockHandler>>();
 
-            _useCase = new SearchBlockHandler(_substrateDbContext, logger, Substitute.For<IDistributedCache>(), _accountService);
+            _useCase = new SearchBlockHandler(_substrateDbContext, logger, Substitute.For<HybridCache>(), _accountService);
         }
 
         [Test]

@@ -18,6 +18,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Threading;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.Service
 {
@@ -42,7 +43,7 @@ namespace Polkanalysis.Domain.Tests.Service
             // Always a valid Substrate address
             _substrateService.IsValidAccountAddress("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS").Returns(true);
 
-            _accountService = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
+            _accountService = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<HybridCache>());
         }
 
         [Test, Ignore("Need to mock Query")]

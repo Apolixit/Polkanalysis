@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Database
     [ExcludeFromCodeCoverage]
     public static class DatabaseServiceCollectionsExtensions
     {
-        public static IServiceCollection AddDatabase(this IServiceCollection services)
+        public static IServiceCollection AddEventsDatabaseRepositories(this IServiceCollection services)
         {
             services.AddTransient<IEventsFactory, EventsFactory>(); // No need to scan everytime
 

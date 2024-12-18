@@ -17,6 +17,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.UseCase.Runtime.PalletVersion;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
@@ -31,7 +32,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
         public SpecVersionHandler(
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
-            ILogger<SpecVersionHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<SpecVersionHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;
@@ -81,7 +82,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
             ILogger<SpecVersionCommandHandler> logger,
-            IDistributedCache cache,
+            HybridCache cache,
             ICoreService coreService) : base(logger, cache)
         {
             _dbContext = dbContext;

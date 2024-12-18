@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Price;
@@ -14,7 +15,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
         public void Setup()
         {
             _logger = Substitute.For<ILogger<TokenPriceCommandHandler>>();
-            _useCase = new TokenPriceCommandHandler(_substrateDbContext, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new TokenPriceCommandHandler(_substrateDbContext, _logger, Substitute.For<HybridCache>());
         }
 
         [Test]

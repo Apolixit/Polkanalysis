@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Search
 {
@@ -40,7 +41,7 @@ namespace Polkanalysis.Domain.UseCase.Search
     {
         private readonly IEventsFactory _eventFactory;
 
-        public SearchEventsHandler(ILogger<SearchEventsHandler> logger, IDistributedCache cache, IEventsFactory eventFactory) : base(logger, cache)
+        public SearchEventsHandler(ILogger<SearchEventsHandler> logger, HybridCache cache, IEventsFactory eventFactory) : base(logger, cache)
         {
             _eventFactory = eventFactory;
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -24,50 +25,22 @@ namespace Polkanalysis.Domain.Internal
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The cached result or the result from the non-cached function.</returns>
         public static async Task<TResult> HandleFromCacheAsync<TResult>(
-            IDistributedCache cache,
+            this HybridCache cache,
             string cacheKey,
             Func<Task<TResult>> nonCachedFunc,
             Func<TResult?, bool> isResultValid,
             int durationInMinutes,
-            ILogger logger,
+            List<string> tags,
             CancellationToken cancellationToken)
         {
-            var cachedData = await cache.GetStringAsync(cacheKey, cancellationToken);
-
-            if (!string.IsNullOrEmpty(cachedData))
+            return await cache.GetOrCreateAsync(cacheKey, async entry => {
+                return await nonCachedFunc();
+            }, new HybridCacheEntryOptions()
             {
-                logger.LogDebug("Cache hit for key: {cacheKey}", cacheKey);
-
-                try
-                {
-                    var cachedResult = JsonSerializer.Deserialize<TResult>(cachedData);
-                    
-                    if(cachedResult is not null)
-                    {
-                        return cachedResult;
-                    }
-                }
-                catch(JsonException)
-                {
-                    logger.LogError("Failed to deserialize cached data for key: {cacheKey}", cacheKey);
-                }
-            }
-            logger.LogDebug("Cache miss for key: {cacheKey}", cacheKey);
-
-            var result = await nonCachedFunc();
-
-            if (isResultValid(result))
-            {
-                // Serialize the result and store it in the cache
-                var cacheOptions = new DistributedCacheEntryOptions
-                {
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(durationInMinutes)
-                };
-                var serializedResult = JsonSerializer.Serialize(result);
-                await cache.SetStringAsync(cacheKey, serializedResult, cacheOptions, cancellationToken);
-            }
-
-            return result;
+                LocalCacheExpiration = TimeSpan.FromMinutes(durationInMinutes),
+                Expiration = TimeSpan.FromMinutes(durationInMinutes)
+            }, tags: tags, 
+            cancellationToken);
         }
     }
 }

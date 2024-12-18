@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
@@ -40,7 +41,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
                                                       _coreService,
                                                       Substitute.For<ILogger<MetadataService>>());
 
-            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
+            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<HybridCache>());
 
             _substrateDecoding = new SubstrateDecoding(
                 new EventNodeMapping(),

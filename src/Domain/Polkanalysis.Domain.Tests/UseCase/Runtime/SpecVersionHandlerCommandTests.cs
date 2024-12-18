@@ -1,6 +1,7 @@
 ﻿using Algolia.Search.Models.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
@@ -38,7 +39,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
                 _substrateDbContext, 
                 _substrateService,
                 _logger, 
-                Substitute.For<IDistributedCache>(),
+                Substitute.For<HybridCache>(),
                 _coreService);
             //base.Setup();
         }

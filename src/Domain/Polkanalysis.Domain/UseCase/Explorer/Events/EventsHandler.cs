@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Event;
@@ -20,14 +21,14 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
 
         public EventsHandler(
             IExplorerService explorerRepository,
-            ILogger<EventsHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<EventsHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
         public async override Task<Result<IEnumerable<EventDto>, ErrorResult>> HandleInnerAsync(EventsQuery request, CancellationToken cancellationToken)
         {
-            var result = await _explorerRepository.GetEventsAsync(request.BlockId, cancellationToken);
+            var result = await _explorerRepository.GetEventsAsync(request.BlockNumber, cancellationToken);
 
             return Helpers.Ok(result);
         }

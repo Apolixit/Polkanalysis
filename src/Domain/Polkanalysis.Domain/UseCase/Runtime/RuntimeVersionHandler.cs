@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
@@ -17,7 +18,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime
     {
         private readonly IMetadataService _metadataService;
 
-        public RuntimeVersionHandler(ILogger<RuntimeModulesHandler> logger, IMetadataService metadataService, IDistributedCache cache) : base(logger, cache)
+        public RuntimeVersionHandler(ILogger<RuntimeModulesHandler> logger, IMetadataService metadataService, HybridCache cache) : base(logger, cache)
         {
             _metadataService = metadataService;
         }

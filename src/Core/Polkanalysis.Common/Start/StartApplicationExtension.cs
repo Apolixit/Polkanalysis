@@ -14,7 +14,7 @@ namespace Polkanalysis.Common.Start
         /// <returns></returns>
         public static (Microsoft.Extensions.Logging.ILogger microsoftLogger, Serilog.Core.Logger Logger) InitLoggerAndConfig(string loggerName, IConfiguration config)
         {
-            var serilogLogger = LoggerExtension.BuildSerilogLogger(config);
+            var serilogLogger = LoggerExtension.BuildSerilogLogger(config, loggerName);
             Microsoft.Extensions.Logging.ILogger microsoftLogger = LoggerExtension.CreateLogger(serilogLogger, loggerName);
             return (microsoftLogger, serilogLogger);
         }

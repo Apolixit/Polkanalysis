@@ -5,6 +5,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
+using Polkanalysis.Hub;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
 {
@@ -18,6 +19,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
             _crowloanCreatedRepository = new CrowdloanCreatedRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<CrowdloanCreatedRepository>>());
         }
 

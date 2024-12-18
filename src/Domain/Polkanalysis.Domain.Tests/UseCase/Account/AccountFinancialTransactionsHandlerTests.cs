@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Account
 {
@@ -47,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
 
             _logger = Substitute.For<ILogger<AccountFinancialTransactionsHandler>>();
 
-            _useCase = new AccountFinancialTransactionsHandler( _logger, _financialService, _accountService, Substitute.For<IDistributedCache>());
+            _useCase = new AccountFinancialTransactionsHandler( _logger, _financialService, _accountService, Substitute.For<HybridCache>());
             //base.Setup();
         }
 

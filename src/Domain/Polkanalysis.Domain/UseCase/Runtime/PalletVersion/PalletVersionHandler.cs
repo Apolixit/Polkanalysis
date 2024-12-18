@@ -32,6 +32,7 @@ using Polkanalysis.Domain.Helper;
 using System.Diagnostics;
 using Polkanalysis.Domain.UseCase.Monitored;
 using Polkanalysis.Domain.Contracts.Metrics;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
 {
@@ -42,7 +43,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
     {
         private readonly SubstrateDbContext _dbContext;
 
-        public PalletVersionHandler(SubstrateDbContext dbContext, ILogger<PalletVersionHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public PalletVersionHandler(SubstrateDbContext dbContext, ILogger<PalletVersionHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
         }
@@ -74,7 +75,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
             ILogger<PalletVersionCommandHandler> logger,
-            IDistributedCache cache) : base(logger, cache)
+            HybridCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;

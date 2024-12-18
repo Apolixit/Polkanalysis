@@ -59,5 +59,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         /// <param name="address"></param>
         /// <returns></returns>
         bool IsValidAccountAddress(string address);
+
+        /// <summary>
+        /// Ping the current blockchain
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<long> PingAsync(CancellationToken cancellationToken);
     }
 }

@@ -19,6 +19,8 @@ using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.WebSockets;
 
 namespace Polkanalysis.Infrastructure.Blockchain
@@ -181,7 +183,7 @@ namespace Polkanalysis.Infrastructure.Blockchain
                 _logger.LogError(ex.Message);
                 await TryToConnectToAnotherEndpointAsync(token);
 
-                throw;
+                throw new SubstrateErrorNodeConnectionException(BlockchainName, _endpointInformation.Name, _endpointInformation.Uri.ToString(), "Error while trying to reconnect", ex);
             }
             catch (WebSocketException ex)
             {
@@ -196,13 +198,13 @@ namespace Polkanalysis.Infrastructure.Blockchain
                 else
                     _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
 
-                throw;
+                throw new SubstrateErrorNodeConnectionException(BlockchainName, _endpointInformation.Name, _endpointInformation.Uri.ToString(), $"Error while trying to connect", ex);
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "Error while trying to connect to {blockchainName}", BlockchainName);
 
-                throw;
+                throw new SubstrateErrorNodeConnectionException(BlockchainName, _endpointInformation.Name, _endpointInformation.Uri.ToString(), "Unexpected error", ex);
             }
 
             List<Task> tasks = new List<Task>();
@@ -248,7 +250,19 @@ namespace Polkanalysis.Infrastructure.Blockchain
             }
         }
 
-        
+        /// <summary>
+        /// Ping the current blockchain
+        /// </summary>
+        /// <returns>The time (in millisecond) the blockchain response</returns>
+        public async Task<long> PingAsync(CancellationToken cancellationToken)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            _ = await Rpc.Chain.GetBlockHashAsync(cancellationToken);
+
+            stopwatch.Stop();
+
+            return stopwatch.ElapsedMilliseconds;
+        }
 
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status
@@ -258,6 +272,7 @@ namespace Polkanalysis.Infrastructure.Blockchain
         /// <param name="cancellationToken">Allow to stop the check</param>
         /// <param name="millisecondCheck">Millisecond frequency to check if we are connected and try to reconnect</param>
         /// <returns></returns>
+        [ExcludeFromCodeCoverage]
         public async Task CheckBlockchainStateAsync(Action<bool> isConnectedCallback, CancellationToken cancellationToken, int millisecondCheck = 500)
         {
             try

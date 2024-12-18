@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Block;
@@ -16,7 +17,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
         private readonly SubstrateDbContext _db;
         private readonly IAccountService _accountService;
 
-        public SearchBlockHandler(SubstrateDbContext db, ILogger<SearchBlockHandler> logger, IDistributedCache cache, IAccountService accountService) : base(logger, cache)
+        public SearchBlockHandler(SubstrateDbContext db, ILogger<SearchBlockHandler> logger, HybridCache cache, IAccountService accountService) : base(logger, cache)
         {
             _db = db;
             _accountService = accountService;

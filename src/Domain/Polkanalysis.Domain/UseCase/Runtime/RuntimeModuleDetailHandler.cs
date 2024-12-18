@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Runtime
 {
@@ -13,7 +14,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime
         private readonly IMetadataService _metadataService;
         public RuntimeModuleDetailHandler(
             ILogger<RuntimeModuleDetailHandler> logger,
-            IMetadataService metadataService, IDistributedCache cache) : base(logger, cache)
+            IMetadataService metadataService, HybridCache cache) : base(logger, cache)
         {
             _metadataService = metadataService;
         }

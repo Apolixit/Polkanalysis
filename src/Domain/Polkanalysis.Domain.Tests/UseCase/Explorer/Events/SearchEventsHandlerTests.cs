@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -10,6 +11,7 @@ using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.UseCase.Monitored;
 using Polkanalysis.Domain.UseCase.Runtime.PalletVersion;
 using Polkanalysis.Domain.UseCase.Search;
+using Polkanalysis.Hub;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Repository;
@@ -33,15 +35,20 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
             _logger = Substitute.For<ILogger<SearchEventsHandler>>();
 
             var _serviceProvider = Substitute.For<IServiceProvider>();
-            _serviceProvider.GetService(typeof(SystemNewAccountRepository)).Returns(new SystemNewAccountRepository(_substrateDbContext, _substrateService, Substitute.For<ILogger<SystemNewAccountRepository>>()));
-            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, _substrateService, Substitute.For<ILogger<SystemKilledAccountRepository>>()));
+            _serviceProvider.GetService(typeof(SystemNewAccountRepository)).Returns(new SystemNewAccountRepository(
+                _substrateDbContext,
+                _substrateService,
+                Substitute.For<IHubConnection>(),
+                Substitute.For<ILogger<SystemNewAccountRepository>>()));
+
+            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, _substrateService, Substitute.For<IHubConnection>(), Substitute.For<ILogger<SystemKilledAccountRepository>>()));
 
             _eventFactory = new EventsFactory(_serviceProvider, Substitute.For<ILogger<EventsFactory>>());
             PopulateDatabaseWithSomeEvents();
 
             _substrateDbContext.SaveChanges();
 
-            _useCase = new SearchEventsHandler(_logger, Substitute.For<IDistributedCache>(), _eventFactory);
+            _useCase = new SearchEventsHandler(_logger, Substitute.For<HybridCache>(), _eventFactory);
         }
 
         

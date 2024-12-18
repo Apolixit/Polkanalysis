@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 {
@@ -22,7 +23,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         {
             _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<EventDetailHandler>>();
-            _useCase = new EventDetailHandler(_explorerService, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new EventDetailHandler(_explorerService, _logger, Substitute.For<HybridCache>());
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         [Test]
         public async Task EventDetailsUseCaseWithValidParameters_ShouldSucceedAsync()
         {
-            var useCase = new EventDetailHandler(_explorerService, _logger!, Substitute.For<IDistributedCache>());
+            var useCase = new EventDetailHandler(_explorerService, _logger!, Substitute.For<HybridCache>());
 
             _explorerService.GetEventAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(new EventDto(1, "1", "2", "PalletName", "EventName", "Description", new List<Contracts.Dto.Common.TreeDto>()));
 

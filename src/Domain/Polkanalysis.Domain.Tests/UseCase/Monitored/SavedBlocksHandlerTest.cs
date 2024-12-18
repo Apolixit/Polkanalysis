@@ -1,5 +1,6 @@
 ﻿using Algolia.Search.Models.Common;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
@@ -63,7 +64,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _explorerService,
                                               _coreService,
                                               _logger,
-                                              Substitute.For<IDistributedCache>(),
+                                              Substitute.For<HybridCache>(),
                                               Substitute.For<IDomainMetrics>());
         }
 

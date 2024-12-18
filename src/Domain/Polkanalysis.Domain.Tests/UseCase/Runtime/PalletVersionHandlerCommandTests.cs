@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
@@ -35,7 +36,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _substrateService.BlockchainName.Returns("Polkadot");
 
             _useCase = new PalletVersionCommandHandler(
-                _substrateDbContext, _substrateService, _logger, Substitute.For<IDistributedCache>());
+                _substrateDbContext, _substrateService, _logger, Substitute.For<HybridCache>());
 
             // Default behavior (to avoid repeat it for each test)
             uint blockStart = 10_000;

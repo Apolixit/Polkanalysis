@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
@@ -12,7 +13,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
     {
         private readonly IStakingService _stakingRepository;
 
-        public CurrentEraHandler(IStakingService stakingRepository, ILogger<CurrentEraHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public CurrentEraHandler(IStakingService stakingRepository, ILogger<CurrentEraHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _stakingRepository = stakingRepository;
         }

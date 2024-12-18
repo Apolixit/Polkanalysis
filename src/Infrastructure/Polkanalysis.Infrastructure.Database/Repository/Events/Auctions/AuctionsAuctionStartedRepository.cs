@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
+using Polkanalysis.Hub;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Auctions
@@ -28,7 +29,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Auctions
         public AuctionsAuctionStartedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<AuctionsAuctionStartedRepository> logger) : base(context, substrateNodeRepository, logger)
+            IHubConnection hubConnection,
+            ILogger<AuctionsAuctionStartedRepository> logger) : base(context, substrateNodeRepository, hubConnection, logger)
         {
         }
 

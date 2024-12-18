@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Configuration.Contracts.Api;
 using Polkanalysis.Configuration.Contracts.Endpoints;
 using Polkanalysis.Configuration.Contracts.Information;
 using System;
@@ -29,6 +30,19 @@ namespace Polkanalysis.Configuration.Extensions
                 services.AddScoped<ISubstrateEndpoint, SubstrateEndpoint>();
             }
 
+#pragma warning disable EXTEXP0018
+            services.AddHybridCache(o =>
+            {
+                o.ReportTagMetrics = true;
+                o.DefaultEntryOptions = new Microsoft.Extensions.Caching.Hybrid.HybridCacheEntryOptions
+                {
+                    Expiration = TimeSpan.FromDays(1),
+                    LocalCacheExpiration = TimeSpan.FromDays(1),
+                };
+            });
+#pragma warning restore EXTEXP0018
+
+            //AddRedisDistributedCache
             services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = configuration.GetConnectionString("Redis");

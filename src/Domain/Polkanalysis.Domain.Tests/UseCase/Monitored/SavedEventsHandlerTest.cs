@@ -27,6 +27,8 @@ using System.Diagnostics;
 using Substrate.NetApi.Model.Meta;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Polkanalysis.Hub;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -47,8 +49,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 
 
             var _serviceProvider = Substitute.For<IServiceProvider>();
-            _serviceProvider.GetService(typeof(BalancesDustLostRepository)).Returns(new BalancesDustLostRepository(_substrateDbContext, _substrateService, Substitute.For<ILogger<BalancesDustLostRepository>>()));
-            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, _substrateService, Substitute.For<ILogger<SystemKilledAccountRepository>>()));
+            _serviceProvider.GetService(typeof(BalancesDustLostRepository)).Returns(new BalancesDustLostRepository(_substrateDbContext, _substrateService, Substitute.For<IHubConnection>(),Substitute.For<ILogger<BalancesDustLostRepository>>()));
+            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, _substrateService, Substitute.For<IHubConnection>(), Substitute.For<ILogger<SystemKilledAccountRepository>>()));
 
             _eventsFactory = new EventsFactory(_serviceProvider, Substitute.For<ILogger<IEventsFactory>>());
             _substrateService.BlockchainName.Returns("Polkadot");
@@ -62,7 +64,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _useCase = new SavedEventsHandler(_substrateService,
                                               _eventsFactory,
                                               _logger,
-                                              Substitute.For<IDistributedCache>(),
+                                              Substitute.For<HybridCache>(),
                                               _substrateDbContext,
                                               _substrateDecoding,
                                               _domainMetrics,

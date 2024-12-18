@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Hub;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -17,6 +19,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
             _auctionClosedRepository = new AuctionsAuctionClosedRepository(
                 _substrateDbContext,
                 _substrateService,
+                Substitute.For<IHubConnection>(),
                 Substitute.For<ILogger<AuctionsAuctionClosedRepository>>());
         }
 

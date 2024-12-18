@@ -1,5 +1,35 @@
 {
   "profiles": {
+    "polkadot": {
+      "commandName": "Project",
+      "commandLineArgs": "--blockchainName=polkadot --port=5001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchUrl": "swagger",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7067"
+    },
+    "peoplechain": {
+      "commandName": "Project",
+      "commandLineArgs": "--blockchainName=peopleChain --port=5002",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchUrl": "swagger",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7068"
+    },
+    "mythos": {
+      "commandName": "Project",
+      "commandLineArgs": "--blockchainName=mythos --port=5003",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchUrl": "swagger",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7069"
+    },
     "http": {
       "commandName": "Project",
       "launchBrowser": true,
@@ -12,13 +42,14 @@
     },
     "https": {
       "commandName": "Project",
+      "commandLineArgs": "--blockchainName=polkadot --port=7066",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7066;http://localhost:5265"
+      "applicationUrl": "https://localhost:7066;http://localhost:5265;"
     },
     "IIS Express": {
       "commandName": "IISExpress",

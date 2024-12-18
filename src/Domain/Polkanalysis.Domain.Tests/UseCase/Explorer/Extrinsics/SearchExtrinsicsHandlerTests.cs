@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
@@ -14,7 +15,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
         {
             var logger = Substitute.For<ILogger<SearchExtrinsicsHandler>>();
 
-            _useCase = new SearchExtrinsicsHandler(logger, Substitute.For<IDistributedCache>(), _substrateDbContext);
+            _useCase = new SearchExtrinsicsHandler(logger, Substitute.For<HybridCache>(), _substrateDbContext);
         }
 
         [Test]
