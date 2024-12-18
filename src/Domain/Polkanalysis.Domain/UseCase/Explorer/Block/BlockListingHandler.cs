@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Block;
@@ -17,7 +18,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
     {
         private readonly IExplorerService _explorerRepository;
 
-        public BlockListingHandler(IExplorerService explorerRepository, ILogger<BlockListingHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public BlockListingHandler(IExplorerService explorerRepository, ILogger<BlockListingHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }

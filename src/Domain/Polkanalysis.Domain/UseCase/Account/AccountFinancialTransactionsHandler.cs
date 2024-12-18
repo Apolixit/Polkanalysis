@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Account
 {
@@ -34,7 +35,7 @@ namespace Polkanalysis.Domain.UseCase.Account
         private readonly IFinancialService _financialService;
         private readonly IAccountService _accountService;
 
-        public AccountFinancialTransactionsHandler(ILogger<AccountFinancialTransactionsHandler> logger, IFinancialService financialService, IAccountService accountService, IDistributedCache cache) : base(logger, cache)
+        public AccountFinancialTransactionsHandler(ILogger<AccountFinancialTransactionsHandler> logger, IFinancialService financialService, IAccountService accountService, HybridCache cache) : base(logger, cache)
         {
             _financialService = financialService;
             _accountService = accountService;

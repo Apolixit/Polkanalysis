@@ -18,6 +18,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Enum;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase
 {
@@ -32,14 +33,14 @@ namespace Polkanalysis.Domain.UseCase
         where TRequest : IRequest<Result<TDto, ErrorResult>>
     {
         protected readonly ILogger<TLogger> _logger;
-        protected readonly IDistributedCache _cache;
+        protected readonly HybridCache _cache;
 
         /// <summary>
         /// Current child handler name
         /// </summary>
         protected string HandlerName => GetType().Name;
 
-        protected Handler(ILogger<TLogger> logger, IDistributedCache cache)
+        protected Handler(ILogger<TLogger> logger, HybridCache cache)
         {
             _logger = logger;
             _cache = cache;
@@ -77,29 +78,16 @@ namespace Polkanalysis.Domain.UseCase
             {
                 var cacheKey = cachedRequest.GenerateCacheKey();
 
-                var cachedData = await _cache.GetStringAsync(cacheKey, cancellationToken);
-                if (cachedData is not null)
+                var cachedResult = await _cache.GetOrCreateAsync(cacheKey, async entry =>
                 {
-                    _logger.LogDebug($"Cache hit for key: {cacheKey}");
-                    var cachedResult = JsonSerializer.Deserialize<TDto>(cachedData);
-                    return Helpers.Ok(cachedResult!);
-                }
-
-                _logger.LogDebug($"Cache miss for key: {cacheKey}");
-
-                var result = await CallInnerHandleAsync(request, cancellationToken);
-
-                if (result.IsSuccess)
+                    return await CallInnerHandleAsync(request, cancellationToken);
+                }, new HybridCacheEntryOptions()
                 {
-                    // Serialize the result and store it in the cache
-                    var cacheOptions = new DistributedCacheEntryOptions
-                    {
-                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(cachedRequest.CacheDurationInMinutes)
-                    };
-                    await _cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(result.Value), cacheOptions, cancellationToken);
-                }
+                    LocalCacheExpiration = TimeSpan.FromMinutes(cachedRequest.CacheDurationInMinutes),
+                    Expiration = TimeSpan.FromMinutes(cachedRequest.CacheDurationInMinutes)
+                }, tags: [], cancellationToken);
 
-                return result;
+                return cachedResult!;
             }
 
             return await CallInnerHandleAsync(request, cancellationToken);

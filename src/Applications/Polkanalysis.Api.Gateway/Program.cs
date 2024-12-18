@@ -30,7 +30,7 @@ builder.Services.AddReverseProxy()
     .LoadFromConfig(proxyCnfiguration)
     .AddSwagger(proxyCnfiguration);
 
-builder.Services.AddSignalRServices(builder.Configuration);
+builder.Services.AddPolkanalysisSignalRServices(builder.Configuration);
 
 //builder.Services.AddHttpClient();
 //builder.Services.AddSingleton<NSwagAggregator>();

@@ -7,6 +7,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using FluentValidation;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Account
 {
@@ -20,7 +21,7 @@ namespace Polkanalysis.Domain.UseCase.Account
     public class AccountDetailHandler : Handler<AccountDetailHandler, AccountDto, AccountDetailQuery>
     {
         private readonly IAccountService _accountRepository;
-        public AccountDetailHandler(IAccountService accountRepository, ILogger<AccountDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public AccountDetailHandler(IAccountService accountRepository, ILogger<AccountDetailHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _accountRepository = accountRepository;
         }

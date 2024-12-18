@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Events
 {
@@ -15,7 +16,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
 
         public EventDetailHandler(
             IExplorerService explorerRepository,
-            ILogger<EventDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<EventDetailHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }

@@ -13,6 +13,7 @@ using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
@@ -23,7 +24,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
     {
         private readonly IExplorerService _blockRepository;
 
-        public BlockLightHandler(IExplorerService blockRepository, ILogger<BlockLightHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public BlockLightHandler(IExplorerService blockRepository, ILogger<BlockLightHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _blockRepository = blockRepository;
         }

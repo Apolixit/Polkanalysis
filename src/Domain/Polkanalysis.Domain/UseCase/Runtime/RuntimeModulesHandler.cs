@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module;
@@ -17,7 +18,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime
         public RuntimeModulesHandler(
             ILogger<RuntimeModulesHandler> logger,
             ISubstrateService substrateRepository,
-            IMetadataService metadataService, IDistributedCache cache) : base(logger, cache)
+            IMetadataService metadataService, HybridCache cache) : base(logger, cache)
         {
             _metadataService = metadataService;
             _substrateService = substrateRepository;

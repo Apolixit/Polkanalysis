@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
@@ -20,7 +21,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
             var logger = Substitute.For<ILogger<StakingService>>();
             _stakingRepository = new StakingService(
                 _substrateService,
-                new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>()),
+                new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<HybridCache>()),
                 Substitute.For<IStakingDatabaseRepository>(),
                 logger,
                 _substrateDbContext);

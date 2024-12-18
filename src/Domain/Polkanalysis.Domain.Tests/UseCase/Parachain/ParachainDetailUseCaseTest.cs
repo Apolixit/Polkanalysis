@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
@@ -17,7 +18,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Parachain
         {
             _parachainRepository = Substitute.For<IParachainService>();
             _logger = Substitute.For<ILogger<ParachainDetailHandler>>();
-            _useCase = new ParachainDetailHandler(_parachainRepository, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new ParachainDetailHandler(_parachainRepository, _logger, Substitute.For<HybridCache>());
             //base.Setup();
         }
     }

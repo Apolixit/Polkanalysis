@@ -21,6 +21,7 @@ using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Domain.Contracts.Metrics;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Helper;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Staking.Era
 {
@@ -51,7 +52,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
         public EraStakersCommandHandler(
             IStakingDatabaseRepository stakingDatabaseRepository,
             ISubstrateService substrateService,
-            ILogger<EraStakersCommandHandler> logger, IDistributedCache cache, SubstrateDbContext db, IDomainMetrics domainMetrics) : base(logger, cache)
+            ILogger<EraStakersCommandHandler> logger, HybridCache cache, SubstrateDbContext db, IDomainMetrics domainMetrics) : base(logger, cache)
         {
             _stakingDatabaseRepository = stakingDatabaseRepository;
             _substrateService = substrateService;

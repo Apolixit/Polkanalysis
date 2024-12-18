@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using NSubstitute;
@@ -44,7 +45,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Staking.Era
             _useCase = new EraStakersCommandHandler(_stakingDatabaseRepository,
                                                     _substrateService,
                                                     _logger,
-                                                    Substitute.For<IDistributedCache>(),
+                                                    Substitute.For<HybridCache>(),
                                                     _substrateDbContext,
                                                     Substitute.For<IDomainMetrics>());
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
@@ -18,7 +19,7 @@ namespace Polkanalysis.Domain.UseCase.Parachain.Auction
         private readonly IParachainService _parachainRepository;
         public AuctionListHandler(
             IParachainService parachainRepository,
-            ILogger<AuctionListHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<AuctionListHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _parachainRepository = parachainRepository;
         }

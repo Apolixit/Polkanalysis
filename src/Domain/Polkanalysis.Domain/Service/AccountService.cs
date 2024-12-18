@@ -15,6 +15,7 @@ using System.Text.Json;
 using Polkanalysis.Domain.Internal;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Serilog.Debugging;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -23,10 +24,10 @@ namespace Polkanalysis.Domain.Service
         private readonly ISubstrateService _substrateNodeRepository;
         private readonly SubstrateDbContext _db;
         private readonly ILogger<AccountService> _logger;
-        protected readonly IDistributedCache _cache;
+        protected readonly HybridCache _cache;
 
         public AccountService(
-            ISubstrateService substrateNodeRepository, SubstrateDbContext db, ILogger<AccountService> logger, IDistributedCache cache)
+            ISubstrateService substrateNodeRepository, SubstrateDbContext db, ILogger<AccountService> logger, HybridCache cache)
         {
             _substrateNodeRepository = substrateNodeRepository;
 
@@ -213,16 +214,15 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<UserIdentityDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken)
         {
-            return await CacheManager.HandleFromCacheAsync(
-                _cache,
+            return await _cache.HandleFromCacheAsync(
                 $"AccountIdentity_{account.ToStringAddress()}",
-                () =>
+                async () =>
                 {
-                    return GetAccountIdentityInnerAsync(account, UserIdentityTypeDto.Anonymous, cancellationToken);
+                    return await GetAccountIdentityInnerAsync(account, UserIdentityTypeDto.Anonymous, cancellationToken);
                 },
             (res) => { return res is not null; },
             30,
-            _logger,
+            ["AccountIdentity"],
             cancellationToken);
         }
 

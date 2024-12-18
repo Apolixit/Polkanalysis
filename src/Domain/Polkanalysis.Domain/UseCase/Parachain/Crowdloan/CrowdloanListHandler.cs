@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
@@ -18,7 +19,7 @@ namespace Polkanalysis.Domain.UseCase.Parachain.Crowdloan
         private readonly IParachainService _parachainRepository;
         public CrowdloanListHandler(
             IParachainService parachainRepository,
-            ILogger<CrowdloanListHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<CrowdloanListHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _parachainRepository = parachainRepository;
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
@@ -24,7 +25,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
         public void Start()
         {
             _logger = Substitute.For<ILogger<TokenPriceHandler>>();
-            _useCase = new TokenPriceHandler(null!, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new TokenPriceHandler(null!, _logger, Substitute.For<HybridCache>());
         }
 
         //[TearDown]
@@ -41,7 +42,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
                 .When("https://api.coingecko.com/api/v3/coins/*")
                 .Respond("application/json", "{\"market_data\":{\"current_price\":{\"usd\":10}}}");
 
-            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!, Substitute.For<IDistributedCache>());
+            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!, Substitute.For<HybridCache>());
 
             var timeNow = DateTime.Now.ToUniversalTime();
             var result = await _useCase!.HandleInnerAsync(
@@ -60,7 +61,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
         {
             var mockHttp = new MockHttpMessageHandler();
             mockHttp.When("https://api.coingecko.com/api/v3/coins/*").RespondMatchSummary(System.Net.HttpStatusCode.NotFound);
-            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!, Substitute.For<IDistributedCache>());
+            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!, Substitute.For<HybridCache>());
 
             var result = await _useCase!.HandleInnerAsync(new TokenPriceQuery()
             {

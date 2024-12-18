@@ -32,7 +32,7 @@ namespace Polkanalysis.Api.Controllers
         /// <returns>List of accounts with <see cref="AccountLightDto" /> info</returns>
         /// <response code="200">Returns data</response>
         /// <response code="400">An error happened in the backend</response>
-        [HttpGet]
+        [HttpGet(Name = "accounts")]
         [Produces(typeof(IEnumerable<AccountLightDto>))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

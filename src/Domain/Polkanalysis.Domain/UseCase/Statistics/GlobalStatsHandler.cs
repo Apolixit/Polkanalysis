@@ -9,6 +9,7 @@ using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Statistics
 {
@@ -41,7 +42,7 @@ namespace Polkanalysis.Domain.UseCase.Statistics
 
         public GlobalStatsHandler(
             ILogger<GlobalStatsHandler> logger,
-            BalancesTransferRepository balancesTransferRepository, IDistributedCache cache) : base(logger, cache)
+            BalancesTransferRepository balancesTransferRepository, HybridCache cache) : base(logger, cache)
         {
             _balancesTransferRepository = balancesTransferRepository;
         }

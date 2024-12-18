@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
@@ -13,7 +14,7 @@ namespace Polkanalysis.Domain.UseCase.Parachain
         private readonly IParachainService _parachainRepository;
         public ParachainListingHandler(
             IParachainService parachainRepository,
-            ILogger<ParachainListingHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<ParachainListingHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _parachainRepository = parachainRepository;
         }

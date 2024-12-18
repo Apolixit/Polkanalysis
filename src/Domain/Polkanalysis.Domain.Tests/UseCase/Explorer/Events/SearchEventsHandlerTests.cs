@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -47,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 
             _substrateDbContext.SaveChanges();
 
-            _useCase = new SearchEventsHandler(_logger, Substitute.For<IDistributedCache>(), _eventFactory);
+            _useCase = new SearchEventsHandler(_logger, Substitute.For<HybridCache>(), _eventFactory);
         }
 
         

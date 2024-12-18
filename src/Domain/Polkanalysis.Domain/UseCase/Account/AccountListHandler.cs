@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto;
@@ -12,7 +13,7 @@ namespace Polkanalysis.Domain.UseCase.Account
     public class AccountListHandler : Handler<AccountListHandler, PagedResponseDto<AccountLightDto>, AccountsQuery>
     {
         private readonly IAccountService _accountRepository;
-        public AccountListHandler(IAccountService accountRepository, ILogger<AccountListHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public AccountListHandler(IAccountService accountRepository, ILogger<AccountListHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _accountRepository = accountRepository;
         }

@@ -1,6 +1,7 @@
 ﻿using Algolia.Search.Clients;
 using FluentValidation;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Search;
@@ -25,7 +26,7 @@ namespace Polkanalysis.Domain.UseCase.Search
     {
         private readonly ISearchService _searchService;
 
-        public SearchHandler(ILogger<SearchHandler> logger, IDistributedCache cache, ISearchService searchService) : base(logger, cache)
+        public SearchHandler(ILogger<SearchHandler> logger, HybridCache cache, ISearchService searchService) : base(logger, cache)
         {
             _searchService = searchService;
         }

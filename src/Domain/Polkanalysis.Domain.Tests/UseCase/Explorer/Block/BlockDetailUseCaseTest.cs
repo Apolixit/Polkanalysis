@@ -15,6 +15,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
@@ -27,7 +28,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<BlockDetailHandler>>();
-            _useCase = new BlockDetailHandler(_explorerService, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new BlockDetailHandler(_explorerService, _logger, Substitute.For<HybridCache>());
             //base.Setup();
         }
 

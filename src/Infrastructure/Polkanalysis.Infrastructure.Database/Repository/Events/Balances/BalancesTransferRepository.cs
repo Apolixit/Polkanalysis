@@ -74,7 +74,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 
         public async override Task PublishEventToHubAsync(BalancesTransferModel model, CancellationToken token)
         {
-            _logger.LogInformation("Publishing {eventName} to {hubName} with data: {blockchainName}, {blockId}, {from}, {to}, {amount}", SearchName, nameof(PolkanalysisHub), model.BlockchainName, model.BlockId, model.From, model.To, model.Amount);
+            //_logger.LogInformation("Publishing {eventName} to {hubName} with data: {blockchainName}, {blockId}, {from}, {to}, {amount}", SearchName, nameof(PolkanalysisHub), model.BlockchainName, model.BlockId, model.From, model.To, model.Amount);
 
             await _hubConnection.InvokeAsync("BalancesTransfer", model.BlockchainName, model.BlockId, model.From, model.To, model.Amount, token);
         }

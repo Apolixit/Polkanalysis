@@ -14,6 +14,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Service;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
@@ -21,7 +22,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
     {
         private readonly IExplorerService _explorerRepository;
 
-        public BlockDetailHandler(IExplorerService explorerRepository, ILogger<BlockDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public BlockDetailHandler(IExplorerService explorerRepository, ILogger<BlockDetailHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }

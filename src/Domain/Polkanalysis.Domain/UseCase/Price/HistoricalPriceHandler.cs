@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Price;
@@ -13,7 +14,7 @@ namespace Polkanalysis.Domain.UseCase.Price
     {
         private readonly SubstrateDbContext _dbContext;
 
-        public HistoricalPriceHandler(SubstrateDbContext dbContext, ILogger<HistoricalPriceHandler> logger, IDistributedCache cache) : base(logger, cache)
+        public HistoricalPriceHandler(SubstrateDbContext dbContext, ILogger<HistoricalPriceHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
         }

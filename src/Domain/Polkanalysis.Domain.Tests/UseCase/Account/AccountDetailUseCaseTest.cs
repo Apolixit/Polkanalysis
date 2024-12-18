@@ -16,6 +16,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Configuration.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Account
 {
@@ -28,7 +29,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
         {
             _logger = Substitute.For<ILogger<AccountDetailHandler>>();
             _accountService = Substitute.For<IAccountService>();
-            _useCase = new AccountDetailHandler(_accountService, _logger, Substitute.For<IDistributedCache>());
+            _useCase = new AccountDetailHandler(_accountService, _logger, Substitute.For<HybridCache>());
         }
 
         [Test]

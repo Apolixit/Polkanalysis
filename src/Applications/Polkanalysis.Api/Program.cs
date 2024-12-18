@@ -17,6 +17,8 @@ using Polkanalysis.Api.Filters;
 using Polkanalysis.Configuration.Contracts.Api;
 using Polkanalysis.Common.Monitoring.HealthCheck;
 using System.Configuration;
+using Polkanalysis.Hub;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Polkanalysis.Api
 {
@@ -73,7 +75,7 @@ namespace Polkanalysis.Api
                 builder.Services.AddDbContext<SubstrateDbContext>(options =>
                 {
                     options.UseNpgsql(builder.Configuration.GetConnectionString("SubstrateDb"));
-                });
+                }, contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
 
                 // For the API, we register Polkadot as singleton
                 builder.Services.AddSubstrateBlockchain(blockchainName, registerAsSingleton: true);
@@ -85,6 +87,8 @@ namespace Polkanalysis.Api
                 builder.Services.AddSubstrateNodeBuilder();
                 builder.Services.AddMediatRAndPipelineBehaviors();
                 builder.Services.AddSingleton<IApiVisibility, ApiVisibility>();
+
+                builder.Services.AddPolkanalysisSignalRServices(builder.Configuration);
 
                 builder.Services.AddCors(options =>
                 {

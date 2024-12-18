@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
@@ -13,7 +14,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
     {
         private readonly SubstrateDbContext _dbContext;
 
-        public SearchExtrinsicsHandler(ILogger<SearchExtrinsicsHandler> logger, IDistributedCache cache, SubstrateDbContext dbContext) : base(logger, cache)
+        public SearchExtrinsicsHandler(ILogger<SearchExtrinsicsHandler> logger, HybridCache cache, SubstrateDbContext dbContext) : base(logger, cache)
         {
             _dbContext = dbContext;
         }

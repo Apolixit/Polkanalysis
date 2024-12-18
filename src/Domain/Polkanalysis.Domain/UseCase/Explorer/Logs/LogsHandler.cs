@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Event;
@@ -22,7 +23,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Logs
 
         public LogsHandler(
             IExplorerService explorerRepository,
-            ILogger<LogsHandler> logger, IDistributedCache cache) : base(logger, cache)
+            ILogger<LogsHandler> logger, HybridCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }

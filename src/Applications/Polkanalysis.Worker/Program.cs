@@ -60,21 +60,22 @@ var host = Host.CreateDefaultBuilder(args)
     if (workerConfig.VersionConfig.IsEnabled)
         services.AddHostedService<VersionWorker>();
 
-    var hubConfig = hostContext.Configuration.GetSection("PolkanalysisHub").Get<HubConfig>() ?? throw new InvalidOperationException("PolkanalysisHub section is not defined in appSettings.json");
-    if (hubConfig.IsActivated)
-    {
-        services.AddSingleton(sp =>
-        {
-            var connection = new HubConnectionBuilder()
-                .WithUrl(hubConfig.Url)
-                .WithAutomaticReconnect()
-                .Build();
+    services.AddPolkanalysisSignalRServices(hostContext.Configuration);
+    //var hubConfig = hostContext.Configuration.GetSection("PolkanalysisHub").Get<HubConfig>() ?? throw new InvalidOperationException("PolkanalysisHub section is not defined in appSettings.json");
+    //if (hubConfig.IsActivated)
+    //{
+    //    services.AddSingleton(sp =>
+    //    {
+    //        var connection = new HubConnectionBuilder()
+    //            .WithUrl(hubConfig.Url)
+    //            .WithAutomaticReconnect()
+    //            .Build();
 
-            connection.StartAsync().Wait();
+    //        connection.StartAsync().Wait();
 
-            return connection;
-        });
-    }
+    //        return connection;
+    //    });
+    //}
 
 
     services
@@ -98,7 +99,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddEventsDatabaseRepositories();
     services.AddSubstrateLogic();
     services.AddSubstrateNodeBuilder();
-    services.AddSignalRServices(hostContext.Configuration);
+    services.AddPolkanalysisSignalRServices(hostContext.Configuration);
 
     services.AddOpentelemetry(logger!,
         "Polkanalysis.Worker",

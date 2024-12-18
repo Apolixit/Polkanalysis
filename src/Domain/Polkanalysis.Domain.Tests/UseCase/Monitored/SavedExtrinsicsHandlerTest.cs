@@ -28,6 +28,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.ExtrinsicTmp;
 using Polkanalysis.Domain.Contracts.Metrics;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -72,7 +73,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _explorerService,
                                               _substrateDbContext,
                                               _logger,
-                                              Substitute.For<IDistributedCache>(),
+                                              Substitute.For<HybridCache>(),
                                               _substrateDecoding, 
                                               _coreService,
                                               Substitute.For<IDomainMetrics>());

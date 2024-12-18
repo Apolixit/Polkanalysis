@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Search;
@@ -23,7 +24,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Search
             _logger = Substitute.For<ILogger<SearchHandler>>();
             _searchService = Substitute.For<ISearchService>();
 
-            _useCase = new SearchHandler(_logger, Substitute.For<IDistributedCache>(), _searchService);
+            _useCase = new SearchHandler(_logger, Substitute.For<HybridCache>(), _searchService);
         }
 
         [Test]

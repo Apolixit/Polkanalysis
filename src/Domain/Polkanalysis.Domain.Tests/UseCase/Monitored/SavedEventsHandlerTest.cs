@@ -28,6 +28,7 @@ using Substrate.NetApi.Model.Meta;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Polkanalysis.Hub;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
@@ -63,7 +64,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _useCase = new SavedEventsHandler(_substrateService,
                                               _eventsFactory,
                                               _logger,
-                                              Substitute.For<IDistributedCache>(),
+                                              Substitute.For<HybridCache>(),
                                               _substrateDbContext,
                                               _substrateDecoding,
                                               _domainMetrics,
